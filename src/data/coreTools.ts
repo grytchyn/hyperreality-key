@@ -1,5 +1,6 @@
-// ── 7 CORE TOOLS — English Only, Simple Names ──
-import type { CoreToolConfig, DeepDiveEntry } from '../types'
+// ── 7 CORE TOOLS v3 — Layer Edition ──
+
+import type { CoreToolConfig, CoreToolId, HighlightEntry } from '../types'
 
 export const CORE_TOOLS: CoreToolConfig[] = [
   {
@@ -9,9 +10,14 @@ export const CORE_TOOLS: CoreToolConfig[] = [
     shortLabel: 'Bad Args',
     philosopher: 'Aristotle',
     color: '#ef4444',
-    unlockOrder: 1,
-    description: 'Finds logical tricks: Ad Hominem, Straw Man, false dilemmas, and more.',
-    visualEffect: 'Red highlights on bad logic',
+    category: 'media-sociology',
+    categoryLabel: 'Media Sociology',
+    categoryIcon: '📺',
+    description: 'Spot logical tricks like Ad Hominem, Straw Man, false dilemmas.',
+    simpleQuestion: 'Does this post use a logical fallacy?',
+    options: ['Yes — Straw Man', 'Yes — Ad Hominem', 'Yes — False Dilemma', 'No obvious fallacy'],
+    correctAnswer: '',
+    explanation: 'Logical fallacies trick you into accepting bad arguments by attacking the person (Ad Hominem), misrepresenting the position (Straw Man), or offering only two extremes (False Dilemma).',
     wikipediaUrl: 'https://en.wikipedia.org/wiki/Fallacy',
   },
   {
@@ -21,33 +27,48 @@ export const CORE_TOOLS: CoreToolConfig[] = [
     shortLabel: 'Tricks',
     philosopher: 'Aristotle',
     color: '#f59e0b',
-    unlockOrder: 2,
-    description: 'Shows 3 persuasion styles: Authority (Ethos), Emotion (Pathos), Logic (Logos).',
-    visualEffect: '3-color heatmap on article text',
-    wikipediaUrl: 'https://en.wikipedia.org/wiki/Aristotle',
+    category: 'media-sociology',
+    categoryLabel: 'Media Sociology',
+    categoryIcon: '📺',
+    description: 'Detect Authority appeal (Ethos), Emotion (Pathos), and Logic claims (Logos).',
+    simpleQuestion: 'Which persuasion trick is strongest here?',
+    options: ['Authority appeal (Ethos)', 'Emotional pull (Pathos)', 'Fake logic (Logos)', 'Mixed / none'],
+    correctAnswer: '',
+    explanation: 'Ethos = trust in authority. Pathos = emotional reaction. Logos = logical argument. News often mixes all three.',
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Modes_of_persuasion',
   },
   {
     id: 'bias-detector',
     icon: '🧠',
     name: 'Spot Brain Shortcuts',
-    shortLabel: 'Brain Bias',
+    shortLabel: 'Bias',
     philosopher: 'Kahneman & Tversky',
-    color: '#fbbf24',
-    unlockOrder: 3,
-    description: 'Detects thinking errors: Confirmation Bias, Anchoring, Framing, and more.',
-    visualEffect: 'Yellow highlights on biased phrases',
+    color: '#22c55e',
+    category: 'cognitive-psychology',
+    categoryLabel: 'Cognitive Psychology',
+    categoryIcon: '🧠',
+    description: 'Find cognitive biases: Confirmation Bias, Anchoring, Framing effect.',
+    simpleQuestion: 'Which thinking shortcut is used here?',
+    options: ['Confirmation bias', 'Anchoring effect', 'Framing effect', 'No obvious bias'],
+    correctAnswer: '',
+    explanation: 'Our brain takes shortcuts. Confirmation = look for what agrees with us. Anchoring = first number shapes the rest. Framing = how it\'s said changes what we think.',
     wikipediaUrl: 'https://en.wikipedia.org/wiki/Cognitive_bias',
   },
   {
     id: 'meaning-map',
     icon: '🗺️',
     name: 'Uncover Hidden Meaning',
-    shortLabel: 'Hidden Meaning',
+    shortLabel: 'Meaning',
     philosopher: 'Roland Barthes',
     color: '#06b6d4',
-    unlockOrder: 4,
-    description: 'Peels 3 layers: What it says → What it implies → The myth it sells.',
-    visualEffect: '3 stackable overlays on article',
+    category: 'philosophy',
+    categoryLabel: 'Philosophy',
+    categoryIcon: '📖',
+    description: 'Look beneath the surface — what myth does this text sell?',
+    simpleQuestion: 'What deeper message hides beneath the surface?',
+    options: ['"We need protection" myth', '"Progress is good" myth', '"Crisis is everywhere" myth', 'No hidden meaning'],
+    correctAnswer: '',
+    explanation: 'Barthes said texts sell myths as natural truths. Look for what is presented as "just common sense" — that\'s where ideology hides.',
     wikipediaUrl: 'https://en.wikipedia.org/wiki/Roland_Barthes',
   },
   {
@@ -56,10 +77,15 @@ export const CORE_TOOLS: CoreToolConfig[] = [
     name: 'Find Hidden Battles',
     shortLabel: 'Battles',
     philosopher: 'Jacques Derrida',
-    color: '#8b5cf6',
-    unlockOrder: 5,
-    description: 'Reveals hidden opposites: Good/Evil, Us/Them, Natural/Artificial.',
-    visualEffect: 'Opposing pairs in purple/pink',
+    color: '#d946ef',
+    category: 'philosophy',
+    categoryLabel: 'Philosophy',
+    categoryIcon: '📖',
+    description: 'Reveal hidden opposites: Good/Evil, Us/Them, Safe/Dangerous.',
+    simpleQuestion: 'Which hidden opposition is created in this text?',
+    options: ['Us vs Them', 'Good vs Evil', 'Safe vs Dangerous', 'No clear opposition'],
+    correctAnswer: '',
+    explanation: 'Derrida showed that texts create meaning by opposing two terms — but one is always privileged. Ask: who is "us" and who is "them"?',
     wikipediaUrl: 'https://en.wikipedia.org/wiki/Jacques_Derrida',
   },
   {
@@ -68,11 +94,16 @@ export const CORE_TOOLS: CoreToolConfig[] = [
     name: 'Check Moral Buttons',
     shortLabel: 'Morals',
     philosopher: 'Jonathan Haidt',
-    color: '#22c55e',
-    unlockOrder: 6,
-    description: 'Shows which of 6 moral senses are being pressed: Care, Fairness, Loyalty, etc.',
-    visualEffect: 'Radar chart + colored text',
-    wikipediaUrl: 'https://en.wikipedia.org/wiki/Jonathan_Haidt',
+    color: '#f97316',
+    category: 'cognitive-psychology',
+    categoryLabel: 'Cognitive Psychology',
+    categoryIcon: '🧠',
+    description: 'Which moral sense is being pressed? Care, Fairness, Loyalty, Authority, Sanctity, Liberty.',
+    simpleQuestion: 'Which moral button is this text pressing?',
+    options: ['Care / Harm', 'Fairness / Cheating', 'Loyalty / Betrayal', 'Authority / Subversion'],
+    correctAnswer: '',
+    explanation: 'Haidt found 6 moral foundations. Texts that make you feel outrage or warmth are pressing these buttons. Ask: which feeling is being triggered?',
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Moral_foundations_theory',
   },
   {
     id: 'simulacrum-meter',
@@ -81,101 +112,122 @@ export const CORE_TOOLS: CoreToolConfig[] = [
     shortLabel: 'Reality',
     philosopher: 'Jean Baudrillard',
     color: '#a78bfa',
-    unlockOrder: 7,
-    description: 'Measures how far from reality: Real Report → Hidden Agenda → AI Fake → Meme World.',
-    visualEffect: '4-segment gauge + dramatic text fade',
-    wikipediaUrl: 'https://en.wikipedia.org/wiki/Jean_Baudrillard',
+    category: 'philosophy',
+    categoryLabel: 'Philosophy',
+    categoryIcon: '📖',
+    description: 'How far from reality? Real Report → Propaganda → AI Fake → Pure Simulation.',
+    simpleQuestion: 'How close to reality is this post?',
+    options: ['Real report of events', 'Biased but based on facts', 'Made-up narrative', 'Pure simulation (no real referent)'],
+    correctAnswer: '',
+    explanation: 'Baudrillard warned reality is replaced by symbols of reality. A meme that only references other memes is a "simulacrum" — a copy without original.',
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Simulacrum',
   },
 ]
 
-export const DEEP_DIVES: DeepDiveEntry[] = [
-  {
-    id: 'foucault-power',
-    icon: '👁️',
-    name: 'Who Speaks?',
-    description: 'Who talks? Who is silenced? Who benefits?',
-    philosopher: 'Michel Foucault',
-  },
-  {
-    id: 'lyotard-narrative',
-    icon: '📖',
-    name: 'The Big Story',
-    description: 'Which grand story carries the text? Progress? Apocalypse?',
-    philosopher: 'Jean-François Lyotard',
-  },
-  {
-    id: 'deleuze-rhizome',
-    icon: '🔗',
-    name: 'False Connections',
-    description: 'Which connections are fake? Which real ones are missing?',
-    philosopher: 'Deleuze & Guattari',
-  },
-  {
-    id: 'marx-capital',
-    icon: '🏛️',
-    name: 'Who Profits?',
-    description: 'What kind of value is being promoted? Money? Status? Education?',
-    philosopher: 'Marx & Bourdieu',
-  },
-  {
-    id: 'zuboff-surveillance',
-    icon: '🔮',
-    name: 'Are You Tracked?',
-    description: 'Does this text push surveillance? Data collection?',
-    philosopher: 'Shoshana Zuboff',
-  },
-]
+// ── HIGHLIGHTS ──
+// Which words each tool highlights and what explanation to show
+
+interface HighlightRule {
+  words: string[]
+  explanation: string
+}
+
+const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
+  'fallacy-scanner': [
+    { words: ['always', 'never', 'everyone', 'nobody', 'either', 'totally'], explanation: '⚡ Overgeneralization — words like "always" ignore exceptions. A common fallacy.' },
+    { words: ['typical', 'obviously', 'clearly', 'undeniable'], explanation: '⚡ "Obviously" avoids real proof. Claims something is self-evident without evidence.' },
+    { words: ['expert', 'professor', 'doctor', 'study', 'research'], explanation: '⚡ Authority appeal — who is this expert? Are they really neutral?' },
+  ],
+  'rhetoric-detector': [
+    { words: ['expert', 'professor', 'doctor', 'study', 'research', 'science', 'authority', 'institute'], explanation: '🎭 Ethos: Trust the authority. Who benefits from this trust?' },
+    { words: ['fear', 'danger', 'terrible', 'unthinkable', 'crisis', 'urgent', 'scandal', 'outrage', 'horrible'], explanation: '🎭 Pathos: Emotional trigger. Why make you afraid?' },
+    { words: ['therefore', 'because', 'proves', 'fact', 'statistics', 'logical', 'numbers'], explanation: '🎭 Logos: Claims logic, but are the numbers real?' },
+  ],
+  'bias-detector': [
+    { words: ['everyone knows', 'of course', 'obviously', 'naturally', 'clearly', 'undeniable'], explanation: '🧠 Framing effect: presents opinion as obvious truth' },
+    { words: ['majority', 'most people', 'common sense', 'everyone', 'public'], explanation: '🧠 Bandwagon bias: "everyone thinks this" — but do they?' },
+    { words: ['first', 'only', 'never before', 'unprecedented', 'record'], explanation: '🧠 Anchoring: sets a dramatic reference point' },
+  ],
+  'meaning-map': [
+    { words: ['freedom', 'security', 'order', 'chaos', 'progress', 'tradition', 'crisis'], explanation: '🗺️ Myth layer: this word carries a hidden story about how the world should be' },
+    { words: ['natural', 'normal', 'common sense', 'obvious', 'right'], explanation: '🗺️ Presented as natural — but whose "normal" is this?' },
+    { words: ['protect', 'defend', 'save', 'threat', 'danger', 'safe'], explanation: '🗺️ Security myth: who or what needs protection? From whom?' },
+  ],
+  'binary-scalpel': [
+    { words: ['we', 'us', 'our', 'ourselves'], explanation: '⚔️ "Us" — who is included in this group?' },
+    { words: ['they', 'them', 'their', 'those', 'these people', 'outsiders'], explanation: '⚔️ "Them" — the other side. How are they described?' },
+    { words: ['good', 'bad', 'right', 'wrong', 'evil', 'pure', 'dangerous', 'safe'], explanation: '⚔️ Binary opposition: only two categories, no middle ground' },
+  ],
+  'moral-compass': [
+    { words: ['innocent', 'hurt', 'harm', 'victim', 'suffer', 'protect', 'children'], explanation: '📊 Care/Harm button: triggers compassion or outrage at suffering' },
+    { words: ['fair', 'unfair', 'equal', 'justice', 'cheat', 'dishonest'], explanation: '📊 Fairness/Cheating button: sense of injustice' },
+    { words: ['loyal', 'betray', 'patriot', 'traitor', 'united', 'divide'], explanation: '📊 Loyalty/Betrayal button: us-vs-them loyalty' },
+    { words: ['authority', 'respect', 'obey', 'traditional', 'duty'], explanation: '📊 Authority/Subversion button: respect for hierarchy' },
+  ],
+  'simulacrum-meter': [
+    { words: ['viral', 'meme', 'trending', 'share', 'like', 'follow'], explanation: '🌀 This references the internet itself — a simulation feeding on itself' },
+    { words: ['everyone says', 'apparently', 'rumor', 'sources say', 'anonymous'], explanation: '🌀 Unverified information — at least one step from reality' },
+    { words: ['literally', 'unreal', 'surreal', 'like a movie', 'dream'], explanation: '🌀 Calling attention to the gap between reality and representation' },
+  ],
+}
 
 // ── HELPERS ──
+
+export function getHighlightForWord(toolId: CoreToolId, word: string): HighlightEntry | null {
+  const rules = HIGHLIGHT_RULES[toolId]
+  if (!rules) return null
+  const clean = word.toLowerCase().replace(/[^a-z]/g, '')
+  for (const rule of rules) {
+    if (rule.words.some(w => clean === w || clean.startsWith(w) || clean.endsWith(w))) {
+      return { word, explanation: rule.explanation, color: CORE_TOOLS.find(t => t.id === toolId)?.color || '#888' }
+    }
+  }
+  return null
+}
+
+export function getHighlightForAll(toolIds: CoreToolId[], text: string): Map<string, HighlightEntry[]> {
+  const map = new Map<string, HighlightEntry[]>()
+  const words = text.toLowerCase().replace(/[^a-z\s]/g, '').split(/\s+/)
+  const uniqueWords = [...new Set(words)]
+  
+  for (const toolId of toolIds) {
+    const rules = HIGHLIGHT_RULES[toolId]
+    if (!rules) continue
+    const config = CORE_TOOLS.find(t => t.id === toolId)
+    if (!config) continue
+    
+    for (const word of uniqueWords) {
+      for (const rule of rules) {
+        if (rule.words.some(w => word === w || word.startsWith(w) || word.endsWith(w))) {
+          const existing = map.get(word) || []
+          existing.push({ word, explanation: rule.explanation, color: config.color })
+          map.set(word, existing)
+          break
+        }
+      }
+    }
+  }
+  return map
+}
 
 export function getToolById(id: string): CoreToolConfig | undefined {
   return CORE_TOOLS.find(t => t.id === id)
 }
 
-export function getToolUnlockOrder(id: string): number {
-  return CORE_TOOLS.find(t => t.id === id)?.unlockOrder ?? 99
-}
-
-export function getUnlockedCount(completedCount: number): number {
-  return Math.min(completedCount + 1, 7)
-}
-
-export const MAX_TOOLS = 7
-
-// ── INFO PLATE CALCULATORS ──
-import type { InfoPlateData } from '../types'
-
-export function calcInfoPlates(usedTools: string[], articleLength: number): InfoPlateData[] {
-  const plates: InfoPlateData[] = []
-
-  const spectacleScore = Math.min(10, Math.max(1, Math.round(articleLength / 80)))
-  plates.push({
-    id: 'spectacle',
-    icon: '🎭',
-    label: 'Spectacle',
-    value: `${spectacleScore}/10`,
-    status: spectacleScore > 7 ? 'danger' : spectacleScore > 4 ? 'warn' : 'good',
-  })
-
-  const confidenceBase = usedTools.length > 0 ? 30 + usedTools.length * 8 : 50
-  plates.push({
-    id: 'confidence',
-    icon: '🧬',
-    label: 'Confidence',
-    value: `${confidenceBase}%`,
-    status: confidenceBase < 40 ? 'danger' : confidenceBase < 70 ? 'warn' : 'good',
-  })
-
-  if (articleLength > 800) {
-    const fatigue = Math.min(10, Math.round(articleLength / 200) + 2)
-    plates.push({
-      id: 'fatigue',
-      icon: '💤',
-      label: 'Fatigue',
-      value: `${fatigue}/10`,
-      status: fatigue > 7 ? 'danger' : fatigue > 4 ? 'warn' : 'good',
-    })
+export function getCategoryIcon(cat: string): string {
+  switch (cat) {
+    case 'philosophy': return '📖'
+    case 'cognitive-psychology': return '🧠'
+    case 'media-sociology': return '📺'
+    default: return '🔍'
   }
+}
 
-  return plates
+export function getCategoryLabel(cat: string): string {
+  switch (cat) {
+    case 'philosophy': return 'Philosophy'
+    case 'cognitive-psychology': return 'Cognitive Psychology'
+    case 'media-sociology': return 'Media Sociology'
+    default: return 'Other'
+  }
 }
