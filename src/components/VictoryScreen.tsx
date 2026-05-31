@@ -9,7 +9,7 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
   return (
     <div className="min-h-screen bg-dark-bg flex items-center justify-center p-4">
       <div className="w-full max-w-md animate-fade-in-up text-center">
-        <div className="bg-dark-card border border-border p-8">
+        <div className="bg-dark-card border border-dark-border p-8">
           <div className="text-6xl mb-4 animate-pulse">🔑</div>
           <h1 className="text-2xl font-bold mb-2" style={{ fontFamily: "'Courier New', monospace" }}>
             <span className="text-neon-purple">HYPER</span>
