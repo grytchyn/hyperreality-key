@@ -1,4 +1,4 @@
-// ── MISSION POSTS — with article images ──
+// ── MISSION POSTS v7 — chat → browser flow ──
 import type { CoreToolId } from '../types'
 
 export interface MissionPost {
@@ -9,10 +9,20 @@ export interface MissionPost {
   categoryColor: string
   imageEmoji: string
   imageBg: string
+  /** The question shown after friend's message */
   question: string
-  options: string[]
-  correctIndex: number
-  neededTools: CoreToolId[]
+  /** Is this post manipulative? (first level) */
+  isManipulative: boolean
+  /** Simple explanation why */
+  explanation: string
+  /** Which tool reveals the answer */
+  neededTool: CoreToolId
+  /** Friend's chat message preview */
+  friendPreview: string
+  /** Friend's name */
+  friendName: string
+  /** Friend avatar color */
+  friendColor: string
 }
 
 const POSTS: MissionPost[] = [
@@ -24,10 +34,13 @@ const POSTS: MissionPost[] = [
     categoryColor: '#ef4444',
     imageEmoji: '🏘️',
     imageBg: 'from-red-500/20 to-orange-500/10',
-    question: 'What logical trick is used here?',
-    options: ['Authority name-drop', 'Emotional appeal', 'Fake statistics', 'No trick'],
-    correctIndex: 0,
-    neededTools: ['bad-arguments'],
+    question: 'Is this post manipulating you?',
+    isManipulative: true,
+    explanation: 'They name-drop "Dr. Markus Weber" and "Institute for Social Research" to make you trust a statistic (80%) that has no source.',
+    neededTool: 'bad-arguments',
+    friendPreview: 'Bro have you seen this? 👀',
+    friendName: 'Alex',
+    friendColor: '#22c55e',
   },
   {
     title: '45,000 Layoffs at Big Tech — Stocks Rise 8%',
@@ -37,10 +50,13 @@ const POSTS: MissionPost[] = [
     categoryColor: '#f59e0b',
     imageEmoji: '📉',
     imageBg: 'from-amber-500/20 to-yellow-500/10',
-    question: 'Which feeling is this post trying to create?',
-    options: ['Fear and outrage', 'Hope and optimism', 'Calm and trust', 'No feeling'],
-    correctIndex: 0,
-    neededTools: ['feelings-check'],
+    question: 'Is this post manipulating you?',
+    isManipulative: true,
+    explanation: 'They use the big number "45,000" and contrast it with "record profits" to create outrage. The word "interesting" frames interpretation.',
+    neededTool: 'feelings-check',
+    friendPreview: 'This is insane... 🤯',
+    friendName: 'Mia',
+    friendColor: '#f59e0b',
   },
   {
     title: 'Minister: "We Must Limit Freedom to Protect It"',
@@ -50,23 +66,29 @@ const POSTS: MissionPost[] = [
     categoryColor: '#8b5cf6',
     imageEmoji: '🏛️',
     imageBg: 'from-purple-500/20 to-violet-500/10',
-    question: 'What hidden story is this text selling?',
-    options: ['Safety over freedom', 'Progress is good', 'Government is bad', 'No hidden story'],
-    correctIndex: 0,
-    neededTools: ['hidden-story'],
+    question: 'Is this post manipulating you?',
+    isManipulative: true,
+    explanation: 'The hidden story: "freedom must be limited to be protected" is a classic paradox. The 67% poll makes it feel like consensus.',
+    neededTool: 'hidden-story',
+    friendPreview: 'What do you think about this? 🤔',
+    friendName: 'Sam',
+    friendColor: '#8b5cf6',
   },
   {
-    title: 'Poll: "Majority Believes Crime Is Rising" — But It\'s Falling',
-    source: 'Social Pulse',
-    content: `A new poll shows 72% of people believe crime is rising. Official stats show crime is actually down 15%. Experts say viral videos create a false impression. "Fear spreads faster than facts," says Dr. Lee.`,
-    category: 'Society',
+    title: 'Breaking: Local School Wins Science Competition',
+    source: 'City Times',
+    content: `Students from Lincoln High School won first place at the National Science Fair with their project on renewable energy. "These kids are the future," said Mayor Davis. The team will represent the country at the international competition next month.`,
+    category: 'Education',
     categoryColor: '#22c55e',
-    imageEmoji: '📊',
+    imageEmoji: '🔬',
     imageBg: 'from-green-500/20 to-emerald-500/10',
-    question: 'What thinking shortcut is at work here?',
-    options: ['Bandwagon — "everyone thinks this"', 'Authority bias', 'Framing effect', 'No bias'],
-    correctIndex: 0,
-    neededTools: ['brain-check'],
+    question: 'Is this post manipulating you?',
+    isManipulative: false,
+    explanation: 'This is a straightforward news report. Facts are verifiable, no emotional manipulation or hidden agenda.',
+    neededTool: 'feelings-check',
+    friendPreview: 'This actually made me smile 😊',
+    friendName: 'Emma',
+    friendColor: '#22c55e',
   },
   {
     title: '"They Are Taking Our Jobs" — 5 Million Views',
@@ -76,10 +98,13 @@ const POSTS: MissionPost[] = [
     categoryColor: '#d946ef',
     imageEmoji: '🔥',
     imageBg: 'from-pink-500/20 to-fuchsia-500/10',
-    question: 'What hidden battle does this create?',
-    options: ['Us vs Them divide', 'Good vs Evil', 'Rich vs Poor', 'No division'],
-    correctIndex: 0,
-    neededTools: ['us-vs-them'],
+    question: 'Is this post manipulating you?',
+    isManipulative: true,
+    explanation: 'Uses "we" vs "they" to create division with zero evidence. No data, no sources — just us-vs-them framing.',
+    neededTool: 'us-vs-them',
+    friendPreview: 'This is blowing up rn 🔥',
+    friendName: 'Jay',
+    friendColor: '#d946ef',
   },
   {
     title: 'New Law Will Protect Our Children from Online Dangers',
@@ -89,49 +114,29 @@ const POSTS: MissionPost[] = [
     categoryColor: '#f97316',
     imageEmoji: '👨‍👩‍👧',
     imageBg: 'from-orange-500/20 to-amber-500/10',
-    question: 'Which moral button is being pressed?',
-    options: ['Care — protect the innocent', 'Fairness — justice', 'Loyalty — us vs them', 'Authority — obey'],
-    correctIndex: 0,
-    neededTools: ['value-check'],
+    question: 'Is this post manipulating you?',
+    isManipulative: true,
+    explanation: '"Who would oppose protecting children?" is a loaded question. It makes you emotionally agree before thinking about the surveillance aspect.',
+    neededTool: 'value-check',
+    friendPreview: 'They\'re passing a new law...',
+    friendName: 'Luna',
+    friendColor: '#f97316',
   },
   {
-    title: 'This AI Meme Predicts the Future — And It\'s Wild',
-    source: 'Meme Daily',
-    content: `A viral AI-generated image is being shared everywhere. "This is literally surreal," one user wrote. Sources say it might be fake, but it's trending. Apparently everyone is talking about it. "Like a movie," commented another.`,
-    category: 'Internet',
-    categoryColor: '#a78bfa',
-    imageEmoji: '🌀',
-    imageBg: 'from-indigo-500/20 to-purple-500/10',
-    question: 'How real is this post?',
-    options: ['Unverified — rumor spread', 'Real news report', 'AI generated completely fake', 'Fully real'],
-    correctIndex: 0,
-    neededTools: ['fake-check'],
-  },
-  {
-    title: 'Study Proves: Our City Has Never Been More Dangerous',
-    source: 'City News',
-    content: `A new report from the Institute for Urban Safety proves crime has reached unprecedented levels. "Statistics don't lie," says Director Miller. "Every major city is affected. Never before have we seen such numbers." But official data shows crime is actually lower than 5 years ago.`,
-    category: 'Local',
+    title: 'Scientists Confirm: Earth Is Still Round',
+    source: 'Science Daily',
+    content: `NASA and ESA jointly confirmed today that Earth continues to be round, as it has been for the past 4.5 billion years. "This is not new information," said Dr. Harrison. The announcement came in response to online conspiracy theories gaining traction.`,
+    category: 'Science',
     categoryColor: '#06b6d4',
-    imageEmoji: '😨',
+    imageEmoji: '🌍',
     imageBg: 'from-cyan-500/20 to-blue-500/10',
-    question: 'What brain trick uses dramatic numbers?',
-    options: ['Anchoring — sets an extreme', 'Confirmation bias', 'Bandwagon effect', 'No trick'],
-    correctIndex: 0,
-    neededTools: ['brain-check'],
-  },
-  {
-    title: 'Either You Support Order or You Support Chaos',
-    source: 'Hardline Post',
-    content: `The choice is simple: either you support law and order, or you support chaos. There is no middle ground. We must stand together against those who threaten our way of life. Traditional values are under attack.`,
-    category: 'Opinion',
-    categoryColor: '#ef4444',
-    imageEmoji: '⚔️',
-    imageBg: 'from-red-500/20 to-rose-500/10',
-    question: 'What false binary is created here?',
-    options: ['Order vs Chaos', 'Good vs Evil', 'Us vs Them', 'Rich vs Poor'],
-    correctIndex: 0,
-    neededTools: ['us-vs-them'],
+    question: 'Is this post manipulating you?',
+    isManipulative: false,
+    explanation: 'Satirical but factual. It reports real science without emotional language or hidden agenda. Just stating facts.',
+    neededTool: 'fake-check',
+    friendPreview: 'LMAO wait till you see this 💀',
+    friendName: 'Max',
+    friendColor: '#06b6d4',
   },
 ]
 

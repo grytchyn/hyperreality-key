@@ -1,93 +1,170 @@
-// ── SPLASH SCREEN v6 ──
-import { useState, useEffect } from 'react'
+// ── SPLASH SCREEN v7 — Chat message from friend ──
+import { useState, useEffect, useCallback } from 'react'
+import { getMissionPosts, type MissionPost } from '../data/missions'
 
-interface SplashScreenProps { onStart: () => void }
+interface SplashScreenProps {
+  onStart: (post: MissionPost) => void
+}
 
 export default function SplashScreen({ onStart }: SplashScreenProps) {
-  const [ready, setReady] = useState(false)
-  useEffect(() => { setReady(true) }, [])
+  const [messagePost, setMessagePost] = useState<MissionPost | null>(null)
+  const [showChat, setShowChat] = useState(false)
+  const [typing, setTyping] = useState(false)
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    const posts = getMissionPosts()
+    setMessagePost(posts[0])
+    setTimeout(() => setShowChat(true), 800)
+  }, [])
+
+  useEffect(() => {
+    if (!showChat || !messagePost) return
+    setTyping(true)
+    const text = messagePost.friendPreview
+    let idx = 0
+    const interval = setInterval(() => {
+      setMessage(text.slice(0, idx + 1))
+      idx++
+      if (idx >= text.length) {
+        clearInterval(interval)
+        setTyping(false)
+      }
+    }, 35)
+    return () => clearInterval(interval)
+  }, [showChat, messagePost])
+
+  const handleStart = useCallback(() => {
+    if (messagePost) onStart(messagePost)
+  }, [messagePost, onStart])
+
+  if (!messagePost) return null
 
   return (
-    <div className="min-h-screen bg-dark-bg flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+    <div className="min-h-screen bg-dark-bg flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* Animated bg */}
       <div className="fixed inset-0 pointer-events-none -z-10">
-        <div className="absolute top-10 left-1/4 w-[30rem] h-[30rem] rounded-full opacity-[0.12]"
+        <div className="absolute top-10 left-1/4 w-[30rem] h-[30rem] rounded-full opacity-[0.1]"
           style={{ background: 'radial-gradient(circle, #8b5cf6, transparent 70%)', animation: 'pulse 5s infinite' }} />
-        <div className="absolute bottom-20 right-1/4 w-[25rem] h-[25rem] rounded-full opacity-[0.08]"
+        <div className="absolute bottom-20 right-1/4 w-[25rem] h-[25rem] rounded-full opacity-[0.07]"
           style={{ background: 'radial-gradient(circle, #06b6d4, transparent 70%)', animation: 'pulse 7s infinite 1.5s' }} />
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(139,92,246,0.4) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(139,92,246,0.4) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
-          }} />
       </div>
 
-      <div className="max-w-sm animate-fade-in-up relative z-10">
-        {/* Logo area */}
-        <div className="relative inline-block mb-6">
-          <div className="text-6xl relative z-10 drop-shadow-[0_0_20px_rgba(139,92,246,0.3)]">🔑</div>
-          <div className="absolute inset-0 animate-ping opacity-20 text-6xl">🔑</div>
+      {/* Phone frame */}
+      <div className="relative w-full max-w-sm animate-fade-in-up">
+        {/* Phone notch */}
+        <div className="mx-auto w-28 h-5 bg-black rounded-b-xl mb-0 relative z-10 flex items-center justify-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-gray-700" />
+          <div className="w-16 h-1.5 rounded-full bg-gray-800" />
         </div>
-        
-        <h1 className="text-4xl font-bold mb-3" style={{ fontFamily: "'Courier New', monospace" }}>
-          <span className="text-neon-purple">HYPER</span>
-          <span className="text-neon-cyan">REALITY</span>
-          <span className="text-neon-pink">KEY</span>
-        </h1>
-        <p className="text-sm text-gray-400 mb-8 max-w-xs mx-auto">See the hidden tricks behind every post you scroll past.</p>
 
-        {/* How it works */}
-        <div className="rounded-2xl p-5 mb-8 text-left text-xs space-y-3 border"
-          style={{
-            background: 'rgba(19,19,26,0.8)',
-            borderColor: 'rgba(139,92,246,0.15)',
-            backdropFilter: 'blur(8px)',
-          }}>
-          <div className="flex items-start gap-3">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+        {/* Phone screen */}
+        <div className="rounded-[2rem] overflow-hidden border-4 border-gray-800 shadow-2xl"
+          style={{ background: '#0a0a0f' }}>
+          
+          {/* Status bar */}
+          <div className="px-5 pt-1 pb-1 flex items-center justify-between text-[10px] text-gray-400 font-mono">
+            <span>9:41</span>
+            <div className="flex items-center gap-1">
+              <span>●●●●</span>
+              <span className="text-[8px]">🔋</span>
+            </div>
+          </div>
+
+          {/* Chat header */}
+          <div className="px-4 py-2 flex items-center gap-3 border-b border-dark-border/50"
+            style={{ background: 'rgba(19,19,26,0.95)' }}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
+              style={{ background: messagePost.friendColor }}>
+              {messagePost.friendName[0]}
+            </div>
+            <div>
+              <div className="text-xs font-bold text-white">{messagePost.friendName}</div>
+              <div className="text-[9px] text-gray-500 font-mono">online</div>
+            </div>
+            <div className="ml-auto flex gap-1 text-gray-600">
+              <span>📞</span>
+              <span>📹</span>
+            </div>
+          </div>
+
+          {/* Chat messages */}
+          <div className="px-4 py-6 min-h-[260px] flex flex-col justify-end">
+            {showChat && (
+              <>
+                {/* Friend's message bubble */}
+                <div className="flex items-start gap-2 mb-3 animate-fade-in-up">
+                  <div className="w-6 h-6 rounded-full shrink-0 mt-0.5 flex items-center justify-center text-white text-[9px] font-bold"
+                    style={{ background: messagePost.friendColor }}>
+                    {messagePost.friendName[0]}
+                  </div>
+                  <div className="max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed"
+                    style={{
+                      background: 'rgba(26,26,36,0.9)',
+                      border: '1px solid rgba(255,255,255,0.05)',
+                      color: '#e0e0e0',
+                      borderBottomLeftRadius: '4px',
+                    }}>
+                    {typing || message.length > 0 ? (
+                      <span>
+                        {message}
+                        {typing && <span className="inline-block w-1.5 h-3 bg-gray-400 ml-0.5 animate-pulse" />}
+                      </span>
+                    ) : (
+                      <span className="flex gap-1">
+                        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '0ms' }} />
+                        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '150ms' }} />
+                        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '300ms' }} />
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Preview card */}
+                {!typing && messagePost && (
+                  <div className="ml-8 animate-fade-in-up">
+                    <div className="rounded-xl overflow-hidden border border-dark-border/50 cursor-pointer transition-all hover:border-neon-purple/50 group"
+                      style={{ background: 'rgba(19,19,26,0.9)' }}
+                      onClick={handleStart}>
+                      {/* Preview image */}
+                      <div className={`h-16 bg-gradient-to-br ${messagePost.imageBg} flex items-center justify-center`}>
+                        <span className="text-2xl">{messagePost.imageEmoji}</span>
+                      </div>
+                      <div className="px-3 py-2">
+                        <div className="text-xs font-bold text-white truncate group-hover:text-neon-cyan transition-colors">{messagePost.title}</div>
+                        <div className="text-[9px] text-gray-500 font-mono mt-0.5">{messagePost.source}</div>
+                      </div>
+                    </div>
+                    <button onClick={handleStart}
+                      className="w-full mt-3 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer hover:translate-y-[-1px]"
+                      style={{
+                        background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                        color: '#fff',
+                        boxShadow: '0 4px 20px rgba(139,92,246,0.3)',
+                      }}>
+                      🔍 Open & Analyze
+                    </button>
+                    <p className="text-[9px] text-gray-600 text-center mt-2 font-mono">
+                      Tap to analyze this post for manipulation
+                    </p>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+
+          {/* Chat input bar */}
+          <div className="px-3 py-2 border-t border-dark-border/30 flex items-center gap-2">
+            <div className="flex-1 rounded-xl px-3 py-2 text-xs text-gray-500 font-mono"
+              style={{ background: 'rgba(26,26,36,0.9)', border: '1px solid rgba(255,255,255,0.05)' }}>
+              {typing ? '...' : 'Type a message...'}
+            </div>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-gray-500"
               style={{ background: 'rgba(139,92,246,0.15)' }}>
-              <span className="text-sm">📰</span>
-            </div>
-            <div>
-              <div className="text-white font-bold mb-0.5">Read a post</div>
-              <div className="text-gray-500">Like in your social feed — short and real-looking</div>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
-              style={{ background: 'rgba(6,182,212,0.15)' }}>
-              <span className="text-sm">🔍</span>
-            </div>
-            <div>
-              <div className="text-white font-bold mb-0.5">Use filter tools</div>
-              <div className="text-gray-500">Tap to reveal hidden manipulation in the text</div>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
-              style={{ background: 'rgba(236,72,153,0.15)' }}>
-              <span className="text-sm">🎯</span>
-            </div>
-            <div>
-              <div className="text-white font-bold mb-0.5">Answer the mission</div>
-              <div className="text-gray-500">One question per post — pick the right trick</div>
+              ⬆
             </div>
           </div>
         </div>
-
-        {ready && (
-          <button onClick={onStart}
-            className="relative w-full px-6 py-3.5 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer hover:translate-y-[-2px]"
-            style={{
-              background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
-              color: '#fff',
-              boxShadow: '0 4px 24px rgba(139,92,246,0.4)',
-              border: '1px solid rgba(139,92,246,0.3)',
-            }}>
-            🔍 Start Playing
-          </button>
-        )}
       </div>
     </div>
   )
