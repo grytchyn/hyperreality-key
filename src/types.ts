@@ -1,4 +1,4 @@
-// ── HYPERREALITY KEY v5 — Choose & Reveal ──
+// ── HYPERREALITY KEY v8 — Types ──
 
 export type CoreToolId =
   | 'bad-arguments' | 'feelings-check' | 'brain-check'
@@ -21,4 +21,9 @@ export interface HighlightEntry {
   word: string
   explanation: string
   color: string
+}
+
+export interface HighlightRule {
+  words: string[]
+  explanation: string
 }

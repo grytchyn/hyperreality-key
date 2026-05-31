@@ -308,22 +308,26 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
                       )}
                     </button>
 
-                    {toolPopup === toolId && (
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-40 z-50 animate-fade-in-up pointer-events-none">
-                        <div className="rounded-xl p-2.5 shadow-2xl border"
-                          style={{
-                            background: '#13131a',
-                            borderColor: t.color + '40',
-                            boxShadow: `0 4px 20px rgba(0,0,0,0.5)`,
-                          }}>
-                          <div className="flex items-center gap-1.5 mb-1">
-                            <span className="text-base">{t.icon}</span>
-                            <span className="text-[10px] font-bold text-white">{t.name}</span>
+                    {toolPopup === toolId && (() => {
+                      const idx = allToolIds.indexOf(toolId)
+                      const isRightmost = idx % 4 === 3
+                      return (
+                        <div className={`absolute bottom-full mb-2 z-50 animate-fade-in-up pointer-events-none ${isRightmost ? 'right-0' : 'left-0'}`}>
+                          <div className="rounded-xl p-2.5 shadow-2xl border w-44"
+                            style={{
+                              background: '#13131a',
+                              borderColor: t.color + '40',
+                              boxShadow: `0 4px 20px rgba(0,0,0,0.5)`,
+                            }}>
+                            <div className="flex items-center gap-1.5 mb-1">
+                              <span className="text-base">{t.icon}</span>
+                              <span className="text-[10px] font-bold text-white">{t.name}</span>
+                            </div>
+                            <p className="text-[8px] text-gray-400 leading-relaxed">{t.description}</p>
                           </div>
-                          <p className="text-[8px] text-gray-400 leading-relaxed">{t.description}</p>
                         </div>
-                      </div>
-                    )}
+                      )
+                    })()}
                   </div>
                 )
               })}
