@@ -1,37 +1,27 @@
-// ── HYPERREALITY KEY v3 — Layer Edition App ──
-import { useState, useCallback } from 'react'
-import { createSession } from './game/GameEngine'
-import type { GameSession } from './types'
+// ── APP v4 — Mission: Filter & Reveal ──
+import { useState } from 'react'
 import SplashScreen from './components/SplashScreen'
 import GameScreen from './components/GameScreen'
 import VictoryScreen from './components/VictoryScreen'
 
+type Phase = 'splash' | 'playing' | 'victory'
+
 export default function App() {
-  const [gameSession, setGameSession] = useState<GameSession | null>(null)
-  const [showSplash, setShowSplash] = useState(true)
+  const [phase, setPhase] = useState<Phase>('splash')
+  const [score, setScore] = useState(0)
 
-  const handleStart = useCallback((_country: string) => {
-    const session = createSession()
-    setGameSession(session)
-    setShowSplash(false)
-  }, [])
-
-  const handleSessionUpdate = useCallback((updated: GameSession) => {
-    setGameSession(updated)
-  }, [])
-
-  const handleRestart = useCallback(() => {
-    setGameSession(null)
-    setShowSplash(true)
-  }, [])
-
-  if (showSplash || !gameSession) {
-    return <SplashScreen onStart={handleStart} />
+  const handleStart = () => setPhase('playing')
+  const handleFinish = (finalScore: number) => {
+    setScore(finalScore)
+    setPhase('victory')
+  }
+  const handleRestart = () => {
+    setScore(0)
+    setPhase('splash')
   }
 
-  if (gameSession.completed) {
-    return <VictoryScreen session={gameSession} onRestart={handleRestart} />
-  }
+  if (phase === 'splash') return <SplashScreen onStart={handleStart} />
+  if (phase === 'victory') return <VictoryScreen score={score} onRestart={handleRestart} />
 
   return (
     <div className="min-h-screen bg-dark-bg">
@@ -45,18 +35,10 @@ export default function App() {
               <span className="text-neon-pink">KEY</span>
             </span>
           </div>
-          <div className="flex items-center gap-3 text-xs font-mono">
-            <span className="text-gray-500">Round {gameSession.currentRound + 1}/4</span>
-            <span className="text-neon-cyan">★ {gameSession.score}</span>
-          </div>
         </div>
       </header>
       <main>
-        <GameScreen
-          session={gameSession}
-          onSessionUpdate={handleSessionUpdate}
-          onRestart={handleRestart}
-        />
+        <GameScreen onFinish={handleFinish} />
       </main>
     </div>
   )

@@ -1,131 +1,74 @@
-// ── 7 CORE TOOLS v3 — Layer Edition ──
+// ── 7 TOOLS — Simple names, for mission mode ──
 
 import type { CoreToolConfig, CoreToolId, HighlightEntry } from '../types'
 
 export const CORE_TOOLS: CoreToolConfig[] = [
   {
-    id: 'fallacy-scanner',
-    icon: '⚡',
-    name: 'Find Bad Arguments',
-    shortLabel: 'Bad Args',
-    philosopher: 'Aristotle',
+    id: 'bad-arguments',
+    icon: '⚠️',
+    name: 'Bad Words',
+    shortLabel: 'Bad Words',
     color: '#ef4444',
     category: 'media-sociology',
-    categoryLabel: 'Media Sociology',
-    categoryIcon: '📺',
-    description: 'Spot logical tricks like Ad Hominem, Straw Man, false dilemmas.',
-    simpleQuestion: 'Does this post use a logical fallacy?',
-    options: ['Yes — Straw Man', 'Yes — Ad Hominem', 'Yes — False Dilemma', 'No obvious fallacy'],
-    correctAnswer: '',
-    explanation: 'Logical fallacies trick you into accepting bad arguments by attacking the person (Ad Hominem), misrepresenting the position (Straw Man), or offering only two extremes (False Dilemma).',
-    wikipediaUrl: 'https://en.wikipedia.org/wiki/Fallacy',
+    description: 'Finds logical tricks: overgeneralization ("always", "never"), false authority, and fake facts.',
   },
   {
-    id: 'rhetoric-detector',
+    id: 'feelings-check',
     icon: '🎭',
-    name: 'See Persuasion Tricks',
-    shortLabel: 'Tricks',
-    philosopher: 'Aristotle',
+    name: 'Feelings Check',
+    shortLabel: 'Feelings',
     color: '#f59e0b',
     category: 'media-sociology',
-    categoryLabel: 'Media Sociology',
-    categoryIcon: '📺',
-    description: 'Detect Authority appeal (Ethos), Emotion (Pathos), and Logic claims (Logos).',
-    simpleQuestion: 'Which persuasion trick is strongest here?',
-    options: ['Authority appeal (Ethos)', 'Emotional pull (Pathos)', 'Fake logic (Logos)', 'Mixed / none'],
-    correctAnswer: '',
-    explanation: 'Ethos = trust in authority. Pathos = emotional reaction. Logos = logical argument. News often mixes all three.',
-    wikipediaUrl: 'https://en.wikipedia.org/wiki/Modes_of_persuasion',
+    description: 'Shows emotion tricks: fear, urgency, outrage, and who they want you to trust.',
   },
   {
-    id: 'bias-detector',
+    id: 'brain-check',
     icon: '🧠',
-    name: 'Spot Brain Shortcuts',
-    shortLabel: 'Bias',
-    philosopher: 'Kahneman & Tversky',
+    name: 'Brain Check',
+    shortLabel: 'Brain',
     color: '#22c55e',
     category: 'cognitive-psychology',
-    categoryLabel: 'Cognitive Psychology',
-    categoryIcon: '🧠',
-    description: 'Find cognitive biases: Confirmation Bias, Anchoring, Framing effect.',
-    simpleQuestion: 'Which thinking shortcut is used here?',
-    options: ['Confirmation bias', 'Anchoring effect', 'Framing effect', 'No obvious bias'],
-    correctAnswer: '',
-    explanation: 'Our brain takes shortcuts. Confirmation = look for what agrees with us. Anchoring = first number shapes the rest. Framing = how it\'s said changes what we think.',
-    wikipediaUrl: 'https://en.wikipedia.org/wiki/Cognitive_bias',
+    description: 'Reveals thinking shortcuts: "everyone thinks this", "of course", dramatic numbers.',
   },
   {
-    id: 'meaning-map',
+    id: 'hidden-story',
     icon: '🗺️',
-    name: 'Uncover Hidden Meaning',
-    shortLabel: 'Meaning',
-    philosopher: 'Roland Barthes',
+    name: 'Hidden Story',
+    shortLabel: 'Story',
     color: '#06b6d4',
     category: 'philosophy',
-    categoryLabel: 'Philosophy',
-    categoryIcon: '📖',
-    description: 'Look beneath the surface — what myth does this text sell?',
-    simpleQuestion: 'What deeper message hides beneath the surface?',
-    options: ['"We need protection" myth', '"Progress is good" myth', '"Crisis is everywhere" myth', 'No hidden meaning'],
-    correctAnswer: '',
-    explanation: 'Barthes said texts sell myths as natural truths. Look for what is presented as "just common sense" — that\'s where ideology hides.',
-    wikipediaUrl: 'https://en.wikipedia.org/wiki/Roland_Barthes',
+    description: 'Finds the deeper myth: freedom, security, crisis — the story they sell as normal.',
   },
   {
-    id: 'binary-scalpel',
+    id: 'us-vs-them',
     icon: '⚔️',
-    name: 'Find Hidden Battles',
-    shortLabel: 'Battles',
-    philosopher: 'Jacques Derrida',
+    name: 'Us vs Them',
+    shortLabel: 'Divide',
     color: '#d946ef',
     category: 'philosophy',
-    categoryLabel: 'Philosophy',
-    categoryIcon: '📖',
-    description: 'Reveal hidden opposites: Good/Evil, Us/Them, Safe/Dangerous.',
-    simpleQuestion: 'Which hidden opposition is created in this text?',
-    options: ['Us vs Them', 'Good vs Evil', 'Safe vs Dangerous', 'No clear opposition'],
-    correctAnswer: '',
-    explanation: 'Derrida showed that texts create meaning by opposing two terms — but one is always privileged. Ask: who is "us" and who is "them"?',
-    wikipediaUrl: 'https://en.wikipedia.org/wiki/Jacques_Derrida',
+    description: 'Reveals hidden battles: "we" vs "they", good vs bad, safe vs dangerous.',
   },
   {
-    id: 'moral-compass',
+    id: 'value-check',
     icon: '📊',
-    name: 'Check Moral Buttons',
-    shortLabel: 'Morals',
-    philosopher: 'Jonathan Haidt',
+    name: 'Value Check',
+    shortLabel: 'Values',
     color: '#f97316',
     category: 'cognitive-psychology',
-    categoryLabel: 'Cognitive Psychology',
-    categoryIcon: '🧠',
-    description: 'Which moral sense is being pressed? Care, Fairness, Loyalty, Authority, Sanctity, Liberty.',
-    simpleQuestion: 'Which moral button is this text pressing?',
-    options: ['Care / Harm', 'Fairness / Cheating', 'Loyalty / Betrayal', 'Authority / Subversion'],
-    correctAnswer: '',
-    explanation: 'Haidt found 6 moral foundations. Texts that make you feel outrage or warmth are pressing these buttons. Ask: which feeling is being triggered?',
-    wikipediaUrl: 'https://en.wikipedia.org/wiki/Moral_foundations_theory',
+    description: 'Checks which moral button is pressed: care, fairness, loyalty, authority.',
   },
   {
-    id: 'simulacrum-meter',
+    id: 'fake-check',
     icon: '🌀',
-    name: 'How Real Is This?',
-    shortLabel: 'Reality',
-    philosopher: 'Jean Baudrillard',
+    name: 'Fake Check',
+    shortLabel: 'Fake',
     color: '#a78bfa',
     category: 'philosophy',
-    categoryLabel: 'Philosophy',
-    categoryIcon: '📖',
-    description: 'How far from reality? Real Report → Propaganda → AI Fake → Pure Simulation.',
-    simpleQuestion: 'How close to reality is this post?',
-    options: ['Real report of events', 'Biased but based on facts', 'Made-up narrative', 'Pure simulation (no real referent)'],
-    correctAnswer: '',
-    explanation: 'Baudrillard warned reality is replaced by symbols of reality. A meme that only references other memes is a "simulacrum" — a copy without original.',
-    wikipediaUrl: 'https://en.wikipedia.org/wiki/Simulacrum',
+    description: 'Measures how real this is: real report, biased, made up, or pure internet simulation.',
   },
 ]
 
 // ── HIGHLIGHTS ──
-// Which words each tool highlights and what explanation to show
 
 interface HighlightRule {
   words: string[]
@@ -133,41 +76,42 @@ interface HighlightRule {
 }
 
 const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
-  'fallacy-scanner': [
-    { words: ['always', 'never', 'everyone', 'nobody', 'either', 'totally'], explanation: '⚡ Overgeneralization — words like "always" ignore exceptions. A common fallacy.' },
-    { words: ['typical', 'obviously', 'clearly', 'undeniable'], explanation: '⚡ "Obviously" avoids real proof. Claims something is self-evident without evidence.' },
-    { words: ['expert', 'professor', 'doctor', 'study', 'research'], explanation: '⚡ Authority appeal — who is this expert? Are they really neutral?' },
+  'bad-arguments': [
+    { words: ['always', 'never', 'everyone', 'nobody', 'either', 'totally'], explanation: '⚠️ Absolute words — they ignore exceptions. Overgeneralization trick.' },
+    { words: ['expert', 'professor', 'doctor', 'study', 'research', 'scientist'], explanation: '⚠️ Authority name-drop. Are they truly neutral?' },
+    { words: ['obviously', 'clearly', 'undeniable', 'typical'], explanation: '⚠️ Claiming something is obvious — avoids real proof.' },
+    { words: ['statistics', 'numbers', 'percent', 'majority', 'study shows', 'proves'], explanation: '⚠️ Fake facts: "proves" without showing the proof.' },
   ],
-  'rhetoric-detector': [
-    { words: ['expert', 'professor', 'doctor', 'study', 'research', 'science', 'authority', 'institute'], explanation: '🎭 Ethos: Trust the authority. Who benefits from this trust?' },
-    { words: ['fear', 'danger', 'terrible', 'unthinkable', 'crisis', 'urgent', 'scandal', 'outrage', 'horrible'], explanation: '🎭 Pathos: Emotional trigger. Why make you afraid?' },
-    { words: ['therefore', 'because', 'proves', 'fact', 'statistics', 'logical', 'numbers'], explanation: '🎭 Logos: Claims logic, but are the numbers real?' },
+  'feelings-check': [
+    { words: ['fear', 'danger', 'terrible', 'unthinkable', 'crisis', 'urgent', 'scandal', 'outrage', 'horrible', 'shocking'], explanation: '🎭 Fear trigger — making you scared on purpose.' },
+    { words: ['expert', 'professor', 'doctor', 'study', 'research', 'science', 'authority', 'institute'], explanation: '🎭 Trust authority trick — who benefits from your trust?' },
+    { words: ['therefore', 'because', 'proves', 'fact', 'statistics', 'logical'], explanation: '🎭 Fake logic: sounds reasonable, but check the numbers.' },
   ],
-  'bias-detector': [
-    { words: ['everyone knows', 'of course', 'obviously', 'naturally', 'clearly', 'undeniable'], explanation: '🧠 Framing effect: presents opinion as obvious truth' },
-    { words: ['majority', 'most people', 'common sense', 'everyone', 'public'], explanation: '🧠 Bandwagon bias: "everyone thinks this" — but do they?' },
-    { words: ['first', 'only', 'never before', 'unprecedented', 'record'], explanation: '🧠 Anchoring: sets a dramatic reference point' },
+  'brain-check': [
+    { words: ['everyone knows', 'of course', 'obviously', 'naturally', 'common sense', 'undeniable'], explanation: '🧠 Framing — they present opinion as obvious truth.' },
+    { words: ['majority', 'most people', 'public', 'everyone', 'people say'], explanation: '🧠 Bandwagon — "everyone thinks this". Do they?' },
+    { words: ['first', 'only', 'never before', 'unprecedented', 'record', 'biggest', 'worst'], explanation: '🧠 Drama number — sets an extreme anchor.' },
   ],
-  'meaning-map': [
-    { words: ['freedom', 'security', 'order', 'chaos', 'progress', 'tradition', 'crisis'], explanation: '🗺️ Myth layer: this word carries a hidden story about how the world should be' },
-    { words: ['natural', 'normal', 'common sense', 'obvious', 'right'], explanation: '🗺️ Presented as natural — but whose "normal" is this?' },
-    { words: ['protect', 'defend', 'save', 'threat', 'danger', 'safe'], explanation: '🗺️ Security myth: who or what needs protection? From whom?' },
+  'hidden-story': [
+    { words: ['freedom', 'security', 'order', 'chaos', 'progress', 'tradition', 'crisis'], explanation: '🗺️ Big story word — carries a hidden message about how the world should be.' },
+    { words: ['natural', 'normal', 'common sense', 'obvious', 'right', 'proper'], explanation: '🗺️ "Normal" trick — who decided what is normal?' },
+    { words: ['protect', 'defend', 'save', 'threat', 'danger', 'safe', 'security'], explanation: '🗺️ Protection myth — someone needs saving. From whom?' },
   ],
-  'binary-scalpel': [
-    { words: ['we', 'us', 'our', 'ourselves'], explanation: '⚔️ "Us" — who is included in this group?' },
-    { words: ['they', 'them', 'their', 'those', 'these people', 'outsiders'], explanation: '⚔️ "Them" — the other side. How are they described?' },
-    { words: ['good', 'bad', 'right', 'wrong', 'evil', 'pure', 'dangerous', 'safe'], explanation: '⚔️ Binary opposition: only two categories, no middle ground' },
+  'us-vs-them': [
+    { words: ['we', 'us', 'our', 'ourselves'], explanation: '⚔️ "Us" — who belongs? Who is left out?' },
+    { words: ['they', 'them', 'their', 'those', 'these people', 'outsiders', 'foreigners'], explanation: '⚔️ "Them" — the other side. How are they described?' },
+    { words: ['good', 'bad', 'evil', 'pure', 'dangerous', 'safe', 'right', 'wrong'], explanation: '⚔️ Binary — only two options, no middle ground.' },
   ],
-  'moral-compass': [
-    { words: ['innocent', 'hurt', 'harm', 'victim', 'suffer', 'protect', 'children'], explanation: '📊 Care/Harm button: triggers compassion or outrage at suffering' },
-    { words: ['fair', 'unfair', 'equal', 'justice', 'cheat', 'dishonest'], explanation: '📊 Fairness/Cheating button: sense of injustice' },
-    { words: ['loyal', 'betray', 'patriot', 'traitor', 'united', 'divide'], explanation: '📊 Loyalty/Betrayal button: us-vs-them loyalty' },
-    { words: ['authority', 'respect', 'obey', 'traditional', 'duty'], explanation: '📊 Authority/Subversion button: respect for hierarchy' },
+  'value-check': [
+    { words: ['innocent', 'hurt', 'harm', 'victim', 'suffer', 'protect', 'children'], explanation: '📊 Care button — makes you feel compassion or outrage.' },
+    { words: ['fair', 'unfair', 'equal', 'justice', 'cheat', 'dishonest', 'corrupt'], explanation: '📊 Fairness button — sense of injustice triggered.' },
+    { words: ['loyal', 'betray', 'patriot', 'traitor', 'united', 'divide', 'together'], explanation: '📊 Loyalty button — us vs them loyalty.' },
+    { words: ['authority', 'respect', 'obey', 'traditional', 'duty', 'order'], explanation: '📊 Authority button — respect the hierarchy.' },
   ],
-  'simulacrum-meter': [
-    { words: ['viral', 'meme', 'trending', 'share', 'like', 'follow'], explanation: '🌀 This references the internet itself — a simulation feeding on itself' },
-    { words: ['everyone says', 'apparently', 'rumor', 'sources say', 'anonymous'], explanation: '🌀 Unverified information — at least one step from reality' },
-    { words: ['literally', 'unreal', 'surreal', 'like a movie', 'dream'], explanation: '🌀 Calling attention to the gap between reality and representation' },
+  'fake-check': [
+    { words: ['viral', 'meme', 'trending', 'share', 'like', 'follow', 'internet', 'social media'], explanation: '🌀 Internet buzz — this references the web itself, feeding on attention.' },
+    { words: ['apparently', 'rumor', 'anonymous', 'sources say', 'unconfirmed', 'allegedly'], explanation: '🌀 Unverified — at least one step removed from reality.' },
+    { words: ['literally', 'unreal', 'surreal', 'like a movie', 'dream', 'crazy'], explanation: '🌀 Reality gap — the text itself admits something is off.' },
   ],
 }
 
@@ -178,17 +122,16 @@ export function getHighlightForWord(toolId: CoreToolId, word: string): Highlight
   if (!rules) return null
   const clean = word.toLowerCase().replace(/[^a-z]/g, '')
   for (const rule of rules) {
-    if (rule.words.some(w => clean === w || clean.startsWith(w) || clean.endsWith(w))) {
+    if (rule.words.some(w => clean === w || clean.startsWith(w) || (clean.length > 3 && rule.words.some(rw => clean.includes(rw.toLowerCase()))))) {
       return { word, explanation: rule.explanation, color: CORE_TOOLS.find(t => t.id === toolId)?.color || '#888' }
     }
   }
   return null
 }
 
-export function getHighlightForAll(toolIds: CoreToolId[], text: string): Map<string, HighlightEntry[]> {
+export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<string, HighlightEntry[]> {
   const map = new Map<string, HighlightEntry[]>()
   const words = text.toLowerCase().replace(/[^a-z\s]/g, '').split(/\s+/)
-  const uniqueWords = [...new Set(words)]
   
   for (const toolId of toolIds) {
     const rules = HIGHLIGHT_RULES[toolId]
@@ -196,9 +139,9 @@ export function getHighlightForAll(toolIds: CoreToolId[], text: string): Map<str
     const config = CORE_TOOLS.find(t => t.id === toolId)
     if (!config) continue
     
-    for (const word of uniqueWords) {
+    for (const word of [...new Set(words)]) {
       for (const rule of rules) {
-        if (rule.words.some(w => word === w || word.startsWith(w) || word.endsWith(w))) {
+        if (rule.words.some(w => word === w || word.startsWith(w) || (word.length > 3 && rule.words.some(rw => word.includes(rw.toLowerCase()))))) {
           const existing = map.get(word) || []
           existing.push({ word, explanation: rule.explanation, color: config.color })
           map.set(word, existing)
@@ -212,22 +155,4 @@ export function getHighlightForAll(toolIds: CoreToolId[], text: string): Map<str
 
 export function getToolById(id: string): CoreToolConfig | undefined {
   return CORE_TOOLS.find(t => t.id === id)
-}
-
-export function getCategoryIcon(cat: string): string {
-  switch (cat) {
-    case 'philosophy': return '📖'
-    case 'cognitive-psychology': return '🧠'
-    case 'media-sociology': return '📺'
-    default: return '🔍'
-  }
-}
-
-export function getCategoryLabel(cat: string): string {
-  switch (cat) {
-    case 'philosophy': return 'Philosophy'
-    case 'cognitive-psychology': return 'Cognitive Psychology'
-    case 'media-sociology': return 'Media Sociology'
-    default: return 'Other'
-  }
 }

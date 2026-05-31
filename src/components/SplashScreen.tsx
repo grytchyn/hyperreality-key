@@ -1,22 +1,14 @@
-// ── SPLASH SCREEN v3 — Simple ──
+// ── SPLASH SCREEN v4 ──
 import { useState, useEffect } from 'react'
 
 interface SplashScreenProps {
-  onStart: (country: string) => void
+  onStart: () => void
 }
 
 export default function SplashScreen({ onStart }: SplashScreenProps) {
-  const [country, setCountry] = useState('')
   const [ready, setReady] = useState(false)
 
-  useEffect(() => {
-    try {
-      fetch('https://ipapi.co/json/')
-        .then(r => r.json())
-        .then(data => { setCountry(data.country_code || ''); setReady(true) })
-        .catch(() => setReady(true))
-    } catch { setReady(true) }
-  }, [])
+  useEffect(() => { setReady(true) }, [])
 
   return (
     <div className="min-h-screen bg-dark-bg flex flex-col items-center justify-center p-6 text-center">
@@ -27,21 +19,19 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
           <span className="text-neon-cyan">REALITY</span>
           <span className="text-neon-pink">KEY</span>
         </h1>
-        <p className="text-xs text-gray-400 font-mono mb-6">See through the layers.</p>
+        <p className="text-xs text-gray-400 font-mono mb-6">See what hidden tricks are hiding in everyday posts.</p>
 
-        <p className="text-[10px] text-gray-600 font-mono mb-4">
-          {country ? `📍 ${country}` : '📍 Detecting...'}
-        </p>
+        <div className="text-[10px] text-gray-600 font-mono mb-6 leading-relaxed space-y-1">
+          <p>📰 Read a post → 🎯 Answer one question</p>
+          <p>🔍 Tap a filter → 🖱️ Hover highlighted words</p>
+          <p>💡 Find the clue → ✏️ Type your answer</p>
+        </div>
 
         {ready && (
-          <button onClick={() => onStart(country)} className="pixel-btn w-full justify-center">
+          <button onClick={onStart} className="pixel-btn w-full justify-center">
             🔍 Start
           </button>
         )}
-
-        <p className="text-[8px] text-gray-600 font-mono mt-6">
-          Spot manipulation in social media posts. 4 rounds, 2-3 tools each.
-        </p>
       </div>
     </div>
   )
