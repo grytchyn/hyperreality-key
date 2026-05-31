@@ -1,4 +1,4 @@
-// ── CORE TOOLS v8 — Scientific Framework ──
+// ── CORE TOOLS v8 — Scientific Framework (English only) ──
 //
 // Each tool is based on established academic research:
 //   - Cialdini (Influence / 6 Principles)
@@ -19,35 +19,35 @@ export const CORE_TOOLS: CoreToolConfig[] = [
     icon: '⚠️',
     name: 'Bad Words',
     color: '#ef4444',
-    description: 'Logische Fehler & falsche Autorität — fundiert auf Schopenhauers Eristik und Cialdini.',
+    description: 'Logical fallacies & false authority — based on Schopenhauer\'s Eristic Dialectic and Cialdini.',
   },
   {
     id: 'feelings-check',
     icon: '🎭',
     name: 'Feelings',
     color: '#f59e0b',
-    description: 'Emotionale Trigger — Angst, Dringlichkeit, Mitleid. Cialdini: Scarcity & Liking.',
+    description: 'Emotional triggers — fear, urgency, pity. Cialdini: Scarcity & Liking.',
   },
   {
     id: 'brain-check',
     icon: '🧠',
     name: 'Brain Check',
     color: '#22c55e',
-    description: 'Kognitive Verzerrungen — Kahneman System 1. Anker-Effekt, Mitläufertum, Framing.',
+    description: 'Cognitive biases — Kahneman System 1. Anchoring, Bandwagon, Framing.',
   },
   {
     id: 'hidden-story',
     icon: '🗺️',
     name: 'Hidden Myth',
     color: '#06b6d4',
-    description: 'Mythen & Narrative — Roland Barthes: wie Ideologie als "natürlich" getarnt wird.',
+    description: 'Myths & narratives — Roland Barthes: how ideology disguises itself as "natural".',
   },
   {
     id: 'us-vs-them',
     icon: '⚔️',
     name: 'Us vs Them',
     color: '#d946ef',
-    description: 'Wir/Sie — Tajfel & Turner: Social Identity Theory. Binäre Feindbilder.',
+    description: 'In-group/out-group — Tajfel & Turner: Social Identity Theory. Binary enemies.',
   },
   {
     id: 'value-check',
@@ -61,7 +61,7 @@ export const CORE_TOOLS: CoreToolConfig[] = [
     icon: '🌀',
     name: 'Fake Check',
     color: '#a78bfa',
-    description: 'Realität vs Simulation — Baudrillard: Hyperrealität. Quellen-Epistemologie.',
+    description: 'Reality vs simulation — Baudrillard: Hyperreality. Source epistemology.',
   },
 ]
 
@@ -75,93 +75,66 @@ export const TOOL_LARGE_ICONS: Record<CoreToolId, string> = {
   'fake-check': '👁️',
 }
 
-// ── HIGHLIGHT RULES v8 — Scientific Precision ──
+// ── HIGHLIGHT RULES v8 — English only ──
 //
 // Rules use EXACT word matching (array of exact word strings).
-// Multi-word phrases live in `phrases[]` and are checked first.
+// Multi-word phrases stored alongside single words.
 // No stem/prefix matching — "danger" does NOT match "dangerous".
 
 const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
   // ── BAD ARGUMENTS: Schopenhauer, Cialdini (Authority) ──
   'bad-arguments': [
-    // Absolute language — overgeneralization / false dichotomy
-    { words: ['always', 'never', 'everyone', 'nobody', 'every', 'none', 'nothing', 'all', 'totally', 'completely', 'absolutely'], explanation: 'Absolutwort — unterdrückt Ausnahmen (Schopenhauer: Überverallgemeinerung).' },
-    // False authority — name-dropping without credentials
-    { words: ['expert', 'professor', 'doctor', 'scientist', 'institute', 'authority'], explanation: 'Autoritätsbehauptung — Cialdini: Authority. Wer ist diese Person wirklich?' },
-    // False certainty — presenting opinion as obvious
-    { words: ['obviously', 'clearly', 'undeniably', 'certainly', 'surely', 'plainly'], explanation: 'Falsche Gewissheit — "offensichtlich" ersetzt Argumente (Eristik: dictum simpliciter).' },
-    // Fake precision — numbers without source
-    { words: ['percent', 'majority', 'statistics', 'proves', 'proof', 'figures', 'ratio', 'percentage'], explanation: 'Falsche Präzision — Zahl ohne Quelle ist Meinung, kein Fakt.' },
+    { words: ['always', 'never', 'everyone', 'nobody', 'every', 'none', 'nothing', 'all', 'totally', 'completely', 'absolutely'], explanation: 'Absolute word — suppresses exceptions (Schopenhauer: overgeneralization).' },
+    { words: ['expert', 'professor', 'doctor', 'scientist', 'institute', 'authority'], explanation: 'Authority claim — Cialdini: Authority. Who is this person really?' },
+    { words: ['obviously', 'clearly', 'undeniably', 'certainly', 'surely', 'plainly'], explanation: 'False certainty — "obvious" replaces arguments (Eristic: dictum simpliciter).' },
+    { words: ['percent', 'majority', 'statistics', 'proves', 'proof', 'figures', 'ratio', 'percentage'], explanation: 'False precision — a number without a source is opinion, not fact.' },
   ],
 
   // ── FEELINGS CHECK: Cialdini (Scarcity, Liking), Fear Appeals ──
   'feelings-check': [
-    // Fear triggers
-    { words: ['fear', 'danger', 'terrible', 'horrible', 'unthinkable', 'shocking', 'horrifying', 'devastating', 'catastrophic', 'dreadful'], explanation: 'Angstmasche — Cialdini: Scarcity plus Fear. Wer profitiert von deiner Angst?' },
-    // Urgency / panic
-    { words: ['urgent', 'immediately', 'now', 'hurry', 'crisis', 'emergency', 'last chance', 'act now', 'before it'], explanation: 'Dringlichkeit — soll System 1 über System 2 stellen. Atme durch.' },
-    // Outrage bait
-    { words: ['outrage', 'scandal', 'appalling', 'disgrace', 'despicable', 'revolting', 'atrocious', 'monstrous'], explanation: 'Empörungsköder — Emotion statt Argument. Wutanfall ist beabsichtigt.' },
-    // Sympathy / pity manipulation
-    { words: ['poor', 'suffer', 'heartbreaking', 'tragic', 'victim', 'innocent', 'helpless'], explanation: 'Mitleidslenkung — Cialdini: Liking. Emotionale Bindung statt Fakten.' },
+    { words: ['fear', 'danger', 'terrible', 'horrible', 'unthinkable', 'shocking', 'horrifying', 'devastating', 'catastrophic', 'dreadful'], explanation: 'Fear bait — Cialdini: Scarcity plus Fear. Who benefits from your fear?' },
+    { words: ['urgent', 'immediately', 'now', 'hurry', 'crisis', 'emergency', 'last chance', 'act now', 'before it'], explanation: 'Urgency — designed to bypass System 2. Take a breath.' },
+    { words: ['outrage', 'scandal', 'appalling', 'disgrace', 'despicable', 'revolting', 'atrocious', 'monstrous'], explanation: 'Outrage bait — emotion replaces argument. The fury is intentional.' },
+    { words: ['poor', 'suffer', 'heartbreaking', 'tragic', 'victim', 'innocent', 'helpless'], explanation: 'Sympathy manipulation — Cialdini: Liking. Emotional bonding instead of facts.' },
   ],
 
   // ── BRAIN CHECK: Kahneman (System 1 biases) ──
   'brain-check': [
-    // Bandwagon / majority appeal
-    { words: ['majority', 'most people', 'everyone', 'public', 'popular', 'widespread', 'common', 'people say', 'according to'], explanation: 'Mitläufertum — Kahneman: Availability Heuristic. "Viele glauben das" ≠ es stimmt.' },
-    // Anchoring — dramatic numbers
-    { words: ['million', 'billion', 'thousands', 'record', 'unprecedented', 'highest', 'lowest', 'biggest', 'worst', 'largest', 'massive'], explanation: 'Anker-Zahl — Kahneman: Anchoring. Setzt einen extremen Vergleichspunkt.' },
-    // False consensus / "of course" framing
-    { words: ['of course', 'naturally', 'obviously', 'common sense', 'everyone knows', 'undeniable', 'surely'], explanation: 'Framing als Konsens — Kahneman: WYSIATI. Nur weil es im Text steht, ist es nicht wahr.' },
-    // Straw man / false binary
-    { words: ['either', 'or', 'only', 'choice', 'alternative', 'option'], explanation: 'Falsche Binarität — Kahneman: Framing. Entweder/Oder ignoriert Nuancen.' },
+    { words: ['majority', 'most people', 'everyone', 'public', 'popular', 'widespread', 'common', 'people say', 'according to'], explanation: 'Bandwagon — Kahneman: Availability Heuristic. "Many believe it" ≠ it\'s true.' },
+    { words: ['million', 'billion', 'thousands', 'record', 'unprecedented', 'highest', 'lowest', 'biggest', 'worst', 'largest', 'massive'], explanation: 'Anchoring — Kahneman: Anchoring. Sets an extreme reference point.' },
+    { words: ['of course', 'naturally', 'obviously', 'common sense', 'everyone knows', 'undeniable', 'surely'], explanation: 'Framing as consensus — Kahneman: WYSIATI. Just because it\'s in the text doesn\'t make it true.' },
+    { words: ['either', 'or', 'only', 'choice', 'alternative', 'option'], explanation: 'False binary — Kahneman: Framing. Either/or ignores nuance.' },
   ],
 
   // ── HIDDEN MYTH: Roland Barthes (Mythologies) ──
   'hidden-story': [
-    // Key myth signifiers
-    { words: ['freedom', 'liberty', 'security', 'order', 'chaos', 'progress', 'tradition', 'modern', 'natural'], explanation: 'Barthes: Mythos entlarvt — "Freiheit" ist kein Argument, sondern eine Geschichte.' },
-    // Naturalization — presenting ideology as "just the way things are"
-    { words: ['natural', 'normal', 'proper', 'correct', 'right', 'inevitable', 'unavoidable', 'just is', 'reality'], explanation: 'Barthes: Naturalisierung — Ideologie wird als "normal" getarnt. Wer definiert normal?' },
-    // Crisis mythology
-    { words: ['crisis', 'threat', 'danger', 'emergency', 'breakdown', 'collapse', 'disaster'], explanation: 'Barthes: Mythos der Krise — suggeriert Dringlichkeit und rechtfertigt Maßnahmen.' },
+    { words: ['freedom', 'liberty', 'security', 'order', 'chaos', 'progress', 'tradition', 'modern', 'natural'], explanation: 'Barthes: Myth exposed — "Freedom" is not an argument, it\'s a story.' },
+    { words: ['natural', 'normal', 'proper', 'correct', 'right', 'inevitable', 'unavoidable', 'just is', 'reality'], explanation: 'Barthes: Naturalization — ideology disguised as "normal". Who defines normal?' },
+    { words: ['crisis', 'threat', 'danger', 'emergency', 'breakdown', 'collapse', 'disaster'], explanation: 'Barthes: Myth of crisis — suggests urgency and justifies measures.' },
   ],
 
   // ── US VS THEM: Tajfel & Turner (Social Identity Theory) ──
   'us-vs-them': [
-    // In-group
-    { words: ['we', 'us', 'our', 'ourselves', 'our own', 'our people', 'our nation', 'our culture'], explanation: 'Tajfel: In-Group — "wir" schafft Zugehörigkeit. Wer gehört nicht zu "uns"?' },
-    // Out-group
-    { words: ['they', 'them', 'their', 'those', 'these', 'these people', 'outsiders', 'foreigners', 'strangers', 'others', 'the other'], explanation: 'Tajfel: Out-Group — "die" werden homogenisiert. Individuen verschwinden.' },
-    // Binary moral labels
-    { words: ['good', 'bad', 'evil', 'pure', 'dangerous', 'threat', 'menace', 'correct', 'wrong', 'right'], explanation: 'Tajfel: Binary — nur zwei Kategorien. Das Grau dazwischen wird ausgelöscht.' },
-    // Dehumanization markers
-    { words: ['flood', 'wave', 'invasion', 'swarm', 'plague', 'infestation', 'tide'], explanation: 'Entmenschlichung — Metaphern aus der Natur machen Menschen zur Bedrohung.' },
+    { words: ['we', 'us', 'our', 'ourselves', 'our own', 'our people', 'our nation', 'our culture'], explanation: 'Tajfel: In-group — "we" creates belonging. Who is NOT part of "us"?' },
+    { words: ['they', 'them', 'their', 'those', 'these', 'these people', 'outsiders', 'foreigners', 'strangers', 'others', 'the other'], explanation: 'Tajfel: Out-group — "they" are homogenized. Individuals disappear.' },
+    { words: ['good', 'bad', 'evil', 'pure', 'dangerous', 'threat', 'menace', 'correct', 'wrong', 'right'], explanation: 'Tajfel: Binary — only two categories. The gray area is erased.' },
+    { words: ['flood', 'wave', 'invasion', 'swarm', 'plague', 'infestation', 'tide'], explanation: 'Dehumanization — nature metaphors turn people into a threat.' },
   ],
 
   // ── MORAL BUTTONS: Haidt (Moral Foundations Theory) ──
   'value-check': [
-    // Care/harm foundation
-    { words: ['innocent', 'hurt', 'harm', 'victim', 'suffer', 'protect', 'children', 'abuse', 'cruel', 'kindness', 'compassion', 'care'], explanation: 'Haidt: Care — aktiviert Mitgefühl oder Empörung. Prüfe, wer als Opfer dargestellt wird.' },
-    // Fairness/cheating foundation
-    { words: ['fair', 'unfair', 'equal', 'justice', 'cheat', 'dishonest', 'corrupt', 'fraud', 'deserve', 'rights', 'discrimination'], explanation: 'Haidt: Fairness — Gefühl von Ungerechtigkeit. Wird Fairness wirklich verletzt?' },
-    // Loyalty/betrayal foundation
-    { words: ['loyal', 'betray', 'patriot', 'traitor', 'united', 'divide', 'together', 'treason', 'loyalty', 'sacrifice', 'nation'], explanation: 'Haidt: Loyalty — Tribalismus. "Wir" gegen "Verräter".' },
-    // Authority/subversion foundation
-    { words: ['authority', 'respect', 'obey', 'traditional', 'duty', 'order', 'disrespect', 'defy', 'disobey', 'rebel', 'establishment'], explanation: 'Haidt: Authority — Hierarchie wird beschworen. Wer bestimmt, was Respekt ist?' },
-    // Sanctity/degradation foundation
-    { words: ['pure', 'impure', 'sacred', 'sin', 'disgust', 'filthy', 'clean', 'dirty', 'corrupt', 'decay', 'degradation'], explanation: 'Haidt: Sanctity — Ekel als moralisches Urteil. Körpermetaphern für abstrakte Kritik.' },
+    { words: ['innocent', 'hurt', 'harm', 'victim', 'suffer', 'protect', 'children', 'abuse', 'cruel', 'kindness', 'compassion', 'care'], explanation: 'Haidt: Care — activates compassion or outrage. Check who is portrayed as victim.' },
+    { words: ['fair', 'unfair', 'equal', 'justice', 'cheat', 'dishonest', 'corrupt', 'fraud', 'deserve', 'rights', 'discrimination'], explanation: 'Haidt: Fairness — sense of injustice triggered. Is fairness really violated?' },
+    { words: ['loyal', 'betray', 'patriot', 'traitor', 'united', 'divide', 'together', 'treason', 'loyalty', 'sacrifice', 'nation'], explanation: 'Haidt: Loyalty — tribalism. "Us" against "traitors".' },
+    { words: ['authority', 'respect', 'obey', 'traditional', 'duty', 'order', 'disrespect', 'defy', 'disobey', 'rebel', 'establishment'], explanation: 'Haidt: Authority — hierarchy is invoked. Who decides what respect means?' },
+    { words: ['pure', 'impure', 'sacred', 'sin', 'disgust', 'filthy', 'clean', 'dirty', 'corrupt', 'decay', 'degradation'], explanation: 'Haidt: Sanctity — disgust as moral judgment. Body metaphors for abstract criticism.' },
   ],
 
   // ── FAKE CHECK: Baudrillard (Simulacra), Epistemology ──
   'fake-check': [
-    // Simulation markers — the text references internet itself
-    { words: ['viral', 'meme', 'trending', 'share', 'like', 'follow', 'influencer', 'social media', 'go viral', 'blowing up'], explanation: 'Baudrillard: Simulacrum — der Inhalt handelt nur noch von seiner eigenen Verbreitung.' },
-    // Unverified / hearsay
-    { words: ['apparently', 'rumor', 'anonymous', 'sources say', 'unconfirmed', 'allegedly', 'reportedly', 'supposedly', 'claims', 'alleged'], explanation: 'Epistemologie: unbestätigt — mindestens eine Stufe von der Realität entfernt.' },
-    // Epistemic breaks — text signals its own unreality
-    { words: ['literally', 'unreal', 'surreal', 'like a movie', 'dream', 'can\'t believe', 'unbelievable', 'like a scene', 'straight out of'], explanation: 'Baudrillard: Hyperrealität — der Text selbst sagt, dass etwas nicht stimmt.' },
+    { words: ['viral', 'meme', 'trending', 'share', 'like', 'follow', 'influencer', 'social media', 'go viral', 'blowing up'], explanation: 'Baudrillard: Simulacrum — the content is only about its own spread.' },
+    { words: ['apparently', 'rumor', 'anonymous', 'sources say', 'unconfirmed', 'allegedly', 'reportedly', 'supposedly', 'claims', 'alleged'], explanation: 'Epistemology: unverified — at least one step removed from reality.' },
+    { words: ['literally', 'unreal', 'surreal', 'like a movie', 'dream', 'can\'t believe', 'unbelievable', 'like a scene', 'straight out of'], explanation: 'Baudrillard: Hyperreality — the text itself signals something is off.' },
   ],
 }
 
@@ -172,10 +145,9 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
 export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<string, HighlightEntry[]> {
   const map = new Map<string, HighlightEntry[]>()
 
-  // Build token set: single words
   const singleTokens = text.toLowerCase().replace(/[^a-z\s']/g, '').split(/\s+/).filter(Boolean)
 
-  // Check multi-word phrases first (they contain spaces)
+  // Check multi-word phrases first
   for (const toolId of toolIds) {
     const rules = HIGHLIGHT_RULES[toolId]
     if (!rules) continue
@@ -185,7 +157,6 @@ export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<strin
     for (const rule of rules) {
       for (const phrase of rule.words) {
         if (phrase.includes(' ')) {
-          // Multi-word phrase: check if text contains it (case-insensitive)
           const lowerText = text.toLowerCase()
           if (lowerText.includes(phrase.toLowerCase())) {
             addEntry(map, phrase, { word: phrase, explanation: rule.explanation, color: config.color })
@@ -202,18 +173,16 @@ export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<strin
     const config = CORE_TOOLS.find(t => t.id === toolId)
     if (!config) continue
 
-    // Check each unique word in the text against each rule's single words
     const seen = new Set<string>()
     for (const token of singleTokens) {
       if (seen.has(token)) continue
       seen.add(token)
 
       for (const rule of rules) {
-        // Match only exact single-word entries (no spaces)
         const exactWords = rule.words.filter(w => !w.includes(' '))
         if (exactWords.includes(token)) {
           addEntry(map, token, { word: token, explanation: rule.explanation, color: config.color })
-          break  // one explanation per word per tool
+          break
         }
       }
     }
@@ -224,7 +193,6 @@ export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<strin
 
 function addEntry(map: Map<string, HighlightEntry[]>, key: string, entry: HighlightEntry) {
   const existing = map.get(key) || []
-  // Avoid duplicate explanations for same word+color
   if (!existing.some(e => e.explanation === entry.explanation && e.color === entry.color)) {
     existing.push(entry)
     map.set(key, existing)
