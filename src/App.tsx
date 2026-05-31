@@ -1,6 +1,5 @@
-// ── APP v12 — Clean tier progression ──
+// ── APP v13 — 7 levels, sequential progression ──
 import { useState, useCallback } from 'react'
-import type { MissionPost } from './data/missions'
 import { getMissionPosts } from './data/missions'
 import SplashScreen from './components/SplashScreen'
 import GameScreen from './components/GameScreen'
@@ -12,61 +11,67 @@ type Phase = 'splash' | 'playing' | 'transition' | 'victory'
 export default function App() {
   const [phase, setPhase] = useState<Phase>('splash')
   const [totalScore, setTotalScore] = useState(0)
-  const [currentTier, setCurrentTier] = useState(1)
-  const [roundScore, setRoundScore] = useState(0)
   const [allPosts] = useState(() => getMissionPosts())
-  const [currentBatch, setCurrentBatch] = useState<MissionPost[]>([])
+  const [roundScore, setRoundScore] = useState(0)
   const [index, setIndex] = useState(0)
-
-  const startTier = useCallback((tier: number) => {
-    const batch = allPosts.filter(p => p.tier === tier).sort(() => Math.random() - 0.5)
-    setCurrentBatch(batch)
-    setCurrentTier(tier)
-    setIndex(0)
-    setRoundScore(0)
-    setPhase('playing')
-  }, [allPosts])
+  const [currentLevel, setCurrentLevel] = useState(1)
 
   const handleStart = useCallback(() => {
-    startTier(1)
-  }, [startTier])
+    setTotalScore(0)
+    setRoundScore(0)
+    setIndex(0)
+    setCurrentLevel(1)
+    setPhase('playing')
+  }, [])
 
   const handleFinish = useCallback((points: number) => {
     const newRound = roundScore + points
     setRoundScore(newRound)
 
-    if (index + 1 >= currentBatch.length) {
-      // Tier complete → advance
+    if (index + 1 >= allPosts.length) {
       setTotalScore(s => s + newRound)
-      if (currentTier >= 3) {
-        setPhase('victory')
-      } else {
-        setPhase('transition')
-      }
+      setPhase('victory')
     } else {
-      setIndex(i => i + 1)
+      // Check if next post is a new level
+      const nextPost = allPosts[index + 1]
+      if (nextPost && nextPost.level > currentLevel) {
+        // Level complete — show transition
+        setTotalScore(s => s + newRound)
+        setPhase('transition')
+      } else {
+        setIndex(i => i + 1)
+      }
     }
-  }, [roundScore, index, currentBatch.length, currentTier])
+  }, [roundScore, index, allPosts, currentLevel])
 
-  const handleNextTier = useCallback(() => {
-    startTier(currentTier + 1)
-  }, [currentTier, startTier])
+  const handleNextLevel = useCallback(() => {
+    const nextLevel = currentLevel + 1
+    setCurrentLevel(nextLevel)
+    setRoundScore(0)
+    // Find first post of next level
+    const nextIdx = allPosts.findIndex(p => p.level === nextLevel)
+    setIndex(nextIdx >= 0 ? nextIdx : 0)
+    setPhase('playing')
+  }, [currentLevel, allPosts])
 
   const handleRestart = useCallback(() => {
     setTotalScore(0)
-    setCurrentTier(1)
     setRoundScore(0)
     setIndex(0)
-    setCurrentBatch([])
+    setCurrentLevel(1)
     setPhase('splash')
   }, [])
 
   if (phase === 'splash') return <SplashScreen onStart={handleStart} />
-  if (phase === 'victory') return <VictoryScreen score={totalScore} onRestart={handleRestart} />
-  if (phase === 'transition') return <LevelTransition tier={currentTier} tierScore={roundScore} onNext={handleNextTier} />
+  if (phase === 'victory') return <VictoryScreen score={totalScore + roundScore} onRestart={handleRestart} />
+  if (phase === 'transition') return <LevelTransition tier={currentLevel} tierScore={roundScore} onNext={handleNextLevel} />
 
-  const post = currentBatch[index]
+  const post = allPosts[index]
   if (!post) return <SplashScreen onStart={handleStart} />
+
+  // Get all posts of the current level for progress bar
+  const levelPosts = allPosts.filter(p => p.level === currentLevel)
+  const levelIndex = levelPosts.indexOf(post)
 
   return (
     <div className="min-h-screen bg-dark-bg">
@@ -81,7 +86,7 @@ export default function App() {
             </span>
           </div>
           <div className="flex items-center gap-2 text-[9px] font-mono">
-            <span className="text-gray-500">Tier {currentTier}/3</span>
+            <span className="text-gray-500">Level {currentLevel}/7</span>
             <span className="text-neon-cyan font-bold">★ {totalScore + roundScore}</span>
           </div>
         </div>
@@ -89,8 +94,8 @@ export default function App() {
       <main>
         <GameScreen
           post={post}
-          allPosts={currentBatch}
-          postIndex={index}
+          allPosts={levelPosts}
+          postIndex={levelIndex}
           onFinish={handleFinish}
         />
       </main>

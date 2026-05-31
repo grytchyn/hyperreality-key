@@ -126,11 +126,7 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
                     <div className="rounded-xl overflow-hidden border border-dark-border/50 cursor-pointer transition-all hover:border-neon-purple/50 group"
                       style={{ background: 'rgba(19,19,26,0.9)' }}
                       onClick={handleStart}>
-                      {/* Preview image */}
-                      <div className={`h-16 bg-gradient-to-br ${messagePost.imageBg} flex items-center justify-center`}>
-                        <span className="text-2xl">{messagePost.imageEmoji}</span>
-                      </div>
-                      <div className="px-3 py-2">
+                      <div className="px-3 py-3">
                         <div className="text-xs font-bold text-white truncate group-hover:text-neon-cyan transition-colors">{messagePost.title}</div>
                         <div className="text-[9px] text-gray-500 font-mono mt-0.5">{messagePost.source}</div>
                       </div>

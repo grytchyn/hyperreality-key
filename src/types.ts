@@ -1,4 +1,4 @@
-// ── HYPERREALITY KEY v8 — Types ──
+// ── HYPERREALITY KEY v12 — Types ──
 
 export type CoreToolId =
   | 'bad-arguments' | 'feelings-check' | 'brain-check'
