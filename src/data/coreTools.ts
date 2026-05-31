@@ -1,4 +1,4 @@
-// ── 7 TOOLS — Simple names, for mission mode ──
+// ── 7 TOOLS — with large colorful buttons and popup descriptions ──
 
 import type { CoreToolConfig, CoreToolId, HighlightEntry } from '../types'
 
@@ -7,78 +7,72 @@ export const CORE_TOOLS: CoreToolConfig[] = [
     id: 'bad-arguments',
     icon: '⚠️',
     name: 'Bad Words',
-    shortLabel: 'Bad Words',
     color: '#ef4444',
-    category: 'media-sociology',
     description: 'Finds logical tricks: overgeneralization ("always", "never"), false authority, and fake facts.',
   },
   {
     id: 'feelings-check',
     icon: '🎭',
-    name: 'Feelings Check',
-    shortLabel: 'Feelings',
+    name: 'Feelings',
     color: '#f59e0b',
-    category: 'media-sociology',
     description: 'Shows emotion tricks: fear, urgency, outrage, and who they want you to trust.',
   },
   {
     id: 'brain-check',
     icon: '🧠',
     name: 'Brain Check',
-    shortLabel: 'Brain',
     color: '#22c55e',
-    category: 'cognitive-psychology',
     description: 'Reveals thinking shortcuts: "everyone thinks this", "of course", dramatic numbers.',
   },
   {
     id: 'hidden-story',
     icon: '🗺️',
     name: 'Hidden Story',
-    shortLabel: 'Story',
     color: '#06b6d4',
-    category: 'philosophy',
     description: 'Finds the deeper myth: freedom, security, crisis — the story they sell as normal.',
   },
   {
     id: 'us-vs-them',
     icon: '⚔️',
     name: 'Us vs Them',
-    shortLabel: 'Divide',
     color: '#d946ef',
-    category: 'philosophy',
     description: 'Reveals hidden battles: "we" vs "they", good vs bad, safe vs dangerous.',
   },
   {
     id: 'value-check',
     icon: '📊',
-    name: 'Value Check',
-    shortLabel: 'Values',
+    name: 'Values',
     color: '#f97316',
-    category: 'cognitive-psychology',
     description: 'Checks which moral button is pressed: care, fairness, loyalty, authority.',
   },
   {
     id: 'fake-check',
     icon: '🌀',
     name: 'Fake Check',
-    shortLabel: 'Fake',
     color: '#a78bfa',
-    category: 'philosophy',
     description: 'Measures how real this is: real report, biased, made up, or pure internet simulation.',
   },
 ]
 
-// ── HIGHLIGHTS ──
-
-interface HighlightRule {
-  words: string[]
-  explanation: string
+// ── EXPANDED EMOJI ICONS for each tool (large decorative) ──
+export const TOOL_LARGE_ICONS: Record<CoreToolId, string> = {
+  'bad-arguments': '⚡',
+  'feelings-check': '🔥',
+  'brain-check': '🔬',
+  'hidden-story': '🔍',
+  'us-vs-them': '⚔️',
+  'value-check': '🛡️',
+  'fake-check': '👁️',
 }
+
+// ── HIGHLIGHT RULES ──
+
+interface HighlightRule { words: string[]; explanation: string }
 
 const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
   'bad-arguments': [
     { words: ['always', 'never', 'everyone', 'nobody', 'either', 'totally'], explanation: '⚠️ Absolute words — they ignore exceptions. Overgeneralization trick.' },
-    { words: ['expert', 'professor', 'doctor', 'study', 'research', 'scientist'], explanation: '⚠️ Authority name-drop. Are they truly neutral?' },
+    { words: ['expert', 'professor', 'doctor', 'study', 'research', 'scientist', 'institute'], explanation: '⚠️ Authority name-drop. Are they truly neutral?' },
     { words: ['obviously', 'clearly', 'undeniable', 'typical'], explanation: '⚠️ Claiming something is obvious — avoids real proof.' },
     { words: ['statistics', 'numbers', 'percent', 'majority', 'study shows', 'proves'], explanation: '⚠️ Fake facts: "proves" without showing the proof.' },
   ],
@@ -89,7 +83,7 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
   ],
   'brain-check': [
     { words: ['everyone knows', 'of course', 'obviously', 'naturally', 'common sense', 'undeniable'], explanation: '🧠 Framing — they present opinion as obvious truth.' },
-    { words: ['majority', 'most people', 'public', 'everyone', 'people say'], explanation: '🧠 Bandwagon — "everyone thinks this". Do they?' },
+    { words: ['majority', 'most people', 'public', 'everyone', 'people say', '72%', '67%'], explanation: '🧠 Bandwagon — "everyone thinks this". Do they?' },
     { words: ['first', 'only', 'never before', 'unprecedented', 'record', 'biggest', 'worst'], explanation: '🧠 Drama number — sets an extreme anchor.' },
   ],
   'hidden-story': [
@@ -115,23 +109,9 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
   ],
 }
 
-// ── HELPERS ──
-
-export function getHighlightForWord(toolId: CoreToolId, word: string): HighlightEntry | null {
-  const rules = HIGHLIGHT_RULES[toolId]
-  if (!rules) return null
-  const clean = word.toLowerCase().replace(/[^a-z]/g, '')
-  for (const rule of rules) {
-    if (rule.words.some(w => clean === w || clean.startsWith(w) || (clean.length > 3 && rule.words.some(rw => clean.includes(rw.toLowerCase()))))) {
-      return { word, explanation: rule.explanation, color: CORE_TOOLS.find(t => t.id === toolId)?.color || '#888' }
-    }
-  }
-  return null
-}
-
 export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<string, HighlightEntry[]> {
   const map = new Map<string, HighlightEntry[]>()
-  const words = text.toLowerCase().replace(/[^a-z\s]/g, '').split(/\s+/)
+  const words = text.toLowerCase().replace(/[^a-z\s%]/g, '').split(/\s+/)
   
   for (const toolId of toolIds) {
     const rules = HIGHLIGHT_RULES[toolId]
@@ -141,7 +121,7 @@ export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<strin
     
     for (const word of [...new Set(words)]) {
       for (const rule of rules) {
-        if (rule.words.some(w => word === w || word.startsWith(w) || (word.length > 3 && rule.words.some(rw => word.includes(rw.toLowerCase()))))) {
+        if (rule.words.some(w => word === w || word.startsWith(w) || word.includes(w.replace(/[^a-z]/g, '')))) {
           const existing = map.get(word) || []
           existing.push({ word, explanation: rule.explanation, color: config.color })
           map.set(word, existing)
@@ -151,8 +131,4 @@ export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<strin
     }
   }
   return map
-}
-
-export function getToolById(id: string): CoreToolConfig | undefined {
-  return CORE_TOOLS.find(t => t.id === id)
 }
