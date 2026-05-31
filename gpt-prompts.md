@@ -1,130 +1,233 @@
-# Hyperreality Key — GPT Image Generation Prompts
+# Hyperreality Key — 10 GPT Image Prompts
 
-## Как работает схема
-1. Ты копируешь промпт → вставляешь в GPT-4o (или Midjourney/DALL-E 3)
-2. Получаешь **одну картинку** с сеткой элементов
-3. Пересылаешь мне
-4. Я разрезаю на отдельные PNG и вставляю в код
+## Инструкция
+Каждый промпт → одна картинка. Ты генеришь → пересылаешь мне → я разрезаю.
 
 ---
 
-## Prompt 1: Game Backgrounds (7 уровней)
-
-**Цель:** 7 квадратов (по одному на уровень) в одном изображении. Каждый квадрат — тематический фон.
+## Prompt 1: Level Backgrounds (все 7 уровней)
 
 ```
-Design a 2x4 grid of 8 game background concepts for a media literacy detective game called "Hyperreality Key". Dark theme, neon accents. Each square is 400x400 pixels with a white 2px border between them.
+Create a 3x3 grid of 9 game background panels (each 400x400px) for "Hyperreality Key" — a dark neon detective game about spotting media manipulation. White 2px borders between panels. Dark cyber-noir aesthetic with vibrant neon accents.
 
-The game is about detecting manipulation in online posts. Style: cyber-noir meets educational game, colorful but dark.
+Top row:
+[Panel 1 - Level 1: Bad Arguments] Red neon. News studio set with fake diplomas on wall, a figure at podium labeled "EXPERT" with quotation marks.
+[Panel 2 - Level 2: Feelings] Amber/orange neon. Exploding social media feed with exaggerated reaction emojis, alarm icons, "BREAKING" banners.
+[Panel 3 - Level 3: Brain Check] Green neon. Abstract brain silhouette with data streams and algorithm flowcharts, "SYSTEM 1" vs "SYSTEM 2" labels.
 
-Row 1 (Levels 1-2):
-[Level 1 - Bad Arguments] News studio with fake authority figures, floating "expert says" badges, red neon
-[Level 2 - Feelings] Social media feed with exaggerated reaction emojis, orange amber alert signs, urgent headlines
+Middle row:
+[Panel 4 - Level 4: Us vs Them] Magenta/pink neon. Crowd divided by a glowing red fault line, one side labeled "US" one side "THEM".
+[Panel 5 - Level 5: Moral Buttons] Warm orange neon. Dashboard with 5 glowing circular buttons: heart icon (Care), scales icon (Fairness), shield icon (Loyalty), crown icon (Authority), star icon (Sanctity).
+[Panel 6 - Level 6: Hidden Myth] Cyan/teal neon. Ancient temple ruins overlaid with modern billboards and advertisements, "FREEDOM" and "SECURITY" floating as glowing text.
 
-Row 2 (Levels 3-4):
-[Level 3 - Brain Check] Abstract brain with algorithm pathways, green neon, data streams
-[Level 4 - Us vs Them] Two groups facing each other divided by a glowing red line, purple/pink neon, protest signs
+Bottom row:
+[Panel 7 - Level 7: Hyperreality] Multicolor neon. Infinite mirror maze with reflections showing different distorted versions of reality, "SIMULATION" text glitching.
+[Panel 8 - Victory] Gold neon. A glowing key floating above a pedestal, sparkle particles.
+[Panel 9 - Splash/Menu] Purple neon. Dark control room with monitors showing social media feeds, a chair facing the screens.
 
-Row 3 (Levels 5-6):
-[Level 5 - Moral Buttons] Dashboard with 5 glowing buttons (Care, Fairness, Loyalty, Authority, Sanctity), amber/orange
-[Level 6 - Hidden Myth] Ancient temple ruins overlaid with modern advertisements, cyan/teal neon, mythological symbols
-
-Row 4 (Level 7 - Final):
-[Level 7 - Hyperreality] Mirror maze with reflections showing different realities, multicolor neon, simulation glitch effects
-[Bonus - Menu] Dark control room with monitors showing social media feeds, purple neon
-
-Design style: cinematic dark, glowing outlines, neon gradients, grid layout with clear labels.
+Style: cinematic dark, glowing outlines only (no fills), neon gradients, game-ready.
 ```
 
 ---
 
-## Prompt 2: Tool Icons (7 штук)
-
-**Цель:** один ряд из 7 иконок для фильтров-инструментов.
+## Prompt 2: Tool Icons Set (7 инструментов)
 
 ```
-Design 7 game UI icons in a horizontal row for a media analysis game. Each icon is 120x120 pixels isolated on transparent background, arranged left to right with 20px gaps. Style: flat vector, glowing neon outlines, dark game UI aesthetic.
+Design 7 game UI tool icons in a horizontal row. Each icon is isolated 120x120px on transparent background, arranged left to right with 30px gaps. Style: flat vector, neon glow outlines, dark game UI, 2px stroke weight.
 
-Icon 1 [Bad Arguments]: A shield with a crack and a warning exclamation mark, red/orange glow
-Icon 2 [Feelings Check]: A brain with a flame on one side and a tear drop on the other, amber/yellow glow
-Icon 3 [Brain Check]: A gear/cog inside a human head silhouette, green neon glow
-Icon 4 [Us vs Them]: Two crossed swords dividing a circle, one side "WE" one side "THEY", magenta/pink glow
-Icon 5 [Moral Buttons]: Five small connected squares arranged in a pentagon shape with different symbols, orange glow
-Icon 6 [Hidden Myth]: An eye with a book/page inside the pupil, cyan/teal glow
-Icon 7 [Fake Check]: A spiral/maze with a magnifying glass overlay, purple/lavender glow
+1. [Bad Words] Shield icon with crack and "!" exclamation, red/rose neon glow, square bg
+2. [Feelings] Mask icon with one happy half and one angry half, amber/gold neon glow, circle bg
+3. [Brain Check] Brain silhouette with gear inside, emerald/green neon glow, hexagon bg
+4. [Us vs Them] Two crossed swords dividing a circle, fuchsia/pink neon glow, diamond bg
+5. [Moral Buttons] Pentagon of 5 small connected circles, orange/warm neon glow, pentagon bg
+6. [Hidden Myth] Open eye with book/page inside the pupil, cyan/teal neon glow, square bg
+7. [Fake Check] Spiral/maze symbol with magnifying glass overlay, lavender/purple neon glow, circle bg
 
-Each icon: minimal, flat, 2px stroke, game-ready, rounded corners on square backgrounds.
+Each icon: minimal, recognizable, game-ready, dark transparent bg only behind icon.
 ```
 
 ---
 
-## Prompt 3: UI Elements Kit
-
-**Цель:** набор UI компонентов на одной картинке.
+## Prompt 3: UI Component Kit (карточки, панели, кнопки)
 
 ```
-Design a game UI elements kit for a detective media literacy game. Dark theme, neon purple/teal accents. All elements on a single horizontal strip.
+Design a game UI component sheet for "Hyperreality Key" — dark theme, neon purple and teal accents. All components on a single dark canvas (#0a0a0f). Arranged in a clean 3x3 grid with 40px gaps and white subtle borders between cells.
 
-From left to right:
-1. A progress bar (300x24px) with gradient fill from purple to teal, glowing edge
-2. A score badge (pill shape, 120x36px) with a star icon and "210" text, purple fill
-3. A question card (400x200px) with rounded corners, dark glass background, purple border glow, containing placeholder text lines
-4. A chat bubble (280x80px) with avatar circle, username line, message text, left-aligned, dark bg with subtle border
-5. A tool button grid (320x240px) showing 4 circular buttons in 2x2 grid, each with different neon glow colors
+Top row:
+[1] Browser post card (500x280px): dark glass background, URL bar with 🔒 lock icon, headline text, 3 lines of body text with 2 words highlighted in green and purple. Rounded corners, subtle purple border glow.
+[2] Filter tool buttons group (500x120px): 4 circular neon buttons in a row, each 60px diameter, colored purple/green/amber/pink, with small labels below.
+[3] Progress bar (500x60px): horizontal bar with gradient fill (purple to teal), "Level 3/7" label, percentage markers, glowing edge.
 
-Style: glassmorphism, dark bg (#0a0a0f), neon outlines, rounded corners, game-ready UI.
-Annotations: none — elements should be clean, separated by 30px gaps.
-```
+Middle row:
+[4] Question card (500x200px): "🎯 QUESTION" header, question text, 4 choice buttons (A/B/C/D) with radio style, first option selected with purple fill.
+[5] Chat bubble (500x160px): phone-style chat, left bubble (friend) with avatar circle, right bubble (response), typing indicator dots.
+[6] Score badge (200x60px): pill shape with star icon and "★ 210" text, gradient purple fill, white text, shadow glow.
 
----
+Bottom row:
+[7] Feedback overlay (400x300px): center modal, "🎉 Correct!" or "🤔 Not quite" heading, explanation text, "Next" button, colored border (green for correct, red for wrong).
+[8] Friend preview card (500x100px): horizontal card with avatar, friend name, message preview line, article title, small thumbnail placeholder.
+[9] Level transition screen (400x400px): centered card with "LEVEL 3 COMPLETE" badge, icon transition, score display, "Start Level 4 →" button.
 
-## Prompt 4: Character Avatars (Chat Friends)
-
-**Цель:** 7 аватаров для друзей в чате.
-
-```
-Design 7 circular game avatar icons (120x120px each) arranged in a horizontal row on transparent background. Each avatar is a simple flat vector of a different person/character with a colored circle background.
-
-Style: minimal flat vector, game UI style, solid color backgrounds with white/simple icons.
-
-Avatar 1: Male with glasses, green circle bg
-Avatar 2: Female with ponytail, amber circle bg
-Avatar 3: Male with cap, purple circle bg
-Avatar 4: Female with curly hair, pink circle bg  
-Avatar 5: Male with beard, teal circle bg
-Avatar 6: Female with short hair, orange circle bg
-Avatar 7: Non-binary with hoodie, cyan circle bg
-
-Each avatar: simple 2-color design, expressive, friendly, game-style.
+Style: glassmorphism, dark bg (#0a0a0f), neon outlines, rounded corners (12px), game-ready UI. No labels or annotations.
 ```
 
 ---
 
-## Prompt 5: Main Game Board Layout
-
-**Цель:** одна картинка полного интерфейса для референса.
+## Prompt 4: Chat Avatars (7 друзей)
 
 ```
-Design a complete game screen mockup for "Hyperreality Key" — a media manipulation detective game.
+Design 7 circular avatar icons (120x120px each) in a horizontal row. Each avatar is a simple flat vector character face on a colored circular background. Transparent background overall.
 
-Layout (1920x1080, dark theme):
-- Top bar: 🔑 "HYPERREALITY KEY" logo (purple/teal gradient text), level indicator "Level 2/7", score "★ 30"
-- Center: A "browser post" card (like a news article) with URL bar, headline, body text with some words highlighted in different neon colors
-- Below card: A 2x4 grid of round filter tool buttons with neon glows
-- Bottom: A "Question" panel with multiple choice (A, B, C, D options) with purple accent on selected
-- Background: Subtle glowing orbs in purple/teal
+Style: minimal flat vector, friendly game style, clean lines, no details.
 
-Style: dark game UI, neon accents, glass cards with borders, mobile-friendly but shown on desktop. The aesthetic should feel like "Papers Please meets Tron" — functional but futuristic.
+1. Green circle (#22c55e) — Young male with round glasses, short hair, smiling
+2. Amber circle (#f59e0b) — Female with ponytail, big eyes, friendly smile
+3. Purple circle (#8b5cf6) — Male with backward cap, stubble, cool expression
+4. Pink circle (#d946ef) — Female with curly hair, laughing
+5. Teal circle (#06b6d4) — Male with beard, reading glasses, thoughtful
+6. Orange circle (#f97316) — Female with short bob cut, serious but kind
+7. Cyan circle (#22d3ee) — Person with hoodie, only eyes visible, mysterious
+
+Each avatar: white/simple face icon, 2 colors max (bg + icon), expressive, game-style.
 ```
 
 ---
 
-## Как это работает
+## Prompt 5: Browser Post Cards (разные жанры новостей)
 
-1. Ты выбираешь **один промпт** (я рекомендую начать с Prompt 1 или Prompt 3)
-2. Копируешь текст → вставляешь в GPT-4o с генерацией картинки
-3. Сохраняешь результат
-4. Пересылаешь мне в чат
-5. Я разрезаю и внедряю
+```
+Design 4 browser post cards in a 2x2 grid. Each card is 500x300px, dark glass style, neon border glow. Style: social media feed aesthetic, like Facebook/Reddit/X hybrid.
 
-**Рекомендую начать с Prompt 3 (UI Elements Kit)** — он даст сразу кучу готовых элементов для интерфейса.
+Top-left [Politics]: Red border glow. News article card with "DAILY NEWS" source badge, headline "Study: 80% of Housing Crisis...", 4 lines of article text with 2 words highlighted in red, engagement bar (💬 12 🔄 47 ❤️ 120).
+Top-right [Economy]: Amber border glow. "BUSINESS FEED" source, headline "45,000 Layoffs at Big Tech", text about Amazon/Google, 2 words highlighted in amber.
+
+Bottom-left [Science]: Green border glow. "SCIENCE DAILY" source, headline "Earth Is Still Round", factual text, no highlighted words, green verified badge.
+Bottom-right [Society]: Orange border glow. "FAMILY WATCH" source, headline "Protect Our Children from Online Dangers", text with loaded language, 4 words highlighted in orange.
+
+Style: dark glass cards with neon borders, rounded corners, 2px border, subtle grid background visible between cards. No labels.
+```
+
+---
+
+## Prompt 6: Answer Choice Buttons (разные стили)
+
+```
+Design 12 circular game buttons (80x80px each) arranged in a 3x4 grid. Each button shows a different icon/symbol for multiple choice answers. Transparent background.
+
+Style: flat vector, glowing neon borders, dark fill, game UI style.
+
+Row 1 (Purple theme, #8b5cf6):
+[1] "A" letter icon [2] "B" letter icon [3] "C" letter icon [4] "D" letter icon
+
+Row 2 (Colored by answer type):
+[5] Green checkmark (correct answer indicator) [6] Red X (wrong answer indicator)
+[7] Yellow question mark (uncertain) [8] Blue lightbulb (hint)
+
+Row 3 (Action buttons):
+[9] Arrow right (next) [10] Arrow left (back) [11] Home icon (menu) [12] Refresh icon (restart)
+
+Each button: 2px neon stroke, dark fill (#13131a), icon in matching neon color, subtle shadow glow.
+```
+
+---
+
+## Prompt 7: Emoji/Icon Set для постов и категорий
+
+```
+Design 12 square game icons (80x80px each) in a 3x4 grid. Each icon is flat vector style with subtle neon glow on transparent dark background. For a media analysis game.
+
+Row 1 (Category icons):
+[1] 🏘️ House/buildings (Politics) — red glow
+[2] 📉 Chart down (Economy) — amber glow
+[3] 🔬 Microscope (Science) — green glow
+[4] 👨‍👩‍👧 Family (Society) — orange glow
+
+Row 2 (Status icons):
+[5] 🔍 Magnifying glass (analyze) — purple glow
+[6] ✅ Verified checkmark (truthful) — green glow
+[7] ⚠️ Warning triangle (manipulative) — red glow
+[8] 🔒 Lock (locked, need tool) — gray glow
+
+Row 3 (Action icons):
+[9] ⬆ Arrow up (share) — blue glow
+[10] 💬 Speech bubble (comment) — teal glow
+[11] ❤️ Heart (like) — pink glow
+[12] 🔄 Refresh (share/retweet) — cyan glow
+
+Style: flat vector, clean 2px stroke, glowing outlines, game UI ready. Each icon isolated in its square.
+```
+
+---
+
+## Prompt 8: Level Transition Screens (все 7 переходов)
+
+```
+Design 4 game cards (400x300px each) in a 2x2 grid. Each card is a "Level Complete" transition screen. Dark glass background, glowing border, centered content.
+
+Style: game UI, dark neon, celebratory but not childish.
+
+Top-left [Level 1→2 Complete]: Red→Amber gradient border. Bad Arguments icon (⚠️) transitioning to Feelings icon (🎭). Text: "LEVEL 1 COMPLETE" / "Bad Arguments → Feelings" / "Score: 30/30" / "Start Level 2 →" button with amber glow.
+Top-right [Level 3→4 Complete]: Green→Pink gradient border. Brain icon (🧠) transitioning to Swords icon (⚔️). "LEVEL 3 COMPLETE" / "Brain Check → Us vs Them" / button with pink glow.
+
+Bottom-left [Level 5→6 Complete]: Orange→Cyan gradient border. Shield icon (🛡️) transitioning to Map icon (🗺️). "LEVEL 5 COMPLETE" / "Moral Buttons → Hidden Myth" / button with cyan glow.
+Bottom-right [Level 6→7 Complete]: Cyan→Purple gradient border. Map icon (🗺️) transitioning to Spiral icon (🌀). "LEVEL 6 COMPLETE" / "Hidden Myth → Fake Check" / button with purple glow.
+
+Each card: dark bg, neon gradient border, centered content, game UI style.
+```
+
+---
+
+## Prompt 9: Victory / NFT Screen
+
+```
+Design a single game screen mockup (900x700px) for the victory screen of "Hyperreality Key" — a media manipulation detective game. Dark theme, gold and purple neon.
+
+Layout:
+- Top center: Animated spinning key icon (🔑) with golden gradient glow ring around it
+- Below: "HYPERREALITY KEY" title in gradient text (purple → gold → cyan)
+- Below: "UNLOCKED" badge in small text
+- Center-left: Score circle (120px diameter) with "150" and "/ 210" inside, gold border with glow
+- Center-right: Rank badge "DECEPTION DETECTOR" with purple/amber gradient text
+- Below score: Stats card with 4 rows: "📰 Posts analyzed: 21" / "🎯 Correct: 15/21" / "🧠 Skills trained: 7" / "📊 Accuracy: 71%"
+
+- Bottom section: "CONNECT WALLET TO MINT KEY" button with purple gradient
+- Below button: Small text "Free mint — proof of deception detection"
+- Bottom-right: Fake NFT preview (small card) showing "Hyperreality Key #001" with rank and score metadata
+
+Style: dark glass, gold and purple neon accents, game victory screen, celebratory but tasteful.
+```
+
+---
+
+## Prompt 10: Mobile Phone Chat Interface (Splash Screen)
+
+```
+Design a mobile phone frame (375x812px, iPhone-style) showing a chat conversation. This is the splash screen of "Hyperreality Key" game. Dark theme.
+
+Phone frame:
+- Notch at top with speaker grille and camera dot
+- Status bar: "9:41" time, battery icon, signal bars
+- Chat header: Back arrow, circular avatar (green, male with glasses), "Alex" name, "online" status
+- Chat area (main content):
+  - Left bubble (friend): "Bro have you seen this? 👀" — dark gray bubble with rounded corners, bottom-left corner flat
+  - Below: A preview card (link preview style) showing article headline in white text, source name in gray
+  - Right bubble (typing): Three animated dots "..." in purple bubble
+  - Below: "🔍 Open & Analyze" button in purple gradient
+- Bottom input bar: Gray text "Type a message..." with purple send button
+
+Background of entire image: dark (#0a0a0f), with subtle glowing orb (purple) behind the phone.
+Style: clean modern dark UI, game-style, the phone should look realistic but game-ified.
+```
+
+---
+
+## Как использовать
+
+1. Выбери **один промпт** (любой из 10)
+2. Скопируй текст целиком
+3. Вставь в GPT-4o / DALL-E / Midjourney
+4. Сохрани результат
+5. Перешли мне — я разрежу и внедрю
+
+**Совет:** Начни с **Prompt 3** (UI Components) — он даст сразу всё для интерфейса.
+Или **Prompt 1** (Level Backgrounds) — если хочешь визуально разделить уровни.
