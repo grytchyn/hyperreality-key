@@ -1,5 +1,5 @@
 // ── GAME SCREEN v7 — Chat → Browser → Analyze → Answer ──
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useRef } from 'react'
 import { CORE_TOOLS, TOOL_LARGE_ICONS, getHighlightsFor } from '../data/coreTools'
 import type { CoreToolId } from '../types'
 import type { MissionPost } from '../data/missions'
@@ -16,6 +16,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
   const [selectedAnswer, setSelectedAnswer] = useState<'yes' | 'no' | null>(null)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
   const [score, setScore] = useState(0)
+  const scoreRef = useRef(0)
   const [toolPopup, setToolPopup] = useState<CoreToolId | null>(null)
   const [correctToolUsed, setCorrectToolUsed] = useState(false)
   const [showAnalyzeBanner, setShowAnalyzeBanner] = useState(true)
@@ -54,17 +55,21 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
     const userSaysManipulative = selectedAnswer === 'yes'
     const correct = userSaysManipulative === post.isManipulative
     setFeedback(correct ? 'correct' : 'wrong')
-    if (correct) setScore(prev => prev + 10)
+    if (correct) {
+      const newScore = scoreRef.current + 10
+      scoreRef.current = newScore
+      setScore(newScore)
+    }
   }, [selectedAnswer, correctToolUsed, post])
 
   const handleNext = useCallback(() => {
+    const currentScore = scoreRef.current
     if (isLast) {
-      onFinish(score)
+      onFinish(currentScore)
     } else {
-      // Move to next post
-      onFinish(-1) // signal to parent to go next
+      onFinish(currentScore)
     }
-  }, [isLast, score, onFinish])
+  }, [isLast, onFinish])
 
   // ── FEEDBACK ──
   if (feedback) {
