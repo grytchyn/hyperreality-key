@@ -3,10 +3,12 @@
 export type CoreToolId =
   | 'bad-arguments' | 'feelings-check' | 'brain-check'
   | 'hidden-story' | 'us-vs-them' | 'value-check' | 'fake-check'
+  | 'source-check'
 
 export const ALL_CORE_TOOLS: CoreToolId[] = [
   'bad-arguments', 'feelings-check', 'brain-check',
   'hidden-story', 'us-vs-them', 'value-check', 'fake-check',
+  'source-check',
 ]
 
 export interface CoreToolConfig {

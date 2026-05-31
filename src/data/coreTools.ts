@@ -63,6 +63,13 @@ export const CORE_TOOLS: CoreToolConfig[] = [
     color: '#a78bfa',
     description: 'Assesses reality level (Baudrillard\'s Hyperreality). Is this a real event, a distorted report, or pure internet simulation? "Viral", "trending" → the content only cares about its own spread. "Allegedly", "sources say" → unverified. "Unreal", "like a movie" → even the text knows something is off. Ask: Is this about reality, or about attention?',
   },
+  {
+    id: 'source-check',
+    icon: '🔎',
+    name: 'Source Check',
+    color: '#14b8a6',
+    description: 'Verifies whether sources actually exist and are credible. "According to experts", "studies show" → anonymous authority. "Sources say", "reportedly" → no named source. "I heard", "someone told me" → hearsay. "The internet says" → no origin at all. Ask: Can I find this source with a 30-second search?',
+  },
 ]
 
 export const TOOL_LARGE_ICONS: Record<CoreToolId, string> = {
@@ -73,6 +80,7 @@ export const TOOL_LARGE_ICONS: Record<CoreToolId, string> = {
   'us-vs-them': '⚔️',
   'value-check': '🛡️',
   'fake-check': '👁️',
+  'source-check': '📋',
 }
 
 // ── HIGHLIGHT RULES v8 — English only ──
@@ -135,6 +143,15 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
     { words: ['viral', 'meme', 'trending', 'share', 'like', 'follow', 'influencer', 'social media', 'go viral', 'blowing up'], explanation: 'Baudrillard: Simulacrum — the content is only about its own spread.' },
     { words: ['apparently', 'rumor', 'anonymous', 'sources say', 'unconfirmed', 'allegedly', 'reportedly', 'supposedly', 'claims', 'alleged'], explanation: 'Epistemology: unverified — at least one step removed from reality.' },
     { words: ['literally', 'unreal', 'surreal', 'like a movie', 'dream', 'can\'t believe', 'unbelievable', 'like a scene', 'straight out of'], explanation: 'Baudrillard: Hyperreality — the text itself signals something is off.' },
+  ],
+
+  // ── SOURCE CHECK: Epistemology, Source Credibility ──
+  'source-check': [
+    { words: ['experts', 'scientists', 'researchers', 'doctors', 'professionals', 'authorities', 'analysts', 'specialists'], explanation: 'Anonymous authority — "experts" without names are not sources.' },
+    { words: ['study', 'studies', 'research', 'survey', 'report', 'analysis', 'data', 'statistics', 'findings'], explanation: 'Vague reference — which study? When? By whom? No link = no source.' },
+    { words: ['people say', 'sources say', 'they say', 'it is said', 'reportedly', 'apparently', 'allegedly', 'rumored', 'heard', 'word is'], explanation: 'Hearsay — no named source. Someone heard from someone who heard from someone.' },
+    { words: ['internet says', 'everyone knows', 'common knowledge', 'as we know', 'widely known', 'it is known'], explanation: 'Fake consensus — "common knowledge" is often just repetition without verification.' },
+    { words: ['alleged', 'unconfirmed', 'unverified', 'claimed', 'supposed', 'purported'], explanation: 'Unverified — the content itself admits it has no confirmation.' },
   ],
 }
 

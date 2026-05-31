@@ -458,9 +458,9 @@ export const LEVEL_TOOLS: Record<number, CoreToolId[]> = {
   2: ['bad-arguments', 'feelings-check'],
   3: ['bad-arguments', 'feelings-check', 'brain-check'],
   4: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them'],
-  5: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check'],
-  6: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story'],
-  7: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'fake-check'],
+  5: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'source-check'],
+  6: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check'],
+  7: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'fake-check', 'source-check'],
 }
 
 // Level visual config — colors and names match the GPT-generated level backgrounds
