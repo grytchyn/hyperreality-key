@@ -28,6 +28,13 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
     [activeFilters, post]
   )
 
+  // Stable social numbers — computed once per post
+  const socialStats = useMemo(() => ({
+    likes: Math.floor(Math.random() * 200) + 50,
+    comments: 12,
+    shares: 47,
+  }), [post])
+
   const highlightCount = useMemo(() => {
     const words = post.content.toLowerCase().replace(/[^a-z\s%]/g, '').split(/\s+/)
     return [...new Set(words)].filter(w => highlights.has(w)).length
@@ -121,6 +128,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
       const clean = w.toLowerCase().replace(/[^a-z%]/g, '')
       const entries = clean ? highlights.get(clean) : undefined
       if (entries && entries.length > 0) {
+        const isRightEdge = i > words.length - 5
         return (
           <span key={i} className="relative group cursor-pointer rounded-sm px-0.5 font-medium transition-all"
             style={{
@@ -129,11 +137,17 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
               color: '#ccc',
             }}>
             {w}
-            <span className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 rounded-xl text-xs leading-relaxed pointer-events-none shadow-2xl"
+            <span className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all absolute z-50 bottom-full mb-2 pointer-events-none shadow-2xl"
               style={{
+                [isRightEdge ? 'right' : 'left']: '0',
                 background: '#13131a',
                 border: `1px solid ${entries[0].color}`,
                 boxShadow: `0 4px 20px ${entries[0].color}40`,
+                width: '260px',
+                padding: '12px',
+                borderRadius: '12px',
+                fontSize: '11px',
+                lineHeight: '1.5',
               }}>
               <div className="font-bold text-white text-[11px] mb-1.5 flex items-center gap-1.5">
                 <span>🔍</span> Manipulation detected!
@@ -222,21 +236,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
             </div>
           )}
 
-          {/* Article image */}
-          <div className={`h-24 sm:h-28 mx-4 mt-3 rounded-xl flex items-center justify-center bg-gradient-to-br ${post.imageBg} overflow-hidden`}
-            style={{ border: '1px solid rgba(255,255,255,0.05)' }}>
-            <span className="text-5xl select-none drop-shadow-2xl">{post.imageEmoji}</span>
-            <div className="absolute bottom-2 left-3 px-2 py-0.5 rounded-full text-[8px] font-mono font-bold uppercase tracking-wider"
-              style={{
-                background: post.categoryColor + '20',
-                color: post.categoryColor,
-                border: `1px solid ${post.categoryColor}40`,
-              }}>
-              {post.category}
-            </div>
-          </div>
-
-          {/* Post content */}
+          {/* Post content — no image, more text */}
           <div className="px-4 pt-3 pb-1">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0"
@@ -247,6 +247,15 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
                 <div className="text-xs font-bold text-white">{post.source}</div>
                 <div className="text-[9px] text-gray-500">Shared via friend · just now</div>
               </div>
+              <span className="ml-auto text-[8px] font-mono font-bold uppercase tracking-wider"
+                style={{
+                  color: post.categoryColor,
+                  border: `1px solid ${post.categoryColor}40`,
+                  padding: '2px 8px',
+                  borderRadius: '999px',
+                }}>
+                {post.category}
+              </span>
             </div>
             <h2 className="text-base font-bold text-white mb-2 leading-snug">{post.title}</h2>
             <div className="text-[13px] text-gray-300 leading-relaxed">{renderContent()}</div>
@@ -254,9 +263,9 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
 
           {/* Social bar */}
           <div className="px-4 py-2 flex items-center gap-4 text-gray-500 text-[11px] border-b border-dark-border/20">
-            <span className="flex items-center gap-1">💬 12</span>
-            <span className="flex items-center gap-1">🔄 47</span>
-            <span className="flex items-center gap-1">❤️ {Math.floor(Math.random() * 200) + 50}</span>
+            <span className="flex items-center gap-1">💬 {socialStats.comments}</span>
+            <span className="flex items-center gap-1">🔄 {socialStats.shares}</span>
+            <span className="flex items-center gap-1">❤️ {socialStats.likes}</span>
           </div>
 
           {/* Filter buttons */}
