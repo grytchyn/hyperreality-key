@@ -124,11 +124,16 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
   // ── RENDER TEXT WITH HIGHLIGHTS ──
   const renderContent = () => {
     const words = post.content.split(/(\s+)/)
+    const lowerContent = post.content.toLowerCase()
+    let charOffset = 0
     return words.map((w, i) => {
       const clean = w.toLowerCase().replace(/[^a-z%]/g, '')
       const entries = clean ? highlights.get(clean) : undefined
+      const wordStart = lowerContent.indexOf(clean, charOffset)
+      const isRightSide = wordStart > post.content.length * 0.4
+      if (clean) charOffset = wordStart + clean.length
+
       if (entries && entries.length > 0) {
-        const isRightEdge = i > words.length - 5
         return (
           <span key={i} className="relative group cursor-pointer rounded-sm px-0.5 font-medium transition-all"
             style={{
@@ -139,7 +144,8 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
             {w}
             <span className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all absolute z-50 bottom-full mb-2 pointer-events-none shadow-2xl"
               style={{
-                [isRightEdge ? 'right' : 'left']: '0',
+                [isRightSide ? 'right' : 'left']: '0',
+                transform: isRightSide ? 'none' : 'none',
                 background: '#13131a',
                 border: `1px solid ${entries[0].color}`,
                 boxShadow: `0 4px 20px ${entries[0].color}40`,
