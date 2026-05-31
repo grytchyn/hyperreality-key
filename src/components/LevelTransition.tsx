@@ -1,5 +1,5 @@
-// ── LEVEL TRANSITION v2 — 7 levels ──
-// Shows between levels: Level 1→2, 2→3, ... 6→7
+// ── LEVEL TRANSITION v3 — neon redesign with theme colors ──
+import { LEVEL_CONFIG } from '../data/missions'
 
 interface LevelTransitionProps {
   tier: number
@@ -7,76 +7,83 @@ interface LevelTransitionProps {
   onNext: () => void
 }
 
-const LEVEL_NAMES = [
-  '', // 0
-  'Bad Arguments',   // 1
-  'Feelings',        // 2
-  'Brain Check',     // 3
-  'Us vs Them',      // 4
-  'Moral Buttons',   // 5
-  'Hidden Myth',     // 6
-  'Fake Check',      // 7
-]
-const LEVEL_COLORS = [
-  '', '#ef4444', '#f59e0b', '#22c55e', '#d946ef', '#f97316', '#06b6d4', '#a78bfa',
-]
-const LEVEL_ICONS = [
-  '', '⚠️', '🎭', '🧠', '⚔️', '📊', '🗺️', '🌀',
-]
-const MESSAGES = [
-  '',
-  'You learned to spot false authority and absolute claims! Now let\'s detect emotional manipulation.',
-  'You can identify fear and urgency tricks. Time to examine cognitive biases.',
-  'Bandwagon and anchoring exposed! Now let\'s uncover social division tactics.',
-  'You see the "us vs them" frame. Time to check which moral buttons are being pushed.',
-  'Moral foundations mastered! Now let\'s uncover hidden myths and narratives.',
-  'Myths revealed! Final level: all tools combined against hyperreality.',
-]
-
 export default function LevelTransition({ tier, tierScore, onNext }: LevelTransitionProps) {
-  if (tier >= 7) return null // Victory handles the end
+  if (tier >= 7) return null
+
+  const cfg = LEVEL_CONFIG[tier]
+  const nextCfg = LEVEL_CONFIG[tier + 1]
 
   return (
     <div className="min-h-screen bg-dark-bg flex items-center justify-center p-4 relative overflow-hidden">
       <div className="fixed inset-0 pointer-events-none -z-10">
-        <div className="absolute top-20 left-1/4 w-72 h-72 rounded-full opacity-[0.08]"
-          style={{ background: `radial-gradient(circle, ${LEVEL_COLORS[tier] || '#8b5cf6'}, transparent 70%)`, animation: 'pulse 4s infinite' }} />
+        <div className="absolute top-10 right-10 w-[30rem] h-[30rem] rounded-full opacity-[0.08]"
+          style={{ background: `radial-gradient(circle, ${cfg?.color || '#8b5cf6'}, transparent 70%)`, animation: 'pulse 5s infinite' }} />
+        <div className="absolute bottom-10 left-10 w-[25rem] h-[25rem] rounded-full opacity-[0.06]"
+          style={{ background: `radial-gradient(circle, ${nextCfg?.color || '#06b6d4'}, transparent 70%)`, animation: 'pulse 7s infinite 1s' }} />
       </div>
 
-      <div className="w-full max-w-sm animate-fade-in-up text-center">
-        <div className="relative rounded-2xl p-8 border"
+      <div className="w-full max-w-sm animate-fade-in-up">
+        <div className="relative rounded-2xl p-8 text-center overflow-hidden"
           style={{
             background: 'linear-gradient(180deg, rgba(19,19,26,0.95), rgba(15,15,22,0.98))',
-            borderColor: `${LEVEL_COLORS[tier] || '#8b5cf6'}30`,
-            boxShadow: `0 8px 32px rgba(0,0,0,0.4), 0 0 30px ${LEVEL_COLORS[tier] || '#8b5cf6'}15`,
+            border: `1px solid ${cfg?.color || '#8b5cf6'}30`,
+            boxShadow: `0 8px 32px rgba(0,0,0,0.4), 0 0 40px ${cfg?.color || '#8b5cf6'}10`,
           }}>
           
-          <div className="text-4xl mb-3">{LEVEL_ICONS[tier]} → {LEVEL_ICONS[tier + 1]}</div>
+          {/* Sparkles */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="absolute w-1 h-1 rounded-full"
+                style={{
+                  background: cfg?.color || '#8b5cf6',
+                  top: `${10 + Math.random() * 80}%`,
+                  left: `${10 + Math.random() * 80}%`,
+                  animation: `pulse 2s infinite ${Math.random() * 3}s`,
+                }} />
+            ))}
+          </div>
           
-          <div className="text-[10px] text-gray-600 font-mono mb-2">LEVEL {tier} COMPLETE</div>
-          <h2 className="text-lg font-bold text-white mb-1">
-            <span style={{ color: LEVEL_COLORS[tier] }}>{LEVEL_NAMES[tier]}</span>
-            {' → '}
-            <span style={{ color: LEVEL_COLORS[tier + 1] }}>{LEVEL_NAMES[tier + 1]}</span>
-          </h2>
-          <p className="text-sm text-gray-400 mb-5">{MESSAGES[tier] || 'Great work! Ready for the next challenge?'}</p>
-
-          <div className="rounded-xl p-4 mb-6 text-left text-xs space-y-2"
-            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}>
-            <div className="flex items-center gap-2 text-gray-400">
-              <span>🎯</span> <span>Score: <strong className="text-white">{tierScore}</strong> / 30</span>
+          {/* Icons transition */}
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl"
+              style={{ background: `${cfg?.color || '#8b5cf6'}20`, border: `2px solid ${cfg?.color || '#8b5cf6'}40` }}>
+              {cfg?.icon || '🔑'}
             </div>
-            <div className="flex items-center gap-2 text-gray-400">
-              <span>🔓</span> <span>Unlocked: <strong className="text-white">{LEVEL_NAMES[tier + 1]}</strong></span>
+            <div className="text-2xl text-gray-500">→</div>
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl animate-pulse"
+              style={{ background: `${nextCfg?.color || '#06b6d4'}20`, border: `2px solid ${nextCfg?.color || '#06b6d4'}40` }}>
+              {nextCfg?.icon || '🔑'}
+            </div>
+          </div>
+          
+          <div className="inline-block px-3 py-1 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider mb-3"
+            style={{ background: `${cfg?.color || '#8b5cf6'}20`, color: cfg?.color || '#8b5cf6', border: `1px solid ${cfg?.color || '#8b5cf6'}40` }}>
+            Level {tier} Complete
+          </div>
+          
+          <h2 className="text-lg font-bold text-white mb-1">
+            <span style={{ color: cfg?.color }}>{cfg?.name || 'Tool'}</span>
+            {' → '}
+            <span style={{ color: nextCfg?.color }}>{nextCfg?.name || 'Next'}</span>
+          </h2>
+          <p className="text-sm mt-3 mb-5" style={{ color: '#9ca3af' }}>Tool unlocked: <strong style={{ color: '#e5e7eb' }}>{nextCfg?.name}</strong></p>
+
+          {/* Score card */}
+          <div className="rounded-xl p-4 mb-6 text-left text-xs"
+            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}>
+            <div className="flex items-center gap-3">
+              <span>🎯</span>
+              <span style={{ color: '#9ca3af' }}>Score: <strong style={{ color: '#e5e7eb' }} className="tabular-nums">{tierScore}</strong> / 30</span>
+              <span className="ml-auto text-[9px]" style={{ color: nextCfg?.color }}>🔓 +1 tool</span>
             </div>
           </div>
 
           <button onClick={onNext}
-            className="w-full px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer hover:translate-y-[-2px]"
+            className="w-full px-6 py-3.5 rounded-xl font-bold text-sm uppercase tracking-wider transition-all cursor-pointer hover:translate-y-[-1px] active:scale-[0.98]"
             style={{
-              background: `linear-gradient(135deg, ${LEVEL_COLORS[tier] || '#8b5cf6'}, ${LEVEL_COLORS[tier + 1] || '#7c3aed'})`,
+              background: `linear-gradient(135deg, ${cfg?.color || '#8b5cf6'}, ${nextCfg?.color || '#06b6d4'})`,
               color: '#fff',
-              boxShadow: `0 4px 20px ${LEVEL_COLORS[tier] || '#8b5cf6'}40`,
+              boxShadow: `0 4px 20px ${cfg?.color || '#8b5cf6'}40`,
             }}>
             Start Level {tier + 1} →
           </button>

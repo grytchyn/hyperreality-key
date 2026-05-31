@@ -462,3 +462,19 @@ export const LEVEL_TOOLS: Record<number, CoreToolId[]> = {
   6: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story'],
   7: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'fake-check'],
 }
+
+// Level visual config — colors and names match the GPT-generated level backgrounds
+export interface LevelConfig {
+  name: string
+  color: string
+  icon: string
+}
+export const LEVEL_CONFIG: Record<number, LevelConfig> = {
+  1: { name: 'Bad Arguments', color: '#ef4444', icon: '⚠️' },
+  2: { name: 'Feelings',      color: '#f59e0b', icon: '🎭' },
+  3: { name: 'Brain Check',   color: '#22c55e', icon: '🧠' },
+  4: { name: 'Us vs Them',    color: '#d946ef', icon: '⚔️' },
+  5: { name: 'Moral Buttons', color: '#f97316', icon: '📊' },
+  6: { name: 'Hidden Myth',   color: '#06b6d4', icon: '🗺️' },
+  7: { name: 'Fake Check',    color: '#a78bfa', icon: '🌀' },
+}

@@ -1,6 +1,6 @@
 // ── APP v13 — 7 levels, sequential progression ──
 import { useState, useCallback } from 'react'
-import { getMissionPosts } from './data/missions'
+import { getMissionPosts, LEVEL_CONFIG } from './data/missions'
 import SplashScreen from './components/SplashScreen'
 import GameScreen from './components/GameScreen'
 import LevelTransition from './components/LevelTransition'
@@ -86,8 +86,8 @@ export default function App() {
             </span>
           </div>
           <div className="flex items-center gap-2 text-[9px] font-mono">
-            <span className="text-gray-500">Level {currentLevel}/7</span>
-            <span className="text-neon-cyan font-bold">★ {totalScore + roundScore}</span>
+            <span className="font-bold" style={{ color: LEVEL_CONFIG[currentLevel]?.color || '#8b5cf6' }}>Lvl {currentLevel}/7</span>
+            <span className="text-gray-500 font-bold">★ {totalScore + roundScore}</span>
           </div>
         </div>
       </header>
