@@ -1,55 +1,72 @@
-// ── APP v7 — Chat → Analyze → Answer pipeline ──
+// ── APP v12 — Clean tier progression ──
 import { useState, useCallback } from 'react'
 import type { MissionPost } from './data/missions'
 import { getMissionPosts } from './data/missions'
 import SplashScreen from './components/SplashScreen'
 import GameScreen from './components/GameScreen'
+import LevelTransition from './components/LevelTransition'
 import VictoryScreen from './components/VictoryScreen'
 
-type Phase = 'splash' | 'playing' | 'victory'
+type Phase = 'splash' | 'playing' | 'transition' | 'victory'
 
 export default function App() {
   const [phase, setPhase] = useState<Phase>('splash')
-  const [score, setScore] = useState(0)
-  const [posts, setPosts] = useState<MissionPost[]>([])
-  const [postIndex, setPostIndex] = useState(0)
-  const [currentPost, setCurrentPost] = useState<MissionPost | null>(null)
+  const [totalScore, setTotalScore] = useState(0)
+  const [currentTier, setCurrentTier] = useState(1)
+  const [roundScore, setRoundScore] = useState(0)
+  const [allPosts] = useState(() => getMissionPosts())
+  const [currentBatch, setCurrentBatch] = useState<MissionPost[]>([])
+  const [index, setIndex] = useState(0)
 
-  const handleStart = useCallback((post: MissionPost) => {
-    const allPosts = getMissionPosts()
-    setPosts(allPosts)
-    setCurrentPost(post)
-    setPostIndex(allPosts.indexOf(post))
+  const startTier = useCallback((tier: number) => {
+    const batch = allPosts.filter(p => p.tier === tier).sort(() => Math.random() - 0.5)
+    setCurrentBatch(batch)
+    setCurrentTier(tier)
+    setIndex(0)
+    setRoundScore(0)
     setPhase('playing')
-  }, [])
+  }, [allPosts])
 
-  const handleFinish = useCallback((roundScore: number) => {
-    // Accumulate score
-    const newScore = score + (roundScore > 0 ? roundScore : 0)
-    setScore(newScore)
-    
-    // Go to next post or finish
-    const nextIdx = postIndex + 1
-    if (nextIdx >= posts.length) {
-      setPhase('victory')
+  const handleStart = useCallback(() => {
+    startTier(1)
+  }, [startTier])
+
+  const handleFinish = useCallback((points: number) => {
+    const newRound = roundScore + points
+    setRoundScore(newRound)
+
+    if (index + 1 >= currentBatch.length) {
+      // Tier complete → advance
+      setTotalScore(s => s + newRound)
+      if (currentTier >= 3) {
+        setPhase('victory')
+      } else {
+        setPhase('transition')
+      }
     } else {
-      setPostIndex(nextIdx)
-      setCurrentPost(posts[nextIdx])
+      setIndex(i => i + 1)
     }
-  }, [postIndex, posts, score])
+  }, [roundScore, index, currentBatch.length, currentTier])
+
+  const handleNextTier = useCallback(() => {
+    startTier(currentTier + 1)
+  }, [currentTier, startTier])
 
   const handleRestart = useCallback(() => {
-    setScore(0)
-    setPosts([])
-    setPostIndex(0)
-    setCurrentPost(null)
+    setTotalScore(0)
+    setCurrentTier(1)
+    setRoundScore(0)
+    setIndex(0)
+    setCurrentBatch([])
     setPhase('splash')
   }, [])
 
   if (phase === 'splash') return <SplashScreen onStart={handleStart} />
-  if (phase === 'victory') return <VictoryScreen score={score} onRestart={handleRestart} />
+  if (phase === 'victory') return <VictoryScreen score={totalScore} onRestart={handleRestart} />
+  if (phase === 'transition') return <LevelTransition tier={currentTier} tierScore={roundScore} onNext={handleNextTier} />
 
-  if (!currentPost || posts.length === 0) return <SplashScreen onStart={handleStart} />
+  const post = currentBatch[index]
+  if (!post) return <SplashScreen onStart={handleStart} />
 
   return (
     <div className="min-h-screen bg-dark-bg">
@@ -63,13 +80,17 @@ export default function App() {
               <span className="text-neon-pink">KEY</span>
             </span>
           </div>
+          <div className="flex items-center gap-2 text-[9px] font-mono">
+            <span className="text-gray-500">Tier {currentTier}/3</span>
+            <span className="text-neon-cyan font-bold">★ {totalScore + roundScore}</span>
+          </div>
         </div>
       </header>
       <main>
         <GameScreen
-          post={currentPost}
-          allPosts={posts}
-          postIndex={postIndex}
+          post={post}
+          allPosts={currentBatch}
+          postIndex={index}
           onFinish={handleFinish}
         />
       </main>
