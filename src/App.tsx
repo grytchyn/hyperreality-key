@@ -1,14 +1,16 @@
-// ── APP v18 — useGame hook (useReducer state machine) ──
+// ── APP v19 — LanguageProvider + useGame + Language Switcher ──
 import { useCallback, useRef } from 'react'
+import { LanguageProvider, useLanguage } from './hooks/useLanguage'
 import { useGame } from './hooks/useGame'
 import SplashScreen from './components/SplashScreen'
 import GameScreen from './components/GameScreen'
 import VictoryScreen from './components/VictoryScreen'
 
-export default function App() {
+function AppInner() {
+  const { missions, language, setLanguage } = useLanguage()
+
   const {
     state,
-    currentPost,
     handleStart,
     handleAnswer: gameHandleAnswer,
     handleNextLevel,
@@ -18,10 +20,10 @@ export default function App() {
   const levelRef = useRef(state.currentLevel)
   levelRef.current = state.currentLevel
 
-  // GameScreen calls onAnswer(correct: boolean, points: number)
+  const currentPost = missions.find(p => p.level === state.currentLevel)
+
   const handleAnswer = useCallback((correct: boolean) => {
     gameHandleAnswer(correct)
-
     const currentLvl = levelRef.current
     if (currentLvl >= 12) {
       setTimeout(() => handleNextLevel(), 300)
@@ -38,16 +40,26 @@ export default function App() {
   return (
     <div
       className="min-h-[100dvh]"
-      style={{ backgroundColor: 'var(--color-dark-bg, #0a0a0f)', minHeight: '100dvh' }}
+      style={{ backgroundColor: 'var(--color-dark-bg)', minHeight: '100dvh' }}
     >
       <main>
         <GameScreen
           post={currentPost}
           onAnswer={handleAnswer}
           totalScore={state.totalScore}
+          currentLanguage={language}
+          onSetLanguage={setLanguage}
           key={state.currentLevel}
         />
       </main>
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppInner />
+    </LanguageProvider>
   )
 }

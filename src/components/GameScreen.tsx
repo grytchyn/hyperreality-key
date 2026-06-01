@@ -2,9 +2,10 @@
 // 3 pre-activated filters, +1 per level
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { CORE_TOOLS, getHighlightsFor } from '../data/coreTools'
-import { LEVEL_TOOLS, LEVEL_CONFIG } from '../data/missions'
+import { LEVEL_TOOLS, LEVEL_CONFIG } from '../engine/levelTools'
 import type { CoreToolId } from '../types'
 import type { MissionPost } from '../data/missions'
+import type { Language } from '../hooks/useLanguage'
 import ChatUi from './ChatUi'
 import Header from './Header'
 import { getToolIcon } from './icons/ToolIcons'
@@ -13,6 +14,8 @@ interface GameScreenProps {
   post: MissionPost
   onAnswer: (correct: boolean, points: number) => void
   totalScore?: number
+  currentLanguage?: Language
+  onSetLanguage?: (lang: Language) => void
 }
 
 const LETTERS = ['A', 'B', 'C', 'D']
@@ -33,8 +36,8 @@ const CHOICE_ICONS: Record<number, string[]> = {
   12: ['📊', '⚖️', '🏛️', '🔨'],
 }
 
-export default function GameScreen({ post, onAnswer, totalScore }: GameScreenProps) {
-  const [phase, setPhase] = useState<'chat' | 'game'>('game')
+export default function GameScreen({ post, onAnswer, totalScore, currentLanguage, onSetLanguage }: GameScreenProps) {
+  const [phase, setPhase] = useState<'chat' | 'game'>('chat')
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>(() => {
     // Pre-activate only tools that actually have highlights in this post
     const level = post.level
@@ -166,10 +169,12 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
         {/* HEADER */}
         <Header
           level={post.level}
-          levelName={levelCfg.name}
+          levelName={levelCfg.theme}
           levelColor={levelCfg.color}
           showLevel={true}
           totalScore={totalScore}
+          currentLanguage={currentLanguage}
+          onSetLanguage={onSetLanguage}
         />
         {transitioning ? (
           <div className="animate-fade-in-up text-center">
@@ -229,10 +234,12 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
       {/* HEADER with big logo */}
       <Header
         level={post.level}
-        levelName={levelCfg.name}
+        levelName={levelCfg.theme}
         levelColor={levelCfg.color}
         showLevel={true}
         totalScore={totalScore}
+        currentLanguage={currentLanguage}
+        onSetLanguage={onSetLanguage}
       />
 
       <div className="max-w-2xl mx-auto p-3 sm:p-4 space-y-4 relative z-10 animate-fade-in-up" ref={gameRef}>
@@ -260,7 +267,7 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
               🔒 {post.source.toLowerCase().replace(/[^a-z0-9]/g, '')}.com
             </div>
             <span className="text-[9px] font-mono uppercase tracking-wider" style={{ color: levelCfg.color + '99' }}>
-              {levelCfg.name}
+              {levelCfg.theme}
             </span>
           </div>
 
