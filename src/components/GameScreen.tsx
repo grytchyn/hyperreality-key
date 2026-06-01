@@ -154,7 +154,7 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
   }
 
   // ── GAME MODE: Full analysis screen ──
-  const bgUrl = post.level === 1 ? `/assets/bg/level${post.level}-bg.png` : '/assets/bg/game-bg.png'
+  const bgUrl = '/assets/bg/game-bg.png'
 
   if (phase === 'chat') {
     return (

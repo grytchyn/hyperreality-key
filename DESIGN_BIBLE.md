@@ -1,7 +1,18 @@
 # 🎨 Design Bible — Hyperreality Key
 
-> **Version 1.0** | Stand: 01.06.2026
+> **Version 1.1** | Stand: 01.06.2026
 > *Single Source of Truth für alle UI-Entscheidungen*
+
+---
+
+## 0. CHANGELOG
+
+### v1.1 (01.06.2026)
+- Background: unified `game-bg.png` for ALL levels (Level 1 no longer has separate bg)
+- SplashScreen: removed scientist grid, simplified to logo + single CTA
+- Avatar rendering: uses `getScientistAvatar(scientistKey)` from shared registry
+- Added `scientistKey` to MissionPost interface
+- i18n: Language switcher in Header (EN|DE|UA buttons)
 
 ---
 
@@ -149,16 +160,16 @@
 
 | Template | Composed From | State | Description |
 |----------|--------------|-------|-------------|
-| `GameLayout` | Header + ArticleCard + ToolGrid + AnswerPanel + ExplanationPanel | phase game/answer | Main game view |
-| `SplashLayout` | Logo + ScientistCard[] + CTA | typing animation | Welcome screen |
+| `GameLayout` | Header + ArticleCard + ToolGrid + AnswerPanel + ExplanationPanel | phase chat/game/answered | Main game view |
+| `SplashLayout` | Logo + CTA | fade-in + loading dots | Welcome screen |
 | `VictoryLayout` | Header + Score + Stats + Restart | score data | Final screen |
 
 ### 2.5 Page-Level Components
 
 | Component | Template | Description |
 |-----------|----------|-------------|
-| `SplashScreen` | SplashLayout | Welcome + Scientist intro |
-| `GameScreen` | GameLayout | Main game loop |
+| `SplashScreen` | SplashLayout | Welcome — logo + start CTA |
+| `GameScreen` | GameLayout | Main game loop — chat intro → analysis → answer |
 | `VictoryScreen` | VictoryLayout | Results |
 | ~~LevelComplete~~ | — | **DELETED** — replaced by inline flow |
 | ~~LevelTransition~~ | — | **DELETED** — replaced by inline flow |
@@ -243,8 +254,12 @@
 ### 5.1 Background Images
 - **Format**: PNG
 - **Resolution**: 1920×1080px
+- **Files in use**:
+  - `splash-bg.png` — Splash/Start screen
+  - `game-bg.png` — ALL game levels 1–12 (unified)
+  - `victory-bg.png` — Victory/Results screen
 - **Style**: Dark cyberpunk, 15% opacity + dark overlay (#0a0a0f at 70%)
-- **Naming**: `{name}-bg.png` (splash-bg, game-bg, victory-bg)
+- **Level 1 does NOT have a separate background** — all levels share `game-bg.png`
 
 ### 5.2 Scientist Avatars
 - **Format**: PNG
@@ -329,9 +344,11 @@ Phase states:
 ```
 
 ### 8.3 SplashScreen — States
-- `loading` → Scientist avatars fade in (sequential, 0.3s interval)
-- `ready` → All 10 scientists visible + "Enter" button
+- `loading` → Logo appears + bouncing dots animation (1.2s)
+- `ready` → "OK, I'll check this post for manipulation 🔍" CTA appears
 - `entering` → Fade out animation (0.5s)
+
+**No scientist avatars on the splash screen** — scientists appear per-level in tooltips and the post-answer avatar card.
 
 ---
 

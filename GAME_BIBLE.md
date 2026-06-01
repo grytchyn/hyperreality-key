@@ -1,7 +1,23 @@
 # 📜 Game Bible — Hyperreality Key
 
-> **Version 1.0** | Stand: 01.06.2026
+> **Version 1.1** | Stand: 01.06.2026
 > *Living Document — wird mit jeder Iteration erweitert*
+
+---
+
+## 0. CHANGELOG
+
+### v1.1 (01.06.2026)
+- Added `scientistKey` to all 36 mission entries (EN/DE/UA)
+- SplashScreen: removed scientist grid + redundant Send button; clean minimal start with loading animation
+- GameScreen: unified background for all levels (`game-bg.png`)
+- Scientist avatar fix: uses `getScientistAvatar(scientistKey)` instead of brittle path construction
+- Removed ring-offset artifact that looked like a stray "0"
+- i18n system: LanguageProvider + `t()` function + translations.ts (EN/DE/UA)
+- Phase 5 CSS refactor: 100+ hardcoded hex colors replaced with CSS variables
+
+### v1.0 (01.06.2026)
+- Initial Game Bible created
 
 ---
 
@@ -99,20 +115,22 @@ Level 12: 12 Tools verfügbar     → 1 Post → 1 Question
 
 ```
 Splash Screen
-  ↓ Klick "Start"
+  ↓ Klick "OK, I'll check..."
+Chat Intro (Scientist shares article)
+  ↓ Klick "Open & Analyze"
 Header: Logo + Level + Score
   ↓
-Article Card (Social Media Post)
+Article Card (Social Media Post with highlights)
   ↓
-Tool Grid (n Tools — nur aktive sind klickbar)
-  ↓ Spieler wählt Tools
+Tool Grid (n Tools — pre-activated)
+  ↓ Spieler toggelt Tools
 Highlight Overlay (markierte Wörter)
-  ↓ Spieler klickt "Analyze"
+  ↓
 A/B/C/D Question
   ↓ Spieler wählt Antwort
 Feedback + Explanation (Richtig/Falsch)
   ↓ Klick "Next Level →"
-Nächstes Level (remount)
+Nächstes Level (Chat Intro → Analyse)
   ...
 Level 12 → Victory Screen
   ↓

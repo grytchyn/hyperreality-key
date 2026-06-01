@@ -1,7 +1,24 @@
 # 💻 Code Bible — Hyperreality Key
 
-> **Version 1.0** | Stand: 01.06.2026
+> **Version 1.1** | Stand: 01.06.2026
 > *Architektur-Regeln, Patterns, und Konventionen*
+
+---
+
+## 0. CHANGELOG
+
+### v1.1 (01.06.2026)
+- Added `engine/scientists.ts` — shared scientist registry (eliminated 4× duplication)
+- Added `engine/levelTools.ts` — shared tool progression (eliminated 3× duplication)
+- Added `config/colors.ts` — single color source of truth
+- Added `engine/scoring.ts` — score calculation engine
+- Added `hooks/useGame.ts` — useReducer state machine
+- Added `hooks/useLanguage.tsx` — LanguageProvider + language context
+- Deleted: `LevelComplete.tsx`, `LevelTransition.tsx`, 11 unused JSON files
+- i18n: `src/i18n/translations.ts` with EN/DE/UA UI strings
+- CSS: 100+ hardcoded colors replaced with CSS variables + color-mix()
+- Scientist avatar path: uses `scientistKey` field, not `friendName` transformation
+- All 39 unit tests passing
 
 ---
 
