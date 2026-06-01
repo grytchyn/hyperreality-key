@@ -18,7 +18,7 @@ const LETTERS = ['A', 'B', 'C', 'D']
 // Icons per choice per level — shown in the circle instead of A/B/C/D
 const CHOICE_ICONS: Record<number, string[]> = {
   1: ['🎭', '💢', '📋', '🔍'],
-  2: ['🧐', '😱', '🎉', '😢'],
+  2: ['😱', '🧐', '🎉', '😴'],
   3: ['⚓', '👥', '🏛️', '🧠'],
   4: ['⚖️', '⚔️', '📊', '🤝'],
   5: ['👑', '❤️', '💯', '🧼'],
@@ -69,8 +69,13 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
     setChosenAnswer(idx)
     const correct = idx === post.correctIndex
     setFeedback(correct ? 'correct' : 'wrong')
-    setTimeout(() => onAnswer(correct, correct ? 10 : 0), 2200)
-  }, [post, onAnswer])
+  }, [post])
+
+  const handleNext = useCallback(() => {
+    if (chosenAnswer === null) return
+    const correct = chosenAnswer === post.correctIndex
+    onAnswer(correct, correct ? 10 : 0)
+  }, [chosenAnswer, post, onAnswer])
 
   const showTooltip = useCallback((e: React.MouseEvent, text: string) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -353,6 +358,22 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
                 {feedback === 'correct' ? '✓ Correct!' : '✗ Not quite'}
               </span>
               {post.explanation}
+              
+              {/* Manual Next button — user reads then clicks */}
+              <button onClick={handleNext}
+                className="w-full mt-4 px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all cursor-pointer hover:translate-y-[-1px] active:scale-[0.98] flex items-center justify-center gap-2"
+                style={{
+                  background: feedback === 'correct'
+                    ? 'linear-gradient(135deg, #22c55e, #16a34a)'
+                    : 'linear-gradient(135deg, #6b7280, #4b5563)',
+                  color: '#fff',
+                  boxShadow: feedback === 'correct'
+                    ? '0 4px 20px rgba(34,197,94,0.3)'
+                    : '0 4px 20px rgba(107,114,128,0.3)',
+                }}>
+                Next Level →
+                <span className="text-[10px] opacity-70">{level + 1 > 7 ? '🏁 Results' : `Level ${level + 1}`}</span>
+              </button>
             </div>
           )}
         </div>
