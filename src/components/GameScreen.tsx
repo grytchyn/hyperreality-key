@@ -1,9 +1,11 @@
-// ── GAME SCREEN v14 — neon redesign, level colors, radio buttons ──
+// ── GAME SCREEN v15 — Chat UI + neon SVG icons + level colors ──
 import { useState, useMemo, useCallback, useRef } from 'react'
-import { CORE_TOOLS, TOOL_LARGE_ICONS, getHighlightsFor } from '../data/coreTools'
+import { CORE_TOOLS, getHighlightsFor } from '../data/coreTools'
 import { LEVEL_TOOLS, LEVEL_CONFIG } from '../data/missions'
 import type { CoreToolId } from '../types'
 import type { MissionPost } from '../data/missions'
+import ChatUi from './ChatUi'
+import { getToolIcon } from './icons/ToolIcons'
 
 interface GameScreenProps {
   post: MissionPost
@@ -15,6 +17,7 @@ interface GameScreenProps {
 const LETTERS = ['A', 'B', 'C', 'D']
 
 export default function GameScreen({ post, onFinish, allPosts, postIndex }: GameScreenProps) {
+  const [phase, setPhase] = useState<'chat' | 'tools' | 'answer' | 'feedback'>('chat')
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>([])
   const [chosenAnswer, setChosenAnswer] = useState<number | null>(null)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
@@ -56,6 +59,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
       scoreRef.current = n
       setScore(n)
     }
+    setPhase('feedback')
   }, [post])
 
   const handleNext = useCallback(() => onFinish(scoreRef.current), [onFinish])
@@ -66,8 +70,10 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
   }, [])
   const hideTooltip = useCallback(() => setTooltip(null), [])
 
+  const handleAnalyze = useCallback(() => setPhase('tools'), [])
+
   // ── FEEDBACK ──
-  if (feedback) {
+  if (phase === 'feedback' && feedback) {
     const fbColor = feedback === 'correct' ? '#22c55e' : '#ef4444'
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
@@ -78,7 +84,6 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
               background: `linear-gradient(135deg, ${fbColor}15, rgba(0,0,0,0.1))`,
               boxShadow: feedback === 'correct' ? '0 0 60px rgba(34,197,94,0.15)' : '0 0 60px rgba(239,68,68,0.15)',
             }}>
-            {/* Sparkles for correct */}
             {feedback === 'correct' && (
               <div className="absolute inset-0 pointer-events-none">
                 {[...Array(6)].map((_, i) => (
@@ -95,7 +100,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
             <h2 className="text-xl font-bold mb-2" style={{ color: fbColor }}>
               {feedback === 'correct' ? 'Correct! 🎉' : 'Not quite'}
             </h2>
-            <div className="mb-6 text-xs leading-relaxed max-w-sm mx-auto" style={{ color: feedback === 'correct' ? '#9ca3af' : '#9ca3af' }}>
+            <div className="mb-6 text-xs leading-relaxed max-w-sm mx-auto" style={{ color: '#9ca3af' }}>
               {post.explanation.split('. ').map((s, i) => (
                 <p key={i} className={i > 0 ? 'mt-2' : ''}>{s}.</p>
               ))}
@@ -154,7 +159,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
       </div>
 
       <div className="max-w-2xl mx-auto p-3 sm:p-4 space-y-4 relative z-10">
-        {/* PROGRESS BAR — level-themed */}
+        {/* PROGRESS BAR */}
         <div className="flex items-center gap-3 text-xs font-mono">
           <div className="flex-1 bg-gray-800/50 rounded-full h-2.5 overflow-hidden">
             <div className="h-full rounded-full transition-all duration-700 ease-out"
@@ -170,156 +175,171 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
           </div>
         </div>
 
-        {/* BROWSER CARD */}
-        <div className="relative rounded-2xl overflow-hidden"
-          style={{
-            background: 'linear-gradient(180deg, rgba(19,19,26,0.95), rgba(15,15,22,0.98))',
-            border: `1px solid ${levelCfg.color}25`,
-            boxShadow: `0 8px 32px rgba(0,0,0,0.4), 0 0 30px ${levelCfg.color}10`,
-          }}>
-          
-          {/* Level accent top bar */}
-          <div className="h-[3px] w-full"
-            style={{ background: `linear-gradient(90deg, transparent, ${levelCfg.color}, ${levelCfg.color}cc, transparent)`, opacity: 0.7 }} />
-          
-          {/* URL bar */}
-          <div className="px-4 py-2 flex items-center gap-2 border-b border-gray-800/50">
-            <div className="flex gap-1">
-              <div className="w-3 h-3 rounded-full bg-red-500/80" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-              <div className="w-3 h-3 rounded-full bg-green-500/80" />
-            </div>
-            <div className="flex-1 rounded-full px-3 py-1.5 text-[10px] text-gray-500 font-mono truncate"
-              style={{ background: 'rgba(255,255,255,0.04)' }}>
-              🔒 {post.source.toLowerCase().replace(/\s+/g, '')}.com
-            </div>
-            <span className="text-[9px] font-mono uppercase tracking-wider" style={{ color: levelCfg.color + '99' }}>
-              {levelCfg.name}
-            </span>
-          </div>
+        {/* CHAT UI MESSAGE */}
+        <ChatUi
+          friendName={post.friendName}
+          friendColor={post.friendColor}
+          friendPreview={post.friendPreview}
+          articleTitle={post.title}
+          articleSource={post.source}
+          articleContent={post.content}
+          onAnalyze={handleAnalyze}
+          showAnalyze={phase === 'chat'}
+        />
 
-          {/* Content */}
-          <div className="px-4 pt-3 pb-1">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0"
-                style={{ background: `linear-gradient(135deg, ${post.categoryColor}, ${post.categoryColor}88)` }}>
-                {post.source[0]}
+        {/* TOOLS + ARTICLE CARD — shown after "Open & Analyze" */}
+        {phase !== 'chat' && (
+          <>
+            {/* ARTICLE CARD */}
+            <div className="relative rounded-2xl overflow-hidden"
+              style={{
+                background: 'linear-gradient(180deg, rgba(19,19,26,0.95), rgba(15,15,22,0.98))',
+                border: `1px solid ${levelCfg.color}25`,
+                boxShadow: `0 8px 32px rgba(0,0,0,0.4), 0 0 30px ${levelCfg.color}10`,
+              }}>
+              
+              {/* Neon accent top bar */}
+              <div className="h-[3px] w-full"
+                style={{ background: `linear-gradient(90deg, transparent, ${levelCfg.color}, ${levelCfg.color}cc, transparent)`, opacity: 0.7 }} />
+              
+              {/* URL bar */}
+              <div className="px-4 py-2 flex items-center gap-2 border-b border-gray-800/50">
+                <div className="flex gap-1">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                </div>
+                <div className="flex-1 rounded-full px-3 py-1.5 text-[10px] text-gray-500 font-mono truncate"
+                  style={{ background: 'rgba(255,255,255,0.04)' }}>
+                  🔒 {post.source.toLowerCase().replace(/\s+/g, '')}.com
+                </div>
+                <span className="text-[9px] font-mono uppercase tracking-wider" style={{ color: levelCfg.color + '99' }}>
+                  {levelCfg.name}
+                </span>
               </div>
-              <div>
-                <div className="text-xs font-bold text-white">{post.source}</div>
-                <div className="text-[9px] text-gray-500">{post.friendName} shared · just now</div>
+
+              {/* Content */}
+              <div className="px-4 pt-3 pb-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0"
+                    style={{ background: `linear-gradient(135deg, ${post.categoryColor}, ${post.categoryColor}88)` }}>
+                    {post.source[0]}
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-white">{post.source}</div>
+                    <div className="text-[9px] text-gray-500">{post.friendName} shared · just now</div>
+                  </div>
+                  <span className="ml-auto text-[8px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
+                    style={{ color: post.categoryColor, border: `1px solid ${post.categoryColor}40`, background: `${post.categoryColor}15` }}>
+                    {post.category}
+                  </span>
+                </div>
+                <h2 className="text-base font-bold text-white mb-2 leading-snug">{post.title}</h2>
+                <div className="text-[13px] leading-relaxed" style={{ color: '#d1d5db' }}>{renderContent()}</div>
               </div>
-              <span className="ml-auto text-[8px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
-                style={{ color: post.categoryColor, border: `1px solid ${post.categoryColor}40`, background: `${post.categoryColor}15` }}>
-                {post.category}
-              </span>
+
+              {/* Social bar */}
+              <div className="px-4 py-2 flex items-center gap-4 text-[11px] border-b border-gray-800/30" style={{ color: '#6b7280' }}>
+                <span>💬 12</span>
+                <span>🔄 47</span>
+                <span>❤️ 120</span>
+              </div>
+
+              {/* FILTER TOOLS — neon SVG icons 2×4 grid */}
+              <div className="px-4 py-3">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-[9px] font-mono flex items-center gap-1.5" style={{ color: '#6b7280' }}>
+                    {!correctToolUsed ? (
+                      <><span style={{ color: levelCfg.color }}>◆</span> Activate <strong style={{ color: '#e5e7eb' }}>{CORE_TOOLS.find(t => t.id === post.neededTool)?.name}</strong></>
+                    ) : (
+                      <>🔍 <span style={{ color: '#9ca3af' }}>{highlightCount}</span> words</>
+                    )}
+                  </div>
+                  {correctToolUsed && (
+                    <button onClick={() => { setActiveFilters([]); setCorrectToolUsed(false) }}
+                      className="text-[9px] font-mono transition-colors cursor-pointer" style={{ color: '#6b7280' }}>clear</button>
+                  )}
+                </div>
+                <div className="grid grid-cols-4 gap-2">
+                  {availableTools.map(toolId => {
+                    const t = CORE_TOOLS.find(x => x.id === toolId)
+                    if (!t) return null
+                    const isOn = activeFilters.includes(toolId)
+                    const IconComponent = getToolIcon(toolId)
+                    return (
+                      <button key={toolId} onClick={() => toggleFilter(toolId)}
+                        onMouseEnter={(e) => showTooltip(e, t.description)} onMouseLeave={hideTooltip}
+                        className="flex flex-col items-center gap-1 p-2 rounded-xl border transition-all duration-200 cursor-pointer active:scale-95"
+                        style={{
+                          borderColor: isOn ? t.color : `${t.color}15`,
+                          background: isOn ? `${t.color}20` : 'rgba(255,255,255,0.02)',
+                          boxShadow: isOn ? `0 0 15px ${t.color}20` : 'none',
+                        }}>
+                        <IconComponent size={32} glowColor={t.color} active={isOn} />
+                        <span className="text-[6px] font-bold uppercase tracking-wider leading-tight"
+                          style={{ color: isOn ? t.color : '#6b7280' }}>{t.name}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
             </div>
-            <h2 className="text-base font-bold text-white mb-2 leading-snug">{post.title}</h2>
-            <div className="text-[13px] leading-relaxed" style={{ color: '#d1d5db' }}>{renderContent()}</div>
-          </div>
 
-          {/* Social bar */}
-          <div className="px-4 py-2 flex items-center gap-4 text-[11px] border-b border-gray-800/30" style={{ color: '#6b7280' }}>
-            <span>💬 12</span>
-            <span>🔄 47</span>
-            <span>❤️ 120</span>
-          </div>
-
-          {/* FILTER BUTTONS — level-themed active state */}
-          <div className="px-4 py-3">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-[9px] font-mono flex items-center gap-1.5" style={{ color: '#6b7280' }}>
-                {!correctToolUsed ? (
-                  <><span style={{ color: levelCfg.color }}>◆</span> Activate <strong style={{ color: '#e5e7eb' }}>{CORE_TOOLS.find(t => t.id === post.neededTool)?.name}</strong></>
-                ) : (
-                  <>🔍 <span style={{ color: '#9ca3af' }}>{highlightCount}</span> words</>
+            {/* ANSWER CARD — radio-style */}
+            <div className="rounded-2xl p-5"
+              style={{
+                background: 'linear-gradient(135deg, rgba(19,19,26,0.95), rgba(26,26,36,0.9))',
+                border: `1px solid ${levelCfg.color}20`,
+              }}>
+              
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${levelCfg.color}20` }}>
+                  <span className="text-sm">🎯</span>
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest" style={{ color: levelCfg.color }}>Question</span>
+                </div>
+                {!correctToolUsed && (
+                  <span className="ml-auto text-[8px] font-mono" style={{ color: '#6b7280' }}>🔒 activate filter</span>
                 )}
               </div>
-              {correctToolUsed && (
-                <button onClick={() => { setActiveFilters([]); setCorrectToolUsed(false) }}
-                  className="text-[9px] font-mono transition-colors cursor-pointer" style={{ color: '#6b7280' }}>clear</button>
+
+              <p className="text-sm font-bold mb-4 leading-relaxed" style={{ color: '#e5e7eb' }}>{post.question}</p>
+
+              <div className="space-y-2.5">
+                {post.choices.map((choice, idx) => {
+                  const selected = chosenAnswer === idx
+                  return (
+                    <button key={idx} onClick={() => handlePick(idx)}
+                      disabled={!correctToolUsed || chosenAnswer !== null}
+                      className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 text-sm font-medium text-left transition-all duration-150 cursor-pointer disabled:opacity-25 disabled:cursor-not-allowed active:scale-[0.99]"
+                      style={{
+                        borderColor: selected ? `${levelCfg.color}99` : 'rgba(255,255,255,0.06)',
+                        background: selected ? `${levelCfg.color}20` : 'rgba(255,255,255,0.02)',
+                        color: selected ? '#fff' : '#9ca3af',
+                      }}>
+                      <span className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0"
+                        style={{
+                          background: selected ? levelCfg.color : 'rgba(255,255,255,0.06)',
+                          color: selected ? '#000' : '#6b7280',
+                        }}>
+                        {LETTERS[idx]}
+                      </span>
+                      <span className="flex-1">{choice}</span>
+                      {selected && <span className="text-sm">✓</span>}
+                    </button>
+                  )
+                })}
+              </div>
+
+              {!correctToolUsed && (
+                <div className="text-[10px] text-center font-mono pt-3" style={{ color: '#6b7280' }}>
+                  💡 Activate the <span style={{ color: levelCfg.color }}>{CORE_TOOLS.find(t => t.id === post.neededTool)?.name}</span> filter above
+                </div>
               )}
             </div>
-            <div className="grid grid-cols-4 gap-2">
-              {availableTools.map(toolId => {
-                const t = CORE_TOOLS.find(x => x.id === toolId)
-                if (!t) return null
-                const isOn = activeFilters.includes(toolId)
-                return (
-                  <button key={toolId} onClick={() => toggleFilter(toolId)}
-                    onMouseEnter={(e) => showTooltip(e, t.description)} onMouseLeave={hideTooltip}
-                    className="flex flex-col items-center gap-1.5 p-3 rounded-xl border transition-all duration-200 cursor-pointer active:scale-95"
-                    style={{
-                      borderColor: isOn ? t.color : `${t.color}15`,
-                      background: isOn ? `${t.color}20` : 'rgba(255,255,255,0.02)',
-                      boxShadow: isOn ? `0 0 15px ${t.color}20` : 'none',
-                    }}>
-                    <span className="text-xl">{isOn ? TOOL_LARGE_ICONS[toolId] : t.icon}</span>
-                    <span className="text-[7px] font-bold uppercase tracking-wider leading-tight" style={{ color: isOn ? t.color : '#6b7280' }}>{t.name}</span>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* ANSWER CARD — radio-style multiple choice */}
-        <div className="rounded-2xl p-5"
-          style={{
-            background: 'linear-gradient(135deg, rgba(19,19,26,0.95), rgba(26,26,36,0.9))',
-            border: `1px solid ${levelCfg.color}20`,
-          }}>
-          
-          {/* Header */}
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${levelCfg.color}20` }}>
-              <span className="text-sm">🎯</span>
-            </div>
-            <div>
-              <span className="text-[10px] font-mono font-bold uppercase tracking-widest" style={{ color: levelCfg.color }}>Question</span>
-            </div>
-            {!correctToolUsed && (
-              <span className="ml-auto text-[8px] font-mono" style={{ color: '#6b7280' }}>🔒 activate filter</span>
-            )}
-          </div>
-
-          {/* Question text */}
-          <p className="text-sm font-bold mb-4 leading-relaxed" style={{ color: '#e5e7eb' }}>{post.question}</p>
-
-          {/* Choices */}
-          <div className="space-y-2.5">
-            {post.choices.map((choice, idx) => {
-              const selected = chosenAnswer === idx
-              return (
-                <button key={idx} onClick={() => handlePick(idx)}
-                  disabled={!correctToolUsed || chosenAnswer !== null}
-                  className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 text-sm font-medium text-left transition-all duration-150 cursor-pointer disabled:opacity-25 disabled:cursor-not-allowed active:scale-[0.99]"
-                  style={{
-                    borderColor: selected ? `${levelCfg.color}99` : 'rgba(255,255,255,0.06)',
-                    background: selected ? `${levelCfg.color}20` : 'rgba(255,255,255,0.02)',
-                    color: selected ? '#fff' : '#9ca3af',
-                  }}>
-                  <span className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0"
-                    style={{
-                      background: selected ? levelCfg.color : 'rgba(255,255,255,0.06)',
-                      color: selected ? '#000' : '#6b7280',
-                    }}>
-                    {LETTERS[idx]}
-                  </span>
-                  <span className="flex-1">{choice}</span>
-                  {selected && <span className="text-sm">✓</span>}
-                </button>
-              )
-            })}
-          </div>
-
-          {/* Hint */}
-          {!correctToolUsed && (
-            <div className="text-[10px] text-center font-mono pt-3" style={{ color: '#6b7280' }}>
-              💡 Activate the <span style={{ color: levelCfg.color }}>{CORE_TOOLS.find(t => t.id === post.neededTool)?.name}</span> filter above
-            </div>
-          )}
-        </div>
+          </>
+        )}
       </div>
     </div>
   )
