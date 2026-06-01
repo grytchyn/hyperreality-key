@@ -33,14 +33,14 @@ const POSTS: MissionPost[] = [
   {
     title: 'Snopes: No, Squid Game Was NOT Based on a Real 1986 Incident',
     source: 'Snopes',
-    content: `In January 2025, a viral post claimed the Netflix series "Squid Game" was inspired by real events — a 1986 incident in South Korea where hostages were allegedly forced to play deadly games. "A source close to the production confirms it," the post said. Experts at Snopes and AP News investigated: no record of such an event exists. The claim spread to millions before debunking. Hwang Dong-hyuk, the creator, had never mentioned it. Yet "reports say" and "according to insiders" was enough.`,
+    content: `In January 2025, a completely shocking viral post made an absolutely outrageous claim: the Netflix series "Squid Game" was inspired by a horrible real event — a terrifying 1986 incident in South Korea where innocent hostages were allegedly forced to play deadly games. "A secret source close to the production confirms every detail," the urgent post said. "Obviously, this proves the truth everyone knows." The crisis spread like wildfire — millions shared the dangerous story immediately. Experts at Snopes and AP News investigated urgently: no record of such an appalling event exists. "Every single claim is completely fabricated," said one un-named researcher. Hwang Dong-hyuk, the creator, had never mentioned it. Yet "reports say most people believe" was enough. The horrifying case shows how absolutely nobody checks sources during a breaking scandal.`,
     category: 'Entertainment',
     categoryColor: '#ef4444',
     imageEmoji: '🎮',
     imageBg: 'from-red-500/20 to-orange-500/10',
     level: 1,
     neededTool: 'bad-arguments',
-    question: 'The viral post uses "a source confirms" and "reports say" — what technique is this?',
+           question: 'The viral post uses "a source confirms" and "reports say" — what technique is this?',
     choices: [
       'Anonymous authority — claiming insider knowledge with no named source',
       'Emotional manipulation using fear',

@@ -1,79 +1,47 @@
-// ── APP v15 — 1 post per level, no postIndex ──
+// ── APP v16 — no transition, direct level progression ──
 import { useState, useCallback } from 'react'
 import { getMissionPosts, LEVEL_CONFIG } from './data/missions'
 import SplashScreen from './components/SplashScreen'
 import GameScreen from './components/GameScreen'
-import LevelTransition from './components/LevelTransition'
 import VictoryScreen from './components/VictoryScreen'
-import type { MissionPost } from './data/missions'
 
-type Phase = 'splash' | 'playing' | 'transition' | 'victory'
-
-export interface PostResult {
-  post: MissionPost
-  correct: boolean
-  points: number
-}
+type Phase = 'splash' | 'playing' | 'victory'
 
 export default function App() {
   const [phase, setPhase] = useState<Phase>('splash')
   const [totalScore, setTotalScore] = useState(0)
   const [allPosts] = useState(() => getMissionPosts())
   const [currentLevel, setCurrentLevel] = useState(1)
-  const [lastResult, setLastResult] = useState<PostResult | null>(null)
 
   const currentPost = allPosts.find(p => p.level === currentLevel)
 
   const handleStart = useCallback(() => {
     setTotalScore(0)
     setCurrentLevel(1)
-    setLastResult(null)
     setPhase('playing')
   }, [])
 
-  const handleAnswer = useCallback((correct: boolean, points: number) => {
+  const handleAnswer = useCallback((_correct: boolean, points: number) => {
     if (!currentPost) return
 
-    setLastResult({ post: currentPost, correct, points })
     setTotalScore(s => s + points)
 
     const nextLevel = currentLevel + 1
     if (nextLevel > 7) {
       setTimeout(() => setPhase('victory'), 300)
     } else {
-      setTimeout(() => setPhase('transition'), 300)
+      setCurrentLevel(nextLevel)
     }
   }, [currentPost, currentLevel])
-
-  const handleNextLevel = useCallback(() => {
-    const nextLevel = currentLevel + 1
-    setCurrentLevel(nextLevel)
-    setLastResult(null)
-    if (nextLevel > 7) {
-      setPhase('victory')
-    } else {
-      setPhase('playing')
-    }
-  }, [currentLevel])
 
   const handleRestart = useCallback(() => {
     setTotalScore(0)
     setCurrentLevel(1)
-    setLastResult(null)
     setPhase('splash')
   }, [])
 
   if (phase === 'splash') return <SplashScreen onStart={handleStart} />
   if (phase === 'victory') return <VictoryScreen score={totalScore} onRestart={handleRestart} />
-  if (phase === 'transition' && lastResult) {
-    return (
-      <LevelTransition
-        tier={currentLevel}
-        tierScore={lastResult.points}
-        onNext={handleNextLevel}
-      />
-    )
-  }
 
   if (!currentPost) return <SplashScreen onStart={handleStart} />
 

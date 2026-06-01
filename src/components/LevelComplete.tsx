@@ -1,9 +1,13 @@
-// ── LEVEL COMPLETE v1 — unified post-level results screen ──
-// One screen: shows results for all posts, explanations, tool summary, and next-level button
-import type { PostResult } from '../App'
+// ── LEVEL COMPLETE v2 — standalone type, not imported from App ──
 import { LEVEL_CONFIG } from '../data/missions'
 import { getToolIcon } from './icons/ToolIcons'
 import type { CoreToolId } from '../types'
+
+interface PostResult {
+  post: { title: string; explanation: string }
+  correct: boolean
+  points: number
+}
 
 interface LevelCompleteProps {
   level: number
