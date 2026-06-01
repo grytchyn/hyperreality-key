@@ -6,6 +6,7 @@ import { LEVEL_TOOLS, LEVEL_CONFIG } from '../data/missions'
 import type { CoreToolId } from '../types'
 import type { MissionPost } from '../data/missions'
 import ChatUi from './ChatUi'
+import Header from './Header'
 import { getToolIcon } from './icons/ToolIcons'
 
 interface GameScreenProps {
@@ -136,7 +137,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
 
   if (phase === 'chat') {
     return (
-      <div className="min-h-[100dvh] bg-dark-bg flex items-center justify-center p-4 relative overflow-hidden"
+      <div className="min-h-[100dvh] bg-dark-bg flex flex-col items-center justify-center p-4 relative overflow-hidden"
         style={{
           minHeight: '100dvh',
           background: `#0a0a0f url('/assets/bg/level${level}-bg.png') center center / cover no-repeat`,
@@ -144,6 +145,14 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
         {/* Dark overlay */}
         <div className="fixed inset-0 pointer-events-none z-0"
           style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.6) 0%, rgba(10,10,15,0.8) 100%)' }} />
+        
+        {/* HEADER */}
+        <Header
+          level={post.level}
+          levelName={levelCfg.name}
+          levelColor={levelCfg.color}
+          showLevel={true}
+        />
         {transitioning ? (
           <div className="animate-fade-in-up text-center">
             <div className="text-4xl mb-4 animate-pulse" style={{ color: levelCfg.color }}>🔍</div>
@@ -201,6 +210,14 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
         <div className="absolute bottom-10 left-10 w-[20rem] h-[20rem] rounded-full opacity-[0.04]"
           style={{ background: `radial-gradient(circle, ${levelCfg.color} 0%, transparent 70%)`, animation: 'pulse 7s infinite 1.5s' }} />
       </div>
+
+      {/* HEADER with big logo */}
+      <Header
+        level={post.level}
+        levelName={levelCfg.name}
+        levelColor={levelCfg.color}
+        showLevel={true}
+      />
 
       <div className="max-w-2xl mx-auto p-3 sm:p-4 space-y-4 relative z-10 animate-fade-in-up" ref={gameRef}>
         

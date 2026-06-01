@@ -2,6 +2,7 @@
 // Matches the reference: glowing key, score gauge, stats grid,
 // rank badge with laurels, NFT preview card, wallet connect
 import { useState } from 'react'
+import Header from './Header'
 
 interface VictoryScreenProps { score: number; onRestart: () => void }
 
@@ -29,15 +30,19 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
   const offset = circumference - (pct / 100) * circumference
 
   return (
-    <div className="min-h-screen bg-dark-bg flex items-center justify-center p-4 relative overflow-hidden"
+    <div className="min-h-screen bg-dark-bg flex flex-col relative overflow-hidden"
       style={{
         background: `#0a0a0f url('/assets/bg/victory-bg.png') center center / cover no-repeat`,
       }}>
       {/* Dark overlay for readability */}
       <div className="fixed inset-0 pointer-events-none z-0"
               style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.5) 0%, rgba(10,10,15,0.7) 100%)' }} />
+      
+      {/* HEADER */}
+      <Header showLevel={false} />
 
-            <div className="w-full max-w-md animate-fade-in-up text-center relative z-10">
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="w-full max-w-md animate-fade-in-up text-center relative z-10">
         <div className="relative rounded-2xl p-6"
           style={{
             background: 'linear-gradient(180deg, rgba(19,19,26,0.95), rgba(15,15,22,0.98))',
@@ -289,5 +294,6 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
         </div>
       </div>
     </div>
+  </div>
   )
 }

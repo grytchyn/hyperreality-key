@@ -1,6 +1,7 @@
 // ── SPLASH SCREEN v7 — Chat message from friend ──
 import { useState, useEffect, useCallback } from 'react'
 import { getMissionPosts, type MissionPost } from '../data/missions'
+import Header from './Header'
 
 const AVATAR_MAP: Record<string, string> = {
   alex: '/assets/avatars/alex.png',
@@ -56,7 +57,7 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
   if (!messagePost) return null
 
   return (
-    <div className="min-h-screen bg-dark-bg flex flex-col items-center justify-center p-4 relative overflow-hidden"
+    <div className="min-h-screen bg-dark-bg flex flex-col relative overflow-hidden"
       style={{
         background: `#0a0a0f url('/assets/bg/splash-bg.png') center center / cover no-repeat`,
       }}>
@@ -64,7 +65,12 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
       <div className="fixed inset-0 pointer-events-none z-0"
         style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.5) 0%, rgba(10,10,15,0.7) 100%)' }} />
 
-      {/* Phone frame */}
+      {/* HEADER */}
+      <Header showLevel={false} />
+
+      {/* Centered content */}
+      <div className="flex-1 flex items-center justify-center p-4">
+        {/* Phone frame */}
       <div className="relative w-full max-w-sm animate-fade-in-up z-10">
         {/* Phone notch */}
         <div className="mx-auto w-28 h-5 bg-black rounded-b-xl mb-0 relative z-10 flex items-center justify-center gap-2">
@@ -175,5 +181,6 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
         </div>
       </div>
     </div>
+  </div>
   )
 }
