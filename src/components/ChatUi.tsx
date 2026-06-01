@@ -3,13 +3,13 @@
 // Avatars: uses /assets/bg/avatar-{name}.png
 
 const AVATAR_MAP: Record<string, string> = {
-  alex: '/assets/bg/avatar-alex.png',
-  jay: '/assets/bg/avatar-jay.png',
-  mia: '/assets/bg/avatar-mia.png',
-  jack: '/assets/bg/avatar-jack.png',
-  emma: '/assets/bg/avatar-emma.png',
-  zoe: '/assets/bg/avatar-zoe.png',
-  tom: '/assets/bg/avatar-tom.png',
+  alex: '/assets/avatars/alex.png',
+  jay: '/assets/avatars/jay.png',
+  mia: '/assets/avatars/mia.png',
+  jack: '/assets/avatars/jack.png',
+  emma: '/assets/avatars/emma.png',
+  zoe: '/assets/avatars/zoe.png',
+  tom: '/assets/avatars/tiktok-tom.png',
 }
 
 function getAvatarUrl(name: string): string {

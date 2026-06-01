@@ -165,11 +165,17 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
         </div>
       )}
 
-      {/* Level-themed background glow */}
+      {/* Level-themed background with image */}
       <div className="fixed inset-0 pointer-events-none -z-10">
+        <div className="absolute inset-0 opacity-[0.15]"
+          style={{
+            background: `url('/assets/bg/level${level}-bg.png') center center / cover no-repeat`,
+          }} />
+        <div className="absolute inset-0"
+          style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.7) 0%, rgba(10,10,15,0.85) 100%)' }} />
         <div className="absolute top-10 right-10 w-[25rem] h-[25rem] rounded-full opacity-[0.08]"
           style={{ background: `radial-gradient(circle, ${levelCfg.color} 0%, transparent 70%)`, animation: 'pulse 5s infinite' }} />
-        <div className="absolute bottom-10 left-10 w-[20rem] h-[20rem] rounded-full opacity-[0.06]"
+        <div className="absolute bottom-10 left-10 w-[20rem] h-[20rem] rounded-full opacity-[0.04]"
           style={{ background: `radial-gradient(circle, ${levelCfg.color} 0%, transparent 70%)`, animation: 'pulse 7s infinite 1.5s' }} />
       </div>
 
