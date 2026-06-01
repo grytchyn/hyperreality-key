@@ -1,29 +1,8 @@
-// ── SPLASH SCREEN v7 — scientist previews ──
+// ── SPLASH SCREEN v8 — single source of scientists.ts ──
 import { useState, useEffect, useCallback } from 'react'
-
-const SCIENTIST_AVATARS: Record<string, string> = {
-  'arthur schopenhauer': '/assets/scientists/schopenhauer.png',
-  'robert cialdini': '/assets/scientists/cialdini.png',
-  'daniel kahneman': '/assets/scientists/kahneman.png',
-  'henri tajfel': '/assets/scientists/tajfel.png',
-  'jonathan haidt': '/assets/scientists/haidt.png',
-  'roland barthes': '/assets/scientists/barthes.png',
-  'jean baudrillard': '/assets/scientists/baudrillard.png',
-  'michel foucault': '/assets/scientists/foucault.png',
-  'cass sunstein': '/assets/scientists/sunstein.png',
-  'mccombs & shaw': '/assets/scientists/mccombs-shaw.png',
-}
+import { SCIENTIST_AVATARS, SPECTRUM_COLORS, getScientistAvatar } from '../engine/scientists'
 
 const SCIENTIST_NAMES = Object.keys(SCIENTIST_AVATARS)
-
-const SPECTRUM_COLORS = [
-  '#ef4444', '#f59e0b', '#22c55e', '#d946ef', '#f97316',
-  '#06b6d4', '#a78bfa', '#14b8a6', '#ec4899', '#0ea5e9',
-]
-
-function getScientistAvatar(name: string): string {
-  return SCIENTIST_AVATARS[name.toLowerCase()] || ''
-}
 
 interface SplashScreenProps {
   onStart: () => void
@@ -37,7 +16,6 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
     setVisible(true)
     setCurrentChar(0)
 
-    // Typing animation: show scientists one by one
     const interval = setInterval(() => {
       setCurrentChar(prev => {
         if (prev < SCIENTIST_NAMES.length) {
@@ -104,11 +82,12 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
           </div>
 
           <div className="grid grid-cols-5 gap-2">
-            {visibleScientists.map((name, idx) => {
+            {visibleScientists.map((key, idx) => {
+              const scientist = getScientistAvatar(key)
               const color = SPECTRUM_COLORS[idx] || '#8b5cf6'
               return (
                 <div
-                  key={name}
+                  key={key}
                   className="flex flex-col items-center gap-1 animate-fade-in-up"
                   style={{ animationDelay: `${idx * 100}ms` }}
                 >
@@ -120,16 +99,13 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
                     }}
                   >
                     <img
-                      src={getScientistAvatar(name)}
-                      alt={name}
+                      src={scientist.avatar}
+                      alt={scientist.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <span className="text-[6px] font-mono text-center leading-tight" style={{ color: '#9ca3af' }}>
-                    {name
-                      .split(' ')
-                      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-                      .join(' ')}
+                    {scientist.name}
                   </span>
                 </div>
               )
@@ -149,7 +125,6 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
         {/* START BUTTON — styled as chat reply message */}
         {currentChar >= SCIENTIST_NAMES.length && (
           <div className="animate-fade-in-up">
-            {/* Reply to scientist message */}
             <div className="flex justify-end mb-2">
               <div
                 className="max-w-[80%] rounded-2xl px-4 py-3 text-xs leading-relaxed cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
@@ -165,7 +140,6 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
                 OK, I'll check this post for manipulation 🔍
               </div>
             </div>
-            {/* Second bubble — sending animation trigger */}
             <div className="flex justify-end">
               <div
                 className="rounded-2xl px-4 py-3 text-xs cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"

@@ -186,8 +186,8 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
               articleSource={post.source}
               onAnalyze={handleAnalyze}
               showAnalyze={true}
-              userAnswer={null}
-              isCorrect={null}
+              userAnswer={undefined}
+              isCorrect={undefined}
               showFeedback={false}
             />
           </div>
