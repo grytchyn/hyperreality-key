@@ -39,7 +39,7 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
     <div
       className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden"
       style={{
-        background: '#0a0a0f url(/assets/bg/splash-bg.png) center center / cover no-repeat',
+        background: 'var(--color-dark-bg) url(/assets/bg/splash-bg.png) center center / cover no-repeat',
       }}
     >
       {/* Dark overlay */}
@@ -47,7 +47,7 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
         className="fixed inset-0 pointer-events-none z-0"
         style={{
           background:
-            'linear-gradient(180deg, rgba(10,10,15,0.6) 0%, rgba(10,10,15,0.8) 50%, rgba(10,10,15,0.95) 100%)',
+            'linear-gradient(180deg, color-mix(in srgb, var(--color-dark-bg) 60%, transparent) 0%, color-mix(in srgb, var(--color-dark-bg) 80%, transparent) 50%, color-mix(in srgb, var(--color-dark-bg) 95%, transparent) 100%)',
         }}
       />
 
@@ -63,7 +63,7 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
             alt="Hyperreality Key"
             className="h-16 sm:h-20 w-auto object-contain"
             style={{
-              filter: 'drop-shadow(0 0 30px rgba(139,92,246,0.4))',
+              filter: 'drop-shadow(0 0 30px color-mix(in srgb, var(--color-neon-purple) 40%, transparent))',
             }}
           />
         </div>
@@ -72,19 +72,19 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
         <div
           className="rounded-2xl p-5 mb-4"
           style={{
-            background: 'linear-gradient(180deg, rgba(19,19,26,0.95), rgba(15,15,22,0.98))',
-            border: '1px solid rgba(139,92,246,0.15)',
+            background: 'linear-gradient(180deg, color-mix(in srgb, var(--color-dark-card) 95%, transparent), color-mix(in srgb, var(--color-dark-bg) 98%, transparent))',
+            border: '1px solid color-mix(in srgb, var(--color-neon-purple) 15%, transparent)',
             boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
           }}
         >
-          <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-center mb-4" style={{ color: '#8b5cf6' }}>
+          <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-center mb-4" style={{ color: 'var(--color-neon-purple)' }}>
             🧠 Meet Your Teachers
           </div>
 
           <div className="grid grid-cols-5 gap-2">
             {visibleScientists.map((key, idx) => {
               const scientist = getScientistAvatar(key)
-              const color = SPECTRUM_COLORS[idx] || '#8b5cf6'
+              const color = SPECTRUM_COLORS[idx] || 'var(--color-neon-purple)'
               return (
                 <div
                   key={key}
@@ -94,8 +94,8 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
                   <div
                     className="w-12 h-12 rounded-full overflow-hidden ring-2"
                     style={{
-                      borderColor: `${color}60`,
-                      boxShadow: `0 0 12px ${color}30`,
+                      borderColor: `color-mix(in srgb, ${color} 37.5%, transparent)`,
+                      boxShadow: `0 0 12px color-mix(in srgb, ${color} 19%, transparent)`,
                     }}
                   >
                     <img
@@ -104,7 +104,7 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="text-[6px] font-mono text-center leading-tight" style={{ color: '#9ca3af' }}>
+                  <span className="text-[6px] font-mono text-center leading-tight" style={{ color: 'var(--color-text-secondary)' }}>
                     {scientist.name}
                   </span>
                 </div>
@@ -115,7 +115,7 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
           {/* Loading indicator */}
           {currentChar < SCIENTIST_NAMES.length && (
             <div className="text-center mt-3">
-              <span className="text-[9px] font-mono" style={{ color: '#6b7280' }}>
+              <span className="text-[9px] font-mono" style={{ color: 'var(--color-text-muted)' }}>
                 Loading theorists...
               </span>
             </div>
@@ -130,9 +130,9 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
                 className="max-w-[80%] rounded-2xl px-4 py-3 text-xs leading-relaxed cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 onClick={handleStart}
                 style={{
-                  background: 'linear-gradient(135deg, rgba(139,92,246,0.25), rgba(124,58,237,0.15))',
-                  border: '1px solid rgba(139,92,246,0.3)',
-                  color: '#e5e7eb',
+                  background: 'linear-gradient(135deg, color-mix(in srgb, var(--color-neon-purple) 25%, transparent), color-mix(in srgb, var(--color-neon-purple) 15%, transparent))',
+                  border: '1px solid color-mix(in srgb, var(--color-neon-purple) 30%, transparent)',
+                  color: 'var(--color-text-primary)',
                   borderBottomRightRadius: '4px',
                 }}
               >
@@ -145,9 +145,9 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
                 className="rounded-2xl px-4 py-3 text-xs cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 onClick={handleStart}
                 style={{
-                  background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                  background: 'linear-gradient(135deg, var(--color-neon-purple), #7c3aed)',
                   color: '#fff',
-                  boxShadow: '0 4px 20px rgba(139,92,246,0.3)',
+                  boxShadow: '0 4px 20px color-mix(in srgb, var(--color-neon-purple) 30%, transparent)',
                   borderBottomRightRadius: '4px',
                 }}
               >
