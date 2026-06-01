@@ -1,4 +1,4 @@
-// ── HEADER v3 — Full cropped logo (icon + title text) ──
+// ── HEADER v4 — Full visible tagline ──
 interface HeaderProps {
   level?: number
   levelName?: string
@@ -10,7 +10,7 @@ interface HeaderProps {
 export default function Header({ level, levelName, levelColor = '#8b5cf6', showLevel = false, totalScore }: HeaderProps) {
   return (
     <header
-      className="sticky top-0 z-50 w-full px-4 py-2"
+      className="sticky top-0 z-50 w-full px-4 py-3"
       style={{
         background: 'linear-gradient(180deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.85) 80%, transparent 100%)',
         backdropFilter: 'blur(12px)',
@@ -18,14 +18,14 @@ export default function Header({ level, levelName, levelColor = '#8b5cf6', showL
         borderBottom: '1px solid rgba(139,92,246,0.12)',
       }}>
       <div className="max-w-2xl mx-auto flex items-center justify-between">
-        {/* Full logo — shield icon + HYPERREALITY KEY text */}
+        {/* Full logo with tagline — big enough to read */}
         <div className="flex items-center">
           <img
             src="/assets/logo-new.png"
-            alt="Hyperreality Key"
-            className="h-11 sm:h-14 w-auto object-contain"
+            alt="Hyperreality Key — Spot the Manipulation"
+            className="h-20 sm:h-24 w-auto object-contain"
             style={{
-              filter: 'drop-shadow(0 0 20px rgba(139,92,246,0.3))',
+              filter: 'drop-shadow(0 0 25px rgba(139,92,246,0.35))',
             }}
           />
         </div>
