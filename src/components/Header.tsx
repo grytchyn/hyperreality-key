@@ -49,8 +49,8 @@ export default function Header({ level, levelName, levelColor = '#8b5cf6', showL
             </div>
           )}
 
-          {/* Score display */}
-          {totalScore !== undefined && (
+          {/* Score display — only when positive */}
+          {totalScore !== undefined && totalScore > 0 && (
             <div
               className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[10px] font-mono font-bold"
               style={{
