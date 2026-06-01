@@ -1,7 +1,6 @@
 // ── SPLASH SCREEN v7 — Chat message from friend ──
 import { useState, useEffect, useCallback } from 'react'
 import { getMissionPosts, type MissionPost } from '../data/missions'
-import Header from './Header'
 
 const AVATAR_MAP: Record<string, string> = {
   alex: '/assets/avatars/alex.png',
@@ -64,9 +63,6 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
       {/* Dark overlay */}
       <div className="fixed inset-0 pointer-events-none z-0"
         style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.5) 0%, rgba(10,10,15,0.7) 100%)' }} />
-
-      {/* HEADER */}
-      <Header showLevel={false} />
 
       {/* Centered content */}
       <div className="flex-1 flex items-center justify-center p-4">
