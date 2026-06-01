@@ -249,9 +249,9 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 0,
     explanation: 'Cialdini\'s Authority principle: the appearance of research is used to borrow credibility. The report cited nonexistent studies with hallmarks of AI generation. When real scientists (like Katherine Keyes) were listed as authors on research they never conducted, this crossed from mistake to fabrication. The White House called it "formatting issues" \u2014 a minimization tactic.',
-    friendPreview: 'This is HUGE \u2014 RFK Jr. CAUGHT faking science in official WH report!! \ud83d\udccb\ud83d\udd25',
-    friendName: 'Jay',
-    friendColor: '#f59e0b',
+    friendPreview: 'Who decides what counts as "expert"? Who benefits? — Foucault',
+    friendName: 'Michel Foucault',
+    friendColor: '#14b8a6',
   },
 
   // ════════════════════════════════════════════
@@ -278,9 +278,9 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Echo chamber effect: "multiple sources" often means one original story republished. Milton William Cooper\'s 1990s shortwave template \u2014 create a closed loop where claims are "confirmed" by sources that all originate from each other. Sunstein\'s "law of group polarization": in an echo chamber, beliefs become more extreme without external challenge. Ask: are these sources independent, or do they all quote the same thing?',
-    friendPreview: 'The media HATES when you do your own research. They want you dependent on them. WAKE UP \ud83e\udde0\ud83d\udd13',
-    friendName: 'Mia',
-    friendColor: '#22c55e',
+    friendPreview: '"Multiple sources" often means one source repeated a thousand times. — Sunstein',
+    friendName: 'Cass Sunstein',
+    friendColor: '#ec4899',
   },
 
   // ════════════════════════════════════════════
@@ -307,8 +307,8 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Schopenhauer\'s eristic dialectic: when losing an argument, change the subject. "What about X" introduces a point that feels related but is actually a distraction. The Salon article calls this "red herrings to distract" \u2014 the goal is to keep the public in a triggered, reactive state where critical reasoning collapses from emotional overload. The new topic feels relevant but serves only to escape the original point.',
-    friendPreview: 'They want you to forget what the Democrats did! What about Hunter\'s laptop? What about Hillary? \ud83e\udd21\ud83c\udf0e',
-    friendName: 'Jack',
+    friendPreview: '"What about X?" — the oldest distraction trick in the book. — Schopenhauer',
+    friendName: 'Arthur Schopenhauer',
     friendColor: '#ef4444',
   },
 
@@ -336,9 +336,9 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 0,
     explanation: 'McCombs & Shaw\'s Agenda-Setting Theory (1972): media doesn\'t tell you what to think \u2014 it tells you WHAT TO THINK ABOUT. By framing the entire Trump agenda through the lens of "who is really in control," the BBC shifts debate from policy evaluation ("is this policy good for Americans?") to a shadow-conspiracy narrative ("who is the puppet master?"). The "real story" frame IS the manipulation \u2014 it sets your agenda.',
-    friendPreview: 'BBC confirms Trump is just a puppet for Heritage Foundation\'s Project 2025. 53% already implemented. \ud83d\udea8\ud83d\udcf0',
-    friendName: 'Zoe',
-    friendColor: '#06b6d4',
+    friendPreview: 'Media doesn\'t tell you WHAT to think — it tells you what TO THINK ABOUT. — McCombs & Shaw',
+    friendName: 'McCombs & Shaw',
+    friendColor: '#0ea5e9',
   },
 
   // ════════════════════════════════════════════
@@ -365,9 +365,9 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Haidt\'s Moral Foundations: "law and order" activates Authority (respect for police, law, hierarchy) and Sanctity (cities need to be "cleansed" of crime, "saved" from decay). "The beauty of sirens" frames law enforcement as aesthetically and morally beautiful \u2014 not just necessary. Critics argue this frames ANY opposition as pro-crime, using moral foundations to short-circuit policy debate. The trick: when safety is framed as a moral crusade, questioning tactics = betraying the cause.',
-    friendPreview: 'Murder rate PLUMMETS to 125-year low. Trump: "Listen to the beauty of that sound." Law and order is BACK. \ud83c\uddfa\ud83c\uddf8\ud83d\udc6e\u200d\u2642\ufe0f',
-    friendName: 'TikTok Tom',
-    friendColor: '#a78bfa',
+    friendPreview: '"Law and order" — Authority and Sanctity foundations, beautifully packaged. — Cialdini',
+    friendName: 'Robert Cialdini',
+    friendColor: '#f59e0b',
   },
 ]
 
