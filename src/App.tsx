@@ -1,6 +1,6 @@
-// ── APP v16 — no transition, direct level progression ──
+// ── APP v17 — no old header, score passed to GameScreen ──
 import { useState, useCallback } from 'react'
-import { getMissionPosts, LEVEL_CONFIG } from './data/missions'
+import { getMissionPosts } from './data/missions'
 import SplashScreen from './components/SplashScreen'
 import GameScreen from './components/GameScreen'
 import VictoryScreen from './components/VictoryScreen'
@@ -47,26 +47,11 @@ export default function App() {
 
   return (
     <div className="min-h-[100dvh] bg-dark-bg" style={{ minHeight: '100dvh' }}>
-      <header className="bg-dark-card/80 backdrop-blur border-b border-dark-border/30 px-3 py-2 sticky top-0 z-40">
-        <div className="max-w-2xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <img src="/assets/logo.png" alt="Hyperreality Key" className="w-6 h-6 object-contain" />
-            <span className="text-[11px] font-bold tracking-widest">
-              <span className="text-neon-purple">HYPER</span>
-              <span className="text-neon-cyan">REALITY</span>
-              <span className="text-neon-pink">KEY</span>
-            </span>
-          </div>
-          <div className="flex items-center gap-2 text-[9px] font-mono">
-            <span className="font-bold" style={{ color: LEVEL_CONFIG[currentLevel]?.color || '#8b5cf6' }}>Lvl {currentLevel}/7</span>
-            <span className="text-gray-500 font-bold">★ {totalScore}</span>
-          </div>
-        </div>
-      </header>
       <main>
         <GameScreen
           post={currentPost}
           onAnswer={handleAnswer}
+          totalScore={totalScore}
           key={currentLevel}
         />
       </main>

@@ -12,6 +12,7 @@ import { getToolIcon } from './icons/ToolIcons'
 interface GameScreenProps {
   post: MissionPost
   onAnswer: (correct: boolean, points: number) => void
+  totalScore?: number
 }
 
 const LETTERS = ['A', 'B', 'C', 'D']
@@ -27,7 +28,7 @@ const CHOICE_ICONS: Record<number, string[]> = {
   7: ['💾', '📝', '🌐', '🎭'],
 }
 
-export default function GameScreen({ post, onAnswer }: GameScreenProps) {
+export default function GameScreen({ post, onAnswer, totalScore }: GameScreenProps) {
   const [phase, setPhase] = useState<'chat' | 'game'>('game')
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>(() => {
     // Pre-activate all available filters immediately
@@ -152,6 +153,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
           levelName={levelCfg.name}
           levelColor={levelCfg.color}
           showLevel={true}
+          totalScore={totalScore}
         />
         {transitioning ? (
           <div className="animate-fade-in-up text-center">
@@ -217,6 +219,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
         levelName={levelCfg.name}
         levelColor={levelCfg.color}
         showLevel={true}
+        totalScore={totalScore}
       />
 
       <div className="max-w-2xl mx-auto p-3 sm:p-4 space-y-4 relative z-10 animate-fade-in-up" ref={gameRef}>

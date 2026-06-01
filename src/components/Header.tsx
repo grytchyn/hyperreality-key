@@ -1,15 +1,16 @@
-// ── HEADER v1 — Big logo, sleek glass-morphism redesign ──
+// ── HEADER v2 — Bigger logo + score display ──
 interface HeaderProps {
   level?: number
   levelName?: string
   levelColor?: string
   showLevel?: boolean
+  totalScore?: number
 }
 
-export default function Header({ level, levelName, levelColor = '#8b5cf6', showLevel = false }: HeaderProps) {
+export default function Header({ level, levelName, levelColor = '#8b5cf6', showLevel = false, totalScore }: HeaderProps) {
   return (
     <header
-      className="sticky top-0 z-50 w-full px-4 py-2"
+      className="sticky top-0 z-50 w-full px-4 py-3"
       style={{
         background: 'linear-gradient(180deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.85) 80%, transparent 100%)',
         backdropFilter: 'blur(12px)',
@@ -17,19 +18,19 @@ export default function Header({ level, levelName, levelColor = '#8b5cf6', showL
         borderBottom: '1px solid rgba(139,92,246,0.12)',
       }}>
       <div className="max-w-2xl mx-auto flex items-center justify-between">
-        {/* Logo */}
+        {/* Big Logo */}
         <div className="flex items-center gap-3">
           <img
             src="/assets/logo-new.png"
             alt="Hyperreality Key"
-            className="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_0_20px_rgba(139,92,246,0.3)]"
+            className="h-14 sm:h-16 w-auto object-contain"
             style={{
-              filter: 'brightness(1.05) contrast(1.1)',
+              filter: 'brightness(1.05) contrast(1.1) drop-shadow(0 0 25px rgba(139,92,246,0.35))',
             }}
           />
         </div>
 
-        {/* Right side: level badge + cyberpunk decorations */}
+        {/* Right side: level badge + score + decorations */}
         <div className="flex items-center gap-3">
           {showLevel && level && (
             <div
@@ -45,6 +46,20 @@ export default function Header({ level, levelName, levelColor = '#8b5cf6', showL
                 {levelName || `LEVEL ${level}`}
               </span>
               <span className="text-[8px]">◆</span>
+            </div>
+          )}
+
+          {/* Score display */}
+          {totalScore !== undefined && (
+            <div
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[10px] font-mono font-bold"
+              style={{
+                background: 'rgba(251,191,36,0.1)',
+                border: '1px solid rgba(251,191,36,0.2)',
+                color: '#fbbf24',
+              }}>
+              <span>★</span>
+              <span className="tabular-nums">{totalScore}</span>
             </div>
           )}
 
