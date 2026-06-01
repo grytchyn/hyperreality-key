@@ -1,182 +1,166 @@
-// ── SPLASH SCREEN v7 — Chat message from friend ──
+// ── SPLASH SCREEN v7 — scientist previews ──
 import { useState, useEffect, useCallback } from 'react'
-import { getMissionPosts, type MissionPost } from '../data/missions'
 
-const AVATAR_MAP: Record<string, string> = {
-  alex: '/assets/avatars/alex.png',
-  jay: '/assets/avatars/jay.png',
-  mia: '/assets/avatars/mia.png',
-  jack: '/assets/avatars/jack.png',
-  emma: '/assets/avatars/emma.png',
-  zoe: '/assets/avatars/zoe.png',
-  tom: '/assets/avatars/tiktok-tom.png',
+const SCIENTIST_AVATARS: Record<string, string> = {
+  'arthur schopenhauer': '/assets/scientists/schopenhauer.png',
+  'robert cialdini': '/assets/scientists/cialdini.png',
+  'daniel kahneman': '/assets/scientists/kahneman.png',
+  'henri tajfel': '/assets/scientists/tajfel.png',
+  'jonathan haidt': '/assets/scientists/haidt.png',
+  'roland barthes': '/assets/scientists/barthes.png',
+  'jean baudrillard': '/assets/scientists/baudrillard.png',
+  'michel foucault': '/assets/scientists/foucault.png',
+  'cass sunstein': '/assets/scientists/sunstein.png',
+  'mccombs & shaw': '/assets/scientists/mccombs-shaw.png',
 }
 
-function getAvatarUrl(name: string): string {
-  const key = Object.keys(AVATAR_MAP).find(k => name.toLowerCase().includes(k))
-  return key ? AVATAR_MAP[key] : ''
+const SCIENTIST_NAMES = Object.keys(SCIENTIST_AVATARS)
+
+const SPECTRUM_COLORS = [
+  '#ef4444', '#f59e0b', '#22c55e', '#d946ef', '#f97316',
+  '#06b6d4', '#a78bfa', '#14b8a6', '#ec4899', '#0ea5e9',
+]
+
+function getScientistAvatar(name: string): string {
+  return SCIENTIST_AVATARS[name.toLowerCase()] || ''
 }
 
 interface SplashScreenProps {
-  onStart: (post: MissionPost) => void
+  onStart: () => void
 }
 
 export default function SplashScreen({ onStart }: SplashScreenProps) {
-  const [messagePost, setMessagePost] = useState<MissionPost | null>(null)
-  const [showChat, setShowChat] = useState(false)
-  const [typing, setTyping] = useState(false)
-  const [message, setMessage] = useState('')
+  const [visible, setVisible] = useState(false)
+  const [currentChar, setCurrentChar] = useState(0)
 
   useEffect(() => {
-    const posts = getMissionPosts()
-    setMessagePost(posts[0])
-    setTimeout(() => setShowChat(true), 800)
+    setVisible(true)
+    setCurrentChar(0)
+
+    // Typing animation: show scientists one by one
+    const interval = setInterval(() => {
+      setCurrentChar(prev => {
+        if (prev < SCIENTIST_NAMES.length) {
+          return prev + 1
+        }
+        clearInterval(interval)
+        return prev
+      })
+    }, 400)
+
+    return () => clearInterval(interval)
   }, [])
 
-  useEffect(() => {
-    if (!showChat || !messagePost) return
-    setTyping(true)
-    const text = messagePost.friendPreview
-    let idx = 0
-    const interval = setInterval(() => {
-      setMessage(text.slice(0, idx + 1))
-      idx++
-      if (idx >= text.length) {
-        clearInterval(interval)
-        setTyping(false)
-      }
-    }, 35)
-    return () => clearInterval(interval)
-  }, [showChat, messagePost])
-
   const handleStart = useCallback(() => {
-    if (messagePost) onStart(messagePost)
-  }, [messagePost, onStart])
+    onStart()
+  }, [onStart])
 
-  if (!messagePost) return null
+  const visibleScientists = SCIENTIST_NAMES.slice(0, currentChar)
 
   return (
-    <div className="min-h-screen bg-dark-bg flex flex-col relative overflow-hidden"
+    <div
+      className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden"
       style={{
-        background: `#0a0a0f url('/assets/bg/splash-bg.png') center center / cover no-repeat`,
-      }}>
+        background: '#0a0a0f url(/assets/bg/splash-bg.png) center center / cover no-repeat',
+      }}
+    >
       {/* Dark overlay */}
-      <div className="fixed inset-0 pointer-events-none z-0"
-        style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.5) 0%, rgba(10,10,15,0.7) 100%)' }} />
+      <div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(10,10,15,0.6) 0%, rgba(10,10,15,0.8) 50%, rgba(10,10,15,0.95) 100%)',
+        }}
+      />
 
-      {/* Centered content */}
-      <div className="flex-1 flex items-center justify-center p-4">
-        {/* Phone frame */}
-      <div className="relative w-full max-w-sm animate-fade-in-up z-10">
-        {/* Phone notch */}
-        <div className="mx-auto w-28 h-5 bg-black rounded-b-xl mb-0 relative z-10 flex items-center justify-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-gray-700" />
-          <div className="w-16 h-1.5 rounded-full bg-gray-800" />
+      <div
+        className={`relative z-10 w-full max-w-md transition-all duration-700 ${
+          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        {/* KEY LOGO */}
+        <div className="flex justify-center mb-6">
+          <img
+            src="/assets/logo-new.png"
+            alt="Hyperreality Key"
+            className="h-16 sm:h-20 w-auto object-contain"
+            style={{
+              filter: 'drop-shadow(0 0 30px rgba(139,92,246,0.4))',
+            }}
+          />
         </div>
 
-        {/* Phone screen */}
-        <div className="rounded-[2rem] overflow-hidden border-4 border-gray-800 shadow-2xl"
-          style={{ background: '#0a0a0f' }}>
-          
-          {/* Status bar */}
-          <div className="px-5 pt-1 pb-1 flex items-center justify-between text-[10px] text-gray-400 font-mono">
-            <span>9:41</span>
-            <div className="flex items-center gap-1">
-              <span>●●●●</span>
-              <span className="text-[8px]">🔋</span>
-            </div>
+        {/* SCIENTIST AVATAR GRID */}
+        <div
+          className="rounded-2xl p-5 mb-4"
+          style={{
+            background: 'linear-gradient(180deg, rgba(19,19,26,0.95), rgba(15,15,22,0.98))',
+            border: '1px solid rgba(139,92,246,0.15)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+          }}
+        >
+          <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-center mb-4" style={{ color: '#8b5cf6' }}>
+            🧠 Meet Your Teachers
           </div>
 
-          {/* Chat header */}
-          <div className="px-4 py-2 flex items-center gap-3 border-b border-dark-border/50"
-            style={{ background: 'rgba(19,19,26,0.95)' }}>
-            <img src={getAvatarUrl(messagePost.friendName)} alt={messagePost.friendName}
-              className="w-8 h-8 rounded-full object-cover shrink-0"
-              style={{ border: `2px solid ${messagePost.friendColor}60` }} />
-            <div>
-              <div className="text-xs font-bold text-white">{messagePost.friendName}</div>
-              <div className="text-[9px] text-gray-500 font-mono">online</div>
-            </div>
-            <div className="ml-auto flex gap-1 text-gray-600">
-              <span>📞</span>
-              <span>📹</span>
-            </div>
-          </div>
-
-          {/* Chat messages */}
-          <div className="px-4 py-6 min-h-[260px] flex flex-col justify-end">
-            {showChat && (
-              <>
-                {/* Friend's message bubble */}
-                <div className="flex items-start gap-2 mb-3 animate-fade-in-up">
-                  <img src={getAvatarUrl(messagePost.friendName)} alt={messagePost.friendName}
-                    className="w-6 h-6 rounded-full object-cover shrink-0 mt-0.5"
-                    style={{ border: `2px solid ${messagePost.friendColor}40` }} />
-                  <div className="max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed"
+          <div className="grid grid-cols-5 gap-2">
+            {visibleScientists.map((name, idx) => {
+              const color = SPECTRUM_COLORS[idx] || '#8b5cf6'
+              return (
+                <div
+                  key={name}
+                  className="flex flex-col items-center gap-1 animate-fade-in-up"
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  <div
+                    className="w-12 h-12 rounded-full overflow-hidden ring-2"
                     style={{
-                      background: 'rgba(26,26,36,0.9)',
-                      border: '1px solid rgba(255,255,255,0.05)',
-                      color: '#e0e0e0',
-                      borderBottomLeftRadius: '4px',
-                    }}>
-                    {typing || message.length > 0 ? (
-                      <span>
-                        {message}
-                        {typing && <span className="inline-block w-1.5 h-3 bg-gray-400 ml-0.5 animate-pulse" />}
-                      </span>
-                    ) : (
-                      <span className="flex gap-1">
-                        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '0ms' }} />
-                        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '150ms' }} />
-                        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '300ms' }} />
-                      </span>
-                    )}
+                      borderColor: `${color}60`,
+                      boxShadow: `0 0 12px ${color}30`,
+                    }}
+                  >
+                    <img
+                      src={getScientistAvatar(name)}
+                      alt={name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
+                  <span className="text-[6px] font-mono text-center leading-tight" style={{ color: '#9ca3af' }}>
+                    {name
+                      .split(' ')
+                      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                      .join(' ')}
+                  </span>
                 </div>
-
-                {/* Preview card */}
-                {!typing && messagePost && (
-                  <div className="ml-8 animate-fade-in-up">
-                    <div className="rounded-xl overflow-hidden border border-dark-border/50 cursor-pointer transition-all hover:border-neon-purple/50 group"
-                      style={{ background: 'rgba(19,19,26,0.9)' }}
-                      onClick={handleStart}>
-                      <div className="px-3 py-3">
-                        <div className="text-xs font-bold text-white truncate group-hover:text-neon-cyan transition-colors">{messagePost.title}</div>
-                        <div className="text-[9px] text-gray-500 font-mono mt-0.5">{messagePost.source}</div>
-                      </div>
-                    </div>
-                    <button onClick={handleStart}
-                      className="w-full mt-3 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer hover:translate-y-[-1px]"
-                      style={{
-                        background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
-                        color: '#fff',
-                        boxShadow: '0 4px 20px rgba(139,92,246,0.3)',
-                      }}>
-                      🔍 Open & Analyze
-                    </button>
-                    <p className="text-[9px] text-gray-600 text-center mt-2 font-mono">
-                      Tap to analyze this post for manipulation
-                    </p>
-                  </div>
-                )}
-              </>
-            )}
+              )
+            })}
           </div>
 
-          {/* Chat input bar */}
-          <div className="px-3 py-2 border-t border-dark-border/30 flex items-center gap-2">
-            <div className="flex-1 rounded-xl px-3 py-2 text-xs text-gray-500 font-mono"
-              style={{ background: 'rgba(26,26,36,0.9)', border: '1px solid rgba(255,255,255,0.05)' }}>
-              {typing ? '...' : 'Type a message...'}
+          {/* Loading indicator */}
+          {currentChar < SCIENTIST_NAMES.length && (
+            <div className="text-center mt-3">
+              <span className="text-[9px] font-mono" style={{ color: '#6b7280' }}>
+                Loading theorists...
+              </span>
             </div>
-            <div className="w-8 h-8 rounded-full flex items-center justify-center text-gray-500"
-              style={{ background: 'rgba(139,92,246,0.15)' }}>
-              ⬆
-            </div>
-          </div>
+          )}
         </div>
+
+        {/* START BUTTON */}
+        {currentChar >= SCIENTIST_NAMES.length && (
+          <button
+            onClick={handleStart}
+            className="w-full px-6 py-4 rounded-xl font-bold text-base uppercase tracking-wider transition-all duration-200 cursor-pointer hover:translate-y-[-1px] active:scale-[0.98] animate-fade-in-up"
+            style={{
+              background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+              color: '#fff',
+              boxShadow: '0 4px 20px rgba(139,92,246,0.3)',
+            }}
+          >
+            Start Training →
+          </button>
+        )}
       </div>
     </div>
-  </div>
   )
 }

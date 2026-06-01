@@ -406,7 +406,7 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
               <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-offset-2 ring-offset-[#13131a]"
                 style={{ boxShadow: `0 0 20px ${post.categoryColor}40`, borderColor: post.categoryColor }}>
                 <img
-                  src={`/assets/avatars/${post.friendName.toLowerCase().replace(/\s+/g, '-')}.png`}
+                  src={`/assets/scientists/${post.friendName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}.png`}
                   alt={post.friendName}
                   className="w-full h-full object-cover"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}

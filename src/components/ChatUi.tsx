@@ -2,30 +2,35 @@
 // Flow: friend msg → article preview → user answer as chat bubble
 // Avatars: uses /assets/bg/avatar-{name}.png
 
-const AVATAR_MAP: Record<string, string> = {
-  alex: '/assets/avatars/alex.png',
-  jay: '/assets/avatars/jay.png',
-  mia: '/assets/avatars/mia.png',
-  jack: '/assets/avatars/jack.png',
-  emma: '/assets/avatars/emma.png',
-  zoe: '/assets/avatars/zoe.png',
-  tom: '/assets/avatars/tiktok-tom.png',
+// ── Chat UI v5 — scientist chat bubble ──
+import type { MissionPost } from '../data/missions'
+
+const SCIENTIST_AVATARS: Record<string, string> = {
+  'arthur schopenhauer': '/assets/scientists/schopenhauer.png',
+  'robert cialdini': '/assets/scientists/cialdini.png',
+  'daniel kahneman': '/assets/scientists/kahneman.png',
+  'henri tajfel': '/assets/scientists/tajfel.png',
+  'jonathan haidt': '/assets/scientists/haidt.png',
+  'roland barthes': '/assets/scientists/barthes.png',
+  'jean baudrillard': '/assets/scientists/baudrillard.png',
+  'michel foucault': '/assets/scientists/foucault.png',
+  'cass sunstein': '/assets/scientists/sunstein.png',
+  'mccombs & shaw': '/assets/scientists/mccombs-shaw.png',
 }
 
-function getAvatarUrl(name: string): string {
-  const key = Object.keys(AVATAR_MAP).find(k => name.toLowerCase().includes(k))
-  return key ? AVATAR_MAP[key] : ''
+function getScientistAvatar(name: string): string {
+  return SCIENTIST_AVATARS[name.toLowerCase()] || ''
 }
 
 interface ChatUiProps {
-  friendName: string
-  friendColor: string
-  friendPreview: string
-  articleTitle: string
-  articleSource: string
-  onAnalyze: () => void
-  showAnalyze: boolean
-  userAnswer?: string | null
+  friendName?: string
+  friendColor?: string
+  friendPreview?: string
+  articleTitle?: string
+  articleSource?: string
+  onAnalyze?: () => void
+  showAnalyze?: boolean
+  userAnswer?: number | null
   isCorrect?: boolean | null
   showFeedback?: boolean
 }
@@ -73,7 +78,7 @@ export default function ChatUi({
           <path d="M15 4 L17 6 L15 8" stroke="#888" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           <line x1="4" y1="6" x2="17" y2="6" stroke="#888" strokeWidth="1.5" />
         </svg>
-        <img src={getAvatarUrl(friendName)} alt={friendName}
+        <img src={getScientistAvatar(friendName)} alt={friendName}
           className="w-8 h-8 rounded-full object-cover shrink-0"
           style={{ border: `2px solid ${friendColor}60` }} />
         <div className="flex-1">

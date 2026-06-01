@@ -46,9 +46,9 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 0,
     explanation: '"A source close to production" and "according to anonymous" are classic anonymous authority. Cialdini\'s Authority principle: claims borrow credibility from unnamed "insiders." Snopes investigated and found zero evidence the creator ever mentioned this inspiration. The entire story was fabricated using fake authority.',
-    friendPreview: 'Bro did you see this about Squid Game?? 👀',
-    friendName: 'Alex',
-    friendColor: '#22c55e',
+    friendPreview: `"A source close to production confirmed it" — yeah, that's not how evidence works. — Schopenhauer`,
+    friendName: 'Arthur Schopenhauer',
+    friendColor: '#ef4444',
   },
 
   // ════════════════════════════════════════════
@@ -75,9 +75,9 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 0,
     explanation: 'The article uses Cialdini\u2019s Scarcity principle (disaster urgency) and Haidt\u2019s Care foundation (victims, families harmed). "Tragic," "harm," "lies spread unchecked" trigger fear and outrage. The emotional charge makes you oppose AI misinformation without needing facts about regulation. The mention of profiting from lies adds Fairness outrage \u2014 someone profits from tragedy.',
-    friendPreview: 'This is actually terrifying \uD83E\uDD2F',
-    friendName: 'Jay',
-    friendColor: '#ef4444',
+    friendPreview: `"Disasters are tragic enough... but they're made worse by AI lies." — Cialdini`,
+    friendName: 'Robert Cialdini',
+    friendColor: '#f59e0b',
   },
 
   // ════════════════════════════════════════════
@@ -104,9 +104,9 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: '"Most people," "everyone is doing it," "vast majority" — all bandwagon signals. Kahneman\'s Availability Heuristic: "Many believe" does not equal "backed by evidence." Dr. Brooke Nickel at University of Sydney, publishing in JAMA Network Open, confirmed these tests lack scientific support. The anchoring comes from the number "500 conditions" — sets an impossible standard.',
-    friendPreview: 'Have you seen these health tests on TikTok? 🏥',
-    friendName: 'Mia',
-    friendColor: '#f59e0b',
+    friendPreview: '\"Most people believe\" is not evidence. Popularity is not truth. — Kahneman',
+    friendName: 'Daniel Kahneman',
+    friendColor: '#22c55e',
   },
 
   // ════════════════════════════════════════════
@@ -133,9 +133,9 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Tajfel\'s Social Identity Theory: "invaded" is a war metaphor dehumanizing immigrants as an invading force. "Illegal aliens" and "fake asylum seekers" are out-group labels reducing people to a category. Human Rights Watch confirmed no evidence supports the "fake" claim. Zero specific data about who "they" are — pure us-vs-them framing.',
-    friendPreview: 'Finally someone says it 🇺🇸',
-    friendName: 'Jack',
-    friendColor: '#ef4444',
+    friendPreview: '\"They\'ve been invaded\" — war metaphors dehumanize. Notice the us-vs-them framing. — Tajfel',
+    friendName: 'Henri Tajfel',
+    friendColor: '#d946ef',
   },
 
   // ════════════════════════════════════════════
@@ -162,9 +162,9 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Haidt\'s Care foundation: "harm," "children," "addictive," "compulsive," "anxiety," "collapsing self-esteem" — all trigger compassion AND outrage. The Care button is the most universal moral trigger. The rhetorical trick: framing social media companies as deliberate harm-doers ("designed to be addictive") who "profit" from children\'s suffering. Hard to oppose "protecting children."',
-    friendPreview: 'This breaks my heart 💔',
-    friendName: 'Emma',
-    friendColor: '#22c55e',
+    friendPreview: 'Harm, children, addictive — which moral button are they pressing? — Haidt',
+    friendName: 'Jonathan Haidt',
+    friendColor: '#f97316',
   },
 
   // ════════════════════════════════════════════
@@ -191,8 +191,8 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Barthes: "Security vs privacy" is a binary myth. The hidden story: you cannot have both. But the Brennan Center argues oversight and warrants can provide both. "Underpins a majority" — bandwagon for security. "Persistent and widespread" — absolute words for violations. The myth: freedom and security are opposites when in reality, real security doesn\'t require trading away civil liberties.',
-    friendPreview: 'What do you think about this? 🤔',
-    friendName: 'Zoe',
+    friendPreview: '\"Freedom vs security\" is not a fact. It\'s a myth. — Barthes',
+    friendName: 'Roland Barthes',
     friendColor: '#06b6d4',
   },
 
@@ -220,8 +220,8 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 2,
     explanation: 'Baudrillard\'s Hyperreality: Prof. David Taylor-Robinson never gave that medical advice. The video is a simulation pretending to be reality — a simulacrum (a copy without an original). "Natural probiotic" advice attributed to him was completely fabricated from stolen footage. Full Fact found hundreds of such videos. The simulation replaced reality so convincingly that viewers couldn\'t tell the difference.',
-    friendPreview: 'Omg you have to see this!! 📱',
-    friendName: 'TikTok Tom',
+    friendPreview: 'That video was never real. A simulation pretending to be reality. — Baudrillard',
+    friendName: 'Jean Baudrillard',
     friendColor: '#a78bfa',
   },
 
