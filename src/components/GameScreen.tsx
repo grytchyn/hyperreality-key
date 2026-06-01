@@ -1,4 +1,4 @@
-// ── GAME SCREEN v16 — unified flow, inline feedback, auto-advance ──
+// ── GAME SCREEN v17 — chat + game on same page, answer in chat ──
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { CORE_TOOLS, getHighlightsFor } from '../data/coreTools'
 import { LEVEL_TOOLS, LEVEL_CONFIG } from '../data/missions'
@@ -52,19 +52,22 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
     setChosenAnswer(idx)
     const correct = idx === post.correctIndex
     setFeedback(correct ? 'correct' : 'wrong')
-    // Auto-advance after showing feedback briefly
-    setTimeout(() => onAnswer(correct, correct ? 10 : 0), 1800)
+    // Auto-advance after showing feedback
+    setTimeout(() => onAnswer(correct, correct ? 10 : 0), 2200)
   }, [post, onAnswer])
 
   const showTooltip = useCallback((e: React.MouseEvent, text: string) => {
     const rect = e.currentTarget.getBoundingClientRect()
-    setTooltip({ text, x: Math.max(6, Math.min(rect.left, window.innerWidth - 280)), y: Math.max(6, rect.top - 12) })
+    setTooltip({
+      text,
+      x: Math.max(6, Math.min(rect.left, window.innerWidth - 320)),
+      y: Math.max(6, rect.top - 12),
+    })
   }, [])
   const hideTooltip = useCallback(() => setTooltip(null), [])
 
   const handleAnalyze = useCallback(() => {
     setPhase('tools')
-    // Scroll to tool buttons on mobile
     setTimeout(() => {
       containerRef.current?.querySelector('.tools-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }, 300)
@@ -104,11 +107,11 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
 
   return (
     <div className="relative overflow-hidden" ref={containerRef}>
-      {/* Fixed tooltip */}
+      {/* Fixed tooltip — BIGGER now */}
       {tooltip && (
         <div className="fixed z-[9999] pointer-events-none" style={{ left: tooltip.x, top: tooltip.y, transform: 'translateY(-100%)' }}>
-          <div className="rounded-xl p-3 shadow-2xl max-w-[260px] text-[10px] leading-relaxed"
-            style={{ background: '#13131a', border: `1px solid ${levelCfg.color}40`, color: '#ccc' }}>{tooltip.text}</div>
+          <div className="rounded-xl p-3 shadow-2xl max-w-[320px] text-[12px] leading-relaxed"
+            style={{ background: '#13131a', border: `1px solid ${levelCfg.color}50`, color: '#ccc' }}>{tooltip.text}</div>
         </div>
       )}
 
@@ -121,19 +124,21 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
       </div>
 
       <div className="max-w-2xl mx-auto p-3 sm:p-4 space-y-4 relative z-10">
-        {/* CHAT UI */}
+        {/* CHAT UI — always visible */}
         <ChatUi
           friendName={post.friendName}
           friendColor={post.friendColor}
           friendPreview={post.friendPreview}
           articleTitle={post.title}
           articleSource={post.source}
-          articleContent={post.content}
           onAnalyze={handleAnalyze}
-          showAnalyze={phase === 'chat'}
+          showAnalyze={phase === 'chat' || (!chosenAnswer && phase === 'tools')}
+          userAnswer={chosenAnswer !== null ? post.choices[chosenAnswer] : null}
+          isCorrect={feedback === 'correct' ? true : feedback === 'wrong' ? false : null}
+          showFeedback={chosenAnswer !== null}
         />
 
-        {/* TOOLS + ARTICLE — shown after "Open & Analyze" */}
+        {/* TOOLS + ARTICLE CARD + ANSWERS = same page, below chat */}
         {phase !== 'chat' && (
           <>
             {/* ARTICLE CARD */}
@@ -156,7 +161,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
                 </div>
                 <div className="flex-1 rounded-full px-3 py-1.5 text-[10px] text-gray-500 font-mono truncate"
                   style={{ background: 'rgba(255,255,255,0.04)' }}>
-                  🔒 {post.source.toLowerCase().replace(/\s+/g, '')}.com
+                  🔒 {post.source.toLowerCase().replace(/[^a-z0-9]/g, '')}.com
                 </div>
                 <span className="text-[9px] font-mono uppercase tracking-wider" style={{ color: levelCfg.color + '99' }}>
                   {levelCfg.name}
@@ -190,7 +195,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
                 <span>❤️ 120</span>
               </div>
 
-              {/* FILTER TOOLS — larger text, 2×4 grid */}
+              {/* FILTER TOOLS — 2×4 grid */}
               <div className="px-4 py-3">
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-[10px] font-mono flex items-center gap-1.5" style={{ color: '#6b7280' }}>
@@ -213,7 +218,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
                     const IconComponent = getToolIcon(toolId)
                     return (
                       <button key={toolId} onClick={() => toggleFilter(toolId)}
-                        onMouseEnter={(e) => showTooltip(e, t.description)} onMouseLeave={hideTooltip}
+                        onMouseEnter={(e) => showTooltip(e, `${t.name}: ${t.description}`)} onMouseLeave={hideTooltip}
                         className="flex flex-col items-center gap-1 p-2 rounded-xl border transition-all duration-200 cursor-pointer active:scale-95"
                         style={{
                           borderColor: isOn ? t.color : `${t.color}15`,
@@ -230,7 +235,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
               </div>
             </div>
 
-            {/* ANSWER CARD — with inline feedback */}
+            {/* ANSWER CARD — A/B/C/D buttons per reference */}
             <div className="rounded-2xl p-5"
               style={{
                 background: 'linear-gradient(135deg, rgba(19,19,26,0.95), rgba(26,26,36,0.9))',
@@ -251,6 +256,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
 
               <p className="text-sm font-bold mb-4 leading-relaxed" style={{ color: '#e5e7eb' }}>{post.question}</p>
 
+              {/* A/B/C/D buttons — styled per reference (glowing circles) */}
               <div className="space-y-2.5">
                 {post.choices.map((choice, idx) => {
                   const selected = chosenAnswer === idx
@@ -260,6 +266,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
                   if (showResult && isCorrect) borderColor = '#22c55e99'
                   else if (showResult && selected) borderColor = '#ef444499'
                   else if (selected) borderColor = `${levelCfg.color}99`
+
                   return (
                     <button key={idx} onClick={() => handlePick(idx)}
                       disabled={chosenAnswer !== null}
@@ -270,10 +277,12 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
                         color: !chosenAnswer ? '#e5e7eb' : isCorrect ? '#4ade80' : selected ? '#ef4444' : '#6b7280',
                         opacity: showResult && !isCorrect && !selected ? 0.4 : 1,
                       }}>
+                      {/* Letter circle — glowing per reference design */}
                       <span className="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold shrink-0"
                         style={{
                           background: showResult && isCorrect ? '#22c55e' : selected && showResult ? '#ef4444' : selected ? levelCfg.color : 'rgba(255,255,255,0.06)',
                           color: showResult && isCorrect ? '#000' : selected ? '#000' : '#6b7280',
+                          boxShadow: selected && !showResult ? `0 0 12px ${levelCfg.color}50` : 'none',
                         }}>
                         {showResult && isCorrect ? '✓' : showResult && selected ? '✗' : LETTERS[idx]}
                       </span>
@@ -293,9 +302,9 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
                     color: '#c0c0c0',
                   }}>
                   <span className="text-xs font-bold block mb-1" style={{ color: feedback === 'correct' ? '#4ade80' : '#ef4444' }}>
-                    {feedback === 'correct' ? '✓ Correct!' : '✗ Not quite'}
+                    {feedback === 'correct' ? '✓ Correct!' : '✗ Not quite — here\'s why'}
                   </span>
-                  {post.explanation.split('. ').join('. ')}
+                  {post.explanation}
                 </div>
               )}
 

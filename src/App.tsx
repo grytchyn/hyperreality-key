@@ -1,14 +1,13 @@
-// ── APP v14 — unified flow, level results, mobile-fixed ──
+// ── APP v15 — 1 post per level, no postIndex ──
 import { useState, useCallback } from 'react'
 import { getMissionPosts, LEVEL_CONFIG } from './data/missions'
 import SplashScreen from './components/SplashScreen'
 import GameScreen from './components/GameScreen'
 import LevelTransition from './components/LevelTransition'
-import LevelComplete from './components/LevelComplete'
 import VictoryScreen from './components/VictoryScreen'
 import type { MissionPost } from './data/missions'
 
-type Phase = 'splash' | 'playing' | 'transition' | 'level-complete' | 'victory'
+type Phase = 'splash' | 'playing' | 'transition' | 'victory'
 
 export interface PostResult {
   post: MissionPost
@@ -20,89 +19,67 @@ export default function App() {
   const [phase, setPhase] = useState<Phase>('splash')
   const [totalScore, setTotalScore] = useState(0)
   const [allPosts] = useState(() => getMissionPosts())
-  const [results, setResults] = useState<PostResult[]>([])
   const [currentLevel, setCurrentLevel] = useState(1)
+  const [lastResult, setLastResult] = useState<PostResult | null>(null)
 
-  // Separate posts by level
-  const getLevelPosts = useCallback((level: number): MissionPost[] => {
-    return allPosts.filter(p => p.level === level)
-  }, [allPosts])
-
-  // Index of current post within the level
-  const currentLevelPosts = getLevelPosts(currentLevel)
-  const [postIndex, setPostIndex] = useState(0)
+  const currentPost = allPosts.find(p => p.level === currentLevel)
 
   const handleStart = useCallback(() => {
     setTotalScore(0)
-    setResults([])
     setCurrentLevel(1)
-    setPostIndex(0)
+    setLastResult(null)
     setPhase('playing')
   }, [])
 
   const handleAnswer = useCallback((correct: boolean, points: number) => {
-    // Record result
-    const post = currentLevelPosts[postIndex]
-    if (!post) return
+    if (!currentPost) return
 
-    const newResults = [...results, { post, correct, points }]
-    setResults(newResults)
+    setLastResult({ post: currentPost, correct, points })
     setTotalScore(s => s + points)
 
-    const nextIndex = postIndex + 1
-    if (nextIndex >= currentLevelPosts.length) {
-      // Level complete — show LevelComplete screen
-      setPhase('level-complete')
+    const nextLevel = currentLevel + 1
+    if (nextLevel > 7) {
+      // Wait a beat, then show victory
+      setTimeout(() => setPhase('victory'), 2500)
     } else {
-      setPostIndex(nextIndex)
+      // Show transition to next level
+      setTimeout(() => {
+        setPhase('transition')
+      }, 2500)
     }
-  }, [currentLevelPosts, postIndex, results])
+  }, [currentPost, currentLevel])
 
   const handleNextLevel = useCallback(() => {
     const nextLevel = currentLevel + 1
     setCurrentLevel(nextLevel)
-    setPostIndex(0)
-    setResults([])
+    setLastResult(null)
     if (nextLevel > 7) {
       setPhase('victory')
     } else {
-      setPhase('transition')
+      setPhase('playing')
     }
   }, [currentLevel])
 
-  const handleContinue = useCallback(() => {
-    setPhase('playing')
-  }, [])
-
   const handleRestart = useCallback(() => {
     setTotalScore(0)
-    setResults([])
     setCurrentLevel(1)
-    setPostIndex(0)
+    setLastResult(null)
     setPhase('splash')
   }, [])
 
   if (phase === 'splash') return <SplashScreen onStart={handleStart} />
   if (phase === 'victory') return <VictoryScreen score={totalScore} onRestart={handleRestart} />
-  if (phase === 'transition') return <LevelTransition tier={currentLevel} tierScore={results.reduce((s, r) => s + r.points, 0)} onNext={handleContinue} />
-
-  const post = currentLevelPosts[postIndex]
-
-  // ── LEVEL COMPLETE SCREEN ──
-  if (phase === 'level-complete') {
+  if (phase === 'transition' && lastResult) {
     return (
-      <LevelComplete
-        level={currentLevel}
-        results={results}
-        score={results.reduce((s, r) => s + r.points, 0)}
-        maxScore={currentLevelPosts.length * 10}
+      <LevelTransition
+        tier={currentLevel}
+        tierScore={lastResult.points}
         onNext={handleNextLevel}
       />
     )
   }
 
-  // ── PLAYING ──
-  if (!post) return <SplashScreen onStart={handleStart} />
+  if (!currentPost) return <SplashScreen onStart={handleStart} />
 
   return (
     <div className="min-h-[100dvh] bg-dark-bg" style={{ minHeight: '100dvh' }}>
@@ -119,15 +96,14 @@ export default function App() {
           <div className="flex items-center gap-2 text-[9px] font-mono">
             <span className="font-bold" style={{ color: LEVEL_CONFIG[currentLevel]?.color || '#8b5cf6' }}>Lvl {currentLevel}/7</span>
             <span className="text-gray-500 font-bold">★ {totalScore}</span>
-            <span className="text-gray-600">{postIndex + 1}/{currentLevelPosts.length}</span>
           </div>
         </div>
       </header>
       <main>
         <GameScreen
-          post={post}
+          post={currentPost}
           onAnswer={handleAnswer}
-          key={`${currentLevel}-${postIndex}`}
+          key={currentLevel}
         />
       </main>
     </div>

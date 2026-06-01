@@ -1,6 +1,5 @@
-// ── CHAT UI v1 — iPhone-style messaging interface ──
-// Matches the reference: friend message → article preview → "Open & Analyze" button
-// All in dark mode with purple accent
+// ── CHAT UI v2 — answer appears in chat, inline feedback ──
+// Flow: friend msg → article preview → user answer as chat bubble
 
 interface ChatUiProps {
   friendName: string
@@ -8,12 +7,19 @@ interface ChatUiProps {
   friendPreview: string
   articleTitle: string
   articleSource: string
-  articleContent: string
   onAnalyze: () => void
   showAnalyze: boolean
+  userAnswer?: string | null
+  isCorrect?: boolean | null
+  showFeedback?: boolean
 }
 
-export default function ChatUi({ friendName, friendColor, friendPreview, articleTitle, articleSource, onAnalyze, showAnalyze }: ChatUiProps) {
+export default function ChatUi({
+  friendName, friendColor, friendPreview,
+  articleTitle, articleSource,
+  onAnalyze, showAnalyze,
+  userAnswer, isCorrect, showFeedback,
+}: ChatUiProps) {
   return (
     <div className="rounded-2xl overflow-hidden"
       style={{
@@ -22,7 +28,7 @@ export default function ChatUi({ friendName, friendColor, friendPreview, article
         boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
       }}>
       
-      {/* Status bar — iOS style */}
+      {/* Status bar */}
       <div className="flex items-center justify-between px-4 py-2"
         style={{ background: '#0d0d14', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="text-[12px] font-bold text-white">9:41</div>
@@ -44,7 +50,7 @@ export default function ChatUi({ friendName, friendColor, friendPreview, article
         </div>
       </div>
 
-      {/* Chat header */}
+      {/* Chat header with avatar */}
       <div className="flex items-center gap-3 px-4 py-2.5"
         style={{ background: '#0d0d14', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -86,7 +92,7 @@ export default function ChatUi({ friendName, friendColor, friendPreview, article
               border: '1px solid rgba(139,92,246,0.25)',
               borderBottomLeftRadius: '4px',
             }}>
-            {/* Article thumbnail area */}
+            {/* Article thumbnail area with emoji */}
             <div className="h-20 flex items-center justify-center text-3xl"
               style={{ background: `linear-gradient(135deg, ${friendColor}20, rgba(0,0,0,0.5))` }}>
               📰
@@ -98,8 +104,8 @@ export default function ChatUi({ friendName, friendColor, friendPreview, article
           </div>
         </div>
 
-        {/* Typing indicator */}
-        {!showAnalyze && (
+        {/* Typing indicator — only BEFORE user answers */}
+        {!showFeedback && showAnalyze && !userAnswer && (
           <div className="flex justify-end">
             <div className="rounded-2xl px-3.5 py-2.5"
               style={{
@@ -114,34 +120,72 @@ export default function ChatUi({ friendName, friendColor, friendPreview, article
             </div>
           </div>
         )}
+
+        {/* User answer as chat message */}
+        {userAnswer && (
+          <div className="flex justify-end">
+            <div className="max-w-[80%] rounded-2xl px-3.5 py-2.5 text-[11px] leading-relaxed"
+              style={{
+                background: isCorrect 
+                  ? 'linear-gradient(135deg, rgba(34,197,94,0.2), rgba(34,197,94,0.1))' 
+                  : 'linear-gradient(135deg, rgba(139,92,246,0.2), rgba(124,58,237,0.1))',
+                color: '#e5e7eb',
+                borderBottomRightRadius: '4px',
+                border: isCorrect 
+                  ? '1px solid rgba(34,197,94,0.2)' 
+                  : '1px solid rgba(139,92,246,0.2)',
+              }}>
+              <div className="text-[9px] font-mono mb-1" style={{ color: isCorrect ? '#4ade80' : '#a78bfa' }}>
+                {isCorrect ? '✓ CORRECT' : '✗ NOT QUITE'}
+              </div>
+              {userAnswer}
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* CTA: Open & Analyze button */}
+      {/* Feedback bubble explanation — only after answering */}
+      {showFeedback && (
+        <div className="px-4 pb-2">
+          <div className="rounded-xl p-3 text-[10px] leading-relaxed animate-fade-in-up"
+            style={{
+              background: isCorrect ? 'rgba(34,197,94,0.06)' : 'rgba(239,68,68,0.06)',
+              border: `1px solid ${isCorrect ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.15)'}`,
+              color: '#b0b0b0',
+            }}>
+            <span className="font-bold block mb-1" style={{ color: isCorrect ? '#4ade80' : '#ef4444' }}>
+              {isCorrect ? '🎉 Correct!' : '✗ Not quite'}
+            </span>
+            {isCorrect ? 'Great analysis!' : 'The right answer uses different reasoning.'}
+          </div>
+        </div>
+      )}
+
+      {/* CTA: Open & Analyze button — hidden after answering */}
       <div className="px-4 pb-3">
-        <button onClick={onAnalyze}
-          className="w-full flex items-center justify-center gap-2 rounded-xl px-4 py-3 font-bold text-xs uppercase tracking-wider transition-all duration-200
-            disabled:opacity-30 disabled:cursor-not-allowed hover:translate-y-[-1px] active:scale-[0.98] cursor-pointer"
-          style={{
-            background: showAnalyze
-              ? 'linear-gradient(135deg, #8b5cf6, #7c3aed)'
-              : 'linear-gradient(135deg, rgba(139,92,246,0.2), rgba(124,58,237,0.15))',
-            color: showAnalyze ? '#fff' : '#6b7280',
-            border: showAnalyze ? 'none' : '1px solid rgba(139,92,246,0.15)',
-            boxShadow: showAnalyze ? '0 4px 20px rgba(139,92,246,0.3)' : 'none',
-          }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          Open & Analyze
-        </button>
+        {showAnalyze && !userAnswer && (
+          <button onClick={onAnalyze}
+            className="w-full flex items-center justify-center gap-2 rounded-xl px-4 py-3 font-bold text-xs uppercase tracking-wider transition-all duration-200
+              hover:translate-y-[-1px] active:scale-[0.98] cursor-pointer"
+            style={{
+              background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+              color: '#fff',
+              boxShadow: '0 4px 20px rgba(139,92,246,0.3)',
+            }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            Open & Analyze
+          </button>
+        )}
       </div>
 
       {/* Input bar */}
       <div className="px-4 pb-3 flex items-center gap-2">
         <div className="flex-1 rounded-full px-3.5 py-2 text-[10px] text-gray-600 font-mono"
           style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.06)' }}>
-          Type a message...
+          {userAnswer ? 'Answer sent ✓' : 'Type a message...'}
         </div>
         <div className="w-8 h-8 rounded-full flex items-center justify-center"
           style={{ background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)' }}>

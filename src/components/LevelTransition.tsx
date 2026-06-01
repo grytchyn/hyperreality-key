@@ -1,6 +1,4 @@
-// ── LEVEL TRANSITION v4 — reference-based design ──
-// Matches the reference: LEVEL COMPLETE banner, dual icons with separator,
-// Score: 30/30 display, Start Level N button with gradient
+// ── LEVEL TRANSITION v5 — per reference: LEVEL COMPLETE, dual icons, Score: 30/30 ──
 import { LEVEL_CONFIG } from '../data/missions'
 import { getToolIcon } from './icons/ToolIcons'
 import type { CoreToolId } from '../types'
@@ -17,7 +15,6 @@ export default function LevelTransition({ tier, tierScore, onNext }: LevelTransi
   const cfg = LEVEL_CONFIG[tier]
   const nextCfg = LEVEL_CONFIG[tier + 1]
 
-  // Map level numbers to tool IDs for the dual icon display
   const getLevelToolId = (level: number): CoreToolId => {
     const map: Record<number, CoreToolId> = {
       1: 'bad-arguments', 2: 'feelings-check', 3: 'brain-check',
@@ -39,7 +36,6 @@ export default function LevelTransition({ tier, tierScore, onNext }: LevelTransi
           style={{ background: `radial-gradient(circle, ${cfg?.color || '#8b5cf6'}, transparent 70%)`, animation: 'pulse 5s infinite' }} />
         <div className="absolute bottom-10 left-10 w-[25rem] h-[25rem] rounded-full opacity-[0.06]"
           style={{ background: `radial-gradient(circle, ${nextCfg?.color || '#06b6d4'}, transparent 70%)`, animation: 'pulse 7s infinite 1s' }} />
-        {/* Stars */}
         {[...Array(8)].map((_, i) => (
           <div key={i} className="absolute w-0.5 h-0.5 rounded-full bg-white/10"
             style={{
@@ -58,7 +54,7 @@ export default function LevelTransition({ tier, tierScore, onNext }: LevelTransi
             boxShadow: `0 8px 32px rgba(0,0,0,0.4), 0 0 40px ${cfg?.color || '#8b5cf6'}10`,
           }}>
           
-          {/* LEVEL COMPLETE banner — matches reference */}
+          {/* LEVEL COMPLETE banner */}
           <div className="flex items-center justify-center gap-2 mb-5">
             <div className="h-px w-8" style={{ background: `linear-gradient(90deg, transparent, ${cfg?.color || '#8b5cf6'})` }} />
             <div className="rounded-lg px-4 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[2px]"
@@ -67,7 +63,7 @@ export default function LevelTransition({ tier, tierScore, onNext }: LevelTransi
                 border: `1px solid ${cfg?.color || '#8b5cf6'}40`,
                 color: cfg?.color || '#8b5cf6',
               }}>
-              LEVEL {tier} COMPLETE
+              LEVEL {tier} — {cfg?.name} Complete
             </div>
             <div className="h-px w-8" style={{ background: `linear-gradient(90deg, ${cfg?.color || '#8b5cf6'}, transparent)` }} />
           </div>
@@ -79,7 +75,7 @@ export default function LevelTransition({ tier, tierScore, onNext }: LevelTransi
             </svg>
           </div>
 
-          {/* Dual icons with separator */}
+          {/* Dual icons with separator — matches reference design */}
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="w-14 h-14 rounded-xl flex items-center justify-center"
               style={{
@@ -116,7 +112,10 @@ export default function LevelTransition({ tier, tierScore, onNext }: LevelTransi
             <span className="text-lg font-bold tabular-nums" style={{ color: nextCfg?.color || '#06b6d4' }}>
               {tierScore}
             </span>
-            <span className="text-[10px] text-gray-500 font-mono"> / 30</span>
+            <span className="text-[10px] text-gray-500 font-mono"> / 10</span>
+            {tierScore === 10 && (
+              <span className="text-[10px] font-mono ml-2" style={{ color: '#fbbf24' }}>★ Perfect!</span>
+            )}
           </div>
 
           {/* Tool unlocked hint */}
@@ -126,7 +125,7 @@ export default function LevelTransition({ tier, tierScore, onNext }: LevelTransi
             <strong style={{ color: nextCfg?.color || '#06b6d4' }}>{nextCfg?.name}</strong>
           </div>
 
-          {/* Start Level N button — matches reference gradient */}
+          {/* Start Level N button */}
           <button onClick={onNext}
             className="w-full px-6 py-3.5 rounded-xl font-bold text-sm uppercase tracking-wider transition-all cursor-pointer hover:translate-y-[-1px] active:scale-[0.98]"
             style={{
