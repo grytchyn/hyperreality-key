@@ -10,11 +10,11 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
   const [walletConnected, setWalletConnected] = useState(false)
   const [nftMinted, setNftMinted] = useState(false)
   const [minting, setMinting] = useState(false)
-  const maxScore = 210
+  const maxScore = 120
   const pct = Math.round((score / maxScore) * 100)
-  const rank = pct >= 90 ? 'HYPERREALITY MASTER' : pct >= 70 ? 'DECEPTION DETECTOR' : pct >= 40 ? 'TRUTH SEEKER' : 'APPRENTICE'
-  const rankStars = pct >= 90 ? 5 : pct >= 70 ? 4 : pct >= 40 ? 3 : 2
-  const rankColor = pct >= 90 ? '#fbbf24' : pct >= 70 ? '#8b5cf6' : pct >= 40 ? '#06b6d4' : '#22c55e'
+  const rank = pct >= 90 ? 'HYPERREALITY MASTER' : pct >= 70 ? 'DECEPTION DETECTOR' : pct >= 50 ? 'TRUTH SEEKER' : 'APPRENTICE'
+  const rankStars = pct >= 90 ? 5 : pct >= 70 ? 4 : pct >= 50 ? 3 : 2
+  const rankColor = pct >= 90 ? '#fbbf24' : pct >= 70 ? '#8b5cf6' : pct >= 50 ? '#06b6d4' : '#22c55e'
   const rarity = pct >= 90 ? 'Legendary' : pct >= 70 ? 'Epic' : pct >= 40 ? 'Rare' : 'Common'
   const rarityColor = pct >= 90 ? '#fbbf24' : pct >= 70 ? '#8b5cf6' : pct >= 40 ? '#06b6d4' : '#22c55e'
 
@@ -141,9 +141,9 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
             {/* RIGHT: Stats grid (2×2) */}
             <div className="col-span-2 grid grid-cols-2 gap-2">
               {[
-                { icon: '👁️', label: 'Posts Analyzed', value: '21', color: '#8b5cf6' },
-                { icon: '✓', label: 'Correct', value: `${Math.round(score / 10)}/21`, color: '#22c55e' },
-                { icon: '🧠', label: 'Skills Trained', value: '8', color: '#06b6d4' },
+                { icon: '👁️', label: 'Posts Analyzed', value: '12', color: '#8b5cf6' },
+                { icon: '✓', label: 'Correct', value: `${Math.round(score / 10)}/12`, color: '#22c55e' },
+                { icon: '🧠', label: 'Skills Trained', value: '12', color: '#06b6d4' },
                 { icon: '🎯', label: 'Accuracy', value: `${pct}%`, color: '#fbbf24' },
               ].map(stat => (
                 <div key={stat.label}
@@ -216,7 +216,7 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
               </div>
               <div className="mt-2 flex items-center justify-between text-[7px] font-mono" style={{ color: '#6b7280' }}>
                 <span>Score: <strong style={{ color: '#e5e7eb' }}>{score}/{maxScore}</strong></span>
-                <span>Levels: <strong style={{ color: '#06b6d4' }}>7/7</strong></span>
+                <span>Levels: <strong style={{ color: '#06b6d4' }}>12/12</strong></span>
               </div>
             </div>
           </div>

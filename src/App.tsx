@@ -27,7 +27,7 @@ export default function App() {
     setTotalScore(s => s + points)
 
     const nextLevel = currentLevel + 1
-    if (nextLevel > 7) {
+    if (nextLevel > 12) {
       setTimeout(() => setPhase('victory'), 300)
     } else {
       setCurrentLevel(nextLevel)

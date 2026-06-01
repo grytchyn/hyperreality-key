@@ -395,7 +395,7 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
                   : '0 4px 20px rgba(107,114,128,0.3)',
               }}>
               Next Level →
-              <span className="text-[11px] opacity-70">{level + 1 > 7 ? '🏁 Results' : `Level ${level + 1}`}</span>
+              <span className="text-[11px] opacity-70">{level + 1 > 12 ? '🏁 Results' : `Level ${level + 1}`}</span>
             </button>
           )}
         </div>
