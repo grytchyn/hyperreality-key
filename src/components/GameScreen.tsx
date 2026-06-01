@@ -149,12 +149,15 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
     })
   }
 
+  // ── GAME MODE: Full analysis screen ──
+  const bgUrl = post.level === 1 ? `/assets/bg/level${post.level}-bg.png` : '/assets/bg/game-bg.png'
+
   if (phase === 'chat') {
     return (
       <div className="min-h-[100dvh] bg-dark-bg flex flex-col items-center justify-center p-4 relative overflow-hidden"
         style={{
           minHeight: '100dvh',
-          background: `#0a0a0f url('/assets/bg/level${level}-bg.png') center center / cover no-repeat`,
+          background: `#0a0a0f url('${bgUrl}') center center / cover no-repeat`,
         }}>
         {/* Dark overlay */}
         <div className="fixed inset-0 pointer-events-none z-0"
@@ -193,9 +196,6 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
     )
   }
 
-  // ── GAME MODE: Full analysis screen ──
-  const bgUrl = `/assets/bg/level${level}-bg.png`
-
   return (
     <div className="relative overflow-hidden min-h-[100dvh]" ref={containerRef}
       style={{
@@ -216,7 +216,7 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
       <div className="fixed inset-0 pointer-events-none -z-10">
         <div className="absolute inset-0 opacity-[0.15]"
           style={{
-            background: `url('/assets/bg/level${level}-bg.png') center center / cover no-repeat`,
+            background: `url('${bgUrl}') center center / cover no-repeat`,
           }} />
         <div className="absolute inset-0"
           style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.7) 0%, rgba(10,10,15,0.85) 100%)' }} />
