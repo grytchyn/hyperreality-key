@@ -1,8 +1,5 @@
-// ── SPLASH SCREEN v8 — single source of scientists.ts ──
+// ── SPLASH SCREEN — clean minimal version ──
 import { useState, useEffect, useCallback } from 'react'
-import { SCIENTIST_AVATARS, SPECTRUM_COLORS, getScientistAvatar } from '../engine/scientists'
-
-const SCIENTIST_NAMES = Object.keys(SCIENTIST_AVATARS)
 
 interface SplashScreenProps {
   onStart: () => void
@@ -10,30 +7,20 @@ interface SplashScreenProps {
 
 export default function SplashScreen({ onStart }: SplashScreenProps) {
   const [visible, setVisible] = useState(false)
-  const [currentChar, setCurrentChar] = useState(0)
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
     setVisible(true)
-    setCurrentChar(0)
-
-    const interval = setInterval(() => {
-      setCurrentChar(prev => {
-        if (prev < SCIENTIST_NAMES.length) {
-          return prev + 1
-        }
-        clearInterval(interval)
-        return prev
-      })
-    }, 400)
-
-    return () => clearInterval(interval)
+    // Brief loading animation before showing the start button
+    const timer = setTimeout(() => {
+      setReady(true)
+    }, 1200)
+    return () => clearTimeout(timer)
   }, [])
 
   const handleStart = useCallback(() => {
     onStart()
   }, [onStart])
-
-  const visibleScientists = SCIENTIST_NAMES.slice(0, currentChar)
 
   return (
     <div
@@ -68,91 +55,48 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
           />
         </div>
 
-        {/* SCIENTIST AVATAR GRID */}
-        <div
-          className="rounded-2xl p-5 mb-4"
-          style={{
-            background: 'linear-gradient(180deg, color-mix(in srgb, var(--color-dark-card) 95%, transparent), color-mix(in srgb, var(--color-dark-bg) 98%, transparent))',
-            border: '1px solid color-mix(in srgb, var(--color-neon-purple) 15%, transparent)',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
-          }}
-        >
-          <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-center mb-4" style={{ color: 'var(--color-neon-purple)' }}>
-            🧠 Meet Your Teachers
-          </div>
-
-          <div className="grid grid-cols-5 gap-2">
-            {visibleScientists.map((key, idx) => {
-              const scientist = getScientistAvatar(key)
-              const color = SPECTRUM_COLORS[idx] || 'var(--color-neon-purple)'
-              return (
-                <div
-                  key={key}
-                  className="flex flex-col items-center gap-1 animate-fade-in-up"
-                  style={{ animationDelay: `${idx * 100}ms` }}
-                >
-                  <div
-                    className="w-12 h-12 rounded-full overflow-hidden ring-2"
-                    style={{
-                      borderColor: `color-mix(in srgb, ${color} 37.5%, transparent)`,
-                      boxShadow: `0 0 12px color-mix(in srgb, ${color} 19%, transparent)`,
-                    }}
-                  >
-                    <img
-                      src={scientist.avatar}
-                      alt={scientist.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <span className="text-[6px] font-mono text-center leading-tight" style={{ color: 'var(--color-text-secondary)' }}>
-                    {scientist.name}
-                  </span>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* Loading indicator */}
-          {currentChar < SCIENTIST_NAMES.length && (
-            <div className="text-center mt-3">
-              <span className="text-[9px] font-mono" style={{ color: 'var(--color-text-muted)' }}>
-                Loading theorists...
-              </span>
-            </div>
-          )}
+        {/* WELCOME TEXT */}
+        <div className="text-center mb-8">
+          <p
+            className="text-sm sm:text-base leading-relaxed"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            A scientist friend shared something with you…
+          </p>
         </div>
 
-        {/* START BUTTON — styled as chat reply message */}
-        {currentChar >= SCIENTIST_NAMES.length && (
-          <div className="animate-fade-in-up">
-            <div className="flex justify-end mb-2">
+        {/* LOADING ANIMATION */}
+        {!ready && (
+          <div className="flex justify-center gap-2 mb-8">
+            {[0, 1, 2].map(i => (
               <div
-                className="max-w-[80%] rounded-2xl px-4 py-3 text-xs leading-relaxed cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                onClick={handleStart}
+                key={i}
+                className="w-2 h-2 rounded-full animate-bounce"
                 style={{
-                  background: 'linear-gradient(135deg, color-mix(in srgb, var(--color-neon-purple) 25%, transparent), color-mix(in srgb, var(--color-neon-purple) 15%, transparent))',
-                  border: '1px solid color-mix(in srgb, var(--color-neon-purple) 30%, transparent)',
-                  color: 'var(--color-text-primary)',
-                  borderBottomRightRadius: '4px',
+                  backgroundColor: 'var(--color-neon-purple)',
+                  animationDelay: `${i * 200}ms`,
+                  animationDuration: '1.2s',
+                  opacity: 0.6,
                 }}
-              >
-                <div className="text-[9px] font-mono mb-1" style={{ color: '#a78bfa' }}>→ REPLY</div>
-                OK, I'll check this post for manipulation 🔍
-              </div>
-            </div>
-            <div className="flex justify-end">
-              <div
-                className="rounded-2xl px-4 py-3 text-xs cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                onClick={handleStart}
-                style={{
-                  background: 'linear-gradient(135deg, var(--color-neon-purple), #7c3aed)',
-                  color: '#fff',
-                  boxShadow: '0 4px 20px color-mix(in srgb, var(--color-neon-purple) 30%, transparent)',
-                  borderBottomRightRadius: '4px',
-                }}
-              >
-                <span className="font-bold text-sm">Send →</span>
-              </div>
+              />
+            ))}
+          </div>
+        )}
+
+        {/* START BUTTON — chat reply style */}
+        {ready && (
+          <div className="flex justify-center animate-fade-in-up" style={{ animation: 'fadeInUp 0.5s ease-out' }}>
+            <div
+              className="rounded-2xl px-6 py-4 text-sm cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95"
+              onClick={handleStart}
+              style={{
+                background: 'linear-gradient(135deg, var(--color-neon-purple), #7c3aed)',
+                color: '#fff',
+                boxShadow: '0 4px 20px color-mix(in srgb, var(--color-neon-purple) 30%, transparent)',
+                borderBottomRightRadius: '4px',
+              }}
+            >
+              <span className="font-bold">OK, I'll check this post for manipulation 🔍</span>
             </div>
           </div>
         )}

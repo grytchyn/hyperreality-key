@@ -19,6 +19,7 @@ export interface MissionPost {
   friendPreview: string
   friendName: string
   friendColor: string
+  scientistKey: string
 }
 
 const POSTS: MissionPost[] = [
@@ -49,6 +50,7 @@ const POSTS: MissionPost[] = [
     friendPreview: `"A source close to production confirmed it" — yeah, that's not how evidence works. — Schopenhauer`,
     friendName: 'Arthur Schopenhauer',
     friendColor: '#ef4444',
+    scientistKey: 'schopenhauer',
   },
 
   // ════════════════════════════════════════════
@@ -78,6 +80,7 @@ const POSTS: MissionPost[] = [
     friendPreview: `"Disasters are tragic enough... but they're made worse by AI lies." — Cialdini`,
     friendName: 'Robert Cialdini',
     friendColor: '#f59e0b',
+    scientistKey: 'cialdini',
   },
 
   // ════════════════════════════════════════════
@@ -107,6 +110,7 @@ const POSTS: MissionPost[] = [
     friendPreview: '\"Most people believe\" is not evidence. Popularity is not truth. — Kahneman',
     friendName: 'Daniel Kahneman',
     friendColor: '#22c55e',
+    scientistKey: 'kahneman',
   },
 
   // ════════════════════════════════════════════
@@ -136,6 +140,7 @@ const POSTS: MissionPost[] = [
     friendPreview: '\"They\'ve been invaded\" — war metaphors dehumanize. Notice the us-vs-them framing. — Tajfel',
     friendName: 'Henri Tajfel',
     friendColor: '#d946ef',
+    scientistKey: 'tajfel',
   },
 
   // ════════════════════════════════════════════
@@ -165,6 +170,7 @@ const POSTS: MissionPost[] = [
     friendPreview: 'Harm, children, addictive — which moral button are they pressing? — Haidt',
     friendName: 'Jonathan Haidt',
     friendColor: '#f97316',
+    scientistKey: 'haidt',
   },
 
   // ════════════════════════════════════════════
@@ -194,6 +200,7 @@ const POSTS: MissionPost[] = [
     friendPreview: '\"Freedom vs security\" is not a fact. It\'s a myth. — Barthes',
     friendName: 'Roland Barthes',
     friendColor: '#06b6d4',
+    scientistKey: 'barthes',
   },
 
   // ════════════════════════════════════════════
@@ -223,6 +230,7 @@ const POSTS: MissionPost[] = [
     friendPreview: 'That video was never real. A simulation pretending to be reality. — Baudrillard',
     friendName: 'Jean Baudrillard',
     friendColor: '#a78bfa',
+    scientistKey: 'baudrillard',
   },
 
   // ════════════════════════════════════════════
@@ -252,6 +260,7 @@ const POSTS: MissionPost[] = [
     friendPreview: 'Who decides what counts as "expert"? Who benefits? — Foucault',
     friendName: 'Michel Foucault',
     friendColor: '#14b8a6',
+    scientistKey: 'foucault',
   },
 
   // ════════════════════════════════════════════
@@ -281,6 +290,7 @@ const POSTS: MissionPost[] = [
     friendPreview: '"Multiple sources" often means one source repeated a thousand times. — Sunstein',
     friendName: 'Cass Sunstein',
     friendColor: '#ec4899',
+    scientistKey: 'sunstein',
   },
 
   // ════════════════════════════════════════════
@@ -310,10 +320,11 @@ const POSTS: MissionPost[] = [
     friendPreview: '"What about X?" — the oldest distraction trick in the book. — Schopenhauer',
     friendName: 'Arthur Schopenhauer',
     friendColor: '#ef4444',
+    scientistKey: 'schopenhauer',
   },
 
   // ════════════════════════════════════════════
-  // LEVEL 11 \u2014 AGENDA SETTING (Media framing)
+  // LEVEL 11 — AGENDA SETTING (Media framing)
   // Real: BBC \u2014 Project 2025 provided Trump\'s roadmap (Jan 2026)
   // URL: https://www.bbc.com/news/articles/c5yvvjw8pdvo
   // ════════════════════════════════════════════
@@ -339,6 +350,7 @@ const POSTS: MissionPost[] = [
     friendPreview: 'Media doesn\'t tell you WHAT to think — it tells you what TO THINK ABOUT. — McCombs & Shaw',
     friendName: 'McCombs & Shaw',
     friendColor: '#0ea5e9',
+    scientistKey: 'mccombs_shaw',
   },
 
   // ════════════════════════════════════════════
@@ -368,6 +380,7 @@ const POSTS: MissionPost[] = [
     friendPreview: '"Law and order" — Authority and Sanctity foundations, beautifully packaged. — Cialdini',
     friendName: 'Robert Cialdini',
     friendColor: '#f59e0b',
+    scientistKey: 'cialdini',
   },
 ]
 

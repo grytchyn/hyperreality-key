@@ -2,6 +2,7 @@
 import type { CoreToolId } from '../types'
 
 export interface MissionPost {
+  scientistKey: string
   title: string
   source: string
   content: string
@@ -34,6 +35,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '🎮',
     imageBg: 'from-red-500/20 to-orange-500/10',
     level: 1,
+    scientistKey: 'schopenhauer',
     neededTool: 'bad-arguments',
     question: 'Вірусний допис використовував анонімні джерела та фейкові повноваження. Яка це техніка?',
     choices: [
@@ -62,6 +64,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '🤖',
     imageBg: 'from-amber-500/20 to-yellow-500/10',
     level: 2,
+    scientistKey: 'cialdini',
     neededTool: 'feelings-check',
     question: 'Які емоційні та моральні тригери використовує ця стаття, щоб викликати вашу реакцію?',
     choices: [
@@ -90,6 +93,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '🏥',
     imageBg: 'from-green-500/20 to-emerald-500/10',
     level: 3,
+    scientistKey: 'kahneman',
     neededTool: 'brain-check',
     question: 'Інфлюенсери кажуть "більшість людей рекомендують" і "всі це роблять." Яке це когнітивне упередження?',
     choices: [
@@ -118,6 +122,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '🚧',
     imageBg: 'from-pink-500/20 to-fuchsia-500/10',
     level: 4,
+    scientistKey: 'tajfel',
     neededTool: 'us-vs-them',
     question: 'Яку техніку "ми проти них" використовує "захоплені нелегалами" та "фальшиві шукачі притулку"?',
     choices: [
@@ -146,6 +151,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '👶',
     imageBg: 'from-purple-500/20 to-violet-500/10',
     level: 5,
+    scientistKey: 'haidt',
     neededTool: 'value-check',
     question: 'Яку моральну основу активують слова "шкода," "діти," "залежність," "падіння самооцінки"?',
     choices: [
@@ -174,6 +180,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '🏛️',
     imageBg: 'from-cyan-500/20 to-blue-500/10',
     level: 6,
+    scientistKey: 'barthes',
     neededTool: 'hidden-story',
     question: 'Історія представлена як "безпека проти приватності." Який прихований міф продається?',
     choices: [
@@ -202,6 +209,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '📱',
     imageBg: 'from-purple-500/20 to-indigo-500/10',
     level: 7,
+    scientistKey: 'baudrillard',
     neededTool: 'fake-check',
     question: 'Бодрійяр сказав би, що ці ШІ-діпфейк відео працюють на якому рівні реальності?',
     choices: [
@@ -230,6 +238,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '📋',
     imageBg: 'from-teal-500/20 to-cyan-500/10',
     level: 8,
+    scientistKey: 'foucault',
     neededTool: 'source-check',
     question: 'Звіт MAHA цитував дослідження, які ніколи не існували. Яка це техніка маніпуляції?',
     choices: [
@@ -258,6 +267,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '🔄',
     imageBg: 'from-pink-500/20 to-rose-500/10',
     level: 9,
+    scientistKey: 'sunstein',
     neededTool: 'echo-chamber',
     question: '"Множинні джерела підтверджують це" — але всі вони цитують одне й те саме першоджерело. Як це називається?',
     choices: [
@@ -286,6 +296,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '🐟',
     imageBg: 'from-purple-500/20 to-violet-500/10',
     level: 10,
+    scientistKey: 'schopenhauer',
     neededTool: 'red-herring',
     question: '"А як щодо іншої сторони?" — це класичний приклад чого?',
     choices: [
@@ -314,6 +325,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '🎯',
     imageBg: 'from-sky-500/20 to-blue-500/10',
     level: 11,
+    scientistKey: 'mccombs_shaw',
     neededTool: 'agenda-setting',
     question: 'Зосереджуючись на "хто написав дорожню карту," від чого це медіа-фреймування відволікає увагу?',
     choices: [
@@ -342,6 +354,7 @@ const POSTS_UA: MissionPost[] = [
     imageEmoji: '📊',
     imageBg: 'from-rose-500/20 to-red-500/10',
     level: 12,
+    scientistKey: 'cialdini',
     neededTool: 'value-check',
     question: 'Фундаменти моралі Гайдта: які цінності активує "закон і порядок" + "краса сирен"?',
     choices: [

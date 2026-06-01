@@ -9,6 +9,7 @@ import type { Language } from '../hooks/useLanguage'
 import ChatUi from './ChatUi'
 import Header from './Header'
 import { getToolIcon } from './icons/ToolIcons'
+import { getScientistAvatar } from '../engine/scientists'
 
 interface GameScreenProps {
   post: MissionPost
@@ -410,10 +411,10 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
           {/* Avatar + Key Logo — centered between explanation and next button */}
           {chosenAnswer !== null && (
             <div className="mt-6 flex flex-col items-center gap-2 animate-fade-in-up">
-              <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-offset-2 ring-offset-[var(--color-dark-card)]"
+              <div className="w-14 h-14 rounded-full overflow-hidden ring-2"
                 style={{ boxShadow: `0 0 20px ${post.categoryColor}40`, borderColor: post.categoryColor }}>
                 <img
-                  src={`/assets/scientists/${post.friendName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}.png`}
+                  src={getScientistAvatar(post.scientistKey || post.friendName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')).avatar}
                   alt={post.friendName}
                   className="w-full h-full object-cover"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}

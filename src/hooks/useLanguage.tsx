@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useCallback, type ReactNode } from
 import { getMissionPosts } from '../data/missions';
 import { getMissionPostsDE } from '../data/missions-de';
 import { getMissionPostsUA } from '../data/missions-ua';
+import { t as resolveT } from '../i18n/translations';
 import type { MissionPost } from '../data/missions';
 
 export type Language = 'en' | 'de' | 'ua';
@@ -17,6 +18,8 @@ interface LanguageContextValue {
   language: Language;
   setLanguage: (lang: Language) => void;
   missions: MissionPost[];
+  /** Translate a dot-notation key (e.g. 'splash.start', 'game.question') for the current language */
+  t: (key: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
@@ -37,8 +40,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLanguage(lang);
   }, []);
 
+  const translate = useCallback(
+    (key: string) => resolveT(key, language),
+    [language],
+  );
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, missions }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, missions, t: translate }}>
       {children}
     </LanguageContext.Provider>
   );

@@ -4,6 +4,7 @@
 import type { CoreToolId } from '../types'
 
 export interface MissionPost {
+  scientistKey: string
   title: string
   source: string
   content: string
@@ -37,6 +38,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83C\uDFAE',
     imageBg: 'from-red-500/20 to-orange-500/10',
     level: 1,
+    scientistKey: 'schopenhauer',
     neededTool: 'bad-arguments',
     question: 'Der virale Beitrag nutzte anonyme Quellen und falsche Referenzen. Welche Technik ist das?',
     choices: [
@@ -66,6 +68,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83E\uDD16',
     imageBg: 'from-amber-500/20 to-yellow-500/10',
     level: 2,
+    scientistKey: 'cialdini',
     neededTool: 'feelings-check',
     question: 'Welche emotionalen und moralischen Ausl\u00f6ser verwendet dieser Artikel, um dich zu bewegen?',
     choices: [
@@ -95,6 +98,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83C\uDFE5',
     imageBg: 'from-green-500/20 to-emerald-500/10',
     level: 3,
+    scientistKey: 'kahneman',
     neededTool: 'brain-check',
     question: 'Influencer sagen "die meisten Menschen empfehlen" diese Tests und "jeder macht es". Welcher kognitive Bias ist das?',
     choices: [
@@ -124,6 +128,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83D\uDEA7',
     imageBg: 'from-pink-500/20 to-fuchsia-500/10',
     level: 4,
+    scientistKey: 'tajfel',
     neededTool: 'us-vs-them',
     question: 'Welche Wir-gegen-Sie-Technik verwendet "von illegalen Einwanderern \u00fcberfallen" und "falsche Asylsuchende"?',
     choices: [
@@ -153,6 +158,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83D\uDC76',
     imageBg: 'from-purple-500/20 to-violet-500/10',
     level: 5,
+    scientistKey: 'haidt',
     neededTool: 'value-check',
     question: 'Welche moralische Grundlage aktivieren "Schaden", "Kinder", "s\u00fcchtig machend", "sinkendes Selbstwertgef\u00fchl"?',
     choices: [
@@ -182,6 +188,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83C\uDFDB\uFE0F',
     imageBg: 'from-cyan-500/20 to-blue-500/10',
     level: 6,
+    scientistKey: 'barthes',
     neededTool: 'hidden-story',
     question: 'Die Geschichte wird als "Sicherheit gegen Privatsph\u00e4re" gerahmt. Welcher versteckte Mythos wird verkauft?',
     choices: [
@@ -211,6 +218,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83D\uDCF1',
     imageBg: 'from-purple-500/20 to-indigo-500/10',
     level: 7,
+    scientistKey: 'baudrillard',
     neededTool: 'fake-check',
     question: 'Baudrillard w\u00fcrde sagen: Auf welcher Realit\u00e4tsebene operieren diese KI-Deepfake-Videos?',
     choices: [
@@ -240,6 +248,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83D\uDCCB',
     imageBg: 'from-teal-500/20 to-cyan-500/10',
     level: 8,
+    scientistKey: 'foucault',
     neededTool: 'source-check',
     question: 'Der MAHA-Bericht zitierte Studien, die nie existiert haben. Welche Manipulationstechnik ist das?',
     choices: [
@@ -269,6 +278,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83D\uDD04',
     imageBg: 'from-pink-500/20 to-rose-500/10',
     level: 9,
+    scientistKey: 'sunstein',
     neededTool: 'echo-chamber',
     question: '"Mehrere Quellen best\u00e4tigen das" \u2014 aber sie alle zitieren dieselbe Originalquelle. Wie nennt man das?',
     choices: [
@@ -298,6 +308,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83D\uDC1F',
     imageBg: 'from-purple-500/20 to-violet-500/10',
     level: 10,
+    scientistKey: 'schopenhauer',
     neededTool: 'red-herring',
     question: '"Aber was ist mit der anderen Seite?" \u2014 das ist ein klassisches Beispiel f\u00fcr was?',
     choices: [
@@ -327,6 +338,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83C\uDFAF',
     imageBg: 'from-sky-500/20 to-blue-500/10',
     level: 11,
+    scientistKey: 'mccombs_shaw',
     neededTool: 'agenda-setting',
     question: 'Indem der Fokus auf "wer den Fahrplan geschrieben hat" gelegt wird, wovon lenkt diese Medienrahmung ab?',
     choices: [
@@ -356,6 +368,7 @@ const POSTS_DE: MissionPost[] = [
     imageEmoji: '\uD83D\uDCCA',
     imageBg: 'from-rose-500/20 to-red-500/10',
     level: 12,
+    scientistKey: 'cialdini',
     neededTool: 'value-check',
     question: 'Haidts Moralische Grundlagen: Welche Werte aktivieren "Recht und Ordnung" + "Sch\u00f6nheit der Sirenen" haupts\u00e4chlich?',
     choices: [
