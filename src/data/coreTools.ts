@@ -127,7 +127,10 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
       { words: ['obviously', 'clearly', 'undeniably', 'certainly', 'surely', 'plainly'], explanation: '\uD83E\uDDE0 False certainty \u2014 "obviously" is a debate trick that replaces actual arguments. Schopenhauer\u2019s "dictum simpliciter": if something needs to be called "obvious," it probably isn\u2019t. Real truths don\u2019t need to announce themselves \u2014 they withstand scrutiny.' },
       { words: ['percent', 'majority', 'statistics', 'proves', 'proof', 'figures', 'ratio', 'percentage', 'data'], explanation: '\uD83D\uDCCA False precision \u2014 a number without a source is just an opinion with a costume. "80% of people" \u2014 of which people? Studied by whom? Published where? Statistics feel scientific but are the easiest thing to fabricate. Always ask: show me the study.' },
       { words: ['rumor', 'rumors', 'viral', 'claim', 'claims', 'allegedly', 'supposedly', 'according to'], explanation: '\uD83D\uDCE2 Unsubstantiated claim \u2014 "rumor has it" and "according to viral claims" are not evidence. They signal that the information is second-hand, unverified, or fabricated. The author presents speculation as fact. Ask: what is the ORIGINAL source of this claim? Can I trace it to something real?' },
-    ],
+          { words: ['everybody', 'everyone', 'everything', 'everywhere', 'nobody', 'nowhere'], explanation: '\uD83C\uDF10 Universal quantifier \u2014 Schopenhauer\u2019s extension stratagem. "Everybody" or "nobody" paints a claim as universally true or false. Rarely is anything truly universal. Ask: who exactly? Is there ANYONE who doesn\u2019t fit this claim?' },
+          { words: ['strawman', 'straw man', 'misrepresent', 'misrepresenting', 'mischaracterize'], explanation: '\uD83C\uDFAF Straw man fallacy \u2014 misrepresenting an argument to make it easier to attack. The classic Schopenhauer eristic trick: distort what someone said, then demolish the distortion. Ask: is this an accurate restatement of the opposing view, or a caricature designed to be easily knocked down?' },
+              { words: ['slippery slope', 'domino effect', 'thin end', 'first they'], explanation: '\uD83C\uDFD7\uFE0F Slippery slope \u2014 Schopenhauer\u2019s false-cause stratagem. Claims that one small step will inevitably lead to an extreme outcome, without evidence for the chain. It sounds logical but skips all the intermediate choices. Ask: what EXACTLY would have to happen between step A and step Z? Are those steps certain?' },
+            ],
 
   // ── FEELINGS CHECK: Cialdini (Scarcity, Liking), Fear Appeals ──
   'feelings-check': [
@@ -135,6 +138,7 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
     { words: ['urgent', 'immediately', 'hurry', 'crisis', 'emergency', 'last chance', 'act now', 'before it'], explanation: '\u23F0 Urgency \u2014 a countdown bypasses your critical thinking (System 1 takes over). "Act now," "last chance," "immediately" \u2014 these words create artificial scarcity. Cialdini: when time pressure is manufactured, the decision is engineered. Take a breath. Nothing truly important demands blind speed.' },
     { words: ['outrage', 'scandal', 'appalling', 'disgrace', 'despicable', 'revolting', 'atrocious', 'monstrous'], explanation: '\uD83D\uDD25 Outrage bait \u2014 emotion replaces argument entirely. No specific claims, just fury. The anger is intentional \u2014 designed to make you share before thinking. Outrage is addictive and profitable. Ask: what actual facts are being hidden behind this storm of indignation?' },
     { words: ['suffer', 'heartbreaking', 'tragic', 'victim', 'innocent', 'helpless', 'minors', 'exploit'], explanation: '\uD83D\uDC94 Sympathy manipulation \u2014 Cialdini\u2019s Liking principle. "Heartbreaking," "innocent," "helpless" bond you emotionally to the subject. Real charity informs. Manipulation bypasses your reason by targeting your compassion. Ask: is this about helping, or about making me feel something so I stop asking questions?' },
+    { words: ['anger', 'angry', 'ashamed', 'shame', 'guilt', 'guilty', 'blame', 'contempt'], explanation: '\uD83D\uDE21 Social emotion triggers \u2014 Elster\u2019s social emotions taxonomy. Anger, shame, guilt, contempt are social emotions that police group boundaries. They make you feel judged or judging. A text that induces these emotions is using social pressure to bypass reason. Ask: am I feeling judged, or being asked to judge \u2014 and who benefits?' },
   ],
 
   // ── BRAIN CHECK: Kahneman (System 1 biases) ──
@@ -149,8 +153,9 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
   // ── HIDDEN MYTH: Roland Barthes (Mythologies) ──
   'hidden-story': [
     { words: ['freedom', 'liberty', 'security', 'order', 'chaos', 'progress', 'tradition', 'modern', 'natural', 'privacy', 'surveillance'], explanation: '\uD83C\uDFDB\uFE0F Barthes: Myth exposed \u2014 "Freedom" is not an argument, it\u2019s a story. Roland Barthes called this "mythology": abstract ideals used to justify concrete policies without evidence. "Security" sounds noble, but whose security? At what cost? Every myth serves someone\u2019s agenda. Ask: who defined this word, and what do they want me to accept?' },
-    { words: ['natural', 'normal', 'proper', 'correct', 'inevitable', 'unavoidable', 'just is', 'reality'], explanation: '\uD83D\uDD04 Barthes: Naturalization \u2014 the most powerful form of ideology. When something is called "natural" or "inevitable," it\u2019s presented as beyond question. But nothing is natural in politics \u2014 everything is a choice. "That\u2019s just how things are" is the oldest propaganda slogan. Ask: who benefits from me believing this is inevitable?' },
-    { words: ['crisis', 'threat', 'danger', 'emergency', 'breakdown', 'collapse', 'disaster', 'violation'], explanation: '\uD83D\uDCE2 Barthes: Myth of crisis \u2014 the word "crisis" itself is a rhetorical weapon. It justifies extraordinary measures, suspends debate, and demands immediate action. Not every problem is a crisis. Calling something a crisis frames the conversation as "action vs inaction" rather than "which action is best." Ask: is this really a crisis, or just a problem being sold as one?' },
+    { words: ['natural', 'normal', 'proper', 'correct', 'inevitable', 'unavoidable', 'just is', 'reality', 'eternal', 'timeless', 'forever', 'always been', 'human nature'], explanation: '\uD83D\uDD04 Barthes: Naturalization \u2014 the most powerful form of ideology. When something is called "natural" or "inevitable," it\u2019s presented as beyond question. But nothing is natural in politics \u2014 everything is a choice. "That\u2019s just how things are" is the oldest propaganda slogan. Ask: who benefits from me believing this is inevitable?' },
+    { words: ['crisis', 'threat', 'danger', 'emergency', 'breakdown', 'collapse', 'disaster', 'violation', 'catastrophe', 'catastrophic'], explanation: '\uD83D\uDCE2 Barthes: Myth of crisis \u2014 the word "crisis" itself is a rhetorical weapon. It justifies extraordinary measures, suspends debate, and demands immediate action. Not every problem is a crisis. Calling something a crisis frames the conversation as "action vs inaction" rather than "which action is best." Ask: is this really a crisis, or just a problem being sold as one?' },
+    { words: ['heritage', 'classic', 'legacy', 'age-old', 'ancient', 'time-honored'], explanation: '\uD83C\uDFDB\uFE0F Barthes: Myth of tradition \u2014 "heritage" and "classic" make the past an argument. Tradition is presented as inherently valuable, making change seem like loss. But tradition is just what people before us chose. Ask: is this valuable BECAUSE it\u2019s old, or is old just what it happens to be?' },
   ],
 
   // ── US VS THEM: Tajfel & Turner (Social Identity Theory) ──
@@ -159,6 +164,8 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
     { words: ['those people', 'these people', 'outsiders', 'foreigners', 'strangers', 'the other', 'others'], explanation: '\uD83D\uDEAB Tajfel: Out-group labeling \u2014 people reduced to a category lose their individuality. "Those people" turns humans into a homogeneous mass. Once de-individuated, they become easier to fear, blame, and dismiss. Ask: has anyone actually talked to "those people" to learn their stories?' },
     { words: ['invasion', 'flood of', 'wave of', 'swarm', 'plague', 'infestation', 'tide', 'taking over', 'taking our', 'destroying our', 'against us', 'coming for'], explanation: '\uD83C\uDF0A Dehumanization & threat \u2014 nature and war metaphors ("flood," "invasion," "plague") transform humans into forces of nature. You can\u2019t negotiate with a flood. You can\u2019t compromise with an invasion. These words prepare you to see people as problems, not as humans. Ask: when did people become a weather event?' },
     { words: ['real americans', 'real citizens', 'real people', 'true patriots'], explanation: '\uD83C\uDFAF Gatekeeping identity \u2014 who gets to be "real"? This phrase draws the strictest boundary possible: it doesn\u2019t just divide, it delegitimizes. If you\u2019re not a "true patriot," you\u2019re not just different \u2014 you\u2019re fake. Ask: who is the gatekeeper, and what authority gave them the key?' },
+    { words: ['civilization', 'civilized', 'barbaric', 'savage', 'primitive', 'backward'], explanation: '\uD83C\uDF0D Civilization narrative \u2014 van Dijk\u2019s positive self-presentation. Calling one group "civilized" and another "backward" is the deepest form of us-vs-them. It frames cultural differences as hierarchy. The "civilized" label implies the right to judge, intervene, or dismiss the "other." Ask: who decided what "civilized" means, and whose interests does that serve?' },
+    { words: ['threat', 'encroaching', 'creeping', 'infiltration', 'infiltrating', 'fifth column'], explanation: '\uD83D\uDEA8 Proximization of threat \u2014 Cap\u2019s proximization theory. Presenting a group as approaching or infiltrating (spatially or temporally) creates urgency for action. "They are at our doorstep," "creeping influence" \u2014 these paint the out-group as an approaching danger. Ask: is this threat actually materializing, or is it being framed as approaching to justify preemptive action?' },
   ],
 
   // ── MORAL BUTTONS: Haidt (Moral Foundations Theory) ──
@@ -168,6 +175,8 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
     { words: ['loyal', 'betray', 'patriot', 'traitor', 'united', 'divide', 'together', 'treason', 'loyalty', 'sacrifice', 'nation'], explanation: '\uD83E\uDD1D Haidt: Loyalty \u2014 tribalism disguised as virtue. "Patriot," "traitor," "betray" \u2014 these activate the Loyalty foundation, binding the in-group together against perceived enemies. The mechanism: questioning loyalty becomes a way to silence dissent. Ask: is this about genuine loyalty, or about punishing anyone who disagrees?' },
     { words: ['authority', 'respect', 'obey', 'traditional', 'duty', 'order', 'disrespect', 'defy', 'disobey', 'rebel', 'establishment'], explanation: '\uD83D\uDC51 Haidt: Authority \u2014 hierarchy is invoked to demand compliance. "Respect," "duty," "order," "traditional" \u2014 these activate our respect for authority figures and institutions. The trick: framing your position as legitimate authority and opposition as chaos. Ask: what gives this authority its legitimacy, and who decides?' },
     { words: ['pure', 'impure', 'sacred', 'sin', 'disgust', 'filthy', 'corrupt', 'decay', 'degradation'], explanation: '\uD83E\uDDFC Haidt: Sanctity \u2014 the most primal moral foundation. "Disgust," "pure," "filthy," "sacred" \u2014 these use physical disgust metaphors for abstract criticism. Sanctity triggers an immediate gut reaction: something is unclean, wrong, forbidden. Once disgust is activated, reason goes out the window. Ask: is this about actual harm, or about a feeling of contamination?' },
+    { words: ['freedom', 'liberty', 'tyranny', 'oppression', 'enslaved', 'chained', 'shackled', 'dictatorship', 'coercion', 'government overreach'], explanation: '\uD83D\uDD12 Haidt: Liberty \u2014 reactance against control. "Tyranny," "dictatorship," "government overreach" \u2014 these trigger the Liberty foundation: the instinct to push back against perceived domination. It\u2019s the most powerful foundation in individualistic cultures. The rhetorical trick: framing any regulation as oppression. Ask: is this genuinely controlling, or is "freedom" being used to oppose any constraint?' },
+    { words: ['communism', 'socialism', 'fascism', 'marxist', 'totalitarian', 'authoritarian'], explanation: '\uD83D\uDEA9 Political labels as moral triggers \u2014 these words are often used not as descriptions but as moral accusations. Haidt: they activate multiple foundations at once (Loyalty + Liberty + Sanctity). Once you label something "socialist" or "fascist," you stop analyzing it. Ask: is this an accurate description, or a label designed to shut down thought?' },
   ],
 
   // ── FAKE CHECK: Baudrillard (Simulacra), Epistemology ──
@@ -176,6 +185,7 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
     { words: ['apparently', 'rumor', 'anonymous', 'sources say', 'unconfirmed', 'allegedly', 'reportedly', 'supposedly', 'claims', 'alleged', 'doctored', 'falsely', 'manipulated', 'misinformation'], explanation: '\uD83D\uDD0E Epistemology: unverified \u2014 the text itself admits it\u2019s unreliable. "Allegedly," "sources say," "unconfirmed" \u2014 these words signal that the information is at least one step removed from verifiable reality. The author is covering themselves while still spreading the claim. Ask: if they can\u2019t confirm it, why are they telling me?' },
     { words: ['unreal', 'surreal', 'like a movie', "can't believe", 'unbelievable', 'like a scene', 'straight out of'], explanation: '\uD83C\uDF00 Baudrillard: Hyperreality \u2014 even the text knows something is off. "Like a movie," "unreal," "can\u2019t believe" \u2014 these phrases signal that reality and fiction have blurred. Baudrillard\u2019s hyperreality: the simulation has become more real than reality. When the text itself confesses confusion, you know you\u2019re in the simulation. Ask: am I engaging with reality, or with a representation of a representation?' },
     { words: ['stolen', 'footage', 'reworked', 'recreated', 'generated', 'synthetic'], explanation: '\uD83D\uDCF9 Digital manipulation \u2014 "stolen footage," "reworked," "generated" \u2014 the content is not real but an artificial reconstruction. Baudrillard\u2019s 3rd order of simulacra: the copy without an original. When you can\u2019t tell if what you\u2019re seeing ever happened, the simulation has won. Ask: was this recorded from real life, or generated to LOOK like real life?' },
+    { words: ['artificial', 'fabricated', 'fabrication', 'simulated', 'simulation', 'virtual', 'hyperreal', 'hyperreality'], explanation: '\uD83D\uDD04 Baudrillard: Simulation order \u2014 Baudrillard\u2019s 4 stages of the image. The 4th stage (pure simulacrum) is when the image has no connection to any reality at all. "Artificial," "simulated," "hyperreal" \u2014 these words mark content that has detached from reality and become its own referent. Ask: does this refer to something real, or has it created its own reality?' },
   ],
 
   // ── ECHO CHAMBER: Closed loops, self-reinforcing narratives ──
@@ -183,6 +193,8 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
     { words: ['everyone is saying', 'everyone agrees', 'all over the internet', 'trending everywhere', 'going viral', 'blowing up', 'everywhere i look', "can't escape"], explanation: '\uD83D\uDD04 Echo loop \u2014 these phrases claim consensus without evidence. If "everyone is saying" the same thing, check if they are all quoting the SAME source. One story shared 1000 times is not 1000 independent sources \u2014 it\u2019s one source repeating. Ask: where did the ORIGINAL story come from?' },
     { words: ['multiple sources', 'sources confirm', 'all outlets', 'every news outlet', 'across the board'], explanation: '\uD83D\uDCE1 Self-referencing \u2014 "multiple sources" often means ONE wire story republished by many outlets. CNN, BBC, Fox all running the same AP story is not corroboration \u2014 it\u2019s syndication. Real corroboration comes from independent investigations. Ask: are these sources independent, or do they all quote the same original?' },
     { words: ['self-reinforcing', 'bubble', 'echo', 'circular', 'closed loop'], explanation: '\uD83C\uDF00 Circular logic \u2014 the source is citing itself or its own network. In an echo chamber, information circulates without ever being verified externally. It\u2019s real because "everyone says it," and everyone says it because "it\u2019s real." Ask: what verifiable evidence exists OUTSIDE this circle?' },
+    { words: ['common sense', 'common knowledge', 'conventional wisdom', 'widely known', 'general consensus'], explanation: '\uD83E\uDDD1\u200D\uD83C\uDFED Lakoff: Framing as common sense \u2014 "common sense" is the most powerful frame because it pretends not to be one. Calling something "common sense" positions it as self-evident, beyond debate. But what\u2019s "common sense" in one culture is absurd in another. Ask: is this really universal, or does it just seem obvious because I\u2019ve heard it a thousand times?' },
+    { words: ['framing', 'lens', 'perspective', 'viewpoint', 'paradigm', 'worldview'], explanation: '\uD83D\uDCDD Meta-cognition \u2014 when the text uses words like "framing" or "paradigm," it\u2019s acknowledging that reality is being structured. This can be a genuine attempt at analysis OR a technique to legitimize one narrative. The meta-language creates the appearance of self-awareness. Ask: is this genuinely examining its own bias, or is "framing" being used to dismiss other perspectives?' },
   ],
 
   // ── AGENDA SETTING: What is amplified, what is ignored ──
@@ -206,6 +218,7 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
     { words: ['modern', 'progressive', 'new era', 'cutting-edge', 'revolutionary', 'disruptive', 'next generation', 'next level'], explanation: '\uD83C\uDFAA Appeal to novelty \u2014 the opposite of tradition but equally empty. "New" is not inherently better. Appeal to novelty (argumentum ad novitatem): something is presented as superior simply because it\u2019s new. "Cutting-edge" replaces evidence with hype. Ask: what SPECIFICALLY makes this better \u2014 not just newer?' },
     { words: ['leading expert', 'top scientist', 'world-renowned', 'famous', 'legendary', 'celebrated', 'renowned authority'], explanation: '\uD83C\uDFAA Unnamed authority \u2014 if the expert\u2019s name is not given, the authority is a prop. "Leading experts agree" is Cialdini\u2019s Authority principle without the authority needing to exist. Real experts have names, institutions, and published work you can verify. Ask: who, specifically? Where do they work? Can I read their actual findings?' },
     { words: ['everyone knows', 'everyone agrees', 'common sense', 'universally accepted', 'widely recognized', 'general consensus'], explanation: '\uD83C\uDFAA Popularity as proof \u2014 argumentum ad populum. "Everyone knows" replaces evidence with presumed consensus. But "common sense" is often just culturally inherited bias. The Earth being flat was once "common sense." Ask: is this "common sense" based on evidence \u2014 or on never having questioned it?' },
+    { words: ['legitimate', 'legitimacy', 'illegitimate', 'proper', 'correct', 'appropriate', 'acceptable'], explanation: '\uD83D\uDEE1\uFE0F Foucault: Legitimization \u2014 who gets to decide what is "legitimate"? Foucault showed that institutions claim the power to classify things as proper or improper. Calling something "legitimate" borrows that institutional authority without proving anything. Ask: who granted this legitimacy, and what criteria did they use?' },
   ],
 
   // ── SOURCE CHECK: Epistemology, Source Credibility ──
@@ -218,7 +231,79 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
   ],
 }
 
-// ── HIGHLIGHT FUNCTION ──
+// ── HIGHLIGHT FUNCTION v10 — Stem-based matching ──
+// Uses a lightweight JS stemmer to match morphological variants
+
+// Lightweight stemmer (Porter-style, ~30 lines)
+function simpleStem(word: string): string {
+  let w = word.toLowerCase().trim()
+  if (w.length < 3) return w
+  
+  // Step 1a: plural/suffix removal
+  if (w.endsWith('sses')) w = w.slice(0, -2)
+  else if (w.endsWith('ies')) w = w.slice(0, -2)
+  else if (w.endsWith('s') && !w.endsWith('ss')) w = w.slice(0, -1)
+  
+  // Step 1b: -ed, -ing removal  
+  if (w.endsWith('eed') && w.length > 3) { /* keep */ }
+  else if (w.endsWith('ed') && w.length > 2) {
+    const stem = w.slice(0, -2)
+    if (/[aeiou]/.test(stem)) w = stem
+  }
+  else if (w.endsWith('ing') && w.length > 3) {
+    const stem = w.slice(0, -3)
+    if (/[aeiou]/.test(stem)) w = stem
+  }
+  
+  // Step 1c: -y → -i
+  if (w.endsWith('y') && w.length > 2 && /[aeiou]/.test(w.slice(0, -1))) {
+    w = w.slice(0, -1) + 'i'
+  }
+  
+  // Step 2: common suffix reduction
+  const step2: [string, string][] = [
+    ['ational', 'ate'], ['tional', 'tion'], ['ization', 'ize'],
+    ['iveness', 'ive'], ['fulness', 'ful'], ['ousness', 'ous'],
+    ['ation', 'ate'], ['ator', 'ate'], ['iviti', 'ive'], ['biliti', 'ble'],
+    ['alism', 'al'], ['aliti', 'al'], ['entli', 'ent'], ['ousli', 'ous'],
+    ['enci', 'ence'], ['anci', 'ance'], ['abli', 'able'], ['izer', 'ize'],
+    ['alli', 'al'], ['eli', 'e'],
+  ]
+  for (const [suf, rep] of step2) {
+    if (w.endsWith(suf) && w.length > suf.length + 1) {
+      w = w.slice(0, -suf.length) + rep
+      break
+    }
+  }
+  
+  // Step 3: more reductions
+  if (w.endsWith('icate') && w.length > 5) w = w.slice(0, -4) + 'ic'
+  else if (w.endsWith('ative') && w.length > 5) w = w.slice(0, -5)
+  else if (w.endsWith('alize') && w.length > 5) w = w.slice(0, -4) + 'al'
+  else if (w.endsWith('ical') && w.length > 4) w = w.slice(0, -3) + 'ic'
+  else if (w.endsWith('ness') && w.length > 4) w = w.slice(0, -4)
+  else if (w.endsWith('ful') && w.length > 3) w = w.slice(0, -3)
+  else if (w.endsWith('ment') && w.length > 4) w = w.slice(0, -4)
+  
+  // Step 4: -ion, -er, -ic, -able, -ible, -ant, -ence, -ance, -ent, -ism
+  const step4Suffs = ['al', 'ance', 'ence', 'er', 'ic', 'able', 'ible', 'ant', 'ement', 'ment', 'ent', 'ism', 'ate', 'iti', 'ous', 'ive', 'ize']
+  for (const suf of step4Suffs) {
+    if (w.endsWith(suf) && w.length > suf.length + 2) {
+      w = w.slice(0, -suf.length)
+      break
+    }
+  }
+  if (w.endsWith('ion') && w.length > 4 && /[st]/.test(w[w.length - 4] || '')) {
+    w = w.slice(0, -3)
+  }
+  
+  // Step 5a: -e removal
+  if (w.endsWith('e') && w.length > 3) {
+    if (w.length > 4) w = w.slice(0, -1)
+  }
+  
+  return w
+}
 
 export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<string, HighlightEntry[]> {
   const map = new Map<string, HighlightEntry[]>()
@@ -244,24 +329,39 @@ export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<strin
     }
   }
 
-  // Then single words — EXACT match only
+  // Then single words — STEM-BASED matching
+  // Build a stem→(word→explanation) map per tool for faster lookup
   for (const toolId of toolIds) {
     const rules = HIGHLIGHT_RULES[toolId]
     if (!rules) continue
     const config = CORE_TOOLS.find(t => t.id === toolId)
     if (!config) continue
+    
+    // Build stem lookup for this tool's keywords
+    const stemMap = new Map<string, { word: string; explanation: string }[]>()
+    for (const rule of rules) {
+      for (const word of rule.words) {
+        if (word.includes(' ')) continue
+        const stem = simpleStem(word)
+        const existing = stemMap.get(stem) || []
+        existing.push({ word, explanation: rule.explanation })
+        stemMap.set(stem, existing)
+      }
+    }
 
     const seen = new Set<string>()
     for (const token of singleTokens) {
       if (seen.has(token)) continue
-      seen.add(token)
-
-      for (const rule of rules) {
-        const exactWords = rule.words.filter(w => !w.includes(' '))
-        if (exactWords.includes(token)) {
-          addEntry(map, token, { word: token, explanation: rule.explanation, color: config.color })
-          break
-        }
+      
+      // Stem the token from the text
+      const tokenStem = simpleStem(token)
+      const matches = stemMap.get(tokenStem)
+      
+      if (matches && matches.length > 0) {
+        seen.add(token)
+        // Use the first match's explanation (or combine if multiple)
+        const combinedExplanation = matches.map(m => m.explanation).join(' • ')
+        addEntry(map, token, { word: token, explanation: combinedExplanation, color: config.color })
       }
     }
   }

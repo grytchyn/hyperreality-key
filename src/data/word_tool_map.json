@@ -1,0 +1,1432 @@
+{
+  "real": [
+    "us-vs-them"
+  ],
+  "democratic": [
+    "us-vs-them"
+  ],
+  "natural": [
+    "hidden-story",
+    "us-vs-them"
+  ],
+  "generosity": [
+    "us-vs-them"
+  ],
+  "alien": [
+    "us-vs-them"
+  ],
+  "peace-lov": [
+    "us-vs-them"
+  ],
+  "clear": [
+    "us-vs-them"
+  ],
+  "plague": [
+    "us-vs-them"
+  ],
+  "rat": [
+    "us-vs-them"
+  ],
+  "undoubted": [
+    "us-vs-them"
+  ],
+  "non-citizen": [
+    "us-vs-them"
+  ],
+  "scavenger": [
+    "us-vs-them"
+  ],
+  "democracy": [
+    "us-vs-them"
+  ],
+  "infiltrat": [
+    "us-vs-them"
+  ],
+  "encroach": [
+    "us-vs-them"
+  ],
+  "approach": [
+    "us-vs-them"
+  ],
+  "leeche": [
+    "us-vs-them"
+  ],
+  "legitimate": [
+    "hidden-story",
+    "us-vs-them"
+  ],
+  "locust": [
+    "us-vs-them"
+  ],
+  "reported": [
+    "us-vs-them"
+  ],
+  "respect": [
+    "us-vs-them",
+    "value-check"
+  ],
+  "penetrat": [
+    "us-vs-them"
+  ],
+  "true": [
+    "us-vs-them"
+  ],
+  "cockroache": [
+    "us-vs-them"
+  ],
+  "tolerant": [
+    "us-vs-them"
+  ],
+  "charitable": [
+    "us-vs-them"
+  ],
+  "civil": [
+    "us-vs-them"
+  ],
+  "peaceful": [
+    "us-vs-them"
+  ],
+  "swarm": [
+    "us-vs-them"
+  ],
+  "civiliz": [
+    "us-vs-them"
+  ],
+  "infestation": [
+    "us-vs-them"
+  ],
+  "civilization": [
+    "us-vs-them"
+  ],
+  "vulture": [
+    "us-vs-them"
+  ],
+  "illegal": [
+    "hidden-story",
+    "us-vs-them"
+  ],
+  "free": [
+    "us-vs-them",
+    "value-check"
+  ],
+  "stranger": [
+    "us-vs-them"
+  ],
+  "expand": [
+    "us-vs-them"
+  ],
+  "urgent": [
+    "us-vs-them"
+  ],
+  "intolerance": [
+    "us-vs-them"
+  ],
+  "contamination": [
+    "us-vs-them",
+    "value-check"
+  ],
+  "outsider": [
+    "us-vs-them"
+  ],
+  "obvious": [
+    "us-vs-them"
+  ],
+  "tolerance": [
+    "us-vs-them"
+  ],
+  "civility": [
+    "us-vs-them"
+  ],
+  "alleged": [
+    "us-vs-them"
+  ],
+  "genuine": [
+    "us-vs-them"
+  ],
+  "creep": [
+    "us-vs-them"
+  ],
+  "democratical": [
+    "us-vs-them"
+  ],
+  "parasite": [
+    "us-vs-them"
+  ],
+  "flie": [
+    "us-vs-them"
+  ],
+  "vermin": [
+    "us-vs-them"
+  ],
+  "tolerate": [
+    "us-vs-them"
+  ],
+  "generou": [
+    "us-vs-them"
+  ],
+  "pest": [
+    "us-vs-them"
+  ],
+  "law-abid": [
+    "us-vs-them"
+  ],
+  "otherwise": [
+    "us-vs-them"
+  ],
+  "respectable": [
+    "us-vs-them"
+  ],
+  "intolerant": [
+    "us-vs-them"
+  ],
+  "freedom": [
+    "hidden-story",
+    "us-vs-them",
+    "value-check"
+  ],
+  "supposed": [
+    "us-vs-them"
+  ],
+  "infest": [
+    "us-vs-them"
+  ],
+  "actual": [
+    "us-vs-them"
+  ],
+  "charity": [
+    "us-vs-them"
+  ],
+  "authentic": [
+    "us-vs-them"
+  ],
+  "foreigner": [
+    "us-vs-them"
+  ],
+  "poison": [
+    "us-vs-them",
+    "value-check"
+  ],
+  "must": [
+    "us-vs-them"
+  ],
+  "invasion": [
+    "us-vs-them"
+  ],
+  "spread": [
+    "us-vs-them"
+  ],
+  "unpatriotic": [
+    "value-check"
+  ],
+  "controll": [
+    "value-check"
+  ],
+  "rebel": [
+    "value-check"
+  ],
+  "patriotism": [
+    "value-check"
+  ],
+  "honest": [
+    "value-check"
+  ],
+  "exploit": [
+    "value-check"
+  ],
+  "sacrifice": [
+    "value-check"
+  ],
+  "dutie": [
+    "value-check"
+  ],
+  "cheater": [
+    "value-check"
+  ],
+  "abuse": [
+    "value-check"
+  ],
+  "abus": [
+    "value-check"
+  ],
+  "dishonest": [
+    "value-check"
+  ],
+  "kindness": [
+    "value-check"
+  ],
+  "coercion": [
+    "value-check"
+  ],
+  "disorder": [
+    "hidden-story",
+    "value-check"
+  ],
+  "car": [
+    "value-check",
+    "echo-chamber"
+  ],
+  "traitor": [
+    "value-check"
+  ],
+  "profane": [
+    "value-check"
+  ],
+  "degrad": [
+    "value-check"
+  ],
+  "enslave": [
+    "value-check"
+  ],
+  "decompos": [
+    "value-check"
+  ],
+  "betray": [
+    "value-check"
+  ],
+  "care": [
+    "value-check",
+    "echo-chamber"
+  ],
+  "motherland": [
+    "value-check"
+  ],
+  "disobedience": [
+    "value-check"
+  ],
+  "deserve": [
+    "value-check"
+  ],
+  "innocent": [
+    "value-check"
+  ],
+  "disrespect": [
+    "value-check"
+  ],
+  "duty": [
+    "value-check"
+  ],
+  "pervert": [
+    "value-check"
+  ],
+  "fraudulent": [
+    "value-check"
+  ],
+  "trauma": [
+    "value-check"
+  ],
+  "sinful": [
+    "value-check"
+  ],
+  "unclean": [
+    "value-check"
+  ],
+  "obedience": [
+    "value-check"
+  ],
+  "cag": [
+    "value-check"
+  ],
+  "loyal": [
+    "value-check"
+  ],
+  "treasonou": [
+    "value-check"
+  ],
+  "cheat": [
+    "value-check"
+  ],
+  "liberty": [
+    "hidden-story",
+    "value-check"
+  ],
+  "deviant": [
+    "hidden-story",
+    "value-check"
+  ],
+  "loyalty": [
+    "value-check"
+  ],
+  "taint": [
+    "value-check"
+  ],
+  "oppression": [
+    "value-check"
+  ],
+  "youth": [
+    "value-check"
+  ],
+  "contaminat": [
+    "value-check"
+  ],
+  "oppress": [
+    "value-check"
+  ],
+  "disobey": [
+    "value-check"
+  ],
+  "rotten": [
+    "value-check"
+  ],
+  "disgust": [
+    "feelings-check",
+    "value-check"
+  ],
+  "cruelty": [
+    "value-check"
+  ],
+  "chao": [
+    "value-check"
+  ],
+  "pollution": [
+    "value-check"
+  ],
+  "overreach": [
+    "value-check"
+  ],
+  "kind": [
+    "value-check"
+  ],
+  "tradition": [
+    "hidden-story",
+    "value-check"
+  ],
+  "protect": [
+    "value-check"
+  ],
+  "abusive": [
+    "value-check"
+  ],
+  "suffer": [
+    "value-check"
+  ],
+  "unfairness": [
+    "value-check"
+  ],
+  "togetherness": [
+    "value-check"
+  ],
+  "patriotic": [
+    "value-check"
+  ],
+  "corrupt": [
+    "value-check"
+  ],
+  "pollute": [
+    "value-check"
+  ],
+  "infant": [
+    "value-check"
+  ],
+  "cruel": [
+    "value-check"
+  ],
+  "oppressor": [
+    "value-check"
+  ],
+  "unit": [
+    "value-check"
+  ],
+  "discriminate": [
+    "value-check"
+  ],
+  "coerc": [
+    "value-check"
+  ],
+  "filth": [
+    "value-check"
+  ],
+  "tyranny": [
+    "value-check"
+  ],
+  "sacrific": [
+    "value-check"
+  ],
+  "decay": [
+    "value-check"
+  ],
+  "lawlessness": [
+    "value-check"
+  ],
+  "unity": [
+    "value-check"
+  ],
+  "disrespectful": [
+    "value-check"
+  ],
+  "repugnant": [
+    "feelings-check",
+    "value-check"
+  ],
+  "discrimination": [
+    "value-check"
+  ],
+  "victim": [
+    "value-check"
+  ],
+  "establishment": [
+    "value-check"
+  ],
+  "harm": [
+    "value-check"
+  ],
+  "compassionate": [
+    "value-check",
+    "echo-chamber"
+  ],
+  "sinner": [
+    "value-check"
+  ],
+  "repulsive": [
+    "feelings-check",
+    "value-check"
+  ],
+  "innocence": [
+    "value-check"
+  ],
+  "harmful": [
+    "value-check"
+  ],
+  "kid": [
+    "value-check"
+  ],
+  "divide": [
+    "value-check"
+  ],
+  "authoritarian": [
+    "value-check"
+  ],
+  "exploitative": [
+    "value-check"
+  ],
+  "fraud": [
+    "value-check"
+  ],
+  "chain": [
+    "value-check"
+  ],
+  "impurity": [
+    "value-check"
+  ],
+  "disobedient": [
+    "value-check"
+  ],
+  "degradation": [
+    "value-check"
+  ],
+  "equality": [
+    "value-check"
+  ],
+  "sacr": [
+    "value-check"
+  ],
+  "order": [
+    "value-check"
+  ],
+  "sin": [
+    "value-check"
+  ],
+  "patriot": [
+    "value-check"
+  ],
+  "totalitarian": [
+    "value-check"
+  ],
+  "country": [
+    "value-check"
+  ],
+  "corruption": [
+    "value-check"
+  ],
+  "traumatiz": [
+    "value-check"
+  ],
+  "unfair": [
+    "value-check"
+  ],
+  "holy": [
+    "value-check"
+  ],
+  "authoritie": [
+    "value-check"
+  ],
+  "blasphemou": [
+    "value-check"
+  ],
+  "dirty": [
+    "value-check"
+  ],
+  "soil": [
+    "value-check"
+  ],
+  "hurt": [
+    "value-check"
+  ],
+  "defiant": [
+    "value-check"
+  ],
+  "unjust": [
+    "value-check"
+  ],
+  "anarchy": [
+    "value-check"
+  ],
+  "rebellion": [
+    "value-check"
+  ],
+  "national": [
+    "value-check"
+  ],
+  "discriminatory": [
+    "value-check"
+  ],
+  "revolt": [
+    "feelings-check",
+    "value-check"
+  ],
+  "empathetic": [
+    "value-check",
+    "echo-chamber"
+  ],
+  "degrade": [
+    "value-check"
+  ],
+  "tyrannical": [
+    "value-check"
+  ],
+  "tyrant": [
+    "value-check"
+  ],
+  "justice": [
+    "value-check"
+  ],
+  "abnormal": [
+    "hidden-story",
+    "value-check"
+  ],
+  "fairness": [
+    "value-check",
+    "echo-chamber"
+  ],
+  "control": [
+    "value-check"
+  ],
+  "sufferer": [
+    "value-check"
+  ],
+  "young": [
+    "value-check"
+  ],
+  "children": [
+    "value-check"
+  ],
+  "unnatural": [
+    "value-check"
+  ],
+  "pain": [
+    "value-check"
+  ],
+  "enslav": [
+    "value-check"
+  ],
+  "enslavement": [
+    "value-check"
+  ],
+  "deserv": [
+    "value-check"
+  ],
+  "traditional": [
+    "hidden-story",
+    "value-check"
+  ],
+  "slavery": [
+    "value-check"
+  ],
+  "undeserv": [
+    "value-check"
+  ],
+  "pollut": [
+    "value-check"
+  ],
+  "obey": [
+    "value-check"
+  ],
+  "betrayal": [
+    "value-check"
+  ],
+  "dictatorship": [
+    "value-check"
+  ],
+  "child": [
+    "value-check"
+  ],
+  "right": [
+    "value-check"
+  ],
+  "coerce": [
+    "value-check"
+  ],
+  "inequality": [
+    "value-check"
+  ],
+  "perversion": [
+    "value-check"
+  ],
+  "exploitation": [
+    "value-check"
+  ],
+  "division": [
+    "value-check"
+  ],
+  "injustice": [
+    "value-check"
+  ],
+  "respectful": [
+    "value-check"
+  ],
+  "victimize": [
+    "value-check"
+  ],
+  "homeland": [
+    "value-check"
+  ],
+  "blasphemy": [
+    "value-check"
+  ],
+  "protection": [
+    "value-check"
+  ],
+  "oppressive": [
+    "value-check"
+  ],
+  "together": [
+    "value-check"
+  ],
+  "equal": [
+    "value-check"
+  ],
+  "fraudster": [
+    "value-check"
+  ],
+  "libertie": [
+    "value-check"
+  ],
+  "abomination": [
+    "value-check"
+  ],
+  "impure": [
+    "value-check"
+  ],
+  "filthy": [
+    "value-check"
+  ],
+  "toxicity": [
+    "value-check"
+  ],
+  "pure": [
+    "value-check"
+  ],
+  "dictator": [
+    "value-check"
+  ],
+  "divisive": [
+    "value-check"
+  ],
+  "authoritative": [
+    "value-check"
+  ],
+  "defie": [
+    "value-check"
+  ],
+  "fascist": [
+    "value-check"
+  ],
+  "treason": [
+    "value-check"
+  ],
+  "fatherland": [
+    "value-check"
+  ],
+  "toxic": [
+    "value-check"
+  ],
+  "victimiz": [
+    "value-check"
+  ],
+  "defiance": [
+    "value-check"
+  ],
+  "honesty": [
+    "value-check"
+  ],
+  "babie": [
+    "value-check"
+  ],
+  "rebelliou": [
+    "value-check"
+  ],
+  "dishonesty": [
+    "value-check"
+  ],
+  "flag": [
+    "value-check"
+  ],
+  "fair": [
+    "value-check"
+  ],
+  "contaminate": [
+    "value-check"
+  ],
+  "nation": [
+    "value-check"
+  ],
+  "obedient": [
+    "value-check"
+  ],
+  "deviance": [
+    "value-check"
+  ],
+  "shackle": [
+    "value-check"
+  ],
+  "fascism": [
+    "value-check"
+  ],
+  "compassion": [
+    "value-check",
+    "echo-chamber"
+  ],
+  "unequal": [
+    "value-check"
+  ],
+  "authority": [
+    "value-check"
+  ],
+  "empathy": [
+    "value-check",
+    "echo-chamber"
+  ],
+  "painful": [
+    "value-check"
+  ],
+  "rot": [
+    "value-check"
+  ],
+  "defy": [
+    "value-check"
+  ],
+  "solidarity": [
+    "value-check"
+  ],
+  "purity": [
+    "value-check"
+  ],
+  "fortitude": [
+    "echo-chamber"
+  ],
+  "accountability": [
+    "echo-chamber"
+  ],
+  "pc": [
+    "echo-chamber"
+  ],
+  "communal": [
+    "echo-chamber"
+  ],
+  "disciplin": [
+    "echo-chamber"
+  ],
+  "punishment": [
+    "echo-chamber"
+  ],
+  "supportive": [
+    "echo-chamber"
+  ],
+  "fram": [
+    "echo-chamber"
+  ],
+  "grit": [
+    "echo-chamber"
+  ],
+  "consequence": [
+    "echo-chamber"
+  ],
+  "border": [
+    "echo-chamber"
+  ],
+  "moral": [
+    "echo-chamber"
+  ],
+  "toughness": [
+    "echo-chamber"
+  ],
+  "accountable": [
+    "echo-chamber"
+  ],
+  "penalty": [
+    "echo-chamber"
+  ],
+  "line": [
+    "echo-chamber"
+  ],
+  "limit": [
+    "echo-chamber"
+  ],
+  "refram": [
+    "echo-chamber"
+  ],
+  "community": [
+    "echo-chamber"
+  ],
+  "storie": [
+    "echo-chamber"
+  ],
+  "crackdown": [
+    "echo-chamber"
+  ],
+  "self-reliance": [
+    "echo-chamber"
+  ],
+  "self-discipline": [
+    "echo-chamber"
+  ],
+  "diligent": [
+    "echo-chamber"
+  ],
+  "common-sense": [
+    "echo-chamber"
+  ],
+  "boundary": [
+    "echo-chamber"
+  ],
+  "penaltie": [
+    "echo-chamber"
+  ],
+  "value": [
+    "echo-chamber"
+  ],
+  "help": [
+    "echo-chamber"
+  ],
+  "hardwork": [
+    "echo-chamber"
+  ],
+  "understand": [
+    "echo-chamber"
+  ],
+  "woke": [
+    "echo-chamber"
+  ],
+  "strength": [
+    "echo-chamber"
+  ],
+  "wokeism": [
+    "echo-chamber"
+  ],
+  "industriou": [
+    "echo-chamber"
+  ],
+  "punish": [
+    "echo-chamber"
+  ],
+  "narrative": [
+    "echo-chamber"
+  ],
+  "strong": [
+    "echo-chamber"
+  ],
+  "boundarie": [
+    "echo-chamber"
+  ],
+  "morality": [
+    "echo-chamber"
+  ],
+  "frame": [
+    "echo-chamber"
+  ],
+  "discipline": [
+    "echo-chamber"
+  ],
+  "backbone": [
+    "echo-chamber"
+  ],
+  "equity": [
+    "echo-chamber"
+  ],
+  "immoral": [
+    "echo-chamber"
+  ],
+  "character": [
+    "echo-chamber"
+  ],
+  "reframe": [
+    "echo-chamber"
+  ],
+  "tough": [
+    "echo-chamber"
+  ],
+  "support": [
+    "echo-chamber"
+  ],
+  "self-sufficient": [
+    "echo-chamber"
+  ],
+  "self-reliant": [
+    "echo-chamber"
+  ],
+  "story": [
+    "echo-chamber"
+  ],
+  "fundamental": [
+    "agenda-setting"
+  ],
+  "frank": [
+    "agenda-setting"
+  ],
+  "essential": [
+    "agenda-setting"
+  ],
+  "shock": [
+    "feelings-check"
+  ],
+  "nauseat": [
+    "feelings-check"
+  ],
+  "outrag": [
+    "feelings-check"
+  ],
+  "indebt": [
+    "feelings-check"
+  ],
+  "contempt": [
+    "feelings-check"
+  ],
+  "guilty": [
+    "feelings-check"
+  ],
+  "despise": [
+    "feelings-check"
+  ],
+  "dignify": [
+    "feelings-check"
+  ],
+  "embarrassment": [
+    "feelings-check"
+  ],
+  "embarrass": [
+    "feelings-check"
+  ],
+  "sicken": [
+    "feelings-check"
+  ],
+  "mortify": [
+    "feelings-check"
+  ],
+  "outrageou": [
+    "feelings-check"
+  ],
+  "scandal": [
+    "feelings-check"
+  ],
+  "indignant": [
+    "feelings-check"
+  ],
+  "jealousy": [
+    "feelings-check"
+  ],
+  "despis": [
+    "feelings-check"
+  ],
+  "humiliation": [
+    "feelings-check"
+  ],
+  "proud": [
+    "feelings-check"
+  ],
+  "enviou": [
+    "feelings-check"
+  ],
+  "asham": [
+    "feelings-check"
+  ],
+  "furiou": [
+    "feelings-check"
+  ],
+  "resentment": [
+    "feelings-check"
+  ],
+  "honorable": [
+    "feelings-check"
+  ],
+  "indignation": [
+    "feelings-check"
+  ],
+  "outrage": [
+    "feelings-check"
+  ],
+  "culpable": [
+    "feelings-check"
+  ],
+  "disgraceful": [
+    "feelings-check"
+  ],
+  "covetou": [
+    "feelings-check"
+  ],
+  "thankful": [
+    "feelings-check"
+  ],
+  "awkward": [
+    "feelings-check"
+  ],
+  "sham": [
+    "feelings-check"
+  ],
+  "dishonorable": [
+    "feelings-check"
+  ],
+  "gratitude": [
+    "feelings-check"
+  ],
+  "dishonor": [
+    "feelings-check"
+  ],
+  "despicable": [
+    "feelings-check"
+  ],
+  "contemptible": [
+    "feelings-check"
+  ],
+  "anger": [
+    "feelings-check"
+  ],
+  "honor": [
+    "feelings-check"
+  ],
+  "blame": [
+    "feelings-check"
+  ],
+  "envy": [
+    "feelings-check"
+  ],
+  "fury": [
+    "feelings-check"
+  ],
+  "grateful": [
+    "feelings-check"
+  ],
+  "jealou": [
+    "feelings-check"
+  ],
+  "pride": [
+    "feelings-check"
+  ],
+  "scandalou": [
+    "feelings-check"
+  ],
+  "angry": [
+    "feelings-check"
+  ],
+  "humiliat": [
+    "feelings-check"
+  ],
+  "disgrace": [
+    "feelings-check"
+  ],
+  "shameful": [
+    "feelings-check"
+  ],
+  "rage": [
+    "feelings-check"
+  ],
+  "resentful": [
+    "feelings-check"
+  ],
+  "dignity": [
+    "feelings-check"
+  ],
+  "appall": [
+    "feelings-check"
+  ],
+  "blameworthy": [
+    "feelings-check"
+  ],
+  "humiliate": [
+    "feelings-check"
+  ],
+  "shame": [
+    "feelings-check"
+  ],
+  "guilt": [
+    "feelings-check"
+  ],
+  "mortification": [
+    "feelings-check"
+  ],
+  "contemptuou": [
+    "feelings-check"
+  ],
+  "covet": [
+    "feelings-check"
+  ],
+  "certify": [
+    "hidden-story"
+  ],
+  "timeless": [
+    "hidden-story"
+  ],
+  "revolutionary": [
+    "hidden-story"
+  ],
+  "revolution": [
+    "hidden-story"
+  ],
+  "universal": [
+    "hidden-story"
+  ],
+  "unavoidable": [
+    "hidden-story"
+  ],
+  "inevitab": [
+    "hidden-story"
+  ],
+  "normal": [
+    "hidden-story"
+  ],
+  "cutting-edge": [
+    "hidden-story"
+  ],
+  "proper": [
+    "hidden-story"
+  ],
+  "forever": [
+    "hidden-story"
+  ],
+  "centuries-old": [
+    "hidden-story"
+  ],
+  "threat": [
+    "hidden-story"
+  ],
+  "unauthoriz": [
+    "hidden-story"
+  ],
+  "collapse": [
+    "hidden-story"
+  ],
+  "illegitimate": [
+    "hidden-story"
+  ],
+  "official": [
+    "hidden-story"
+  ],
+  "eternal": [
+    "hidden-story"
+  ],
+  "legitimacy": [
+    "hidden-story"
+  ],
+  "authoriz": [
+    "hidden-story"
+  ],
+  "licens": [
+    "hidden-story"
+  ],
+  "emergency": [
+    "hidden-story"
+  ],
+  "accredit": [
+    "hidden-story"
+  ],
+  "game-chang": [
+    "hidden-story"
+  ],
+  "crisi": [
+    "hidden-story"
+  ],
+  "pathological": [
+    "hidden-story"
+  ],
+  "inevitable": [
+    "hidden-story"
+  ],
+  "unlawful": [
+    "hidden-story"
+  ],
+  "approv": [
+    "hidden-story"
+  ],
+  "age-old": [
+    "hidden-story"
+  ],
+  "classic": [
+    "hidden-story"
+  ],
+  "heritage": [
+    "hidden-story"
+  ],
+  "security": [
+    "hidden-story"
+  ],
+  "catastrophe": [
+    "hidden-story"
+  ],
+  "catastrophic": [
+    "hidden-story"
+  ],
+  "ageless": [
+    "hidden-story"
+  ],
+  "register": [
+    "hidden-story"
+  ],
+  "modern": [
+    "hidden-story"
+  ],
+  "progress": [
+    "hidden-story"
+  ],
+  "time-honor": [
+    "hidden-story"
+  ],
+  "sanction": [
+    "hidden-story"
+  ],
+  "improper": [
+    "hidden-story"
+  ],
+  "unhealthy": [
+    "hidden-story"
+  ],
+  "breakdown": [
+    "hidden-story"
+  ],
+  "simulacrum": [
+    "fake-check"
+  ],
+  "unreal": [
+    "fake-check"
+  ],
+  "manipulat": [
+    "fake-check"
+  ],
+  "doctor": [
+    "fake-check"
+  ],
+  "deepfake": [
+    "fake-check"
+  ],
+  "re-edit": [
+    "fake-check"
+  ],
+  "ai-generat": [
+    "fake-check"
+  ],
+  "trend": [
+    "fake-check"
+  ],
+  "hyperreal": [
+    "fake-check"
+  ],
+  "fabricat": [
+    "fake-check"
+  ],
+  "viral": [
+    "fake-check"
+  ],
+  "artificial": [
+    "fake-check"
+  ],
+  "unbelievable": [
+    "fake-check"
+  ],
+  "re-contextualiz": [
+    "fake-check"
+  ],
+  "virtual": [
+    "fake-check"
+  ],
+  "simulat": [
+    "fake-check"
+  ],
+  "computer-generat": [
+    "fake-check"
+  ],
+  "simulacra": [
+    "fake-check"
+  ],
+  "meme": [
+    "fake-check"
+  ],
+  "re-cut": [
+    "fake-check"
+  ],
+  "hyperreality": [
+    "fake-check"
+  ],
+  "surreal": [
+    "fake-check"
+  ],
+  "simulation": [
+    "fake-check"
+  ],
+  "generat": [
+    "fake-check"
+  ],
+  "fabrication": [
+    "fake-check"
+  ],
+  "synthetic": [
+    "fake-check"
+  ],
+  "rework": [
+    "fake-check"
+  ],
+  "misrepresent": [
+    "bad-arguments"
+  ],
+  "everyth": [
+    "bad-arguments"
+  ],
+  "noth": [
+    "bad-arguments"
+  ],
+  "everyone": [
+    "bad-arguments"
+  ],
+  "coincidence?": [
+    "bad-arguments"
+  ],
+  "everybody": [
+    "bad-arguments"
+  ],
+  "alway": [
+    "bad-arguments"
+  ],
+  "never": [
+    "bad-arguments"
+  ],
+  "either/or": [
+    "bad-arguments"
+  ],
+  "nowhere": [
+    "bad-arguments"
+  ],
+  "nobody": [
+    "bad-arguments"
+  ],
+  "strawman": [
+    "bad-arguments"
+  ],
+  "everywhere": [
+    "bad-arguments"
+  ],
+  "none": [
+    "bad-arguments"
+  ],
+  "every": [
+    "bad-arguments"
+  ],
+  "consensu": [
+    "false-appeal"
+  ]
+}
