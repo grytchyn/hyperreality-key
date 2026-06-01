@@ -16,8 +16,13 @@ interface GameScreenProps {
 const LETTERS = ['A', 'B', 'C', 'D']
 
 export default function GameScreen({ post, onAnswer }: GameScreenProps) {
-  const [phase, setPhase] = useState<'chat' | 'game'>('chat')
-  const [activeFilters, setActiveFilters] = useState<CoreToolId[]>([])
+  const [phase, setPhase] = useState<'chat' | 'game'>('game')
+  const [activeFilters, setActiveFilters] = useState<CoreToolId[]>(() => {
+    // Pre-activate all available filters immediately
+    const level = post.level
+    const tools = LEVEL_TOOLS[level] || []
+    return tools
+  })
   const [chosenAnswer, setChosenAnswer] = useState<number | null>(null)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null)
@@ -81,8 +86,10 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
 
   // Reset state when post changes
   useEffect(() => {
-    setPhase('chat')
-    setActiveFilters([])
+    setPhase('game')
+    // Pre-activate all available filters
+    const tools = LEVEL_TOOLS[post.level] || []
+    setActiveFilters(tools)
     setChosenAnswer(null)
     setFeedback(null)
     setTooltip(null)
