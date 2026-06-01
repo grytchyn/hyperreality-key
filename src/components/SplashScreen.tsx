@@ -146,19 +146,41 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
           )}
         </div>
 
-        {/* START BUTTON */}
+        {/* START BUTTON — styled as chat reply message */}
         {currentChar >= SCIENTIST_NAMES.length && (
-          <button
-            onClick={handleStart}
-            className="w-full px-6 py-4 rounded-xl font-bold text-base uppercase tracking-wider transition-all duration-200 cursor-pointer hover:translate-y-[-1px] active:scale-[0.98] animate-fade-in-up"
-            style={{
-              background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
-              color: '#fff',
-              boxShadow: '0 4px 20px rgba(139,92,246,0.3)',
-            }}
-          >
-            Start Training →
-          </button>
+          <div className="animate-fade-in-up">
+            {/* Reply to scientist message */}
+            <div className="flex justify-end mb-2">
+              <div
+                className="max-w-[80%] rounded-2xl px-4 py-3 text-xs leading-relaxed cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                onClick={handleStart}
+                style={{
+                  background: 'linear-gradient(135deg, rgba(139,92,246,0.25), rgba(124,58,237,0.15))',
+                  border: '1px solid rgba(139,92,246,0.3)',
+                  color: '#e5e7eb',
+                  borderBottomRightRadius: '4px',
+                }}
+              >
+                <div className="text-[9px] font-mono mb-1" style={{ color: '#a78bfa' }}>→ REPLY</div>
+                OK, I'll check this post for manipulation 🔍
+              </div>
+            </div>
+            {/* Second bubble — sending animation trigger */}
+            <div className="flex justify-end">
+              <div
+                className="rounded-2xl px-4 py-3 text-xs cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                onClick={handleStart}
+                style={{
+                  background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                  color: '#fff',
+                  boxShadow: '0 4px 20px rgba(139,92,246,0.3)',
+                  borderBottomRightRadius: '4px',
+                }}
+              >
+                <span className="font-bold text-sm">Send →</span>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
