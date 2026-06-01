@@ -346,7 +346,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
             })}
           </div>
 
-          {/* Inline explanation */}
+          {/* Inline explanation + NEXT BUTTON */}
           {chosenAnswer && (
             <div className="mt-4 rounded-xl p-3.5 text-xs leading-relaxed animate-fade-in-up"
               style={{
@@ -358,23 +358,25 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
                 {feedback === 'correct' ? '✓ Correct!' : '✗ Not quite'}
               </span>
               {post.explanation}
-              
-              {/* Manual Next button — user reads then clicks */}
-              <button onClick={handleNext}
-                className="w-full mt-4 px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all cursor-pointer hover:translate-y-[-1px] active:scale-[0.98] flex items-center justify-center gap-2"
-                style={{
-                  background: feedback === 'correct'
-                    ? 'linear-gradient(135deg, #22c55e, #16a34a)'
-                    : 'linear-gradient(135deg, #6b7280, #4b5563)',
-                  color: '#fff',
-                  boxShadow: feedback === 'correct'
-                    ? '0 4px 20px rgba(34,197,94,0.3)'
-                    : '0 4px 20px rgba(107,114,128,0.3)',
-                }}>
-                Next Level →
-                <span className="text-[10px] opacity-70">{level + 1 > 7 ? '🏁 Results' : `Level ${level + 1}`}</span>
-              </button>
             </div>
+          )}
+
+          {/* Next button — always visible after picking an answer, outside explanation */}
+          {chosenAnswer !== null && (
+            <button onClick={handleNext}
+              className="w-full mt-4 px-6 py-4 rounded-xl font-bold text-base uppercase tracking-wider transition-all cursor-pointer hover:translate-y-[-1px] active:scale-[0.98] flex items-center justify-center gap-2"
+              style={{
+                background: feedback === 'correct'
+                  ? 'linear-gradient(135deg, #22c55e, #16a34a)'
+                  : 'linear-gradient(135deg, #6b7280, #4b5563)',
+                color: '#fff',
+                boxShadow: feedback === 'correct'
+                  ? '0 4px 20px rgba(34,197,94,0.4)'
+                  : '0 4px 20px rgba(107,114,128,0.3)',
+              }}>
+              Next Level →
+              <span className="text-[11px] opacity-70">{level + 1 > 7 ? '🏁 Results' : `Level ${level + 1}`}</span>
+            </button>
           )}
         </div>
       </div>
