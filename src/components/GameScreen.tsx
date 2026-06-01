@@ -293,6 +293,8 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
 
           {/* FILTER TOOLS — 2×4 grid, all pre-active */}
           <div className="px-4 py-3">
+            <>
+            {highlightCount > 0 && (
             <div className="flex items-center justify-between mb-3">
               <div className="text-[10px] font-mono flex items-center gap-1.5" style={{ color: '#6b7280' }}>
                 🔍 <span style={{ color: '#9ca3af' }}>{highlightCount}</span> words highlighted
@@ -300,6 +302,8 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
               <button onClick={() => { setActiveFilters([]) }}
                 className="text-[10px] font-mono transition-colors cursor-pointer" style={{ color: '#6b7280' }}>clear</button>
             </div>
+            )}
+            {toolsWithHighlights.length > 0 && (
             <div className="grid grid-cols-4 gap-2">
               {toolsWithHighlights.map(toolId => {
                 const t = CORE_TOOLS.find(x => x.id === toolId)
@@ -322,6 +326,8 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
                 )
               })}
             </div>
+            )}
+            </>
           </div>
         </div>
 
