@@ -31,43 +31,13 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
   return (
     <div className="min-h-screen bg-dark-bg flex items-center justify-center p-4 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #0a0a0f 0%, #0d0d16 50%, #0a0a0f 100%)',
+        background: `#0a0a0f url('/assets/bg/victory-bg.png') center center / cover no-repeat`,
       }}>
-      {/* Animated background — city skyline glow */}
-      <div className="fixed inset-0 pointer-events-none -z-10">
-        <div className="absolute top-0 left-0 right-0 h-1/3"
-          style={{
-            background: 'linear-gradient(180deg, rgba(139,92,246,0.06), transparent)',
-          }} />
-        <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center opacity-[0.03]">
-          {/* City silhouette */}
-          {[...Array(12)].map((_, i) => (
-            <div key={i} className="w-8"
-              style={{
-                height: `${20 + Math.random() * 80}px`,
-                background: '#8b5cf6',
-                margin: '0 4px',
-                borderRadius: '2px 2px 0 0',
-                opacity: 0.3 + Math.random() * 0.3,
-              }} />
-          ))}
-        </div>
-        {/* Floating particles */}
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className="absolute rounded-full"
-            style={{
-              width: `${1 + Math.random() * 2}px`,
-              height: `${1 + Math.random() * 2}px`,
-              top: `${5 + Math.random() * 90}%`,
-              left: `${5 + Math.random() * 90}%`,
-              background: i % 3 === 0 ? '#8b5cf6' : i % 3 === 1 ? '#fbbf24' : '#06b6d4',
-              opacity: 0.1 + Math.random() * 0.2,
-              animation: `pulse ${3 + Math.random() * 4}s infinite ${Math.random() * 3}s`,
-            }} />
-        ))}
-      </div>
+      {/* Dark overlay for readability */}
+      <div className="fixed inset-0 pointer-events-none z-0"
+              style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.5) 0%, rgba(10,10,15,0.7) 100%)' }} />
 
-      <div className="w-full max-w-md animate-fade-in-up text-center relative z-10">
+            <div className="w-full max-w-md animate-fade-in-up text-center relative z-10">
         <div className="relative rounded-2xl p-6"
           style={{
             background: 'linear-gradient(180deg, rgba(19,19,26,0.95), rgba(15,15,22,0.98))',

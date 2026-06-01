@@ -1,5 +1,21 @@
 // ── CHAT UI v2 — answer appears in chat, inline feedback ──
 // Flow: friend msg → article preview → user answer as chat bubble
+// Avatars: uses /assets/bg/avatar-{name}.png
+
+const AVATAR_MAP: Record<string, string> = {
+  alex: '/assets/bg/avatar-alex.png',
+  jay: '/assets/bg/avatar-jay.png',
+  mia: '/assets/bg/avatar-mia.png',
+  jack: '/assets/bg/avatar-jack.png',
+  emma: '/assets/bg/avatar-emma.png',
+  zoe: '/assets/bg/avatar-zoe.png',
+  tom: '/assets/bg/avatar-tom.png',
+}
+
+function getAvatarUrl(name: string): string {
+  const key = Object.keys(AVATAR_MAP).find(k => name.toLowerCase().includes(k))
+  return key ? AVATAR_MAP[key] : ''
+}
 
 interface ChatUiProps {
   friendName: string
@@ -57,10 +73,9 @@ export default function ChatUi({
           <path d="M15 4 L17 6 L15 8" stroke="#888" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           <line x1="4" y1="6" x2="17" y2="6" stroke="#888" strokeWidth="1.5" />
         </svg>
-        <div className="w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold"
-          style={{ background: `${friendColor}25`, border: `2px solid ${friendColor}60`, color: friendColor }}>
-          {friendName[0]}
-        </div>
+        <img src={getAvatarUrl(friendName)} alt={friendName}
+          className="w-8 h-8 rounded-full object-cover shrink-0"
+          style={{ border: `2px solid ${friendColor}60` }} />
         <div className="flex-1">
           <div className="text-[11px] font-bold text-white">{friendName}</div>
           <div className="flex items-center gap-1">

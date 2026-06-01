@@ -41,17 +41,16 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
   if (!messagePost) return null
 
   return (
-    <div className="min-h-screen bg-dark-bg flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      {/* Animated bg */}
-      <div className="fixed inset-0 pointer-events-none -z-10">
-        <div className="absolute top-10 left-1/4 w-[30rem] h-[30rem] rounded-full opacity-[0.1]"
-          style={{ background: 'radial-gradient(circle, #8b5cf6, transparent 70%)', animation: 'pulse 5s infinite' }} />
-        <div className="absolute bottom-20 right-1/4 w-[25rem] h-[25rem] rounded-full opacity-[0.07]"
-          style={{ background: 'radial-gradient(circle, #06b6d4, transparent 70%)', animation: 'pulse 7s infinite 1.5s' }} />
-      </div>
+    <div className="min-h-screen bg-dark-bg flex flex-col items-center justify-center p-4 relative overflow-hidden"
+      style={{
+        background: `#0a0a0f url('/assets/bg/splash-bg.png') center center / cover no-repeat`,
+      }}>
+      {/* Dark overlay */}
+      <div className="fixed inset-0 pointer-events-none z-0"
+        style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.5) 0%, rgba(10,10,15,0.7) 100%)' }} />
 
       {/* Phone frame */}
-      <div className="relative w-full max-w-sm animate-fade-in-up">
+      <div className="relative w-full max-w-sm animate-fade-in-up z-10">
         {/* Phone notch */}
         <div className="mx-auto w-28 h-5 bg-black rounded-b-xl mb-0 relative z-10 flex items-center justify-center gap-2">
           <div className="w-2 h-2 rounded-full bg-gray-700" />

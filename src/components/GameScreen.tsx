@@ -111,17 +111,23 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
     })
   }
 
-  // ── CHAT MODE: Full-screen chat only ──
   if (phase === 'chat') {
     return (
-      <div className="min-h-[100dvh] bg-dark-bg flex items-center justify-center p-4" style={{ minHeight: '100dvh' }}>
+      <div className="min-h-[100dvh] bg-dark-bg flex items-center justify-center p-4 relative overflow-hidden"
+        style={{
+          minHeight: '100dvh',
+          background: `#0a0a0f url('/assets/bg/level${level}-bg.png') center center / cover no-repeat`,
+        }}>
+        {/* Dark overlay */}
+        <div className="fixed inset-0 pointer-events-none z-0"
+          style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.6) 0%, rgba(10,10,15,0.8) 100%)' }} />
         {transitioning ? (
           <div className="animate-fade-in-up text-center">
             <div className="text-4xl mb-4 animate-pulse" style={{ color: levelCfg.color }}>🔍</div>
             <div className="text-sm font-mono" style={{ color: levelCfg.color }}>Analyzing...</div>
           </div>
         ) : (
-          <div className="w-full max-w-md animate-fade-in-up">
+          <div className="w-full max-w-md animate-fade-in-up relative z-10">
             <ChatUi
               friendName={post.friendName}
               friendColor={post.friendColor}
@@ -141,8 +147,16 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
   }
 
   // ── GAME MODE: Full analysis screen ──
+  const bgUrl = `/assets/bg/level${level}-bg.png`
+
   return (
-    <div className="relative overflow-hidden" ref={containerRef}>
+    <div className="relative overflow-hidden min-h-[100dvh]" ref={containerRef}
+      style={{
+        background: `#0a0a0f url('${bgUrl}') center center / cover no-repeat`,
+      }}>
+      {/* Dark overlay for readability */}
+      <div className="fixed inset-0 pointer-events-none z-0"
+        style={{ background: 'linear-gradient(180deg, rgba(10,10,15,0.7) 0%, rgba(10,10,15,0.85) 50%, rgba(10,10,15,0.95) 100%)' }} />
       {/* Fixed tooltip */}
       {tooltip && (
         <div className="fixed z-[9999] pointer-events-none" style={{ left: tooltip.x, top: tooltip.y, transform: 'translateY(-100%)' }}>
