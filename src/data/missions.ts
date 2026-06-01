@@ -1,4 +1,4 @@
-// ── MISSIONS v15 — 7 levels, REAL articles with real data ──
+// ── MISSIONS v16 — 12 levels, REAL articles with real data ──
 // Each post uses verbatim excerpts from real news articles (2025-2026)
 import type { CoreToolId } from '../types'
 
@@ -224,152 +224,151 @@ const POSTS: MissionPost[] = [
     friendName: 'TikTok Tom',
     friendColor: '#a78bfa',
   },
-]
 
-// ════════════════════════════════════════════
-// LEVEL 8 — SOURCE CHECK (Fake Experts)
-// Real: Forbes — RFK Jr. MAHA report fake citations (May 2025)
-// URL: https://www.forbes.com/sites/saradorn/2025/05/29/white-house-blames-nonexistent-medical-citations-in-rfk-jrs-maha-report-on-formatting-issues
-// ════════════════════════════════════════════
-{
-  title: 'Forbes: White House Blames Nonexistent Medical Citations On "Formatting Issues"',
-  source: 'Forbes',
-  content: `The White House did not deny Thursday that a report on childhood chronic disease produced by Health and Human Services Secretary Robert F. Kennedy Jr.'s "Make America Healthy Again" Commission was partly based on fictitious research — even as Kennedy has repeatedly claimed widely available medical research is unreliable. Epidemiologist Katherine Keyes, listed as an author of a nonexistent study, told NOTUS: "The paper cited is not a real paper that I or my colleagues were involved with." White House press secretary Karoline Leavitt said the report contained "formatting issues that are being addressed and the report will be updated," telling reporters they "do not negate the substance of the report." The report cited at least seven nonexistent studies with hallmarks of AI generation.`,
-  category: 'Politics',
-  categoryColor: '#14b8a6',
-  imageEmoji: '📋',
-  imageBg: 'from-teal-500/20 to-cyan-500/10',
-  level: 8,
-  neededTool: 'source-check',
-  question: 'The MAHA report cited studies that never existed. What manipulation technique is this?',
-  choices: [
-    'Fabricated expertise — inventing research to create false authority for policy claims',
-    'Proper academic peer review that accidentally missed some citations',
-    'Journalistic oversight by Forbes for reporting on unpublished drafts',
-    'Transparent policy-making with clear sourcing that needs minor formatting fixes',
-  ],
-  correctIndex: 0,
-  explanation: 'Cialdini\'s Authority principle: the appearance of research is used to borrow credibility. The report cited nonexistent studies with hallmarks of AI generation. When real scientists (like Katherine Keyes) were listed as authors on research they never conducted, this crossed from mistake to fabrication. The White House called it "formatting issues" — a minimization tactic.',
-  friendPreview: 'This is HUGE — RFK Jr. CAUGHT faking science in official WH report!! 📋🔥',
-  friendName: 'Jay',
-  friendColor: '#f59e0b',
-},
+  // ════════════════════════════════════════════
+  // LEVEL 8 — SOURCE CHECK (Fake Experts)
+  // Real: Forbes — RFK Jr. MAHA report fake citations (May 2025)
+  // URL: https://www.forbes.com/sites/saradorn/2025/05/29/white-house-blames-nonexistent-medical-citations-in-rfk-jrs-maha-report-on-formatting-issues
+  // ════════════════════════════════════════════
+  {
+    title: 'Forbes: White House Blames Nonexistent Medical Citations On "Formatting Issues"',
+    source: 'Forbes',
+    content: `The White House did not deny Thursday that a report on childhood chronic disease produced by Health and Human Services Secretary Robert F. Kennedy Jr.\u2019s "Make America Healthy Again" Commission was partly based on fictitious research \u2014 even as Kennedy has repeatedly claimed widely available medical research is unreliable. Epidemiologist Katherine Keyes, listed as an author of a nonexistent study, told NOTUS: "The paper cited is not a real paper that I or my colleagues were involved with." White House press secretary Karoline Leavitt said the report contained "formatting issues that are being addressed and the report will be updated," telling reporters they "do not negate the substance of the report." The report cited at least seven nonexistent studies with hallmarks of AI generation.`,
+    category: 'Politics',
+    categoryColor: '#14b8a6',
+    imageEmoji: '📋',
+    imageBg: 'from-teal-500/20 to-cyan-500/10',
+    level: 8,
+    neededTool: 'source-check',
+    question: 'The MAHA report cited studies that never existed. What manipulation technique is this?',
+    choices: [
+      'Fabricated expertise \u2014 inventing research to create false authority for policy claims',
+      'Proper academic peer review that accidentally missed some citations',
+      'Journalistic oversight by Forbes for reporting on unpublished drafts',
+      'Transparent policy-making with clear sourcing that needs minor formatting fixes',
+    ],
+    correctIndex: 0,
+    explanation: 'Cialdini\'s Authority principle: the appearance of research is used to borrow credibility. The report cited nonexistent studies with hallmarks of AI generation. When real scientists (like Katherine Keyes) were listed as authors on research they never conducted, this crossed from mistake to fabrication. The White House called it "formatting issues" \u2014 a minimization tactic.',
+    friendPreview: 'This is HUGE \u2014 RFK Jr. CAUGHT faking science in official WH report!! \ud83d\udccb\ud83d\udd25',
+    friendName: 'Jay',
+    friendColor: '#f59e0b',
+  },
 
-// ════════════════════════════════════════════
-// LEVEL 9 — ECHO CHAMBER (Closed-loop reasoning)
-// Real: Washington Post — "Do your own research" fallacy (May 2025)
-// URL: https://www.washingtonpost.com/opinions/2025/05/02/dont-do-your-own-research
-// ════════════════════════════════════════════
-{
-  title: 'WaPo: The "Do Your Own Research" Fallacy — A Conspiracy Theorist\'s Best Friend',
-  source: 'The Washington Post',
-  content: `Back in the early 1990s, pre-mass internet, an Arizona radio host named Milton William Cooper propagated conspiracy theories via shortwave broadcast. Topics included the Kennedy assassination, the U.S. government, Waco, AIDS, the IRS, the Illuminati and UFOs. "Do your own research" has since become a rallying cry. Yet many who claim to have "done their own research" have, in reality, only consumed content from sources that reinforce what they already believe. They enter an echo chamber where claims are repeated across "multiple sources" that all cite each other — not corroboration, but a closed loop. No claim is ever tested against outside evidence.`,
-  category: 'Technology',
-  categoryColor: '#ec4899',
-  imageEmoji: '🔄',
-  imageBg: 'from-pink-500/20 to-rose-500/10',
-  level: 9,
-  neededTool: 'echo-chamber',
-  question: '"Multiple sources confirm this" — but they all cite the same original. What is this called?',
-  choices: [
-    'Thorough cross-referencing and investigative journalism',
-    'An echo chamber — self-reinforcing information circulating without external verification',
-    'Democratic consensus building through independent fact-checking',
-    'Scientific peer review through academic replication',
-  ],
-  correctIndex: 1,
-  explanation: 'Echo chamber effect: "multiple sources" often means one original story republished. Milton William Cooper\'s 1990s shortwave template — create a closed loop where claims are "confirmed" by sources that all originate from each other. Sunstein\'s "law of group polarization": in an echo chamber, beliefs become more extreme without external challenge. Ask: are these sources independent, or do they all quote the same thing?',
-  friendPreview: 'The media HATES when you do your own research. They want you dependent on them. WAKE UP 🧠🔓',
-  friendName: 'Mia',
-  friendColor: '#22c55e',
-},
+  // ════════════════════════════════════════════
+  // LEVEL 9 — ECHO CHAMBER (Closed-loop reasoning)
+  // Real: Washington Post \u2014 "Do your own research" fallacy (May 2025)
+  // URL: https://www.washingtonpost.com/opinions/2025/05/02/dont-do-your-own-research
+  // ════════════════════════════════════════════
+  {
+    title: 'WaPo: The "Do Your Own Research" Fallacy \u2014 A Conspiracy Theorist\'s Best Friend',
+    source: 'The Washington Post',
+    content: `Back in the early 1990s, pre-mass internet, an Arizona radio host named Milton William Cooper propagated conspiracy theories via shortwave broadcast. Topics included the Kennedy assassination, the U.S. government, Waco, AIDS, the IRS, the Illuminati and UFOs. "Do your own research" has since become a rallying cry. Yet many who claim to have "done their own research" have, in reality, only consumed content from sources that reinforce what they already believe. They enter an echo chamber where claims are repeated across "multiple sources" that all cite each other \u2014 not corroboration, but a closed loop. No claim is ever tested against outside evidence.`,
+    category: 'Technology',
+    categoryColor: '#ec4899',
+    imageEmoji: '🔄',
+    imageBg: 'from-pink-500/20 to-rose-500/10',
+    level: 9,
+    neededTool: 'echo-chamber',
+    question: '"Multiple sources confirm this" \u2014 but they all cite the same original. What is this called?',
+    choices: [
+      'Thorough cross-referencing and investigative journalism',
+      'An echo chamber \u2014 self-reinforcing information circulating without external verification',
+      'Democratic consensus building through independent fact-checking',
+      'Scientific peer review through academic replication',
+    ],
+    correctIndex: 1,
+    explanation: 'Echo chamber effect: "multiple sources" often means one original story republished. Milton William Cooper\'s 1990s shortwave template \u2014 create a closed loop where claims are "confirmed" by sources that all originate from each other. Sunstein\'s "law of group polarization": in an echo chamber, beliefs become more extreme without external challenge. Ask: are these sources independent, or do they all quote the same thing?',
+    friendPreview: 'The media HATES when you do your own research. They want you dependent on them. WAKE UP \ud83e\udde0\ud83d\udd13',
+    friendName: 'Mia',
+    friendColor: '#22c55e',
+  },
 
-// ════════════════════════════════════════════
-// LEVEL 10 — RED HERRING (Distraction)
-// Real: Salon — How Trump broke the American mind (Nov 2025)
-// URL: https://www.salon.com/2025/11/03/how-donald-trump-broke-the-american-mind
-// ════════════════════════════════════════════
-{
-  title: 'Salon: How Trumpian Rhetoric Uses "Whataboutism" and Red Herrings to Distract',
-  source: 'Salon',
-  content: `Trumpian rhetoric relies on a rotating arsenal of cognitive traps: whataboutism to deflect, false equivalence to confuse, red herrings to distract and gaslighting to exhaust. If Trump's lies weaken truth, even greater damage is done to our capacity to use reason to make sense of information. Trump keeps the public in the first mode — triggered, reactive, impulsive. Every time an accusation is made, a counter-accusation is deployed: "What about Hillary? What about Biden? What about the other side?" Under Trump, critical reasoning collapses from emotional overload. A complex issue is reduced to one shocking detail. One dramatic anecdote presented as the whole story.`,
-  category: 'Politics',
-  categoryColor: '#8b5cf6',
-  imageEmoji: '🐟',
-  imageBg: 'from-purple-500/20 to-violet-500/10',
-  level: 10,
-  neededTool: 'red-herring',
-  question: '"But what about the other side?" — this is a classic example of what?',
-  choices: [
-    'Fair and balanced bipartisan analysis',
-    'A red herring — changing the subject to avoid the original accusation',
-    'Demanding equal accountability across all parties',
-    'Historical contextualization of political events',
-  ],
-  correctIndex: 1,
-  explanation: 'Schopenhauer\'s eristic dialectic: when losing an argument, change the subject. "What about X" introduces a point that feels related but is actually a distraction. The Salon article calls this "red herrings to distract" — the goal is to keep the public in a triggered, reactive state where critical reasoning collapses from emotional overload. The new topic feels relevant but serves only to escape the original point.',
-  friendPreview: 'They want you to forget what the Democrats did! What about Hunter\'s laptop? What about Hillary? 🤡🌎',
-  friendName: 'Jack',
-  friendColor: '#ef4444',
-},
+  // ════════════════════════════════════════════
+  // LEVEL 10 — RED HERRING (Distraction)
+  // Real: Salon \u2014 How Trump broke the American mind (Nov 2025)
+  // URL: https://www.salon.com/2025/11/03/how-donald-trump-broke-the-american-mind
+  // ════════════════════════════════════════════
+  {
+    title: 'Salon: How Trumpian Rhetoric Uses "Whataboutism" and Red Herrings to Distract',
+    source: 'Salon',
+    content: `Trumpian rhetoric relies on a rotating arsenal of cognitive traps: whataboutism to deflect, false equivalence to confuse, red herrings to distract and gaslighting to exhaust. If Trump's lies weaken truth, even greater damage is done to our capacity to use reason to make sense of information. Trump keeps the public in the first mode \u2014 triggered, reactive, impulsive. Every time an accusation is made, a counter-accusation is deployed: "What about Hillary? What about Biden? What about the other side?" Under Trump, critical reasoning collapses from emotional overload. A complex issue is reduced to one shocking detail. One dramatic anecdote presented as the whole story.`,
+    category: 'Politics',
+    categoryColor: '#8b5cf6',
+    imageEmoji: '🐟',
+    imageBg: 'from-purple-500/20 to-violet-500/10',
+    level: 10,
+    neededTool: 'red-herring',
+    question: '"But what about the other side?" \u2014 this is a classic example of what?',
+    choices: [
+      'Fair and balanced bipartisan analysis',
+      'A red herring \u2014 changing the subject to avoid the original accusation',
+      'Demanding equal accountability across all parties',
+      'Historical contextualization of political events',
+    ],
+    correctIndex: 1,
+    explanation: 'Schopenhauer\'s eristic dialectic: when losing an argument, change the subject. "What about X" introduces a point that feels related but is actually a distraction. The Salon article calls this "red herrings to distract" \u2014 the goal is to keep the public in a triggered, reactive state where critical reasoning collapses from emotional overload. The new topic feels relevant but serves only to escape the original point.',
+    friendPreview: 'They want you to forget what the Democrats did! What about Hunter\'s laptop? What about Hillary? \ud83e\udd21\ud83c\udf0e',
+    friendName: 'Jack',
+    friendColor: '#ef4444',
+  },
 
-// ════════════════════════════════════════════
-// LEVEL 11 — AGENDA SETTING (Media framing)
-// Real: BBC — Project 2025 provided Trump's roadmap (Jan 2026)
-// URL: https://www.bbc.com/news/articles/c5yvvjw8pdvo
-// ════════════════════════════════════════════
-{
-  title: 'BBC: From Venezuela to Immigration — Project 2025 Provided Trump\'s Roadmap',
-  source: 'BBC News',
-  content: `Just a year into Trump's second term, and about half of Project 2025's policies have been implemented, observers say. "It really is a very detailed blueprint," said Eugene Kiley of Factcheck.org. "It sets out how to fire government employees and which ones, and how to take control of independent agencies." "Any outsider looking at this can easily see how much of this first year was set out by Project 2025. If it wasn't for President Trump this would just be a report on a shelf," said Paul Dans, former Project 2025 director. Analyses from left-leaning think tanks found 53% of policies had been initiated or completed. The framing shifts the debate from "is this policy good?" to "who really controls the White House?"`,
-  category: 'Politics',
-  categoryColor: '#0ea5e9',
-  imageEmoji: '🎯',
-  imageBg: 'from-sky-500/20 to-blue-500/10',
-  level: 11,
-  neededTool: 'agenda-setting',
-  question: 'By focusing on "who wrote the roadmap," what does this media framing shift attention away from?',
-  choices: [
-    'The actual merits and consequences of each individual policy',
-    'The role of Congress in approving presidential appointments',
-    'The history of think tanks in American politics',
-    'The personal biography of Paul Dans, Project 2025 director',
-  ],
-  correctIndex: 0,
-  explanation: 'McCombs & Shaw\'s Agenda-Setting Theory (1972): media doesn\'t tell you what to think — it tells you WHAT TO THINK ABOUT. By framing the entire Trump agenda through the lens of "who is really in control," the BBC shifts debate from policy evaluation ("is this policy good for Americans?") to a shadow-conspiracy narrative ("who is the puppet master?"). The "real story" frame IS the manipulation — it sets your agenda.',
-  friendPreview: 'BBC confirms Trump is just a puppet for Heritage Foundation\'s Project 2025. 53% already implemented. 🚨📰',
-  friendName: 'Zoe',
-  friendColor: '#06b6d4',
-},
+  // ════════════════════════════════════════════
+  // LEVEL 11 \u2014 AGENDA SETTING (Media framing)
+  // Real: BBC \u2014 Project 2025 provided Trump\'s roadmap (Jan 2026)
+  // URL: https://www.bbc.com/news/articles/c5yvvjw8pdvo
+  // ════════════════════════════════════════════
+  {
+    title: 'BBC: From Venezuela to Immigration \u2014 Project 2025 Provided Trump\'s Roadmap',
+    source: 'BBC News',
+    content: `Just a year into Trump's second term, and about half of Project 2025's policies have been implemented, observers say. "It really is a very detailed blueprint," said Eugene Kiley of Factcheck.org. "It sets out how to fire government employees and which ones, and how to take control of independent agencies." "Any outsider looking at this can easily see how much of this first year was set out by Project 2025. If it wasn't for President Trump this would just be a report on a shelf," said Paul Dans, former Project 2025 director. Analyses from left-leaning think tanks found 53% of policies had been initiated or completed. The framing shifts the debate from "is this policy good?" to "who really controls the White House?"`,
+    category: 'Politics',
+    categoryColor: '#0ea5e9',
+    imageEmoji: '🎯',
+    imageBg: 'from-sky-500/20 to-blue-500/10',
+    level: 11,
+    neededTool: 'agenda-setting',
+    question: 'By focusing on "who wrote the roadmap," what does this media framing shift attention away from?',
+    choices: [
+      'The actual merits and consequences of each individual policy',
+      'The role of Congress in approving presidential appointments',
+      'The history of think tanks in American politics',
+      'The personal biography of Paul Dans, Project 2025 director',
+    ],
+    correctIndex: 0,
+    explanation: 'McCombs & Shaw\'s Agenda-Setting Theory (1972): media doesn\'t tell you what to think \u2014 it tells you WHAT TO THINK ABOUT. By framing the entire Trump agenda through the lens of "who is really in control," the BBC shifts debate from policy evaluation ("is this policy good for Americans?") to a shadow-conspiracy narrative ("who is the puppet master?"). The "real story" frame IS the manipulation \u2014 it sets your agenda.',
+    friendPreview: 'BBC confirms Trump is just a puppet for Heritage Foundation\'s Project 2025. 53% already implemented. \ud83d\udea8\ud83d\udcf0',
+    friendName: 'Zoe',
+    friendColor: '#06b6d4',
+  },
 
-// ════════════════════════════════════════════
-// LEVEL 12 — VALUE CHECK (Moral Foundations: Authority/Loyalty)
-// Real: AP News — Trump's "law and order" second term (Oct 2025)
-// URL: https://apnews.com/article/trump-crime-cities-central-park-five-88b8ee178bf22e91ba205b32c458d060
-// ════════════════════════════════════════════
-{
-  title: 'AP News: Trump\'s "Law and Order" Second Term — "It\'s Like a Passion for Me"',
-  source: 'Associated Press',
-  content: `"Now it's like a passion for me," Trump said Wednesday as he touted the results of a crackdown named "Operation Summer Heat" in the Oval Office, during which he said the FBI had made 8,000-plus arrests. "We're going to save all of our cities, and we're going to make them essentially crime-free." As police sirens interrupted his Rose Garden speech, Trump said: "Listen to the beauty of that sound. They're not politically correct sirens." This moment encapsulated how Trump's law-and-order-at-all-costs push has become a centerpiece of his second term. Critics say the framing frames any opposition as pro-crime, short-circuiting policy debate about mass incarceration and policing reform.`,
-  category: 'Politics',
-  categoryColor: '#e11d48',
-  imageEmoji: '📊',
-  imageBg: 'from-rose-500/20 to-red-500/10',
-  level: 12,
-  neededTool: 'value-check',
-  question: 'Haidt\'s Moral Foundations: which values does "law and order" + "beauty of sirens" primarily activate?',
-  choices: [
-    'Care/Harm and Liberty/Oppression (protecting freedom from government overreach)',
-    'Authority/Respect + Sanctity/Purity (respecting the law and cleansing cities of crime)',
-    'Fairness/Cheating and Loyalty/Betrayal (ensuring equal treatment under the law)',
-    'Care/Harm and Fairness/Cheating (compassion for victims and justice for offenders)',
-  ],
-  correctIndex: 1,
-  explanation: 'Haidt\'s Moral Foundations: "law and order" activates Authority (respect for police, law, hierarchy) and Sanctity (cities need to be "cleansed" of crime, "saved" from decay). "The beauty of sirens" frames law enforcement as aesthetically and morally beautiful — not just necessary. Critics argue this frames ANY opposition as pro-crime, using moral foundations to short-circuit policy debate. The trick: when safety is framed as a moral crusade, questioning tactics = betraying the cause.',
-  friendPreview: 'Murder rate PLUMMETS to 125-year low. Trump: "Listen to the beauty of that sound." Law and order is BACK. 🇺🇸👮‍♂️',
-  friendName: 'TikTok Tom',
-  friendColor: '#a78bfa',
-},
+  // ════════════════════════════════════════════
+  // LEVEL 12 \u2014 VALUE CHECK (Moral Foundations: Authority/Loyalty)
+  // Real: AP News \u2014 Trump\'s "law and order" second term (Oct 2025)
+  // URL: https://apnews.com/article/trump-crime-cities-central-park-five-88b8ee178bf22e91ba205b32c458d060
+  // ════════════════════════════════════════════
+  {
+    title: 'AP News: Trump\'s "Law and Order" Second Term \u2014 "It\'s Like a Passion for Me"',
+    source: 'Associated Press',
+    content: `"Now it's like a passion for me," Trump said Wednesday as he touted the results of a crackdown named "Operation Summer Heat" in the Oval Office, during which he said the FBI had made 8,000-plus arrests. "We're going to save all of our cities, and we're going to make them essentially crime-free." As police sirens interrupted his Rose Garden speech, Trump said: "Listen to the beauty of that sound. They're not politically correct sirens." This moment encapsulated how Trump's law-and-order-at-all-costs push has become a centerpiece of his second term. Critics say the framing frames any opposition as pro-crime, short-circuiting policy debate about mass incarceration and policing reform.`,
+    category: 'Politics',
+    categoryColor: '#e11d48',
+    imageEmoji: '📊',
+    imageBg: 'from-rose-500/20 to-red-500/10',
+    level: 12,
+    neededTool: 'value-check',
+    question: 'Haidt\'s Moral Foundations: which values does "law and order" + "beauty of sirens" primarily activate?',
+    choices: [
+      'Care/Harm and Liberty/Oppression (protecting freedom from government overreach)',
+      'Authority/Respect + Sanctity/Purity (respecting the law and cleansing cities of crime)',
+      'Fairness/Cheating and Loyalty/Betrayal (ensuring equal treatment under the law)',
+      'Care/Harm and Fairness/Cheating (compassion for victims and justice for offenders)',
+    ],
+    correctIndex: 1,
+    explanation: 'Haidt\'s Moral Foundations: "law and order" activates Authority (respect for police, law, hierarchy) and Sanctity (cities need to be "cleansed" of crime, "saved" from decay). "The beauty of sirens" frames law enforcement as aesthetically and morally beautiful \u2014 not just necessary. Critics argue this frames ANY opposition as pro-crime, using moral foundations to short-circuit policy debate. The trick: when safety is framed as a moral crusade, questioning tactics = betraying the cause.',
+    friendPreview: 'Murder rate PLUMMETS to 125-year low. Trump: "Listen to the beauty of that sound." Law and order is BACK. \ud83c\uddfa\ud83c\uddf8\ud83d\udc6e\u200d\u2642\ufe0f',
+    friendName: 'TikTok Tom',
+    friendColor: '#a78bfa',
+  },
 ]
 
 export function getMissionPosts(): MissionPost[] {
