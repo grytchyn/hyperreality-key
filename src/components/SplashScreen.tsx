@@ -2,6 +2,21 @@
 import { useState, useEffect, useCallback } from 'react'
 import { getMissionPosts, type MissionPost } from '../data/missions'
 
+const AVATAR_MAP: Record<string, string> = {
+  alex: '/assets/avatars/alex.png',
+  jay: '/assets/avatars/jay.png',
+  mia: '/assets/avatars/mia.png',
+  jack: '/assets/avatars/jack.png',
+  emma: '/assets/avatars/emma.png',
+  zoe: '/assets/avatars/zoe.png',
+  tom: '/assets/avatars/tiktok-tom.png',
+}
+
+function getAvatarUrl(name: string): string {
+  const key = Object.keys(AVATAR_MAP).find(k => name.toLowerCase().includes(k))
+  return key ? AVATAR_MAP[key] : ''
+}
+
 interface SplashScreenProps {
   onStart: (post: MissionPost) => void
 }
@@ -73,10 +88,9 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
           {/* Chat header */}
           <div className="px-4 py-2 flex items-center gap-3 border-b border-dark-border/50"
             style={{ background: 'rgba(19,19,26,0.95)' }}>
-            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
-              style={{ background: messagePost.friendColor }}>
-              {messagePost.friendName[0]}
-            </div>
+            <img src={getAvatarUrl(messagePost.friendName)} alt={messagePost.friendName}
+              className="w-8 h-8 rounded-full object-cover shrink-0"
+              style={{ border: `2px solid ${messagePost.friendColor}60` }} />
             <div>
               <div className="text-xs font-bold text-white">{messagePost.friendName}</div>
               <div className="text-[9px] text-gray-500 font-mono">online</div>
@@ -93,10 +107,9 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
               <>
                 {/* Friend's message bubble */}
                 <div className="flex items-start gap-2 mb-3 animate-fade-in-up">
-                  <div className="w-6 h-6 rounded-full shrink-0 mt-0.5 flex items-center justify-center text-white text-[9px] font-bold"
-                    style={{ background: messagePost.friendColor }}>
-                    {messagePost.friendName[0]}
-                  </div>
+                  <img src={getAvatarUrl(messagePost.friendName)} alt={messagePost.friendName}
+                    className="w-6 h-6 rounded-full object-cover shrink-0 mt-0.5"
+                    style={{ border: `2px solid ${messagePost.friendColor}40` }} />
                   <div className="max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed"
                     style={{
                       background: 'rgba(26,26,36,0.9)',
