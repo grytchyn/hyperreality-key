@@ -359,8 +359,9 @@ export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<strin
       
       if (matches && matches.length > 0) {
         seen.add(token)
-        // Use the first match's explanation (or combine if multiple)
-        const combinedExplanation = matches.map(m => m.explanation).join(' • ')
+        // Deduplicate explanations (same stem can match multiple keyword forms from same rule)
+        const uniqueExplanations = [...new Set(matches.map(m => m.explanation))]
+        const combinedExplanation = uniqueExplanations.join(' • ')
         addEntry(map, token, { word: token, explanation: combinedExplanation, color: config.color })
       }
     }
