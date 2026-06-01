@@ -15,6 +15,17 @@ interface GameScreenProps {
 
 const LETTERS = ['A', 'B', 'C', 'D']
 
+// Icons per choice per level — shown in the circle instead of A/B/C/D
+const CHOICE_ICONS: Record<number, string[]> = {
+  1: ['🎭', '💢', '📋', '🔍'],
+  2: ['🧐', '😱', '🎉', '😢'],
+  3: ['⚓', '👥', '🏛️', '🧠'],
+  4: ['⚖️', '⚔️', '📊', '🤝'],
+  5: ['👑', '❤️', '💯', '🧼'],
+  6: ['💡', '⚔️', '🛡️', '🕵️'],
+  7: ['💾', '📝', '🌐', '🎭'],
+}
+
 export default function GameScreen({ post, onAnswer }: GameScreenProps) {
   const [phase, setPhase] = useState<'chat' | 'game'>('game')
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>(() => {
@@ -321,7 +332,7 @@ export default function GameScreen({ post, onAnswer }: GameScreenProps) {
                       color: showResult && isCorrect ? '#000' : selected ? '#000' : '#6b7280',
                       boxShadow: selected && !showResult ? `0 0 12px ${levelCfg.color}50` : 'none',
                     }}>
-                    {showResult && isCorrect ? '✓' : showResult && selected ? '✗' : LETTERS[idx]}
+                    {showResult && isCorrect ? '✓' : showResult && selected ? '✗' : CHOICE_ICONS[level]?.[idx] || LETTERS[idx]}
                   </span>
                   <span className="flex-1">{choice}</span>
                   {showResult && isCorrect && <span className="text-xs text-green-500">✓ correct</span>}
