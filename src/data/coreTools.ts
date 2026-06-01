@@ -10,6 +10,10 @@
 //
 // Matching rules: EXACT word match only. Multi-word phrases matched before
 // any single-word matching to prevent false positives.
+//
+// v8.1 — Refined highlight rules to eliminate false positives from common
+// English words (we, us, our, they, them, good, bad, all, everyone, nobody).
+// Us-vs-Them now uses multi-word phrases instead of generic pronouns.
 
 import type { CoreToolConfig, CoreToolId, HighlightEntry, HighlightRule } from '../types'
 
@@ -83,16 +87,21 @@ export const TOOL_LARGE_ICONS: Record<CoreToolId, string> = {
   'source-check': '📋',
 }
 
-// ── HIGHLIGHT RULES v8 — English only ──
+// ── HIGHLIGHT RULES v8.1 — English only ──
 //
 // Rules use EXACT word matching (array of exact word strings).
 // Multi-word phrases stored alongside single words.
 // No stem/prefix matching — "danger" does NOT match "dangerous".
+//
+// v8.1 fixes: Removed overly common words (we, us, our, they, them, good,
+// bad, all, everyone, nobody) from ALL rules to eliminate false positives in
+// every post. Us-vs-Them now uses multi-word manipulation phrases instead of
+// generic pronouns. False-binary uses phrase patterns instead of single words.
 
 const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
   // ── BAD ARGUMENTS: Schopenhauer, Cialdini (Authority) ──
   'bad-arguments': [
-    { words: ['always', 'never', 'everyone', 'nobody', 'every', 'none', 'nothing', 'all', 'totally', 'completely', 'absolutely'], explanation: 'Absolute word — suppresses exceptions (Schopenhauer: overgeneralization).' },
+    { words: ['always', 'never', 'every', 'none', 'nothing', 'totally', 'completely', 'absolutely'], explanation: 'Absolute word — suppresses exceptions (Schopenhauer: overgeneralization).' },
     { words: ['expert', 'professor', 'doctor', 'scientist', 'institute', 'authority'], explanation: 'Authority claim — Cialdini: Authority. Who is this person really?' },
     { words: ['obviously', 'clearly', 'undeniably', 'certainly', 'surely', 'plainly'], explanation: 'False certainty — "obvious" replaces arguments (Eristic: dictum simpliciter).' },
     { words: ['percent', 'majority', 'statistics', 'proves', 'proof', 'figures', 'ratio', 'percentage'], explanation: 'False precision — a number without a source is opinion, not fact.' },
@@ -100,57 +109,60 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
 
   // ── FEELINGS CHECK: Cialdini (Scarcity, Liking), Fear Appeals ──
   'feelings-check': [
-    { words: ['fear', 'danger', 'terrible', 'horrible', 'unthinkable', 'shocking', 'horrifying', 'devastating', 'catastrophic', 'dreadful'], explanation: 'Fear bait — Cialdini: Scarcity plus Fear. Who benefits from your fear?' },
-    { words: ['urgent', 'immediately', 'now', 'hurry', 'crisis', 'emergency', 'last chance', 'act now', 'before it'], explanation: 'Urgency — designed to bypass System 2. Take a breath.' },
+    { words: ['fear', 'danger', 'terrible', 'horrible', 'unthinkable', 'shocking', 'horrifying', 'devastating', 'catastrophic', 'dreadful', 'terrifying'], explanation: 'Fear bait — Cialdini: Scarcity plus Fear. Who benefits from your fear?' },
+    { words: ['urgent', 'immediately', 'hurry', 'crisis', 'emergency', 'last chance', 'act now', 'before it'], explanation: 'Urgency — designed to bypass System 2. Take a breath.' },
     { words: ['outrage', 'scandal', 'appalling', 'disgrace', 'despicable', 'revolting', 'atrocious', 'monstrous'], explanation: 'Outrage bait — emotion replaces argument. The fury is intentional.' },
-    { words: ['poor', 'suffer', 'heartbreaking', 'tragic', 'victim', 'innocent', 'helpless'], explanation: 'Sympathy manipulation — Cialdini: Liking. Emotional bonding instead of facts.' },
+    { words: ['suffer', 'heartbreaking', 'tragic', 'victim', 'innocent', 'helpless'], explanation: 'Sympathy manipulation — Cialdini: Liking. Emotional bonding instead of facts.' },
   ],
 
   // ── BRAIN CHECK: Kahneman (System 1 biases) ──
   'brain-check': [
-    { words: ['majority', 'most people', 'everyone', 'public', 'popular', 'widespread', 'common', 'people say', 'according to'], explanation: 'Bandwagon — Kahneman: Availability Heuristic. "Many believe it" ≠ it\'s true.' },
+    { words: ['majority', 'most people', 'people say', 'according to', 'popular opinion', 'everyone thinks'], explanation: 'Bandwagon — Kahneman: Availability Heuristic. "Many believe it" ≠ it\'s true.' },
     { words: ['million', 'billion', 'thousands', 'record', 'unprecedented', 'highest', 'lowest', 'biggest', 'worst', 'largest', 'massive'], explanation: 'Anchoring — Kahneman: Anchoring. Sets an extreme reference point.' },
     { words: ['of course', 'naturally', 'obviously', 'common sense', 'everyone knows', 'undeniable', 'surely'], explanation: 'Framing as consensus — Kahneman: WYSIATI. Just because it\'s in the text doesn\'t make it true.' },
-    { words: ['either', 'or', 'only', 'choice', 'alternative', 'option'], explanation: 'False binary — Kahneman: Framing. Either/or ignores nuance.' },
+    { words: ['either/or', 'only choice', 'no choice', 'only option', 'no alternative', 'either way', 'take it or leave it', 'both sides', 'on one hand', 'on the other hand'], explanation: 'False binary — Kahneman: Framing. Either/or ignores nuance.' },
   ],
 
   // ── HIDDEN MYTH: Roland Barthes (Mythologies) ──
   'hidden-story': [
     { words: ['freedom', 'liberty', 'security', 'order', 'chaos', 'progress', 'tradition', 'modern', 'natural'], explanation: 'Barthes: Myth exposed — "Freedom" is not an argument, it\'s a story.' },
-    { words: ['natural', 'normal', 'proper', 'correct', 'right', 'inevitable', 'unavoidable', 'just is', 'reality'], explanation: 'Barthes: Naturalization — ideology disguised as "normal". Who defines normal?' },
+    { words: ['natural', 'normal', 'proper', 'correct', 'inevitable', 'unavoidable', 'just is', 'reality'], explanation: 'Barthes: Naturalization — ideology disguised as "normal". Who defines normal?' },
     { words: ['crisis', 'threat', 'danger', 'emergency', 'breakdown', 'collapse', 'disaster'], explanation: 'Barthes: Myth of crisis — suggests urgency and justifies measures.' },
   ],
 
   // ── US VS THEM: Tajfel & Turner (Social Identity Theory) ──
+  // v8.1: Replaced generic pronouns (we, us, our, they, them) with specific
+  // multi-word manipulation phrases. Single pronouns caused false positives in
+  // every post.
   'us-vs-them': [
-    { words: ['we', 'us', 'our', 'ourselves', 'our own', 'our people', 'our nation', 'our culture'], explanation: 'Tajfel: In-group — "we" creates belonging. Who is NOT part of "us"?' },
-    { words: ['they', 'them', 'their', 'those', 'these', 'these people', 'outsiders', 'foreigners', 'strangers', 'others', 'the other'], explanation: 'Tajfel: Out-group — "they" are homogenized. Individuals disappear.' },
-    { words: ['good', 'bad', 'evil', 'pure', 'dangerous', 'threat', 'menace', 'correct', 'wrong', 'right'], explanation: 'Tajfel: Binary — only two categories. The gray area is erased.' },
-    { words: ['flood', 'wave', 'invasion', 'swarm', 'plague', 'infestation', 'tide'], explanation: 'Dehumanization — nature metaphors turn people into a threat.' },
+    { words: ['our kind', 'our way of life', 'our values', 'our homeland', 'our country', 'our culture', 'our nation', 'our people'], explanation: 'Tajfel: In-group branding — "our" paired with an abstract identity. Who is excluded from this group?' },
+    { words: ['those people', 'these people', 'outsiders', 'foreigners', 'strangers', 'the other', 'others'], explanation: 'Tajfel: Out-group labeling — people reduced to a category. Individuals disappear.' },
+    { words: ['invasion', 'flood of', 'wave of', 'swarm', 'plague', 'infestation', 'tide', 'taking over', 'taking our', 'destroying our', 'against us', 'coming for'], explanation: 'Dehumanization & threat — nature/war metaphors turn people into an invading force.' },
+    { words: ['real americans', 'real citizens', 'real people', 'true patriots'], explanation: 'Gatekeeping identity — who gets to be "real"? A boundary being drawn.' },
   ],
 
   // ── MORAL BUTTONS: Haidt (Moral Foundations Theory) ──
   'value-check': [
-    { words: ['innocent', 'hurt', 'harm', 'victim', 'suffer', 'protect', 'children', 'abuse', 'cruel', 'kindness', 'compassion', 'care'], explanation: 'Haidt: Care — activates compassion or outrage. Check who is portrayed as victim.' },
+    { words: ['innocent', 'harm', 'victim', 'suffer', 'protect', 'children', 'abuse', 'cruel', 'kindness', 'compassion'], explanation: 'Haidt: Care — activates compassion or outrage. Check who is portrayed as victim.' },
     { words: ['fair', 'unfair', 'equal', 'justice', 'cheat', 'dishonest', 'corrupt', 'fraud', 'deserve', 'rights', 'discrimination'], explanation: 'Haidt: Fairness — sense of injustice triggered. Is fairness really violated?' },
     { words: ['loyal', 'betray', 'patriot', 'traitor', 'united', 'divide', 'together', 'treason', 'loyalty', 'sacrifice', 'nation'], explanation: 'Haidt: Loyalty — tribalism. "Us" against "traitors".' },
     { words: ['authority', 'respect', 'obey', 'traditional', 'duty', 'order', 'disrespect', 'defy', 'disobey', 'rebel', 'establishment'], explanation: 'Haidt: Authority — hierarchy is invoked. Who decides what respect means?' },
-    { words: ['pure', 'impure', 'sacred', 'sin', 'disgust', 'filthy', 'clean', 'dirty', 'corrupt', 'decay', 'degradation'], explanation: 'Haidt: Sanctity — disgust as moral judgment. Body metaphors for abstract criticism.' },
+    { words: ['pure', 'impure', 'sacred', 'sin', 'disgust', 'filthy', 'corrupt', 'decay', 'degradation'], explanation: 'Haidt: Sanctity — disgust as moral judgment. Body metaphors for abstract criticism.' },
   ],
 
   // ── FAKE CHECK: Baudrillard (Simulacra), Epistemology ──
   'fake-check': [
-    { words: ['viral', 'meme', 'trending', 'share', 'like', 'follow', 'influencer', 'social media', 'go viral', 'blowing up'], explanation: 'Baudrillard: Simulacrum — the content is only about its own spread.' },
+    { words: ['viral', 'meme', 'trending', 'follow', 'influencer', 'social media', 'go viral', 'blowing up'], explanation: 'Baudrillard: Simulacrum — the content is only about its own spread.' },
     { words: ['apparently', 'rumor', 'anonymous', 'sources say', 'unconfirmed', 'allegedly', 'reportedly', 'supposedly', 'claims', 'alleged'], explanation: 'Epistemology: unverified — at least one step removed from reality.' },
-    { words: ['literally', 'unreal', 'surreal', 'like a movie', 'dream', 'can\'t believe', 'unbelievable', 'like a scene', 'straight out of'], explanation: 'Baudrillard: Hyperreality — the text itself signals something is off.' },
+    { words: ['unreal', 'surreal', 'like a movie', 'can\'t believe', 'unbelievable', 'like a scene', 'straight out of'], explanation: 'Baudrillard: Hyperreality — the text itself signals something is off.' },
   ],
 
   // ── SOURCE CHECK: Epistemology, Source Credibility ──
   'source-check': [
     { words: ['experts', 'scientists', 'researchers', 'doctors', 'professionals', 'authorities', 'analysts', 'specialists'], explanation: 'Anonymous authority — "experts" without names are not sources.' },
     { words: ['study', 'studies', 'research', 'survey', 'report', 'analysis', 'data', 'statistics', 'findings'], explanation: 'Vague reference — which study? When? By whom? No link = no source.' },
-    { words: ['people say', 'sources say', 'they say', 'it is said', 'reportedly', 'apparently', 'allegedly', 'rumored', 'heard', 'word is'], explanation: 'Hearsay — no named source. Someone heard from someone who heard from someone.' },
-    { words: ['internet says', 'everyone knows', 'common knowledge', 'as we know', 'widely known', 'it is known'], explanation: 'Fake consensus — "common knowledge" is often just repetition without verification.' },
+    { words: ['people say', 'sources say', 'it is said', 'reportedly', 'apparently', 'allegedly', 'rumored', 'word is'], explanation: 'Hearsay — no named source. Someone heard from someone who heard from someone.' },
+    { words: ['internet says', 'everyone knows', 'common knowledge', 'widely known'], explanation: 'Fake consensus — "common knowledge" is often just repetition without verification.' },
     { words: ['alleged', 'unconfirmed', 'unverified', 'claimed', 'supposed', 'purported'], explanation: 'Unverified — the content itself admits it has no confirmation.' },
   ],
 }

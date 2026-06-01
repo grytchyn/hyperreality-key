@@ -1,5 +1,5 @@
-// ── GAME SCREEN v15 — Chat UI + neon SVG icons + level colors ──
-import { useState, useMemo, useCallback, useRef } from 'react'
+// ── GAME SCREEN v16 — unified flow, inline feedback, auto-advance ──
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { CORE_TOOLS, getHighlightsFor } from '../data/coreTools'
 import { LEVEL_TOOLS, LEVEL_CONFIG } from '../data/missions'
 import type { CoreToolId } from '../types'
@@ -9,28 +9,24 @@ import { getToolIcon } from './icons/ToolIcons'
 
 interface GameScreenProps {
   post: MissionPost
-  onFinish: (score: number) => void
-  allPosts: MissionPost[]
-  postIndex: number
+  onAnswer: (correct: boolean, points: number) => void
 }
 
 const LETTERS = ['A', 'B', 'C', 'D']
 
-export default function GameScreen({ post, onFinish, allPosts, postIndex }: GameScreenProps) {
-  const [phase, setPhase] = useState<'chat' | 'tools' | 'answer' | 'feedback'>('chat')
+export default function GameScreen({ post, onAnswer }: GameScreenProps) {
+  const [phase, setPhase] = useState<'chat' | 'tools'>('chat')
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>([])
   const [chosenAnswer, setChosenAnswer] = useState<number | null>(null)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
-  const [score, setScore] = useState(0)
   const [correctToolUsed, setCorrectToolUsed] = useState(false)
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null)
-  const scoreRef = useRef(0)
+  const answeredRef = useRef(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const level = post.level
   const levelCfg = LEVEL_CONFIG[level] || LEVEL_CONFIG[7]
   const availableTools = LEVEL_TOOLS[level] || []
-  const isLast = postIndex >= allPosts.length - 1
-
   const highlights = useMemo(
     () => getHighlightsFor(activeFilters, post.content + ' ' + post.title),
     [activeFilters, post]
@@ -51,18 +47,14 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
   }, [activeFilters, post])
 
   const handlePick = useCallback((idx: number) => {
+    if (answeredRef.current) return
+    answeredRef.current = true
     setChosenAnswer(idx)
     const correct = idx === post.correctIndex
     setFeedback(correct ? 'correct' : 'wrong')
-    if (correct) {
-      const n = scoreRef.current + 10
-      scoreRef.current = n
-      setScore(n)
-    }
-    setPhase('feedback')
-  }, [post])
-
-  const handleNext = useCallback(() => onFinish(scoreRef.current), [onFinish])
+    // Auto-advance after showing feedback briefly
+    setTimeout(() => onAnswer(correct, correct ? 10 : 0), 1800)
+  }, [post, onAnswer])
 
   const showTooltip = useCallback((e: React.MouseEvent, text: string) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -70,55 +62,25 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
   }, [])
   const hideTooltip = useCallback(() => setTooltip(null), [])
 
-  const handleAnalyze = useCallback(() => setPhase('tools'), [])
+  const handleAnalyze = useCallback(() => {
+    setPhase('tools')
+    // Scroll to tool buttons on mobile
+    setTimeout(() => {
+      containerRef.current?.querySelector('.tools-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 300)
+  }, [])
 
-  // ── FEEDBACK ──
-  if (phase === 'feedback' && feedback) {
-    const fbColor = feedback === 'correct' ? '#22c55e' : '#ef4444'
-    return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="w-full max-w-md animate-fade-in-up">
-          <div className="relative rounded-2xl border-2 p-8 text-center overflow-hidden"
-            style={{
-              borderColor: fbColor,
-              background: `linear-gradient(135deg, ${fbColor}15, rgba(0,0,0,0.1))`,
-              boxShadow: feedback === 'correct' ? '0 0 60px rgba(34,197,94,0.15)' : '0 0 60px rgba(239,68,68,0.15)',
-            }}>
-            {feedback === 'correct' && (
-              <div className="absolute inset-0 pointer-events-none">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="absolute w-1 h-1 rounded-full bg-green-400"
-                    style={{
-                      top: `${10 + Math.random() * 80}%`,
-                      left: `${10 + Math.random() * 80}%`,
-                      animation: `pulse 1.5s infinite ${Math.random() * 2}s`,
-                    }} />
-                ))}
-              </div>
-            )}
-            <div className="text-6xl mb-4">{feedback === 'correct' ? '🎉' : '🤔'}</div>
-            <h2 className="text-xl font-bold mb-2" style={{ color: fbColor }}>
-              {feedback === 'correct' ? 'Correct! 🎉' : 'Not quite'}
-            </h2>
-            <div className="mb-6 text-xs leading-relaxed max-w-sm mx-auto" style={{ color: '#9ca3af' }}>
-              {post.explanation.split('. ').map((s, i) => (
-                <p key={i} className={i > 0 ? 'mt-2' : ''}>{s}.</p>
-              ))}
-            </div>
-            <button onClick={handleNext}
-              className="w-full px-6 py-3.5 rounded-xl font-bold text-sm uppercase tracking-wider transition-all cursor-pointer hover:translate-y-[-1px] active:scale-[0.98]"
-              style={{
-                background: `linear-gradient(135deg, ${fbColor}, ${fbColor}cc)`,
-                color: '#fff',
-                boxShadow: `0 4px 20px ${fbColor}40`,
-              }}>
-              {isLast ? '🏁 See Results' : 'Next Message →'}
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  }
+  // Reset state when post changes
+  useEffect(() => {
+    setPhase('chat')
+    setActiveFilters([])
+    setChosenAnswer(null)
+    setFeedback(null)
+    setCorrectToolUsed(false)
+    setTooltip(null)
+    answeredRef.current = false
+    window.scrollTo(0, 0)
+  }, [post])
 
   // ── RENDER HIGHLIGHTED TEXT ──
   const renderContent = () => {
@@ -141,7 +103,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
   }
 
   return (
-    <div className="min-h-screen pb-8 relative overflow-hidden">
+    <div className="relative overflow-hidden" ref={containerRef}>
       {/* Fixed tooltip */}
       {tooltip && (
         <div className="fixed z-[9999] pointer-events-none" style={{ left: tooltip.x, top: tooltip.y, transform: 'translateY(-100%)' }}>
@@ -159,23 +121,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
       </div>
 
       <div className="max-w-2xl mx-auto p-3 sm:p-4 space-y-4 relative z-10">
-        {/* PROGRESS BAR */}
-        <div className="flex items-center gap-3 text-xs font-mono">
-          <div className="flex-1 bg-gray-800/50 rounded-full h-2.5 overflow-hidden">
-            <div className="h-full rounded-full transition-all duration-700 ease-out"
-              style={{
-                width: `${((postIndex + 1) / allPosts.length) * 100}%`,
-                background: `linear-gradient(90deg, ${levelCfg.color}, ${levelCfg.color}cc, ${levelCfg.color}88)`,
-                boxShadow: `0 0 8px ${levelCfg.color}40`,
-              }} />
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-gray-500">Lvl {level}/7</span>
-            <span className="font-bold tabular-nums" style={{ color: levelCfg.color }}>{score}</span>
-          </div>
-        </div>
-
-        {/* CHAT UI MESSAGE */}
+        {/* CHAT UI */}
         <ChatUi
           friendName={post.friendName}
           friendColor={post.friendColor}
@@ -187,18 +133,17 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
           showAnalyze={phase === 'chat'}
         />
 
-        {/* TOOLS + ARTICLE CARD — shown after "Open & Analyze" */}
+        {/* TOOLS + ARTICLE — shown after "Open & Analyze" */}
         {phase !== 'chat' && (
           <>
             {/* ARTICLE CARD */}
-            <div className="relative rounded-2xl overflow-hidden"
+            <div className="relative rounded-2xl overflow-hidden tools-section"
               style={{
                 background: 'linear-gradient(180deg, rgba(19,19,26,0.95), rgba(15,15,22,0.98))',
                 border: `1px solid ${levelCfg.color}25`,
                 boxShadow: `0 8px 32px rgba(0,0,0,0.4), 0 0 30px ${levelCfg.color}10`,
               }}>
               
-              {/* Neon accent top bar */}
               <div className="h-[3px] w-full"
                 style={{ background: `linear-gradient(90deg, transparent, ${levelCfg.color}, ${levelCfg.color}cc, transparent)`, opacity: 0.7 }} />
               
@@ -245,10 +190,10 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
                 <span>❤️ 120</span>
               </div>
 
-              {/* FILTER TOOLS — neon SVG icons 2×4 grid */}
+              {/* FILTER TOOLS — larger text, 2×4 grid */}
               <div className="px-4 py-3">
                 <div className="flex items-center justify-between mb-3">
-                  <div className="text-[9px] font-mono flex items-center gap-1.5" style={{ color: '#6b7280' }}>
+                  <div className="text-[10px] font-mono flex items-center gap-1.5" style={{ color: '#6b7280' }}>
                     {!correctToolUsed ? (
                       <><span style={{ color: levelCfg.color }}>◆</span> Activate <strong style={{ color: '#e5e7eb' }}>{CORE_TOOLS.find(t => t.id === post.neededTool)?.name}</strong></>
                     ) : (
@@ -257,7 +202,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
                   </div>
                   {correctToolUsed && (
                     <button onClick={() => { setActiveFilters([]); setCorrectToolUsed(false) }}
-                      className="text-[9px] font-mono transition-colors cursor-pointer" style={{ color: '#6b7280' }}>clear</button>
+                      className="text-[10px] font-mono transition-colors cursor-pointer" style={{ color: '#6b7280' }}>clear</button>
                   )}
                 </div>
                 <div className="grid grid-cols-4 gap-2">
@@ -276,7 +221,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
                           boxShadow: isOn ? `0 0 15px ${t.color}20` : 'none',
                         }}>
                         <IconComponent size={32} glowColor={t.color} active={isOn} />
-                        <span className="text-[6px] font-bold uppercase tracking-wider leading-tight"
+                        <span className="text-[8px] font-bold uppercase tracking-wider leading-tight"
                           style={{ color: isOn ? t.color : '#6b7280' }}>{t.name}</span>
                       </button>
                     )
@@ -285,7 +230,7 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
               </div>
             </div>
 
-            {/* ANSWER CARD — radio-style */}
+            {/* ANSWER CARD — with inline feedback */}
             <div className="rounded-2xl p-5"
               style={{
                 background: 'linear-gradient(135deg, rgba(19,19,26,0.95), rgba(26,26,36,0.9))',
@@ -299,8 +244,8 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
                 <div>
                   <span className="text-[10px] font-mono font-bold uppercase tracking-widest" style={{ color: levelCfg.color }}>Question</span>
                 </div>
-                {!correctToolUsed && (
-                  <span className="ml-auto text-[8px] font-mono" style={{ color: '#6b7280' }}>🔒 activate filter</span>
+                {!correctToolUsed && !chosenAnswer && (
+                  <span className="ml-auto text-[9px] font-mono" style={{ color: '#6b7280' }}>🔒 activate filter</span>
                 )}
               </div>
 
@@ -309,30 +254,52 @@ export default function GameScreen({ post, onFinish, allPosts, postIndex }: Game
               <div className="space-y-2.5">
                 {post.choices.map((choice, idx) => {
                   const selected = chosenAnswer === idx
+                  const isCorrect = idx === post.correctIndex
+                  const showResult = chosenAnswer !== null
+                  let borderColor = 'rgba(255,255,255,0.06)'
+                  if (showResult && isCorrect) borderColor = '#22c55e99'
+                  else if (showResult && selected) borderColor = '#ef444499'
+                  else if (selected) borderColor = `${levelCfg.color}99`
                   return (
                     <button key={idx} onClick={() => handlePick(idx)}
-                      disabled={!correctToolUsed || chosenAnswer !== null}
-                      className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 text-sm font-medium text-left transition-all duration-150 cursor-pointer disabled:opacity-25 disabled:cursor-not-allowed active:scale-[0.99]"
+                      disabled={chosenAnswer !== null}
+                      className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 text-sm font-medium text-left transition-all duration-150 cursor-pointer disabled:cursor-default active:scale-[0.99]"
                       style={{
-                        borderColor: selected ? `${levelCfg.color}99` : 'rgba(255,255,255,0.06)',
-                        background: selected ? `${levelCfg.color}20` : 'rgba(255,255,255,0.02)',
-                        color: selected ? '#fff' : '#9ca3af',
+                        borderColor,
+                        background: showResult && isCorrect ? 'rgba(34,197,94,0.1)' : selected ? `${levelCfg.color}20` : 'rgba(255,255,255,0.02)',
+                        color: !chosenAnswer ? '#e5e7eb' : isCorrect ? '#4ade80' : selected ? '#ef4444' : '#6b7280',
+                        opacity: showResult && !isCorrect && !selected ? 0.4 : 1,
                       }}>
-                      <span className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0"
+                      <span className="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold shrink-0"
                         style={{
-                          background: selected ? levelCfg.color : 'rgba(255,255,255,0.06)',
-                          color: selected ? '#000' : '#6b7280',
+                          background: showResult && isCorrect ? '#22c55e' : selected && showResult ? '#ef4444' : selected ? levelCfg.color : 'rgba(255,255,255,0.06)',
+                          color: showResult && isCorrect ? '#000' : selected ? '#000' : '#6b7280',
                         }}>
-                        {LETTERS[idx]}
+                        {showResult && isCorrect ? '✓' : showResult && selected ? '✗' : LETTERS[idx]}
                       </span>
                       <span className="flex-1">{choice}</span>
-                      {selected && <span className="text-sm">✓</span>}
+                      {showResult && isCorrect && <span className="text-xs text-green-500">✓ correct</span>}
                     </button>
                   )
                 })}
               </div>
 
-              {!correctToolUsed && (
+              {/* Inline explanation after answering */}
+              {chosenAnswer && (
+                <div className="mt-4 rounded-xl p-3.5 text-xs leading-relaxed animate-fade-in-up"
+                  style={{
+                    background: feedback === 'correct' ? 'rgba(34,197,94,0.06)' : 'rgba(239,68,68,0.06)',
+                    border: `1px solid ${feedback === 'correct' ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'}`,
+                    color: '#c0c0c0',
+                  }}>
+                  <span className="text-xs font-bold block mb-1" style={{ color: feedback === 'correct' ? '#4ade80' : '#ef4444' }}>
+                    {feedback === 'correct' ? '✓ Correct!' : '✗ Not quite'}
+                  </span>
+                  {post.explanation.split('. ').join('. ')}
+                </div>
+              )}
+
+              {!correctToolUsed && !chosenAnswer && (
                 <div className="text-[10px] text-center font-mono pt-3" style={{ color: '#6b7280' }}>
                   💡 Activate the <span style={{ color: levelCfg.color }}>{CORE_TOOLS.find(t => t.id === post.neededTool)?.name}</span> filter above
                 </div>
