@@ -188,6 +188,39 @@ function SourceIcon({ size = 36, glowColor = '#14b8a6', active = true }: IconPro
   )
 }
 
+// ── NEW TOOL ICONS (image-based from user's GPT generations) ──
+
+function ImageIcon({ size = 36, glowColor, active = true, src }: IconProps & { src: string }) {
+  const opacity = active ? 1 : 0.35
+  return (
+    <div style={{
+      width: size, height: size, opacity,
+      borderRadius: '10px', overflow: 'hidden',
+      border: `1.5px solid ${glowColor || '#666'}`,
+      background: '#0a0a0f',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+    }}>
+      <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+    </div>
+  )
+}
+
+function EchoChamberIcon(props: IconProps) {
+  return <ImageIcon {...props} src="/assets/echo-chamber-icon.png" />
+}
+
+function AgendaSettingIcon(props: IconProps) {
+  return <ImageIcon {...props} src="/assets/agenda-setting-icon.png" />
+}
+
+function RedHerringIcon(props: IconProps) {
+  return <ImageIcon {...props} src="/assets/red-herring-icon.png" />
+}
+
+function FalseAppealIcon(props: IconProps) {
+  return <ImageIcon {...props} src="/assets/false-appeal-icon.png" />
+}
+
 // ── MAP ──
 
 const ICON_MAP: Record<CoreToolId, React.FC<IconProps>> = {
@@ -199,6 +232,10 @@ const ICON_MAP: Record<CoreToolId, React.FC<IconProps>> = {
   'hidden-story': EyeIcon,
   'fake-check': CrownIcon,
   'source-check': SourceIcon,
+  'echo-chamber': EchoChamberIcon,
+  'agenda-setting': AgendaSettingIcon,
+  'red-herring': RedHerringIcon,
+  'false-appeal': FalseAppealIcon,
 }
 
 export function getToolIcon(toolId: CoreToolId): React.FC<IconProps> {
