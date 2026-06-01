@@ -232,15 +232,15 @@ export function getMissionPosts(): MissionPost[] {
   return [...POSTS].sort((a, b) => a.level - b.level)
 }
 
-// Map level → which tools are unlocked
+// Map level → which tools are unlocked - start with 3, +1 per level
 export const LEVEL_TOOLS: Record<number, CoreToolId[]> = {
-  1: ['bad-arguments'],
-  2: ['bad-arguments', 'feelings-check'],
-  3: ['bad-arguments', 'feelings-check', 'brain-check'],
-  4: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them'],
-  5: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'source-check'],
-  6: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check'],
-  7: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'fake-check', 'source-check'],
+  1: ['bad-arguments', 'feelings-check', 'brain-check'],
+  2: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them'],
+  3: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check'],
+  4: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story'],
+  5: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check'],
+  6: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check', 'fake-check'],
+  7: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check', 'fake-check'],
 }
 
 // Level visual config

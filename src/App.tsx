@@ -39,13 +39,9 @@ export default function App() {
 
     const nextLevel = currentLevel + 1
     if (nextLevel > 7) {
-      // Wait a beat, then show victory
-      setTimeout(() => setPhase('victory'), 2500)
+      setTimeout(() => setPhase('victory'), 300)
     } else {
-      // Show transition to next level
-      setTimeout(() => {
-        setPhase('transition')
-      }, 2500)
+      setTimeout(() => setPhase('transition'), 300)
     }
   }, [currentPost, currentLevel])
 
