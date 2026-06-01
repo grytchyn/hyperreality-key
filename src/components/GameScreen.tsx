@@ -26,15 +26,21 @@ const CHOICE_ICONS: Record<number, string[]> = {
   5: ['👑', '❤️', '💯', '🧼'],
   6: ['💡', '⚔️', '🛡️', '🕵️'],
   7: ['💾', '📝', '🌐', '🎭'],
+  8: ['📋', '🔬', '🧪', '📄'],
+  9: ['🔄', '🔁', '🔃', '♻️'],
+  10: ['🐟', '🎣', '🪤', '🌀'],
+  11: ['🎯', '📡', '🔍', '🎪'],
+  12: ['📊', '⚖️', '🏛️', '🔨'],
 }
 
 export default function GameScreen({ post, onAnswer, totalScore }: GameScreenProps) {
   const [phase, setPhase] = useState<'chat' | 'game'>('game')
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>(() => {
-    // Pre-activate all available filters immediately
+    // Pre-activate only tools that actually have highlights in this post
     const level = post.level
     const tools = LEVEL_TOOLS[level] || []
-    return tools
+    const text = post.content + ' ' + post.title
+    return tools.filter(toolId => getHighlightsFor([toolId], text).size > 0)
   })
   const [chosenAnswer, setChosenAnswer] = useState<number | null>(null)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
@@ -47,6 +53,11 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
   const level = post.level
   const levelCfg = LEVEL_CONFIG[level] || LEVEL_CONFIG[7]
   const availableTools = LEVEL_TOOLS[level] || []
+  // Nur Tools mit Treffern im Text anzeigen
+  const toolsWithHighlights = availableTools.filter(toolId => {
+    const testText = post.content + ' ' + post.title
+    return getHighlightsFor([toolId], testText).size > 0
+  })
   const highlights = useMemo(
     () => getHighlightsFor(activeFilters, post.content + ' ' + post.title),
     [activeFilters, post]
@@ -105,9 +116,11 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
   // Reset state when post changes
   useEffect(() => {
     setPhase('game')
-    // Pre-activate all available filters
+    // Pre-activate only relevant tools
     const tools = LEVEL_TOOLS[post.level] || []
-    setActiveFilters(tools)
+    const text = post.content + ' ' + post.title
+    const relevantTools = tools.filter(toolId => getHighlightsFor([toolId], text).size > 0)
+    setActiveFilters(relevantTools)
     setChosenAnswer(null)
     setFeedback(null)
     setTooltip(null)
@@ -288,7 +301,7 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
                 className="text-[10px] font-mono transition-colors cursor-pointer" style={{ color: '#6b7280' }}>clear</button>
             </div>
             <div className="grid grid-cols-4 gap-2">
-              {availableTools.map(toolId => {
+              {toolsWithHighlights.map(toolId => {
                 const t = CORE_TOOLS.find(x => x.id === toolId)
                 if (!t) return null
                 const isOn = activeFilters.includes(toolId)
@@ -378,6 +391,28 @@ export default function GameScreen({ post, onAnswer, totalScore }: GameScreenPro
                 {feedback === 'correct' ? '✓ Correct!' : '✗ Not quite'}
               </span>
               {post.explanation}
+            </div>
+          )}
+
+          {/* Avatar + Key Logo — centered between explanation and next button */}
+          {chosenAnswer !== null && (
+            <div className="mt-6 flex flex-col items-center gap-2 animate-fade-in-up">
+              <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-offset-2 ring-offset-[#13131a]"
+                style={{ boxShadow: `0 0 20px ${post.categoryColor}40`, borderColor: post.categoryColor }}>
+                <img
+                  src={`/assets/avatars/${post.friendName.toLowerCase().replace(/\s+/g, '-')}.png`}
+                  alt={post.friendName}
+                  className="w-full h-full object-cover"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                />
+              </div>
+              <div className="flex items-center gap-1.5">
+                <img src="/assets/key-icon.png" alt="HK" className="w-6 h-6 object-contain opacity-60"
+                  style={{ filter: 'drop-shadow(0 0 6px rgba(139,92,246,0.3))' }} />
+                <span className="text-[10px] font-mono font-bold tracking-wider" style={{ color: '#6b7280' }}>
+                  {post.friendName} · Level {level}/12
+                </span>
+              </div>
             </div>
           )}
 
