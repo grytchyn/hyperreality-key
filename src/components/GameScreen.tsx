@@ -163,17 +163,13 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
             <div className="text-[13px] leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>{renderContent()}</div>
           </div>
           <div className="px-4 py-2 flex items-center gap-4 text-[11px] border-b border-gray-800/30" style={{ color: 'var(--color-text-muted)' }}><span>💬 12</span><span>🔄 47</span><span>❤️ 120</span></div>
-          <div className="px-4 py-3 relative">
+          <div className="px-4 py-3">
             {showTutorial && (
-              <div className="absolute inset-0 z-30 pointer-events-none">
-                {/* Subtle pulse ring around the entire tool area */}
-                <div className="absolute inset-2 rounded-xl animate-pulse-slow"
+              <div className="absolute inset-0 z-30 flex items-start justify-center pt-8 pointer-events-none rounded-2xl"
+                style={{ height: '100%' }}>
+                <div className="absolute inset-2 rounded-xl animate-pulse-slow pointer-events-none"
                   style={{ boxShadow: '0 0 40px 8px color-mix(in srgb, var(--color-neon-purple) 20%, transparent)', border: '1px solid color-mix(in srgb, var(--color-neon-purple) 25%, transparent)' }} />
-              </div>
-            )}
-            {showTutorial && (
-              <div className="flex items-center justify-center mb-3 relative z-30 animate-fade-in-up">
-                <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-[10px] font-bold tracking-wide leading-relaxed"
+                <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-[10px] font-bold tracking-wide leading-relaxed animate-fade-in-up"
                   style={{ background: 'color-mix(in srgb, var(--color-dark-card) 90%, transparent)', border: '1px solid color-mix(in srgb, var(--color-neon-purple) 25%, transparent)', color: 'var(--color-text-secondary)' }}>
                   <span className="text-[14px] animate-pulse" style={{ color: 'var(--color-neon-purple)' }}>💡</span>
                   Tap any <span className="font-bold" style={{ color: 'var(--color-neon-purple)' }}>Skill</span> to highlight manipulation patterns in the article
@@ -243,12 +239,18 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
                   className="w-full h-full object-cover"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
               </div>
-              <div className="rounded-2xl px-3.5 py-2.5 text-[11px] leading-relaxed max-w-[260px]"
+              <div className="flex-1 min-w-0 rounded-2xl px-3.5 py-2.5 text-[11px] leading-relaxed"
                 style={{ background: 'linear-gradient(135deg, color-mix(in srgb, var(--color-dark-card) 95%, transparent), color-mix(in srgb, var(--color-dark-surface) 95%, transparent))',
                   border: `1px solid ${levelCfg.color}25`, color: 'var(--color-text-secondary)', borderTopLeftRadius: '4px',
                   fontFamily: "'Work Sans', system-ui, sans-serif", fontWeight: 430, lineHeight: 1.6 }}>
-                <div className="text-[9px] font-bold mb-1" style={{ color: levelCfg.color, fontFamily: "'Work Sans', system-ui, sans-serif", letterSpacing: '0.02em' }}>
-                  {post.friendName} · {getScientistField(post.scientistKey)}
+                <div className="text-[9px] font-bold mb-1 flex items-center gap-2" style={{ color: levelCfg.color, fontFamily: "'Work Sans', system-ui, sans-serif", letterSpacing: '0.02em' }}>
+                  <span>{post.friendName} · {getScientistField(post.scientistKey)}</span>
+                  <a href={getScientistAvatar(post.scientistKey).wiki} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] font-mono uppercase tracking-wider transition-all hover:scale-105"
+                    style={{ background: `${levelCfg.color}20`, color: levelCfg.color + 'cc', border: `1px solid ${levelCfg.color}30` }}
+                    onClick={(e) => e.stopPropagation()}>
+                    📖 wiki
+                  </a>
                 </div>
                 {post.explanation}
               </div>

@@ -13,13 +13,15 @@
 - **Double-flag fix**: Old correct/incorrect feedback block removed. Only the scientist explanation bubble remains.
 - **Button colors**: Wrong answer → red Next button. Correct answer → green Next button.
 - **Splash fix**: Chat messages now appear at the **bottom** of the chat area (real messenger style), not top.
-- **Avatars**: Re-cropped from `scientists-sheet.png` — crop **180×180px** from center of each cell, then resize to **120×120px** (30% padding around face ensures avatar fits within circular clip). Updated spec @5.2.
+- **Avatars**: Re-cropped from `scientists-sheet.png` — crop **180×180px** from center of each cell, then resize to **120×120px** (30% padding around face). Updated spec @5.2.
+- **Tutorial hint**: First-time players see a subtle pulsing glow + "Tap any Skill" tooltip over skills on Level 1. Overlay (no layout shift). Dismissed on first skill tap, stored in localStorage.
+- **Scientist bubble now full width**: `max-w-[260px]` removed → `flex-1 min-w-0` stretches to container. More interesting explanations possible.
+- **Wikipedia link**: Tiny "📖 wiki" badge in each scientist bubble, links to their English Wikipedia page.
 - **Logo compressed**: 731KB → 253KB (−65%). Resized from 1126×383 to 731×248px with `optimize=True`.
-- **Alex avatar**: Re-cropped to 120×120px from the original.
 - **Splash change**: Alex (friend avatar) now appears in the messenger mockup instead of Schopenhauer.
 - **Scientists reshuffled**: Level 1 → Robert Cialdini (modern). Schopenhauer moved to Level 10.
-- **New mission topics added**: Ukraine disinfo (Level 4), Gaza famine denial (Level 6), Russia's African Initiative (Level 11). Topics now span conflicts, climate, health, entertainment, and politics.
-- **getScientistField()**: New exported function for dynamic field display in the scientist bubble (replaces hardcoded switch).
+- **New mission topics added**: Ukraine disinfo (Level 4), Gaza famine denial (Level 6), Russia's African Initiative (Level 11).
+- **getScientistField()**: New exported function for dynamic field display.
 
 ### v1.1 (01.06.2026)
 - Background: unified `game-bg.png` for ALL levels (Level 1 no longer has separate bg)
