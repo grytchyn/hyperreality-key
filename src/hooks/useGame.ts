@@ -1,7 +1,7 @@
 // 🎮 Game State Machine — EN-only
 import { useReducer, useCallback } from 'react';
 import { GAME_CONFIG } from '../config/game';
-import { getMissionPosts } from '../data/missions';
+import { getMissionConfig } from '../data/missions';
 import { calculatePoints } from '../engine/scoring';
 
 export interface LevelResult {
@@ -58,8 +58,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
 export function useGame() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
-  const missions = getMissionPosts();
-  const currentPost = missions.find(p => p.level === state.currentLevel);
+  const currentPost = getMissionConfig(state.currentLevel);
 
   const handleStart = useCallback(() => dispatch({ type: 'START_GAME' }), []);
   const handleAnswer = useCallback((correct: boolean) => dispatch({ type: 'ANSWER_QUESTION', correct }), []);

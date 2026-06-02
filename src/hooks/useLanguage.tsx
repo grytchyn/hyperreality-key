@@ -1,6 +1,6 @@
 // 🌐 Language — EN-only simplified context
 import { createContext, useContext, type ReactNode } from 'react';
-import { getMissionPosts } from '../data/missions';
+import { MISSIONS } from '../data/missions';
 import type { MissionPost } from '../data/missions';
 
 interface LanguageContextValue {
@@ -11,9 +11,8 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const missions = getMissionPosts();
   return (
-    <LanguageContext.Provider value={{ language: 'en', missions }}>
+    <LanguageContext.Provider value={{ language: 'en', missions: MISSIONS }}>
       {children}
     </LanguageContext.Provider>
   );

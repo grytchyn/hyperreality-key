@@ -1,6 +1,6 @@
 // ── MISSIONS v20 — REAL articles with REAL sources + journalist standards ──
 // MissionPost-Schnittstelle: ID, Title, Source, URL, Scientist-Key, Farbe, Content (mit Highlightregeln)
-// Backward Kompatibilität: Spiel木 hält an alten Properties wie scientistKey, friendName fest
+// Backward Kompatibilität: Spiel木 hält an alten Properties wie scientist, friendName fest
 import type { CoreToolId, HighlightRule } from '../types'
 
 export interface MissionPost {
@@ -8,7 +8,7 @@ export interface MissionPost {
   title: string
   source: string
   url: string
-  scientistKey: string // für Spielkompatibilität
+  scientist: string // für Spielkompatibilität
   color: string
   content: string
   highlightRules: Record<CoreToolId, HighlightRule[]>
@@ -23,7 +23,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'Trump\'s immigration approval drops to record low, poll shows',
     source: 'Reuters/Ipsos',
     url: 'https://www.reuters.com/world/us/trumps-immigration-approval-drops-record-low-reutersipsos-poll-finds-2026-01-26',
-    scientistKey: 'haidt',
+    scientist: 'haidt',
     color: '#ec4899',
     content: `American approval of President Donald Trump's immigration policy fell to its lowest level since his return to the White House in a Reuters/Ipsos poll, with a majority of Americans saying his crackdown has gone too far. Among women, Trump's support on immigration has fallen from around 40% throughout most of 2025 to 35% in the latest survey. Only 39% approve of Trump's immigration crackdown, down from 41% in early January. 53% disapprove, up from 41%. "The ICE crackdown has gone too far," said 58% of poll respondents in January 2026.`,
     highlightRules: {
@@ -54,7 +54,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'Scientists warn of accelerating climate shift',
     source: 'PBS NewsHour',
     url: 'https://www.pbs.org/newshour/science/scientists-say-another-hot-year-is-a-warning-shot-of-a-shifting-dangerous-climate',
-    scientistKey: 'foucault',
+    scientist: 'foucault',
     color: '#eab308',
     content: `Earth's average temperature last year hovered among one of the three hottest on record, while the past three years indicate that warming could be speeding up, scientists say. "The last three years are indicative of an acceleration in the warming. They're not consistent with the linear trend we've been observing for the 50 years before that," said Robert Rohde of Berkeley Earth. "Climate change is happening. It's here. It's impacting everyone all around the world and it's our fault," said Samantha Burgess of Copernicus Climate Service. "When we have severe storms or flooding events, the rain is more intense," she added.`,
     highlightRules: {
@@ -89,7 +89,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'Iran eyes limited US deal to relieve economic strain',
     source: 'Reuters',
     url: 'https://www.reuters.com/world/middle-east/iran-eyes-limited-us-deal-relieve-economic-strain-buy-time-2026-06-01',
-    scientistKey: 'kahneman',
+    scientist: 'kahneman',
     color: '#06b6d4',
     content: `Iran is pushing for a limited interim agreement with the United States in a bid to ease mounting economic pressure and stabilise the situation at home, while avoiding major concessions on its nuclear programme. "Iranian leaders understand that time is not necessarily on their side... their calculation appears to be that dialogue, even limited dialogue, is preferable to entering an open-ended period of economic attrition and uncertainty that could gradually weaken its ability to govern at home and project influence abroad," said Alex Vatanka of the Middle East Institute. "With the start of the war, Trump gave Iran the gift of control over the Strait," said an Iranian source.`,
     highlightRules: {
@@ -122,7 +122,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'US strikes Iranian military sites as tensions escalate',
     source: 'Reuters',
     url: 'https://www.reuters.com/world/middle-east/us-struck-iranian-drone-command-sites-over-weekend-military-says-2026-06-01',
-    scientistKey: 'barthes',
+    scientist: 'barthes',
     color: '#f97316',
     content: `The US said on Sunday it conducted "self-defense strikes" on Iranian radar and drone control sites in Goruk and Qeshm Island. In response, Iran launched an attack on an air base, according to Iranian state media. The US strikes come after Iranian-backed militias increased attacks on US forces in the region. "This is a clear act of aggression that we must respond to decisively," said a US military spokesperson.`,
     highlightRules: {
@@ -159,7 +159,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'AP-NORC Poll: Public opinion on immigration enforcement',
     source: 'AP News',
     url: 'https://apnews.com/article/trump-immigration-ice-minneapolis-deportation-42aff472ccf1ecd7b92ba0c90469c9e7',
-    scientistKey: 'schopenhauer',
+    scientist: 'schopenhauer',
     color: '#ec4899',
     content: `60% of U.S. adults believe Trump has "gone too far" in sending federal agents into cities for immigration enforcement. Only 40% approve of Trump's immigration tactics. The partisan divide is stark: 90% of Democrats, 60% of independents, and 25% of Republicans say Trump has overstepped. "You don't go yanking people out of cars. You don't go shooting people," said Rick Kinnett, a Navy veteran from Indiana. Only 30% of U.S. adults have a favorable view of ICE. ICE favorability: Democrats (10%), Independents (20%), Republicans (70%).`,
     highlightRules: {
@@ -196,7 +196,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'Trump administration complies with court order on $1.8B fund',
     source: 'PBS NewsHour',
     url: 'https://www.pbs.org/newshour/arts/trump-administration-says-it-will-comply-with-court-order-that-temporarily-paused-1-8-billion-compensation-fund',
-    scientistKey: 'sunstein',
+    scientist: 'sunstein',
     color: '#eab308',
     content: `The Trump administration said Monday it will comply with a court ruling temporarily blocking a nearly $1.8 billion fund meant to compensate allies of the president. The Justice Department said in a statement that it "disagrees strongly" with the ruling but would abide by it. The fund was established to resolve Trump's lawsuit against the IRS over the leak of his tax returns, framed as reparations for alleged "weaponized law enforcement" during the Biden administration.`,
     highlightRules: {
@@ -231,7 +231,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'Climate change is here, scientists say',
     source: 'BBC',
     url: 'https://www.bbc.com/news/articles/c3ew90vj8vyo',
-    scientistKey: 'tajfel',
+    scientist: 'tajfel',
     color: '#a78bfa',
     content: `Scientists in Reading for workshops say climate change is here. "We have experienced an incredibly wet period and seen a lot of flooding. It is part of a pattern, it's a long-term pattern," said Professor Rowan Sutton, Director of the Met Office Hadley Centre. "We are seeing wetter winters, wetter autumns in the UK—entirely consistent with how greenhouse gases are changing our climate," he added. "These workshops will provide critical guidance for our leadership," said Professor Sir Jim Skea, Chair of the IPCC.`,
     highlightRules: {
@@ -264,7 +264,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'Iran war hands Syria a windfall',
     source: 'Reuters',
     url: 'https://www.reuters.com/world/middle-east/iran-war-hands-syria-windfall-airlines-reroute-over-its-airspace-2026-06-01',
-    scientistKey: 'mccombs-shaw',
+    scientist: 'mccombs-shaw',
     color: '#14b8a6',
     content: `The Iran war has handed Syria a windfall as airlines reroute over its airspace. Syria gains revenue but risks further destabilization. "Any peace deal must offer clear rules for vessels to resume normal business via Hormuz," said shipping executives at the World Economic Forum. China could survive without Hormuz but would face higher costs and logistical challenges.`,
     highlightRules: {
@@ -295,7 +295,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'Trump administration faces Republican pushback',
     source: 'Reuters',
     url: 'https://www.reuters.com/world/us/trumps-deportation-push-could-cost-republicans-midterm-elections-reutersipsos-2026-04-22',
-    scientistKey: 'kahneman',
+    scientist: 'kahneman',
     color: '#eab308',
     content: `Only 40% of respondents now approve of Trump's performance on immigration, down from 50% in early 2025. Americans generally support policies that stop people from entering the country illegally, with 84% saying it's at least somewhat important to have secure borders and 87% saying it's important to enforce immigration laws. But 76% of respondents said unauthorized migrants who have jobs and no criminal record should have a way to gain legal status. Only 25% of respondents said current deportation efforts are less aggressive than a month ago, but 70% said a less aggressive approach would be a positive change.`,
     highlightRules: {
@@ -328,7 +328,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'Climate change framing shapes policy priorities',
     source: 'Reuters',
     url: 'https://www.reuters.com/sustainability/climate-change',
-    scientistKey: 'baudrillard',
+    scientist: 'baudrillard',
     color: '#6366f1',
     content: `Countries raised $107 billion last year by charging firms for emitting carbon dioxide, up 2% from 2024, the World Bank said in a report on Wednesday. The rise in carbon pricing comes as global temperatures continue to increase. Experts say climate change action must focus on preventing suffering rather than limiting emissions, particularly for those in the toughest conditions in the world's poorest countries. "Climate change is not something that only impacts others—just as we all experience the weather," said Sherilee Harper, Vice-Chair of IPCC Working Group.`,
     highlightRules: {
@@ -363,7 +363,7 @@ export const MISSIONS: MissionPost[] = [
     title: 'Trump\'s immigration approval hits new low',
     source: 'AP News',
     url: 'https://apnews.com/hub/public-opinion',
-    scientistKey: 'cialdini',
+    scientist: 'cialdini',
     color: '#ec4899',
     content: `Hispanic adults who helped re-elect President Donald Trump in 2024 are now deeply unhappy with his performance, according to a new AP-NORC poll. Hispanic adults who helped re-elect President Donald Trump in 2024 are now deeply unhappy with his performance, according to a new AP-NORC poll. How Trump's immigration crackdown is affecting everyday Americans, according to a new AP-NORC poll. Trump's approval on economy falls during Iran war, new AP-NORC poll shows. AP-NORC poll: Hispanic adults who helped re-elect President Donald Trump in 2024 are now deeply unhappy with his performance.`,
     highlightRules: {
@@ -398,7 +398,7 @@ export const getMissionConfig = (id: number): MissionPost | undefined => {
 }
 
 export const getMissionByScientist = (scientistName: string): MissionPost | undefined => {
-  return MISSIONS.find(m => m.scientistKey === scientistName) || MISSIONS[0]
+  return MISSIONS.find(m => m.scientist === scientistName) || MISSIONS[0]
 }
 
 // Backward compatibility alias
