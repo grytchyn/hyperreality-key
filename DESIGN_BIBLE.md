@@ -7,6 +7,11 @@
 
 ## 0. CHANGELOG
 
+### v1.3 (02.06.2026)
+- **🎯 Paradigm shift**: Missions are now **real disinformation posts** (fake headlines + manipulative text) instead of debunking articles. Players analyze the manipulation itself.
+- **✅ Tool coverage**: All 12 tools appear in **≥3 levels** (bad-arguments: 12/12, source-check: 8, hidden-story: 8, value-check: 7, etc.)
+- **Smart tool visibility**: Only tools with active highlights in the current text are shown. Each text is crafted to activate the level's primary tool plus secondary tools.
+
 ### v1.2 (02.06.2026)
 - **EN-only**: DE/UA completely removed. App simplified to English only. Bundle size -25%.
 - **Tool visibility**: Only tools that actively highlight words in the current text are shown. Texts redesigned to use ≥3 tools each.
