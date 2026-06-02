@@ -37,14 +37,14 @@ export const COLORS = {
     'feelings-check': '#f59e0b',
     'brain-check': '#22c55e',
     'us-vs-them': '#3b82f6',
-    'value-check': '#a855f7',
+    'value-check': '#f97316',
     'hidden-story': '#06b6d4',
-    'fake-check': '#f97316',
+    'fake-check': '#a78bfa',
     'source-check': '#14b8a6',
     'echo-chamber': '#ec4899',
     'red-herring': '#eab308',
     'agenda-setting': '#6366f1',
-    'false-appeal': '#a855f7',
+    'false-appeal': '#e11d48',
   } as const satisfies Record<string, string>,
 
   // Spectrum for scientist avatars

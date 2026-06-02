@@ -22,11 +22,12 @@ export const GAME_CONFIG = {
   /** How long (ms) before transitioning to next level after clicking "Next Level" */
   NEXT_LEVEL_DELAY_MS: 0,
 
-  /** Rank thresholds */
+  /** Rank thresholds — continuous coverage */
   RANKS: [
     { min: 0, max: 30, title: 'Novice', label: 'Information Apprentice' },
-    { min: 40, max: 70, title: 'Critical Thinker', label: 'Truth Seeker' },
-    { min: 80, max: 100, title: 'Truth Seeker', label: 'Reality Navigator' },
+    { min: 31, max: 50, title: 'Truth Apprentice', label: 'Pattern Spotter' },
+    { min: 51, max: 79, title: 'Critical Thinker', label: 'Truth Seeker' },
+    { min: 80, max: 109, title: 'Truth Seeker', label: 'Reality Navigator' },
     { min: 110, max: 120, title: 'Hyperreality Master', label: 'Key Holder' },
   ] as const,
 

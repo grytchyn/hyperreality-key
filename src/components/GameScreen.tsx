@@ -112,7 +112,12 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
     const words = post.content.split(/(\s+)/);
     return words.map((w, i) => {
       const clean = w.toLowerCase().replace(/[^a-z%]/g, '');
-      const entries = clean ? highlights.get(clean) : undefined;
+      // Check single word first, then phrase-tagged versions
+      let entries = clean ? highlights.get(clean) : undefined;
+      if (!entries || entries.length === 0) {
+        const phraseKey = `__phrase:${clean}`;
+        entries = highlights.get(phraseKey);
+      }
       if (entries && entries.length > 0) {
         const tip = entries.map(e => e.explanation).join(' • ');
         return (

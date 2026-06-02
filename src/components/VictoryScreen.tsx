@@ -1,19 +1,19 @@
 // ── VICTORY SCREEN v12 — clean, no NFT/wallet, beautiful key ──
 // Shows: score gauge, stats grid, rank, glowing key image, restart
 import Header from './Header'
+import { calculateFinalScore } from '../engine/scoring'
+import { GAME_CONFIG } from '../config/game'
 
 interface VictoryScreenProps { score: number; onRestart: () => void }
 
 export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) {
-  const maxScore = 120
-  const pct = Math.round((score / maxScore) * 100)
-  const rank = pct >= 90 ? 'HYPERREALITY MASTER' : pct >= 70 ? 'DECEPTION DETECTOR' : pct >= 50 ? 'TRUTH SEEKER' : 'APPRENTICE'
-  const rankStars = pct >= 90 ? 5 : pct >= 70 ? 4 : pct >= 50 ? 3 : 2
-  const rankColor = pct >= 90 ? 'var(--color-pixel-yellow)' : pct >= 70 ? 'var(--color-neon-purple)' : pct >= 50 ? 'var(--color-neon-cyan)' : 'var(--color-pixel-green)'
+  const { percentage, rank } = calculateFinalScore(score)
+  const rankStars = percentage >= 90 ? 5 : percentage >= 70 ? 4 : percentage >= 50 ? 3 : 2
+  const rankColor = percentage >= 90 ? 'var(--color-pixel-yellow)' : percentage >= 70 ? 'var(--color-neon-purple)' : percentage >= 50 ? 'var(--color-neon-cyan)' : 'var(--color-pixel-green)'
 
   // Circle gauge
   const circumference = 2 * Math.PI * 40
-  const offset = circumference - (pct / 100) * circumference
+  const offset = circumference - (percentage / 100) * circumference
 
   return (
     <div className="min-h-screen bg-dark-bg flex flex-col relative overflow-hidden"
@@ -111,7 +111,7 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <span className="text-lg font-bold text-white tabular-nums">{score}</span>
-                    <span className="text-[8px] text-gray-500 font-mono">/ {maxScore}</span>
+                    <span className="text-[8px] text-gray-500 font-mono">/ {GAME_CONFIG.MAX_SCORE}</span>
                   </div>
                 </div>
                 <span className="text-[7px] text-gray-500 font-mono uppercase">SCORE</span>
@@ -123,7 +123,7 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
                   { icon: '👁️', label: 'Posts Analyzed', value: '12', color: 'var(--color-neon-purple)' },
                   { icon: '✓', label: 'Correct', value: `${Math.round(score / 10)}/12`, color: 'var(--color-pixel-green)' },
                   { icon: '🧠', label: 'Skills Trained', value: '12', color: 'var(--color-neon-cyan)' },
-                  { icon: '🎯', label: 'Accuracy', value: `${pct}%`, color: 'var(--color-pixel-yellow)' },
+                  { icon: '🎯', label: 'Accuracy', value: `${percentage}%`, color: 'var(--color-pixel-yellow)' },
                 ].map(stat => (
                   <div key={stat.label}
                     className="rounded-xl p-2.5 text-left"

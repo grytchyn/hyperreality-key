@@ -21,7 +21,7 @@ export default function Header({ level, levelName, levelColor = '#8b5cf6', showL
           <img
             src="/assets/logo-new.png"
             alt="Hyperreality Key"
-            className="h-20 sm:h-24 w-auto object-contain"
+            className="h-12 sm:h-16 w-auto object-contain"
             style={{ filter: 'drop-shadow(0 0 25px color-mix(in srgb, var(--color-neon-purple) 35%, transparent))' }}
           />
         </div>

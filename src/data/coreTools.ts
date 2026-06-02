@@ -212,6 +212,12 @@ export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<strin
         if (phrase.includes(' ')) {
           if (text.toLowerCase().includes(phrase.toLowerCase())) {
             addEntry(map, phrase, { word: phrase, explanation: rule.explanation, color: config.color })
+            // Also tag each word in the phrase so individual tokens find it
+            const words = phrase.toLowerCase().split(/\s+/)
+            for (const w of words) {
+              // Store with a special prefix to avoid collision
+              addEntry(map, `__phrase:${w}`, { word: phrase, explanation: rule.explanation, color: config.color })
+            }
           }
         }
       }
