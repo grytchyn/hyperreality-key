@@ -9,7 +9,7 @@ function AppInner() {
   const { missions } = useLanguage()
   const { state, handleStart, handleAnswer, handleNextLevel, handleRestart } = useGame()
 
-  const currentPost = missions.find(p => p.level === state.currentLevel)
+  const currentPost = missions.find(p => p.id === state.currentLevel)
 
   if (state.phase === 'splash') return <SplashScreen onStart={handleStart} />
   if (state.phase === 'victory') return <VictoryScreen score={state.totalScore} onRestart={handleRestart} />

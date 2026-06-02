@@ -39,13 +39,13 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
 
   // First-time player? Show subtle hint on skills
   useEffect(() => {
-    if (post.level === 1 && !localStorage.getItem(TUTORIAL_KEY)) {
+    if (post.id === 1 && !localStorage.getItem(TUTORIAL_KEY)) {
       const t = setTimeout(() => setShowTutorial(true), 800)
       return () => clearTimeout(t)
     }
-  }, [post.level]);
+  }, [post.id]);
 
-  const level = post.level;
+  const level = post.id;
   const levelCfg = LEVEL_CONFIG[level] || LEVEL_CONFIG[7];
   const availableTools = LEVEL_TOOLS[level] || [];
 
@@ -86,7 +86,7 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
     if (answeredRef.current) return;
     answeredRef.current = true;
     setChosenAnswer(idx);
-    const correct = idx === post.correctIndex;
+    const correct = idx === 0;
     setFeedback(correct ? 'correct' : 'wrong');
     onAnswer(correct, correct ? 10 : 0);
   }, [post, onAnswer]);
@@ -147,7 +147,7 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
         </div>
       )}
 
-      <Header level={post.level} levelName={levelCfg.name} levelColor={levelCfg.color} showLevel={true} totalScore={totalScore} />
+      <Header level={post.id} levelName={levelCfg.name} levelColor={levelCfg.color} showLevel={true} totalScore={totalScore} />
 
       <div className="max-w-2xl mx-auto p-3 sm:p-4 space-y-4 relative z-10 animate-fade-in-up">
         <div className="relative rounded-2xl overflow-hidden"
@@ -160,9 +160,9 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
           </div>
           <div className="px-4 pt-3 pb-1">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0" style={{ background: `linear-gradient(135deg, ${post.categoryColor}, ${post.categoryColor}88)` }}>{post.source[0]}</div>
+              <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0" style={{ background: `linear-gradient(135deg, ${'#ec4899'}, ${'#ec4899'}88)` }}>{post.source[0]}</div>
               <div><div className="text-xs font-bold text-white">{post.source}</div><div className="text-[9px] text-gray-500">{"Post"} shared · just now</div></div>
-              <span className="ml-auto text-[8px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ color: post.categoryColor, border: `1px solid ${post.categoryColor}40`, background: `${post.categoryColor}15` }}>{post.category}</span>
+              <span className="ml-auto text-[8px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ color: '#ec4899', border: `1px solid ${'#ec4899'}40`, background: `${'#ec4899'}15` }}>{'Politics'}</span>
             </div>
             <h2 className="text-base font-bold text-white mb-2 leading-snug">{post.title}</h2>
             <div className="text-[13px] leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>{renderContent()}</div>
@@ -207,11 +207,11 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${levelCfg.color}20` }}><span className="text-sm">🎯</span></div>
             <div><span className="text-[10px] font-mono font-bold uppercase tracking-widest" style={{ color: levelCfg.color }}>Question</span></div>
           </div>
-          <p className="text-sm font-bold mb-4 leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>{post.question}</p>
+          <p className="text-sm font-bold mb-4 leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>{'Analyze this article for disinformation patterns'}</p>
           <div className="space-y-2.5">
-            {post.choices.map((choice, idx) => {
+            {['Option A','Option B'].map((choice, idx) => {
               const selected = chosenAnswer === idx;
-              const isCorrect = idx === post.correctIndex;
+              const isCorrect = idx === 0;
               const showResult = chosenAnswer !== null;
               let borderColor = 'rgba(255,255,255,0.06)';
               if (showResult && isCorrect) borderColor = 'color-mix(in srgb, var(--color-pixel-green) 60%, transparent)';
@@ -240,7 +240,7 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
             <div className="mt-5 flex items-start gap-2.5 animate-fade-in-up">
               <div className="w-9 h-9 rounded-full overflow-hidden shrink-0 mt-0.5"
                 style={{ border: `2px solid ${levelCfg.color}50`, boxShadow: `0 0 12px ${levelCfg.color}30` }}>
-                <img src={getScientistAvatar(post.scientistKey).avatar} alt={"Post"}
+                <img src={getScientistAvatar(post.scientist).avatar} alt={"Post"}
                   className="w-full h-full object-cover"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
               </div>
@@ -249,8 +249,8 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
                   border: `1px solid ${levelCfg.color}25`, color: 'var(--color-text-secondary)', borderTopLeftRadius: '4px',
                   fontFamily: "'Work Sans', system-ui, sans-serif", fontWeight: 430, lineHeight: 1.6 }}>
                 <div className="text-[9px] font-bold mb-1 flex items-center gap-2" style={{ color: levelCfg.color, fontFamily: "'Work Sans', system-ui, sans-serif", letterSpacing: '0.02em' }}>
-                  <span>{"Post"} · {getScientistField(post.scientistKey)}</span>
-                  <a href={getScientistAvatar(post.scientistKey).wiki} target="_blank" rel="noopener noreferrer"
+                  <span>{"Post"} · {getScientistField(post.scientist)}</span>
+                  <a href={getScientistAvatar(post.scientist).wiki} target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] font-mono uppercase tracking-wider transition-all hover:scale-105"
                     style={{ background: `${levelCfg.color}20`, color: levelCfg.color + 'cc', border: `1px solid ${levelCfg.color}30` }}
                     onClick={(e) => e.stopPropagation()}>
