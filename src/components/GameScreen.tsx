@@ -146,7 +146,7 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
       {tooltip && (
         <div className="fixed z-[9999] pointer-events-none" style={{ left: tooltip.x, top: tooltip.y, transform: 'translateY(-100%)' }}>
           <div className="rounded-xl p-3 shadow-2xl max-w-[320px] text-[12px] leading-relaxed"
-            style={{ background: 'var(--color-dark-card)', border: `1px solid ${levelCfg.color}50`, color: 'var(--color-text-secondary)' }}>{tooltip.text}</div>
+            style={{ background: 'var(--color-dark-card)', border: `1px solid ${levelCfg.color}50`, color: 'var(--color-text-secondary)', fontFamily: "'Work Sans', 'Inter', system-ui, sans-serif", fontWeight: 450 }}>{tooltip.text}</div>
         </div>
       )}
 
@@ -357,10 +357,10 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
                   color: 'var(--color-text-secondary)',
                   borderTopLeftRadius: '4px',
                 }}>
-                <div className="text-[9px] font-bold font-mono mb-1" style={{ color: levelCfg.color }}>
+                <div className="text-[9px] font-bold mb-1" style={{ color: levelCfg.color, fontFamily: "'Work Sans', system-ui, sans-serif", letterSpacing: '0.02em' }}>
                   {post.friendName} · {post.scientistKey === 'schopenhauer' ? 'Eristic Dialectic' : post.scientistKey === 'cialdini' ? 'Influence Theory' : post.scientistKey === 'kahneman' ? 'Behavioral Economics' : post.scientistKey === 'tajfel' ? 'Social Identity' : post.scientistKey === 'haidt' ? 'Moral Foundations' : post.scientistKey === 'barthes' ? 'Semiotics' : post.scientistKey === 'baudrillard' ? 'Hyperreality' : post.scientistKey === 'foucault' ? 'Power Theory' : post.scientistKey === 'sunstein' ? 'Law & Policy' : post.scientistKey === 'mccombs_shaw' ? 'Media Studies' : 'Critical Thinking'}
                 </div>
-                {post.explanation}
+                <div style={{ fontFamily: "'Work Sans', system-ui, sans-serif", fontWeight: 430, lineHeight: 1.6 }}>{post.explanation}</div>
               </div>
             </div>
           )}
