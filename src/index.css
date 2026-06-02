@@ -275,6 +275,15 @@ body {
   animation: fade-in-up 0.35s ease-out;
 }
 
+/* ── SLOW PULSE FOR TUTORIAL HINT ── */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 2.5s ease-in-out infinite;
+}
+
 @keyframes slide-up {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }

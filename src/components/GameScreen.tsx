@@ -26,12 +26,24 @@ const CHOICE_ICONS: Record<number, string[]> = {
   11: ['🎯', '📡', '🔍', '🎪'], 12: ['📊', '⚖️', '🏛️', '🔨'],
 }
 
+const TUTORIAL_KEY = 'hrk_tutorial_done'
+
 export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameScreenProps) {
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>([]);
   const [chosenAnswer, setChosenAnswer] = useState<number | null>(null);
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
+  const [showTutorial, setShowTutorial] = useState<boolean>(false);
   const answeredRef = useRef(false);
+  const tutorialDismissed = useRef(false);
+
+  // First-time player? Show subtle hint on skills
+  useEffect(() => {
+    if (post.level === 1 && !localStorage.getItem(TUTORIAL_KEY)) {
+      const t = setTimeout(() => setShowTutorial(true), 800)
+      return () => clearTimeout(t)
+    }
+  }, [post.level]);
 
   const level = post.level;
   const levelCfg = LEVEL_CONFIG[level] || LEVEL_CONFIG[7];
@@ -58,11 +70,17 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
 
   const toggleFilter = useCallback((toolId: CoreToolId) => {
     setTooltip(null);
+    // First skill tap → dismiss tutorial forever
+    if (showTutorial && !tutorialDismissed.current && activeFilters.length === 0) {
+      tutorialDismissed.current = true;
+      setShowTutorial(false);
+      localStorage.setItem(TUTORIAL_KEY, '1');
+    }
     const newFilters = activeFilters.includes(toolId)
       ? activeFilters.filter(id => id !== toolId)
       : [...activeFilters, toolId];
     setActiveFilters(newFilters);
-  }, [activeFilters]);
+  }, [activeFilters, showTutorial]);
 
   const handlePick = useCallback((idx: number) => {
     if (answeredRef.current) return;
@@ -145,7 +163,23 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
             <div className="text-[13px] leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>{renderContent()}</div>
           </div>
           <div className="px-4 py-2 flex items-center gap-4 text-[11px] border-b border-gray-800/30" style={{ color: 'var(--color-text-muted)' }}><span>💬 12</span><span>🔄 47</span><span>❤️ 120</span></div>
-          <div className="px-4 py-3">
+          <div className="px-4 py-3 relative">
+            {showTutorial && (
+              <div className="absolute inset-0 z-30 pointer-events-none">
+                {/* Subtle pulse ring around the entire tool area */}
+                <div className="absolute inset-2 rounded-xl animate-pulse-slow"
+                  style={{ boxShadow: '0 0 40px 8px color-mix(in srgb, var(--color-neon-purple) 20%, transparent)', border: '1px solid color-mix(in srgb, var(--color-neon-purple) 25%, transparent)' }} />
+              </div>
+            )}
+            {showTutorial && (
+              <div className="flex items-center justify-center mb-3 relative z-30 animate-fade-in-up">
+                <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-[10px] font-bold tracking-wide leading-relaxed"
+                  style={{ background: 'color-mix(in srgb, var(--color-dark-card) 90%, transparent)', border: '1px solid color-mix(in srgb, var(--color-neon-purple) 25%, transparent)', color: 'var(--color-text-secondary)' }}>
+                  <span className="text-[14px] animate-pulse" style={{ color: 'var(--color-neon-purple)' }}>💡</span>
+                  Tap any <span className="font-bold" style={{ color: 'var(--color-neon-purple)' }}>Skill</span> to highlight manipulation patterns in the article
+                </div>
+              </div>
+            )}
             {activeTools.length > 0 && (
               <div className="grid grid-cols-4 gap-2">
                 {activeTools.map(toolId => {
