@@ -1,11 +1,11 @@
 // ── GAME SCREEN v19 — no chat phase, splash handles intro ──
 // Direct game mode: 3 pre-activated filters, +1 per level
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
-import { CORE_TOOLS, getHighlightsFor } from '../data/coreTools'
+import { CORE_TOOLS, getHighlightsFor, getToolName, getToolDescription } from '../data/coreTools'
 import { LEVEL_TOOLS, LEVEL_CONFIG } from '../engine/levelTools'
 import type { CoreToolId } from '../types'
 import type { MissionPost } from '../data/missions'
-import type { Language } from '../hooks/useLanguage'
+import type { Language } from '../types'
 import Header from './Header'
 import { getToolIcon } from './icons/ToolIcons'
 
@@ -35,11 +35,12 @@ const CHOICE_ICONS: Record<number, string[]> = {
 }
 
 export default function GameScreen({ post, onAnswer, totalScore, currentLanguage, onSetLanguage }: GameScreenProps) {
+  const lang = currentLanguage || 'en'
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>(() => {
     const level = post.level
     const tools = LEVEL_TOOLS[level] || []
     const text = post.content + ' ' + post.title
-    return tools.filter(toolId => getHighlightsFor([toolId], text).size > 0)
+    return tools.filter(toolId => getHighlightsFor([toolId], text, lang).size > 0)
   })
   const [chosenAnswer, setChosenAnswer] = useState<number | null>(null)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
@@ -52,11 +53,11 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
   const availableTools = LEVEL_TOOLS[level] || []
   const toolsWithHighlights = availableTools.filter(toolId => {
     const testText = post.content + ' ' + post.title
-    return getHighlightsFor([toolId], testText).size > 0
+    return getHighlightsFor([toolId], testText, lang).size > 0
   })
   const highlights = useMemo(
-    () => getHighlightsFor(activeFilters, post.content + ' ' + post.title),
-    [activeFilters, post]
+    () => getHighlightsFor(activeFilters, post.content + ' ' + post.title, lang),
+    [activeFilters, post, lang]
   )
 
   const highlightCount = useMemo(() => {
@@ -100,14 +101,14 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
   useEffect(() => {
     const tools = LEVEL_TOOLS[post.level] || []
     const text = post.content + ' ' + post.title
-    const relevantTools = tools.filter(toolId => getHighlightsFor([toolId], text).size > 0)
+    const relevantTools = tools.filter(toolId => getHighlightsFor([toolId], text, lang).size > 0)
     setActiveFilters(relevantTools)
     setChosenAnswer(null)
     setFeedback(null)
     setTooltip(null)
     answeredRef.current = false
     window.scrollTo(0, 0)
-  }, [post])
+  }, [post, lang])
 
   // ── RENDER HIGHLIGHTED TEXT ──
   const renderContent = () => {
@@ -116,7 +117,7 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
       const clean = w.toLowerCase().replace(/[^a-z%]/g, '')
       const entries = clean ? highlights.get(clean) : undefined
       if (entries && entries.length > 0) {
-        const tip = entries.map(e => e.explanation).join(' • ')
+        const tip = entries.map(e => (e.explanation[lang] || e.explanation['en'] || '')).join(' • ')
         return (
           <span key={i} className="cursor-pointer rounded-sm px-0.5 font-medium transition-all"
             onMouseEnter={(e) => showTooltip(e, tip)} onMouseLeave={hideTooltip}
@@ -247,7 +248,7 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
                   const IconComponent = getToolIcon(toolId)
                   return (
                     <button key={toolId} onClick={() => toggleFilter(toolId)}
-                      onMouseEnter={(e) => showTooltip(e, `${t.name}: ${t.description}`)} onMouseLeave={hideTooltip}
+                      onMouseEnter={(e) => showTooltip(e, `${getToolName(toolId, lang)}: ${getToolDescription(toolId, lang)}`)} onMouseLeave={hideTooltip}
                       className="flex flex-col items-center gap-1 p-2 rounded-xl border transition-all duration-200 cursor-pointer active:scale-95"
                       style={{
                         borderColor: isOn ? t.color : `${t.color}15`,
@@ -256,7 +257,7 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
                       }}>
                       <IconComponent size={32} glowColor={t.color} active={isOn} />
                       <span className="text-[8px] font-bold uppercase tracking-wider leading-tight"
-                        style={{ color: isOn ? t.color : 'var(--color-text-muted)' }}>{t.name}</span>
+                        style={{ color: isOn ? t.color : 'var(--color-text-muted)' }}>{getToolName(toolId, lang)}</span>
                     </button>
                   )
                 })}

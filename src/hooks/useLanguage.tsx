@@ -5,8 +5,7 @@ import { getMissionPostsDE } from '../data/missions-de';
 import { getMissionPostsUA } from '../data/missions-ua';
 import { t as resolveT } from '../i18n/translations';
 import type { MissionPost } from '../data/missions';
-
-export type Language = 'en' | 'de' | 'ua';
+import type { Language } from '../types';
 
 export const LANGUAGES: { code: Language; label: string; flag: string }[] = [
   { code: 'en', label: 'EN', flag: '🇬🇧' },

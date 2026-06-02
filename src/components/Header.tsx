@@ -1,5 +1,5 @@
 // ── HEADER v5 — Language Switcher ──
-import type { Language } from '../hooks/useLanguage'
+import type { Language } from '../types'
 import { LANGUAGES } from '../hooks/useLanguage'
 
 interface HeaderProps {
