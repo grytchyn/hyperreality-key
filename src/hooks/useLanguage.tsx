@@ -1,51 +1,19 @@
-// 🌐 Language Context — single source for i18n state
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+// 🌐 Language — EN-only simplified context
+import { createContext, useContext, type ReactNode } from 'react';
 import { getMissionPosts } from '../data/missions';
-import { getMissionPostsDE } from '../data/missions-de';
-import { getMissionPostsUA } from '../data/missions-ua';
-import { t as resolveT } from '../i18n/translations';
 import type { MissionPost } from '../data/missions';
-import type { Language } from '../types';
-
-export const LANGUAGES: { code: Language; label: string; flag: string }[] = [
-  { code: 'en', label: 'EN', flag: '🇬🇧' },
-  { code: 'de', label: 'DE', flag: '🇩🇪' },
-  { code: 'ua', label: 'UA', flag: '🇺🇦' },
-];
 
 interface LanguageContextValue {
-  language: Language;
-  setLanguage: (lang: Language) => void;
+  language: 'en';
   missions: MissionPost[];
-  /** Translate a dot-notation key (e.g. 'splash.start', 'game.question') for the current language */
-  t: (key: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-function getMissionsForLanguage(language: Language): MissionPost[] {
-  switch (language) {
-    case 'de': return getMissionPostsDE();
-    case 'ua': return getMissionPostsUA();
-    default: return getMissionPosts();
-  }
-}
-
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
-  const missions = getMissionsForLanguage(language);
-
-  const handleSetLanguage = useCallback((lang: Language) => {
-    setLanguage(lang);
-  }, []);
-
-  const translate = useCallback(
-    (key: string) => resolveT(key, language),
-    [language],
-  );
-
+  const missions = getMissionPosts();
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, missions, t: translate }}>
+    <LanguageContext.Provider value={{ language: 'en', missions }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -56,3 +24,5 @@ export function useLanguage(): LanguageContextValue {
   if (!ctx) throw new Error('useLanguage must be used within LanguageProvider');
   return ctx;
 }
+
+export const LANGUAGES = [{ code: 'en' as const, label: 'EN', flag: '🇬🇧' }];

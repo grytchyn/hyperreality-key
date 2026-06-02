@@ -47,41 +47,41 @@ const POSTS: MissionPost[] = [
     ],
     correctIndex: 0,
     explanation: '"A source close to production" and "according to anonymous" are classic anonymous authority. Cialdini\'s Authority principle: claims borrow credibility from unnamed "insiders." Snopes investigated and found zero evidence the creator ever mentioned this inspiration. The entire story was fabricated using fake authority.',
-    friendPreview: `"A source close to production confirmed it" — yeah, that's not how evidence works. — Schopenhauer`,
-    friendName: 'Arthur Schopenhauer',
+    friendPreview: '"A source close to production confirmed it" — yeah, that\'s not how evidence works. — Cialdini',
+    friendName: 'Robert Cialdini',
     friendColor: '#ef4444',
-    scientistKey: 'schopenhauer',
+    scientistKey: 'cialdini',
   },
 
   // ════════════════════════════════════════════
-  // LEVEL 2 — FEELINGS CHECK (Fear + Outrage)
-  // Real: NPR — AI misinformation after plane crash (Jan 2026)
-  // URL: https://www.npr.org/2026/01/01/nx-s1-5645183/ai-powered-software-is-helping-misinformation-spread-online-after-disasters
-  // ════════════════════════════════════════════
-  {
-    title: 'NPR: AI-Generated Disaster Lies Spread Online \u2014 "Real-World Harm"',
-    source: 'NPR',
-    content: `Even before investigators started picking up the pieces after a UPS cargo plane caught fire and crashed during takeoff in Louisville, Kentucky, in November, people were already sharing and reacting to false AI-generated articles and videos all over social media. One fake video — shared more than 1,000 times — showed fake firefighters fighting a fake fire next to a fake destroyed fuselage. An AI-generated voice can be heard giving emergency commands. Other false reports claimed relatives of Kid Rock and Bob Dylan died in the crash. None of it was true. Meanwhile X\'s AI assistant Grok claimed a real photo of Kentucky Governor Andy Beshear at the site was from a previous disaster. Imran Ahmed, CEO of the Center for Countering Digital Hate, said: "Disasters are tragic enough on their own but they\'re actually made worse by allowing AI-generated and algorithmically-amplified lies to spread unchecked and potentially create real-world harm."`,
-    category: 'Technology',
-    categoryColor: '#f59e0b',
-    imageEmoji: '\uD83E\uDD16',
-    imageBg: 'from-amber-500/20 to-yellow-500/10',
-    level: 2,
-    neededTool: 'feelings-check',
-    question: 'What emotional and moral triggers does this article use to make you care?',
-    choices: [
-      'Fear of real-world harm + moral outrage at profiting from tragedy',
-      'Curiosity about how AI video generation works',
-      'Joy at technological progress in disaster response',
-      'Boredom — it is just another plane crash story',
-    ],
-    correctIndex: 0,
-    explanation: 'The article uses Cialdini\u2019s Scarcity principle (disaster urgency) and Haidt\u2019s Care foundation (victims, families harmed). "Tragic," "harm," "lies spread unchecked" trigger fear and outrage. The emotional charge makes you oppose AI misinformation without needing facts about regulation. The mention of profiting from lies adds Fairness outrage \u2014 someone profits from tragedy.',
-    friendPreview: `"Disasters are tragic enough... but they're made worse by AI lies." — Cialdini`,
-    friendName: 'Robert Cialdini',
-    friendColor: '#f59e0b',
-    scientistKey: 'cialdini',
-  },
+    // LEVEL 2 — FEELINGS CHECK (Fear + Outrage)
+    // Real: NPR — AI misinformation after plane crash (Jan 2026)
+    // URL: https://www.npr.org/2026/01/01/nx-s1-5645183/ai-powered-software-is-helping-misinformation-spread-online-after-disasters
+    // ════════════════════════════════════════════
+    {
+      title: 'NPR: AI-Generated Disaster Lies Spread Online \u2014 "Real-World Harm"',
+      source: 'NPR',
+        content: `Even before investigators started picking up the pieces after a UPS cargo plane caught fire and crashed during takeoff in Louisville, Kentucky, in November, people were already sharing and reacting to false AI-generated articles and videos all over social media. One fake video — shared more than 1,000 times — showed fake firefighters fighting a fake fire next to a fake destroyed fuselage. An AI-generated voice can be heard giving emergency commands. Other false reports claimed relatives of Kid Rock and Bob Dylan died in the crash. None of it was true. Meanwhile X\'s AI assistant Grok claimed a real photo of Kentucky Governor Andy Beshear at the site was from a previous disaster. Imran Ahmed, CEO of the Center for Countering Digital Hate, said: "Disasters are tragic enough on their own but they\'re actually made worse by allowing AI-generated and algorithmically-amplified lies to spread unchecked and potentially create real-world harm."`,
+        category: 'Technology',
+        categoryColor: '#f59e0b',
+        imageEmoji: '\uD83E\uDD16',
+        imageBg: 'from-amber-500/20 to-yellow-500/10',
+        level: 2,
+        neededTool: 'feelings-check',
+        question: 'What emotional and moral triggers does this article use to make you care?',
+        choices: [
+          'Fear of real-world harm + moral outrage at profiting from tragedy',
+          'Curiosity about how AI video generation works',
+          'Joy at technological progress in disaster response',
+          'Boredom — it is just another plane crash story',
+        ],
+        correctIndex: 0,
+        explanation: 'The article uses Cialdini\u2019s Scarcity principle (disaster urgency) and Haidt\u2019s Care foundation (victims, families harmed). "Tragic," "harm," "lies spread unchecked" trigger fear and outrage. The emotional charge makes you oppose AI misinformation without needing facts about regulation. The mention of profiting from lies adds Fairness outrage \u2014 someone profits from tragedy.',
+        friendPreview: '"Disasters are tragic enough... but they\'re made worse by AI lies." — Kahneman',
+        friendName: 'Daniel Kahneman',
+        friendColor: '#f59e0b',
+        scientistKey: 'kahneman',
+      },
 
   // ════════════════════════════════════════════
   // LEVEL 3 — BRAIN CHECK (Bandwagon + Anchoring)

@@ -1,4 +1,4 @@
-// ── HYPERREALITY KEY v14 — Multi-Language Core Types ──
+// ── HYPERREALITY KEY v15 — EN-only types ──
 
 export type CoreToolId =
   | 'bad-arguments' | 'feelings-check' | 'brain-check'
@@ -13,24 +13,21 @@ export const ALL_CORE_TOOLS: CoreToolId[] = [
   'false-appeal',
 ]
 
-// Single language type — used everywhere
-export type Language = 'en' | 'de' | 'ua'
-
 export interface CoreToolConfig {
   id: CoreToolId
   icon: string
-  name: Record<Language, string>
+  name: string
   color: string
-  description: Record<Language, string>
+  description: string
 }
 
 export interface HighlightEntry {
   word: string
-  explanation: Record<Language, string>
+  explanation: string
   color: string
 }
 
 export interface HighlightRule {
-  words: Record<Language, string[]>
-  explanation: Record<Language, string>
+  words: string[]
+  explanation: string
 }
