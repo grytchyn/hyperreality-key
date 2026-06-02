@@ -40,8 +40,8 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>(() => {
     const level = post.level
     const tools = LEVEL_TOOLS[level] || []
-    const text = post.content + ' ' + post.title
-    return tools.filter(toolId => getHighlightsFor([toolId], text, lang).size > 0)
+    // Pre-activate ALL tools at this level
+    return tools
   })
   const [chosenAnswer, setChosenAnswer] = useState<number | null>(null)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
@@ -52,17 +52,16 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
   const level = post.level
   const levelCfg = LEVEL_CONFIG[level] || LEVEL_CONFIG[7]
   const availableTools = LEVEL_TOOLS[level] || []
-  const toolsWithHighlights = availableTools.filter(toolId => {
-    const testText = post.content + ' ' + post.title
-    return getHighlightsFor([toolId], testText, lang).size > 0
-  })
+  const toolsWithHighlights = availableTools
+  // NOTE: tool buttons are the same across all languages (from LEVEL_TOOLS).
+  // Highlights vary per language via getHighlightsFor() — that's intended.
   const highlights = useMemo(
-    () => getHighlightsFor(activeFilters, post.content + ' ' + post.title, lang),
-    [activeFilters, post, lang]
+    () => getHighlightsFor(activeFilters, post.content + ' ' + post.title, currentLanguage || 'en'),
+    [activeFilters, post, currentLanguage]
   )
 
   const highlightCount = useMemo(() => {
-    const words = post.content.toLowerCase().replace(/[^a-z\s%]/g, '').split(/\s+/)
+    const words = post.content.toLowerCase().replace(/[^a-zäöüßа-яґєії'\s%]/gi, '').split(/\s+/)
     return [...new Set(words)].filter(w => highlights.has(w)).length
   }, [highlights, post])
 
@@ -101,15 +100,13 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
   // Reset state when post changes
   useEffect(() => {
     const tools = LEVEL_TOOLS[post.level] || []
-    const text = post.content + ' ' + post.title
-    const relevantTools = tools.filter(toolId => getHighlightsFor([toolId], text, lang).size > 0)
-    setActiveFilters(relevantTools)
+    setActiveFilters(tools)
     setChosenAnswer(null)
     setFeedback(null)
     setTooltip(null)
     answeredRef.current = false
     window.scrollTo(0, 0)
-  }, [post, lang])
+  }, [post])
 
   // ── RENDER HIGHLIGHTED TEXT ──
   const renderContent = () => {
