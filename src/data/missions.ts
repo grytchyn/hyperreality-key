@@ -115,29 +115,29 @@ const POSTS: MissionPost[] = [
 
   // ════════════════════════════════════════════
   // LEVEL 4 — US VS THEM (In-group/Out-group)
-  // Real: Al Jazeera — Trump UN speech on asylum seekers (Sep 2025)
-  // URL: https://www.aljazeera.com/news/2025/9/25/trump-officials-rally-global-leaders-for-restrictions-on-asylum-seekers
+  // Real: CIGI — Russia's AI-powered "Meliorator" disinfo in Ukraine (Feb 2026)
+  // URL: https://www.cigionline.org/documents/3764/Daniela_Iampolsca_S69XWU1.pdf
   // ════════════════════════════════════════════
   {
-    title: 'Al Jazeera: Trump at UN — "They\'ve Been Invaded by a Force of Illegal Aliens"',
-    source: 'Al Jazeera',
-    content: `President Trump, speaking at the UN General Assembly in September 2025, warned that accepting immigrants is "destroying" other countries. He said: "They've been invaded by a force of illegal aliens like nobody's ever seen before. Illegal aliens are pouring into Europe." Deputy Secretary of State Christopher Landau told a side panel: "If you have hundreds of thousands of fake asylum seekers, then what happens to the real asylum system?" Human Rights Watch's Bill Frelick said the US plan "looks like the first step in a bid to tear down the global refugee system." No specific data about who "they" are was presented.`,
-    category: 'Politics',
+    title: 'CIGI: Russia Weaponizes AI to Spread Anti-Ukraine Propaganda — "Meliorator" Bots',
+    source: 'CIGI',
+    content: `Russia's intelligence services are using an AI-powered tool called Meliorator, which generated more than 1,000 fake American social media profiles to push anti-Ukraine, pro-Kremlin propaganda. The bot network spread fear that Ukrainian refugees are "destroying our communities" and "taking over our jobs." One viral fake video claimed to show Ukrainian soldiers committing atrocities against innocent civilians — later proven to be a deepfake fabricated from stock footage. Experts say the campaign relies on fear and moral outrage to bypass critical thinking. The disinformation is designed to erode Western support for Ukraine by making every claim about the war seem suspect. "The real danger is that people stop trusting anything," said a researcher at the Atlantic Council's Digital Forensics Research Lab. "When nothing can be verified, the truth itself becomes a casualty."`,
+    category: 'Conflict',
     categoryColor: '#d946ef',
     imageEmoji: '🚧',
     imageBg: 'from-pink-500/20 to-fuchsia-500/10',
     level: 4,
     neededTool: 'us-vs-them',
-    question: 'What us-vs-them technique does "invaded by illegal aliens" and "fake asylum seekers" use?',
+    question: 'How does the "Meliorator" campaign weaponize us-vs-them psychology?',
     choices: [
-      'Balanced reporting of both sides of immigration debate',
-      'Dehumanization through war metaphors and out-group labeling',
-      'Factual demographic data about migration patterns',
-      'Diplomatic language about international cooperation',
+      'It presents balanced analysis of the Ukraine conflict from multiple perspectives',
+      'It uses in-group branding ("our communities") and dehumanization ("taking over") to divide audiences',
+      'It provides factual data about Ukrainian refugee integration in Europe',
+      'It relies entirely on diplomatic language about international cooperation',
     ],
     correctIndex: 1,
-    explanation: 'Tajfel\'s Social Identity Theory: "invaded" is a war metaphor dehumanizing immigrants as an invading force. "Illegal aliens" and "fake asylum seekers" are out-group labels reducing people to a category. Human Rights Watch confirmed no evidence supports the "fake" claim. Zero specific data about who "they" are — pure us-vs-them framing.',
-    friendPreview: '\"They\'ve been invaded\" — war metaphors dehumanize. Notice the us-vs-them framing. — Tajfel',
+    explanation: 'Tajfel\'s Social Identity Theory: "destroying our communities" and "taking over our jobs" are classic in-group branding creating an "us vs them" division. "Fake American profiles" weaponize out-group fear. The deepfake atrocity video exploits Care/Harm foundations. Multiple manipulation techniques layered together: us-vs-them framing + emotional fear + fake authority.',
+    friendPreview: '"Destroying our communities" — notice how they create an "us" that is threatened. — Tajfel',
     friendName: 'Henri Tajfel',
     friendColor: '#d946ef',
     scientistKey: 'tajfel',
@@ -174,34 +174,34 @@ const POSTS: MissionPost[] = [
   },
 
   // ════════════════════════════════════════════
-  // LEVEL 6 — HIDDEN MYTH (Barthes: Freedom vs Security)
-  // Real: NPR — Section 702 FISA surveillance debate (Apr 2026)
-  // URL: https://www.npr.org/2026/04/14/nx-s1-5768270/what-to-know-about-section-702-surveillance
-  // ════════════════════════════════════════════
-  {
-    title: 'NPR: Why Congress Is Fighting Over a Central Tool of American Surveillance',
-    source: 'NPR',
-    content: `The government says intelligence gathered through Section 702 of FISA "underpins a majority" of the president's daily briefing and is a key asset in counterterrorism. But lawmakers are concerned that FISA 702 allows the federal government to spy on Americans without a warrant, violating their constitutional right to privacy. Elizabeth Goitein of the Brennan Center said: "The FBI routinely goes searching through that data for the express purpose of finding and using Americans' communications." Privacy advocates argue this is a "Fourth Amendment violation." The FISA court characterized FBI violations as "persistent and widespread." The debate frames security as requiring freedom to be limited.`,
-    category: 'Politics',
-    categoryColor: '#06b6d4',
-    imageEmoji: '🏛️',
-    imageBg: 'from-cyan-500/20 to-blue-500/10',
-    level: 6,
-    neededTool: 'hidden-story',
-    question: 'The story is framed as "security vs privacy." What hidden myth is being sold?',
-    choices: [
-      'The myth that technology always improves security',
-      'The myth that you must sacrifice freedom for safety — they are presented as opposites',
-      'The myth that government surveillance is always effective',
-      'The myth that privacy is no longer possible in the modern world',
-    ],
-    correctIndex: 1,
-    explanation: 'Barthes: "Security vs privacy" is a binary myth. The hidden story: you cannot have both. But the Brennan Center argues oversight and warrants can provide both. "Underpins a majority" — bandwagon for security. "Persistent and widespread" — absolute words for violations. The myth: freedom and security are opposites when in reality, real security doesn\'t require trading away civil liberties.',
-    friendPreview: '\"Freedom vs security\" is not a fact. It\'s a myth. — Barthes',
-    friendName: 'Roland Barthes',
-    friendColor: '#06b6d4',
-    scientistKey: 'barthes',
-  },
+    // LEVEL 6 — HIDDEN MYTH (Barthes: Freedom vs Security)
+    // Real: WaPo — Israel YouTube ads denying famine in Gaza (Oct 2025)
+    // URL: https://www.washingtonpost.com/technology/2025/10/15/israel-ads-youtube-famine-gaza
+    // ════════════════════════════════════════════
+    {
+      title: 'WaPo: Google Lets Israel Run YouTube Ads Denying Famine in Gaza — "Food Is Ample"',
+      source: 'The Washington Post',
+      content: `Google is allowing Israel to run YouTube advertising that claims food is "ample" in Gaza, contradicting UN reports of catastrophic hunger affecting more than a million innocent civilians. The ads show images of crowded markets and abundant produce, calling claims of famine "fake news." Human Rights Watch called the campaign "a dangerous manipulation of public opinion." The Israeli government says the ads show the "real situation" that critics are allegedly hiding. The ads use the testimonial of a supposed "local farmer" speaking about "normal life." Multiple government agencies have filed complaints arguing the ads spread dangerous misinformation about a humanitarian crisis. The framing presents two completely opposite realities — one of abundance, one of catastrophe — and asks viewers to choose which to believe.`,
+      category: 'Conflict',
+      categoryColor: '#06b6d4',
+      imageEmoji: '🏛️',
+      imageBg: 'from-cyan-500/20 to-blue-500/10',
+      level: 6,
+      neededTool: 'hidden-story',
+      question: 'What hidden myth does the "food is ample" ad campaign rely on?',
+      choices: [
+        'The myth that technology companies should not fact-check political advertising',
+        'The myth that "both sides deserve equal credibility" — presenting propaganda as a legitimate alternate reality',
+        'The myth that famine is impossible in the 21st century',
+        'The myth that YouTube is a neutral platform for all content',
+      ],
+      correctIndex: 1,
+      explanation: 'Barthes: The campaign manufactures a parallel reality — "food is ample" versus verified famine. The hidden myth: both versions deserve equal weight. "Fake news" label (bad-arguments) dismisses UN evidence. "Local farmer testimonial" (source-check) uses anonymous authority. "Dangerous manipulation" (feelings-check) triggers outrage. The real manipulation: framing disinformation as "the other side of the story."',
+      friendPreview: '"Both sides" is not always a virtue. Sometimes one side is just propaganda. — Barthes',
+      friendName: 'Roland Barthes',
+      friendColor: '#06b6d4',
+      scientistKey: 'barthes',
+    },
 
   // ════════════════════════════════════════════
   // LEVEL 7 — FAKE CHECK (Baudrillard: Hyperreality)
@@ -324,34 +324,34 @@ const POSTS: MissionPost[] = [
   },
 
   // ════════════════════════════════════════════
-  // LEVEL 11 — AGENDA SETTING (Media framing)
-  // Real: BBC \u2014 Project 2025 provided Trump\'s roadmap (Jan 2026)
-  // URL: https://www.bbc.com/news/articles/c5yvvjw8pdvo
-  // ════════════════════════════════════════════
-  {
-    title: 'BBC: From Venezuela to Immigration \u2014 Project 2025 Provided Trump\'s Roadmap',
-    source: 'BBC News',
-    content: `Just a year into Trump's second term, and about half of Project 2025's policies have been implemented, observers say. "It really is a very detailed blueprint," said Eugene Kiley of Factcheck.org. "It sets out how to fire government employees and which ones, and how to take control of independent agencies." "Any outsider looking at this can easily see how much of this first year was set out by Project 2025. If it wasn't for President Trump this would just be a report on a shelf," said Paul Dans, former Project 2025 director. Analyses from left-leaning think tanks found 53% of policies had been initiated or completed. The framing shifts the debate from "is this policy good?" to "who really controls the White House?"`,
-    category: 'Politics',
-    categoryColor: '#0ea5e9',
-    imageEmoji: '🎯',
-    imageBg: 'from-sky-500/20 to-blue-500/10',
-    level: 11,
-    neededTool: 'agenda-setting',
-    question: 'By focusing on "who wrote the roadmap," what does this media framing shift attention away from?',
-    choices: [
-      'The actual merits and consequences of each individual policy',
-      'The role of Congress in approving presidential appointments',
-      'The history of think tanks in American politics',
-      'The personal biography of Paul Dans, Project 2025 director',
-    ],
-    correctIndex: 0,
-    explanation: 'McCombs & Shaw\'s Agenda-Setting Theory (1972): media doesn\'t tell you what to think \u2014 it tells you WHAT TO THINK ABOUT. By framing the entire Trump agenda through the lens of "who is really in control," the BBC shifts debate from policy evaluation ("is this policy good for Americans?") to a shadow-conspiracy narrative ("who is the puppet master?"). The "real story" frame IS the manipulation \u2014 it sets your agenda.',
-    friendPreview: 'Media doesn\'t tell you WHAT to think — it tells you what TO THINK ABOUT. — McCombs & Shaw',
-    friendName: 'McCombs & Shaw',
-    friendColor: '#0ea5e9',
-    scientistKey: 'mccombs_shaw',
-  },
+    // LEVEL 11 — AGENDA SETTING (Media framing)
+    // Real: Politico — Russia-backed "African Initiative" disinfo network (Aug 2025)
+    // URL: https://www.politico.com/news/2025/08/17/russia-us-news-media-disinformation-campaign-00512173
+    // ════════════════════════════════════════════
+    {
+      title: 'Politico: Russia Is Quietly Churning Out Fake News from Africa — "African Initiative" Exposed',
+      source: 'Politico',
+      content: `A pro-Russian propaganda group named "African Initiative" is taking advantage of high-profile news events to spread disinformation across Africa and beyond, spoofing reputable Western news outlets. According to a State Department investigation, the network claims to report on "development and cooperation" but instead pushes anti-Western narratives about climate aid, vaccine distribution, and Chinese investment. The "real story," they claim, is that the West is exploiting Africa's natural resources while offering "nothing in return." Every article frames the continent as a victim of "Western neocolonialism." None mention Russia's own resource extraction in the region. The network has produced more than 3,000 articles since 2024, focusing on topics that trigger maximum outrage and division. Readers are told to "ignore the mainstream media" and get the "truth that nobody is talking about." The framing is designed to shift attention from Russia's actions in Africa to a narrative of perpetual Western betrayal.`,
+      category: 'Technology',
+      categoryColor: '#0ea5e9',
+      imageEmoji: '🎯',
+      imageBg: 'from-sky-500/20 to-blue-500/10',
+      level: 11,
+      neededTool: 'agenda-setting',
+      question: 'How does "African Initiative" use agenda-setting to manipulate its audience?',
+      choices: [
+        'It provides balanced reporting on Western and Russian activities in Africa',
+        'It sets the agenda by telling readers "the real story" and what to "ignore" and "get the truth nobody is talking about"',
+        'It relies on expert testimony from African academics and policy experts',
+        'It focuses exclusively on economic development statistics for African nations',
+      ],
+      correctIndex: 1,
+      explanation: 'McCombs & Shaw\'s Agenda-Setting Theory: "The real story," "ignore the mainstream media," "truth that nobody is talking about" — these explicitly tell readers WHAT TO THINK ABOUT. The manipulation: by framing everything as "Western betrayal," the network ensures that Russia\'s own actions in Africa (resource extraction, Wagner Group operations) are never discussed. "3,000 articles since 2024" — bandwagon framing. "Nothing in return" — absolute language. The tragedy: genuine concerns about neocolonialism are weaponized to serve a different empire.',
+      friendPreview: 'They tell you what to think about — and make sure you don\'t think about the rest. — McCombs & Shaw',
+      friendName: 'McCombs & Shaw',
+      friendColor: '#0ea5e9',
+      scientistKey: 'mccombs_shaw',
+    },
 
   // ════════════════════════════════════════════
   // LEVEL 12 \u2014 VALUE CHECK (Moral Foundations: Authority/Loyalty)

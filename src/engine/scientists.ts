@@ -75,6 +75,11 @@ export function getScientistAvatar(key: string): ScientistData {
   return SCIENTIST_AVATARS[key] || SCIENTIST_AVATARS.schopenhauer;
 }
 
+export function getScientistField(key: string): string {
+  const scientist = SCIENTIST_AVATARS[key];
+  return scientist ? scientist.field : 'Critical Thinking';
+}
+
 export const SPECTRUM_COLORS = [
   '#ef4444', '#f59e0b', '#22c55e', '#3b82f6',
   '#a855f7', '#06b6d4', '#f97316', '#14b8a6',

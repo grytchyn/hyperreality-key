@@ -1,11 +1,23 @@
 # 🎨 Design Bible — Hyperreality Key
 
-> **Version 1.1** | Stand: 01.06.2026
+> **Version 1.2** | Stand: 02.06.2026
 > *Single Source of Truth für alle UI-Entscheidungen*
 
 ---
 
 ## 0. CHANGELOG
+
+### v1.2 (02.06.2026)
+- **EN-only**: DE/UA completely removed. App simplified to English only. Bundle size -25%.
+- **Tool visibility**: Only tools that actively highlight words in the current text are shown. Texts redesigned to use ≥3 tools each.
+- **Double-flag fix**: Old correct/incorrect feedback block removed. Only the scientist explanation bubble remains.
+- **Button colors**: Wrong answer → red Next button. Correct answer → green Next button.
+- **Avatars**: All 10 scientist avatars re-cropped from the original `scientists-sheet.png` to exactly 120×120px (matching this spec @5.2).
+- **Alex avatar**: Re-cropped to 120×120px from the original.
+- **Splash change**: Alex (friend avatar) now appears in the messenger mockup instead of Schopenhauer.
+- **Scientists reshuffled**: Level 1 → Robert Cialdini (modern). Schopenhauer moved to Level 10.
+- **New mission topics added**: Ukraine disinfo (Level 4), Gaza famine denial (Level 6), Russia's African Initiative (Level 11). Topics now span conflicts, climate, health, entertainment, and politics.
+- **getScientistField()**: New exported function for dynamic field display in the scientist bubble (replaces hardcoded switch).
 
 ### v1.1 (01.06.2026)
 - Background: unified `game-bg.png` for ALL levels (Level 1 no longer has separate bg)
@@ -263,9 +275,11 @@
 
 ### 5.2 Scientist Avatars
 - **Format**: PNG
-- **Resolution**: 120×120px
-- **Style**: Portrait, consistent lighting
+- **Resolution**: **120×120px** (exact — cropped from `scientists-sheet.png` composite)
+- **Style**: Portrait, consistent lighting, square crop with circular display
 - **Naming**: `{scientist-lastname}.png` (schopenhauer.png)
+- **Source**: `scientists-sheet.png` (1536×1024px, 2×5 grid, ~120px content per cell)
+- **Fallback**: If image fails → empty fallback (emoji hidden via onError)
 
 ### 5.3 Logo
 - **Format**: PNG (with transparency)
