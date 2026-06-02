@@ -1,6 +1,4 @@
-// ── SPLASH SCREEN v2 — Phone Chat + Messenger-style intro ──
-// Shows a phone with Messenger open, a friend sends a link,
-// user clicks "Let's see what's there" → game starts
+// ── SPLASH SCREEN v3 — WhatsApp-style Messenger + smooth animations ──
 import { useState, useEffect } from 'react'
 
 interface SplashScreenProps {
@@ -36,17 +34,18 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
 
   useEffect(() => {
     setVisible(true)
-    const t1 = setTimeout(() => setShowMessages(true), 600)
+    const t1 = setTimeout(() => setShowMessages(true), 500)
     return () => clearTimeout(t1)
   }, [])
 
   useEffect(() => {
     if (!showMessages) return
     if (msgIndex < MESSAGES.length) {
-      const t = setTimeout(() => setMsgIndex(i => i + 1), 1200 + (MESSAGES[msgIndex].isArticle ? 400 : 0))
+      const delay = MESSAGES[msgIndex].isArticle ? 1600 : 1200
+      const t = setTimeout(() => setMsgIndex(i => i + 1), delay)
       return () => clearTimeout(t)
     } else {
-      const t = setTimeout(() => setReady(true), 600)
+      const t = setTimeout(() => setReady(true), 500)
       return () => clearTimeout(t)
     }
   }, [showMessages, msgIndex])
@@ -68,8 +67,8 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
       />
 
       <div
-        className={`relative z-10 w-full max-w-xs transition-all duration-700 ${
-          visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        className={`relative z-10 w-full max-w-xs transition-all duration-700 ease-out ${
+          visible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
         }`}
       >
         {/* PHONE FRAME */}
@@ -107,11 +106,16 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
           {/* Messenger header */}
           <div
             className="flex items-center justify-between px-4 py-2.5"
-            style={{ background: 'linear-gradient(90deg, color-mix(in srgb, var(--color-neon-purple) 20%, transparent), color-mix(in srgb, var(--color-neon-cyan) 10%, transparent))', borderBottom: '1px solid color-mix(in srgb, var(--color-neon-purple) 15%, transparent)' }}
+            style={{
+              background: 'linear-gradient(90deg, color-mix(in srgb, var(--color-neon-purple) 20%, transparent), color-mix(in srgb, var(--color-neon-cyan) 10%, transparent))',
+              borderBottom: '1px solid color-mix(in srgb, var(--color-neon-purple) 15%, transparent)'
+            }}
           >
             <button className="text-[11px] font-mono" style={{ color: 'var(--color-neon-cyan)' }}>← Chats</button>
             <span className="text-[11px] font-bold font-mono" style={{ color: 'var(--color-text-primary)' }}>Arthur Schopenhauer</span>
-            <div className="w-5 h-5 rounded-full overflow-hidden" style={{ border: '1px solid color-mix(in srgb, var(--color-neon-purple) 30%, transparent)' }}>
+            {/* HEADER AVATAR — 28px */}
+            <div className="w-7 h-7 rounded-full overflow-hidden shrink-0"
+              style={{ border: '1px solid color-mix(in srgb, var(--color-neon-purple) 30%, transparent)' }}>
               <img src="/assets/scientists/schopenhauer.png" alt="Arthur" className="w-full h-full object-cover" />
             </div>
           </div>
@@ -121,7 +125,8 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
             {/* Typing indicator */}
             {showMessages && msgIndex < 1 && (
               <div className="flex items-start gap-2 mb-3 animate-fade-in">
-                <div className="w-7 h-7 rounded-full overflow-hidden shrink-0" style={{ border: '1px solid #ef444440' }}>
+                {/* CHAT AVATAR — 32px */}
+                <div className="w-8 h-8 rounded-full overflow-hidden shrink-0" style={{ border: '1px solid #ef444440' }}>
                   <img src="/assets/scientists/schopenhauer.png" alt="Arthur" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex gap-1 px-3 py-2.5 rounded-2xl"
@@ -140,9 +145,10 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
             {/* Messages */}
             {MESSAGES.slice(0, msgIndex).map((msg) => (
               <div key={msg.id} className={`flex ${msg.sender === 'friend' ? 'items-start gap-2' : 'justify-end'} mb-3 animate-fade-in-up`}
-                style={{ animation: 'fadeInUp 0.4s ease-out' }}>
+                style={{ animation: 'fadeInUp 0.5s ease-out' }}>
                 {msg.sender === 'friend' && (
-                  <div className="w-7 h-7 rounded-full overflow-hidden shrink-0" style={{ border: '1px solid #ef444440' }}>
+                  /* CHAT AVATAR — 32px */
+                  <div className="w-8 h-8 rounded-full overflow-hidden shrink-0" style={{ border: '1px solid #ef444440' }}>
                     <img src="/assets/scientists/schopenhauer.png" alt="Arthur" className="w-full h-full object-cover" />
                   </div>
                 )}
@@ -185,14 +191,14 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
           </div>
         </div>
 
-        {/* START BUTTON — below phone */}
+        {/* START BUTTON */}
         <div className="flex justify-center mt-6">
           {!ready ? (
             <div className="flex justify-center gap-2">
               {[0, 1, 2].map(i => (
                 <div
                   key={i}
-                  className="w-2 h-2 rounded-full"
+                  className="w-2 h-2 rounded-full bounce-dot"
                   style={{
                     backgroundColor: 'var(--color-neon-purple)',
                     opacity: 0.5,
@@ -205,12 +211,12 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
           ) : (
             <button
               onClick={onStart}
-              className="px-6 py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:scale-105 active:scale-95 animate-fade-in-up"
+              className="px-6 py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 animate-fade-in-up pulse-glow cursor-pointer"
               style={{
                 background: 'linear-gradient(135deg, var(--color-neon-purple), #7c3aed)',
                 color: '#fff',
-                boxShadow: '0 4px 25px color-mix(in srgb, var(--color-neon-purple) 35%, transparent), 0 0 50px color-mix(in srgb, var(--color-neon-purple) 10%, transparent)',
-                animation: 'fadeInUp 0.5s ease-out',
+                boxShadow: '0 4px 25px color-mix(in srgb, var(--color-neon-purple) 35%, transparent)',
+                animation: 'fade-in-up 0.5s ease-out',
               }}
             >
               🔍 Let's see what's there

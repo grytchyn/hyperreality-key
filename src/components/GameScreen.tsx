@@ -8,6 +8,7 @@ import type { MissionPost } from '../data/missions'
 import type { Language } from '../types'
 import Header from './Header'
 import { getToolIcon } from './icons/ToolIcons'
+import { getScientistAvatar } from '../engine/scientists'
 
 interface GameScreenProps {
   post: MissionPost
@@ -335,14 +336,32 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
             </div>
           )}
 
-          {/* Key icon + friend name */}
+          {/* Scientist theory bubble — replaces key+name */}
           {chosenAnswer !== null && (
-            <div className="mt-6 flex items-center justify-center gap-2 animate-fade-in-up">
-              <img src="/assets/key-icon.png" alt="HK" className="w-5 h-5 object-contain opacity-50"
-                style={{ filter: 'drop-shadow(0 0 6px color-mix(in srgb, var(--color-neon-purple) 30%, transparent))' }} />
-              <span className="text-[10px] font-mono font-bold tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
-                {post.friendName} · Level {level}/12
-              </span>
+            <div className="mt-5 flex items-start gap-2.5 animate-fade-in-up">
+              {/* Scientist avatar */}
+              <div className="w-9 h-9 rounded-full overflow-hidden shrink-0 mt-0.5"
+                style={{ border: `2px solid ${levelCfg.color}50`, boxShadow: `0 0 12px ${levelCfg.color}30` }}>
+                <img
+                  src={getScientistAvatar(post.scientistKey || 'schopenhauer').avatar}
+                  alt={post.friendName}
+                  className="w-full h-full object-cover"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                />
+              </div>
+              {/* Speech bubble */}
+              <div className="rounded-2xl px-3.5 py-2.5 text-[11px] leading-relaxed max-w-[260px]"
+                style={{
+                  background: 'linear-gradient(135deg, color-mix(in srgb, var(--color-dark-card) 95%, transparent), color-mix(in srgb, var(--color-dark-surface) 95%, transparent))',
+                  border: `1px solid ${levelCfg.color}25`,
+                  color: 'var(--color-text-secondary)',
+                  borderTopLeftRadius: '4px',
+                }}>
+                <div className="text-[9px] font-bold font-mono mb-1" style={{ color: levelCfg.color }}>
+                  {post.friendName} · {post.scientistKey === 'schopenhauer' ? 'Eristic Dialectic' : post.scientistKey === 'cialdini' ? 'Influence Theory' : post.scientistKey === 'kahneman' ? 'Behavioral Economics' : post.scientistKey === 'tajfel' ? 'Social Identity' : post.scientistKey === 'haidt' ? 'Moral Foundations' : post.scientistKey === 'barthes' ? 'Semiotics' : post.scientistKey === 'baudrillard' ? 'Hyperreality' : post.scientistKey === 'foucault' ? 'Power Theory' : post.scientistKey === 'sunstein' ? 'Law & Policy' : post.scientistKey === 'mccombs_shaw' ? 'Media Studies' : 'Critical Thinking'}
+                </div>
+                {post.explanation}
+              </div>
             </div>
           )}
 
