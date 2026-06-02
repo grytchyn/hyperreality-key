@@ -1,0 +1,196 @@
+// Prisma schema for Hyperreality Key API
+// Scale: 100K+ concurrent users, read replicas, connection pooling
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+  schema   = "public"
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// USER & AUTHENTICATION
+// ──────────────────────────────────────────────────────────────────────
+
+model User {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  name        String?
+  avatarUrl   String?
+  role        UserRole  @default(USER)
+  stats       UserStats?
+  achievements Achievement[]
+  sessions    Session[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("users")
+}
+
+enum UserRole {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// USER STATISTICS & RANKING
+// ──────────────────────────────────────────────────────────────────────
+
+model UserStats {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  score          Int      @default(0)
+  levelsPlayed   Int      @default(0)
+  gamesCompleted Int      @default(0)
+  totalTime      Int      @default(0) // in seconds
+  rank           Rank     @default(NOVICE)
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("user_stats")
+}
+
+enum Rank {
+  NOVICE                  // 0-30 points
+  TRUTH_APPRENTICE        // 31-50 points
+  CRITICAL_THINKER        // 51-79 points
+  TRUTH_SEEKER            // 80-109 points
+  HYPERREALITY_MASTER     // 110-120 points
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// ACHIEVEMENTS SYSTEM
+// ──────────────────────────────────────────────────────────────────────
+
+model Achievement {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String  // e.g., "first-win", "perfect-score", "tool-expert"
+  value     String?  // additional context (tool name, score, etc.)
+  unlockedAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("achievements")
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// SESSION MANAGEMENT
+// ──────────────────────────────────────────────────────────────────────
+
+model Session {
+  id         String   @id @default(cuid())
+  userId     String
+  token      String   @unique
+  expiresAt  DateTime
+  ipAddress  String?
+  userAgent  String?
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@map("sessions")
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// ARTICLES & MISSIONS (12 real-world articles)
+// ──────────────────────────────────────────────────────────────────────
+
+model Article {
+  id          String   @id @default(cuid())
+  title       String
+  source      String  // e.g., "Reuters", "AP News", "BBC"
+  url         String  // original article URL
+  scientist   String  // scientist key (e.g., "haidt", "foucault")
+  color       String  // theme color (e.g., "#ec4899")
+  content     String  // Full article text (real journalism)
+  levelId     Int     @unique // One article per level
+  highlightRules String // JSON: toolId → HighlightRules[]
+  standardViolations String? // JSON: [{ rule, text }]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  Level Level @relation(fields: [levelId], references: [id], onDelete: Cascade)
+
+  @@map("articles")
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// LEVEL CONFIGURATION
+// ──────────────────────────────────────────────────────────────────────
+
+model Level {
+  id           String   @id @default(cuid())
+  number       Int      @unique
+  scientistKey String
+  color        String
+  Article      Article? @relation(references: [id])
+
+  @@map("levels")
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// SCIENTIST METADATA
+// ──────────────────────────────────────────────────────────────────────
+
+model Scientist {
+  key       String   @id
+  name      String
+  avatarUrl String
+  wikiUrl   String
+  field     String
+  Level     Level[]
+
+  @@map("scientists")
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// ANALYTICS & USAGE TRACKING
+// ──────────────────────────────────────────────────────────────────────
+
+model ToolUsage {
+  id         String   @id @default(cuid())
+  userId     String
+  toolId     String  // e.g., "echo-chamber", "red-herring"
+  levelId    Int
+  triggered  Int     @default(0)
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Level Level @relation(fields: [levelId], references: [id], onDelete: Cascade)
+
+  @@map("tool_usage")
+  @@index([userId, toolId])
+  @@index([toolId, createdAt])
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// INDEXES FOR PERFORMANCE (100K+ concurrent users)
+// ──────────────────────────────────────────────────────────────────────
+
+// User queries
+@@index([email])
+@@index([role])
+
+// Session queries
+@@index([userId, expiresAt])
+@@index([token])
+
+// Article queries
+@@index([scientist])
+@@index([levelId])
+@@index([createdAt])
+
+// Achievement queries
+@@index([userId])
+@@index([type, value])
+
+// Tool usage queries
+@@index([userId, createdAt])
+@@index([toolId, levelId])
+
+// Analytics queries
+@@index([createdAt])
