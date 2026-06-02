@@ -12,7 +12,9 @@
 - **Tool visibility**: Only tools that actively highlight words in the current text are shown. Texts redesigned to use ≥3 tools each.
 - **Double-flag fix**: Old correct/incorrect feedback block removed. Only the scientist explanation bubble remains.
 - **Button colors**: Wrong answer → red Next button. Correct answer → green Next button.
-- **Avatars**: All 10 scientist avatars re-cropped from the original `scientists-sheet.png` to exactly 120×120px (matching this spec @5.2).
+- **Splash fix**: Chat messages now appear at the **bottom** of the chat area (real messenger style), not top.
+- **Avatars**: Re-cropped from `scientists-sheet.png` — crop **180×180px** from center of each cell, then resize to **120×120px** (30% padding around face ensures avatar fits within circular clip). Updated spec @5.2.
+- **Logo compressed**: 731KB → 253KB (−65%). Resized from 1126×383 to 731×248px with `optimize=True`.
 - **Alex avatar**: Re-cropped to 120×120px from the original.
 - **Splash change**: Alex (friend avatar) now appears in the messenger mockup instead of Schopenhauer.
 - **Scientists reshuffled**: Level 1 → Robert Cialdini (modern). Schopenhauer moved to Level 10.
@@ -275,16 +277,18 @@
 
 ### 5.2 Scientist Avatars
 - **Format**: PNG
-- **Resolution**: **120×120px** (exact — cropped from `scientists-sheet.png` composite)
-- **Style**: Portrait, consistent lighting, square crop with circular display
+- **Resolution**: **120×120px** (output) — cropped from sheet as **180×180px** center-crop then resized to 120×120 (gives ~30% padding around the face so it fits naturally in circular clips)
+- **Style**: Portrait, consistent lighting, square crop with circular display (`border-radius: 50%; object-fit: cover`)
 - **Naming**: `{scientist-lastname}.png` (schopenhauer.png)
-- **Source**: `scientists-sheet.png` (1536×1024px, 2×5 grid, ~120px content per cell)
+- **Source**: `scientists-sheet.png` (1536×1024px, 2×5 grid, ~268×275px per cell)
 - **Fallback**: If image fails → empty fallback (emoji hidden via onError)
 
 ### 5.3 Logo
 - **Format**: PNG (with transparency)
+- **Resolution**: 731×248px (was 1126×383 — compressed ~65% for faster load)
 - **Content**: Shield/Hologram icon + "HYPERREALITY KEY" + "SPOT THE MANIPULATION"
-- **Placement**: Header, OG Image
+- **File**: `logo-new.png` (253KB, compressed with `optimize=True`)
+- **Placement**: Header, Splash center
 
 ### 5.4 Tool Icons
 - **Icons 1-8**: SVG components (inline, full color control)

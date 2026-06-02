@@ -120,8 +120,8 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
             </div>
           </div>
 
-          {/* Chat area */}
-          <div className="p-3 min-h-[280px]" style={{ background: 'var(--color-dark-bg)' }}>
+          {/* Chat area — messages appear at bottom like real messenger */}
+          <div className="p-3 min-h-[280px] flex flex-col justify-end" style={{ background: 'var(--color-dark-bg)' }}>
             {/* Typing indicator */}
             {showMessages && msgIndex < 1 && (
               <div className="flex items-start gap-2 mb-3 animate-fade-in">
