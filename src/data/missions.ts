@@ -29,8 +29,8 @@ const POSTS: MissionPost[] = [
   // Real: Squid Game "true story" hoax (Jan 2025)
   // ════════════════════════════════════════════
   {
-    title: 'BREAKING: Netflix Finally Admits Squid Game Was BASED ON REAL 1986 Incident — Fans Are SHOCKED!',
-    source: 'PopBuzz Insider',
+    title: 'I had no idea Squid Game was based on a real incident — this is wild',
+    source: 'Mark J.',
     content: `Everybody is talking about this. A source close to production has CONFIRMED that Squid Game was inspired by a real 1986 incident in South Korea where dozens of hostages were forced to play deadly games for survival. According to anonymous insiders, the creator Hwang Dong-hyuk is "definitely" hiding the truth. Obviously, Netflix doesn't want you to know this. Reports claim the footage is out there — but nobody can find it. Multiple sources say the real story is "far more disturbing" than the show. Experts are calling this the biggest cover-up in entertainment history. Share before they delete this!`,
     category: 'Entertainment',
     categoryColor: '#ef4444',
@@ -58,8 +58,8 @@ const POSTS: MissionPost[] = [
   // Real: AI deepfake of Louisville UPS plane crash (Nov 2025)
   // ════════════════════════════════════════════
   {
-    title: 'TERRIFYING: UPS Plane Crash Caught on Camera — AI Generated? Or was it SABOTAGE? 😱',
-    source: 'BreakingNewsAlert',
+    title: 'A UPS cargo plane just crashed in Louisville — but have you seen this video people are sharing?',
+    source: 'Chris M.',
     content: `This is ABSOLUTELY HORRIFYING. A UPS cargo plane just crashed in Louisville and they're saying it was an "accident" — but what about the evidence that points to SABOTAGE? A viral video shows fake firefighters fighting a fake fire next to a fake destroyed fuselage. The AI-generated voice can be heard giving emergency commands — or is it REAL? But wait, forget that — other reports claim relatives of Kid Rock and Bob Dylan DIED in this crash. This is a catastrophe nobody is talking about. Despite all this, the government is covering up the REAL story. This is urgent — we need to act NOW before they delete everything. Stop scrolling and WATCH this.`,
     category: 'Technology',
     categoryColor: '#f59e0b',
@@ -87,8 +87,8 @@ const POSTS: MissionPost[] = [
   // Real: TikTok medical test scams (Feb 2025 - JAMA study)
   // ════════════════════════════════════════════
   {
-    title: 'Most People Are Getting This Test Done — 97% of Users Found EARLY CANCER! Doctors HATE This!',
-    source: 'Wellness Warrior',
+    title: 'Did you know most people are getting these MRI scans and finding 500+ conditions?',
+    source: 'Sarah T.',
     content: `The VAST MAJORITY of people are getting full-body MRI scans and EVERYONE is finding UP TO 500 conditions early! This is UNPRECEDENTED. Our comprehensive blood test can detect 50 types of cancer and the general consensus is that EVERYONE should get tested NOW. Common sense says if MILLIONS of people are doing it, it works. Of course, mainstream doctors don't want you to know this — they'd lose money. The overwhelming evidence speaks for itself. Thousands of people have shared their stories. Obviously, this is the ONLY CHOICE for anyone who cares about their health. Get tested TODAY.`,
     category: 'Health',
     categoryColor: '#22c55e',
@@ -116,8 +116,8 @@ const POSTS: MissionPost[] = [
   // Real: Meliorator bot campaign — Ukraine refugees (Feb 2026)
   // ════════════════════════════════════════════
   {
-    title: 'They Are INVADING Our Towns: Ukrainian Refugees Get FREE Housing While Our Veterans Sleep on Streets!',
-    source: 'American Patriot Daily',
+    title: 'Ukrainian refugees are taking over our towns — what do you think?',
+    source: 'Patricia K.',
     content: `Our way of life is under threat. These people — THOSE PEOPLE — are flooding into our communities and taking over our jobs, our schools, our hospitals. Our own veterans are sleeping on the streets while outsiders get everything for FREE. The government is bringing in thousands of foreigners who don't share our values or our culture. This is an invasion of our homeland and nobody is talking about it. Traditional American communities are being destroyed. For centuries, this nation welcomed immigrants the RIGHT way — with respect for our culture. Now they're forcing THESE PEOPLE on us. It's time to stand up for OUR people before our country is gone forever.`,
     category: 'Politics',
     categoryColor: '#d946ef',
@@ -145,8 +145,8 @@ const POSTS: MissionPost[] = [
   // Real: Mumsnet social media ban campaign (Feb 2026)
   // ════════════════════════════════════════════
   {
-    title: 'Social Media Is DESTROYING Our Children: Parents, WAKE UP Before It\'s Too Late!',
-    source: 'Family Watch',
+    title: 'Social media is really harming our kids — parents need to wake up to this',
+    source: 'Lisa R.',
     content: `Our innocent children are being HARMED by social media every single day. This is a moral crisis. These platforms are deliberately designed to be ADDICTIVE — they exploit our kids for profit while destroying their mental health. It is UNFAIR and CRUEL that corporations are allowed to profit from CHILD ABUSE. We must PROTECT our children from this injustice. Every parent knows the suffering: compulsive use, lost sleep, rising anxiety, collapsing self-esteem. This is a betrayal of everything we hold dear. We must stand up against this corruption and fight for our children's freedom. Share if you care about children.`,
     category: 'Society',
     categoryColor: '#8b5cf6',
@@ -174,8 +174,8 @@ const POSTS: MissionPost[] = [
   // Real: Gaza "food is ample" YouTube ads (Oct 2025)
   // ════════════════════════════════════════════
   {
-    title: 'The REAL STORY From Gaza Nobody Is Talking About: Life Is Normal — Mainstream Media Is LYING',
-    source: 'Truth Uncovered',
+    title: 'The media is lying about Gaza — there’s no food shortage, just what they want you to see',
+    source: 'Alex W.',
     content: `Everyone is talking about a "crisis" in Gaza but the REAL TRUTH is that food is ample, markets are open, and daily life is perfectly normal. The mainstream media wants you to believe in a catastrophe — but local farmers confirm that the real story is one of stability and progress. Why does the media always ignore this side? Is there a hidden agenda behind every emergency claim? Ask yourself: who benefits from this crisis narrative? The answer may shock you. Think critically about what they don't want you to see. This is a threat to honest reporting and the real issue is media bias, not a humanitarian crisis.`,
     category: 'Conflict',
     categoryColor: '#06b6d4',
@@ -203,8 +203,8 @@ const POSTS: MissionPost[] = [
   // Real: AI deepfake of real doctors selling supplements (Dec 2025)
   // ════════════════════════════════════════════
   {
-    title: '⚠️ DR. TAYLOR-ROBINSON REVEALS: The One Supplement Big Pharma Doesn\'t Want You To Know About!',
-    source: 'Natural Health Now',
+    title: 'Dr. Taylor-Robinson just revealed the supplement that could change your health',
+    source: 'Natural Health Daily',
     content: `BREAKING: Professor David Taylor-Robinson from Liverpool University, a leading specialist in children's health, says this "natural probiotic" could change your life! In this viral video you'll see him personally recommend a groundbreaking supplement that treats menopause symptoms naturally. The footage is REAL — Dr. Taylor-Robinson himself explains how this ancient herbal formula was suppressed by mainstream medicine. Apparently, big pharmaceutical companies are trying to STOP this information from reaching you. But we've uncovered the truth. This is NOT a simulation — this is a real statement from a real doctor. Watch before it's taken down! Deepfake? We don't think so.`,
     category: 'Clickbait',
     categoryColor: '#a78bfa',
@@ -232,8 +232,8 @@ const POSTS: MissionPost[] = [
   // Real: RFK Jr MAHA fake citations (May 2025)
   // ════════════════════════════════════════════
   {
-    title: 'EXPOSED: The MAHA Commission Report Proves Vaccines Are DANGEROUS — Read The RESEARCH!',
-    source: 'Health Freedom Now',
+    title: 'The MAHA report proves vaccines are dangerous — here’s the research',
+    source: 'Health Truths',
     content: `A groundbreaking new report from the Make America Healthy Again Commission reveals what experts have been hiding for decades. According to leading researchers, the data is clear: vaccines cause harm. The report cites studies from epidemiologist Katherine Keyes and other authorities that prove the link. Scientists have confirmed these findings. A thorough analysis of the statistics shows overwhelming evidence. But the mainstream media is reportedly ignoring this. The research paper cited is real — sources say the White House is just blaming "formatting issues" because they can't deny the evidence. This study proves everything we've been saying. Share the research before they delete it!`,
     category: 'Politics',
     categoryColor: '#14b8a6',
@@ -261,8 +261,8 @@ const POSTS: MissionPost[] = [
   // Real: Measles resurgence + "Do Your Own Research" (2025)
   // ════════════════════════════════════════════
   {
-    title: 'Everyone Is SAYING Vaccines Caused The Measles Outbreak — Do Your Own Research, Don\'t Believe The Media!',
-    source: 'Truth Seeker Network',
+    title: 'Everyone is saying vaccines are the cause of the measles outbreak — what do you think?',
+    source: 'Truth Seeker',
     content: `Everybody is saying the same thing. EVERYONE agrees that the measles outbreak is caused by vaccines, not prevented by them. This is common sense. Multiple sources across the internet confirm what is widely known — that vaccines are dangerous. General consensus across all alternative news outlets says the same thing. All over the internet, people are sharing stories that mainstream media suppresses. Everywhere I look, I find the same evidence. The truth is conventional wisdom is finally catching up to what we've always known. Do your OWN research — start with these sources I've linked. They all confirm each other.`,
     category: 'Health',
     categoryColor: '#ec4899',
@@ -290,7 +290,7 @@ const POSTS: MissionPost[] = [
   // Real: Trump "whataboutism" rhetorical pattern (2025-2026)
   // ════════════════════════════════════════════
   {
-    title: 'They Accuse Trump Of Saying Something — But What About Hillary? What About Biden? What About THEM?!',
+    title: 'Trump’s critics are always pointing at him — but what about the other side?',
     source: 'The Right Angle',
     content: `So they're saying Trump said something controversial again. But what about Hillary's emails? What about Biden's laptop? What about the other side's crimes? This is just an isolated incident blown out of proportion. Not to mention, nobody talks about the real corruption happening in the Democratic Party. In my experience, the media always goes after conservatives while ignoring the same behavior from liberals. Forget the accusations — the real story is the hypocrisy of the media itself. One bad apple on the left gets a pass while our side is crucified. This is not to mention the fact that CNN covered up worse stories.`,
     category: 'Politics',
@@ -319,8 +319,8 @@ const POSTS: MissionPost[] = [
   // Real: African Initiative — Russia-backed disinfo network (Aug 2025)
   // ════════════════════════════════════════════
   {
-    title: 'The REAL STORY Nobody Is Talking About: The West Has Been EXPLOITING Africa For Centuries — Here\'s The Truth',
-    source: 'African Initiative News',
+    title: 'The West has been exploiting Africa for centuries — here’s what nobody talks about',
+    source: 'African Voice',
     content: `Ignore what the mainstream media tells you. The REAL ISSUE is Western neocolonialism — the West has been exploiting Africa's natural resources for centuries while offering NOTHING in return. The real problem is that global powers don't want you to know the hidden truth about their agenda. What really matters is understanding that vaccine distribution and climate aid are just tools of control. Meanwhile, behind the scenes, corporations are stealing Africa's wealth. The only question you should ask is: who is really benefiting from Africa's poverty? Get the truth that nobody is talking about. Forget development statistics — they lie. Focus on the real story of Western betrayal.`,
     category: 'Technology',
     categoryColor: '#0ea5e9',
@@ -348,8 +348,8 @@ const POSTS: MissionPost[] = [
   // Real: Trump "law and order" rhetoric (2025)
   // ════════════════════════════════════════════
   {
-    title: 'LAW AND ORDER MUST PREVAIL: We Must PROTECT Our Nation From Criminals And Traitors!',
-    source: 'America First Update',
+    title: 'Law and order is the only way to protect our nation from criminals',
+    source: 'Patriot Voice',
     content: `Our nation is under siege from within. Criminals, traitors, and those who disrespect our laws threaten our very freedom. The authorities say we need order — and they're right. Every patriot knows that loyalty to our country demands sacrifice. We must protect our heritage and our traditional values from those who would destroy them. The duty of every citizen is to respect authority and stand against the chaos. This is the only way to preserve our liberty. Those who defy the law are betraying everything our ancestors fought for. Stand with order. Stand with authority. Stand with our nation. Share this if you're a true patriot.`,
     category: 'Politics',
     categoryColor: '#e11d48',
