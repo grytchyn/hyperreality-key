@@ -1,4 +1,6 @@
-// ── MISSIONS UA v1 — 12 levels, UKRAINIAN translation ──
+// ── MISSIONS UA v2 — SYNCED with EN — philosopher names + quotes ──
+// 12 levels, REAL articles with real data
+// Same philosopher names and friendPreviews as EN, content/questions in UA
 import type { CoreToolId } from '../types'
 
 export interface MissionPost {
@@ -22,10 +24,7 @@ export interface MissionPost {
 }
 
 const POSTS_UA: MissionPost[] = [
-  // ════════════════════════════════════════════
   // LEVEL 1 — BAD ARGUMENTS
-  // Real: Snopes — Squid Game "true story" rumor (Jan 2025)
-  // ════════════════════════════════════════════
   {
     title: 'Snopes: Ні, "Гра в кальмара" НЕ була заснована на реальній події 1986 року',
     source: 'Snopes',
@@ -46,15 +45,12 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 0,
     explanation: '"Джерело, близьке до виробництва" та "згідно з анонімними джерелами" — класичний анонімний авторитет. Принцип авторитету Чалдіні: твердження запозичують довіру через неназваних "інсайдерів." Snopes розслідував і не знайшов жодних доказів того, що творець згадував це натхнення.',
-    friendPreview: 'Чувак, ти бачив це про Гру в кальмара?? 👀',
-    friendName: 'Alex',
-    friendColor: '#22c55e',
+    friendPreview: '"A source close to production confirmed it" — yeah, that\'s not how evidence works. — Schopenhauer',
+    friendName: 'Arthur Schopenhauer',
+    friendColor: '#ef4444',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 2 — FEELINGS CHECK
-  // Real: NPR — AI misinformation after plane crash (Jan 2026)
-  // ════════════════════════════════════════════
   {
     title: 'NPR: Згенерована ШІ брехня про катастрофи поширюється онлайн — "Реальна шкода"',
     source: 'NPR',
@@ -75,15 +71,12 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 0,
     explanation: 'Стаття використовує принцип дефіциту Чалдіні (терміновість катастрофи) та фундамент Турботи Гайдта (жертви, сім\'ї, які постраждали). "Трагічно," "шкода," "брехня поширюється безконтрольно" викликають страх та обурення.',
-    friendPreview: 'Це реально страшно 🤯',
-    friendName: 'Jay',
-    friendColor: '#ef4444',
+    friendPreview: '"Disasters are tragic enough... but they\'re made worse by AI lies." — Cialdini',
+    friendName: 'Robert Cialdini',
+    friendColor: '#f59e0b',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 3 — BRAIN CHECK
-  // Real: University of Sydney / JAMA Network Open (Feb 2025)
-  // ════════════════════════════════════════════
   {
     title: 'University of Sydney: "Переважно оманливі" медичні тести стають вірусними в TikTok',
     source: 'JAMA Network Open',
@@ -104,15 +97,12 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: '"Більшість людей," "всі це роблять," "переважна більшість" — всі сигнали ефекту приєднання. Евристика доступності Канемана: "Багато хто вірить" не дорівнює "підтверджено доказами." Доктор Брук Нікель підтвердила, що цим тестам бракує наукової підтримки.',
-    friendPreview: 'Ти бачив ці медичні тести в TikTok? 🏥',
-    friendName: 'Mia',
-    friendColor: '#f59e0b',
+    friendPreview: '"Most people believe" is not evidence. Popularity is not truth. — Kahneman',
+    friendName: 'Daniel Kahneman',
+    friendColor: '#22c55e',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 4 — US VS THEM
-  // Real: Al Jazeera — Trump UN speech on asylum seekers (Sep 2025)
-  // ════════════════════════════════════════════
   {
     title: 'Al Jazeera: Трамп в ООН — "Їх захопила сила нелегальних іммігрантів"',
     source: 'Al Jazeera',
@@ -133,15 +123,12 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Теорія соціальної ідентичності Тайфеля: "захоплені" — це воєнна метафора, яка дегуманізує іммігрантів як ворожу силу. "Нелегальні іммігранти" та "фальшиві шукачі притулку" — ярлики для "чужих." Human Rights Watch підтвердила, що немає доказів, які підтримують твердження про "фальшивість."',
-    friendPreview: 'Нарешті хтось це сказав 🇺🇸',
-    friendName: 'Jack',
-    friendColor: '#ef4444',
+    friendPreview: '"They\'ve been invaded" — war metaphors dehumanize. Notice the us-vs-them framing. — Tajfel',
+    friendName: 'Henri Tajfel',
+    friendColor: '#d946ef',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 5 — MORAL BUTTONS
-  // Real: The Guardian — Mumsnet ban social media under-16s (Feb 2026)
-  // ════════════════════════════════════════════
   {
     title: 'The Guardian: Mumsnet закликає заборонити соцмережі для дітей до 16 років',
     source: 'The Guardian',
@@ -162,15 +149,12 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Фундамент Турботи Гайдта: "шкода," "діти," "залежність," "компульсивне," "тривожність," "падіння самооцінки" — все викликає співчуття ТА обурення. Кнопка Турботи — найуніверсальніший моральний тригер. Риторичний трюк: представлення соціальних мереж як навмисних шкідників, які "процвітають" за рахунок страждань дітей.',
-    friendPreview: 'Це розбиває моє серце 💔',
-    friendName: 'Emma',
-    friendColor: '#22c55e',
+    friendPreview: 'Harm, children, addictive — which moral button are they pressing? — Haidt',
+    friendName: 'Jonathan Haidt',
+    friendColor: '#f97316',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 6 — HIDDEN MYTH
-  // Real: NPR — Section 702 FISA surveillance (Apr 2026)
-  // ════════════════════════════════════════════
   {
     title: 'NPR: Чому Конгрес сперечається через ключовий інструмент американського стеження',
     source: 'NPR',
@@ -191,19 +175,16 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Барт: "Безпека проти приватності" — це бінарний міф. Прихована історія: ви не можете мати обидва. Але Brennan Center стверджує, що нагляд та ордери можуть забезпечити обидва. "Лежить в основі більшості" — приєднання до більшості для безпеки. "Постійні та широкомасштабні" — абсолютні слова для порушень.',
-    friendPreview: 'Що ти думаєш про це? 🤔',
-    friendName: 'Zoe',
+    friendPreview: '"Freedom vs security" is not a fact. It\'s a myth. — Barthes',
+    friendName: 'Roland Barthes',
     friendColor: '#06b6d4',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 7 — FAKE CHECK
-  // Real: The Guardian — AI deepfakes of real doctors (Dec 2025)
-  // ════════════════════════════════════════════
   {
     title: 'The Guardian: ШІ-діпфейки справжніх лікарів поширюють медичну дезінформацію',
     source: 'The Guardian',
-    content: `TikTok та інші соціальні платформи розміщують створені ШІ діпфейк-відео справжніх лікарів, чиї слова були маніпульовані для продажу добавок та поширення медичної дезінформації. Фактчекінгова організація Full Fact виявила сотні таких відео, націлених на жінок, які переживають менопаузу. Проф. Девід Тейлор-Робінсон з Liverpool University, фахівець з дитячого здоров\'я, мав своє зображення використане в 14 підроблених відео TikTok — кадри з виступу 2017 року були перероблені, щоб фальшиво рекламувати "натуральний пробіотик" для менопаузи. TikTok видалив відео лише через шість тижнів після його скарги.`,
+    content: `TikTok та інші соціальні платформи розміщують створені ШІ діпфейк-відео справжніх лікарів, чиї слова були маніпульовані для продажу добавок та поширення медичної дезінформації. Фактчекінгова організація Full Fact виявила сотні таких відео, націлених на жінок, які переживають менопаузу. Проф. Девід Тейлор-Робінсон з Liverpool University, фахівець з дитячого здоров'я, мав своє зображення використане в 14 підроблених відео TikTok — кадри з виступу 2017 року були перероблені, щоб фальшиво рекламувати "натуральний пробіотик" для менопаузи. TikTok видалив відео лише через шість тижнів після його скарги.`,
     category: 'Клікбейт',
     categoryColor: '#a78bfa',
     imageEmoji: '📱',
@@ -220,15 +201,12 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 2,
     explanation: 'Гіперреальність Бодріяра: Проф. Девід Тейлор-Робінзон ніколи не давав такої медичної поради. Відео — це симуляція, яка прикидається реальністю — симулякр (копія без оригіналу). Full Fact знайшов сотні таких відео. Симуляція замінила реальність настільки переконливо, що глядачі не могли відрізнити.',
-    friendPreview: 'О Боже, ти маєш це бачити!! 📱',
-    friendName: 'TikTok Tom',
+    friendPreview: 'That video was never real. A simulation pretending to be reality. — Baudrillard',
+    friendName: 'Jean Baudrillard',
     friendColor: '#a78bfa',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 8 — SOURCE CHECK
-  // Real: Forbes — RFK Jr. fake citations (May 2025)
-  // ════════════════════════════════════════════
   {
     title: 'Forbes: Білий дім пояснює неіснуючі медичні цитати "проблемами форматування"',
     source: 'Forbes',
@@ -249,15 +227,12 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 0,
     explanation: 'Принцип авторитету Чалдіні: видимість дослідження використовується для запозичення довіри. Звіт цитував неіснуючі дослідження з ознаками генерації ШІ. Коли реальних вчених вказували як авторів досліджень, яких вони ніколи не проводили, це перейшло від помилки до фабрикації.',
-    friendPreview: 'Це ВЕЛИЧЕЗНО — RFK Jr. ПОПАВСЯ на підробці науки в офіційному звіті Білого дому!! 📋🔥',
-    friendName: 'Jay',
-    friendColor: '#f59e0b',
+    friendPreview: 'Who decides what counts as "expert"? Who benefits? — Foucault',
+    friendName: 'Michel Foucault',
+    friendColor: '#14b8a6',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 9 — ECHO CHAMBER
-  // Real: Washington Post — "Do your own research" fallacy (May 2025)
-  // ════════════════════════════════════════════
   {
     title: 'WaPo: "Робіть власне дослідження" — найкращий друг теорій змови',
     source: 'The Washington Post',
@@ -278,15 +253,12 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Ефект ехокамери: "множинні джерела" часто означають одну оригінальну історію, опубліковану багато разів. "Закон групової поляризації" Санстейна: в ехокамері переконання стають більш екстремальними без зовнішнього виклику. Запитайте: ці джерела незалежні, чи всі вони цитують одне й те саме?',
-    friendPreview: 'Медіа НЕНАВИДЯТЬ, коли ви робите власне дослідження. Вони хочуть, щоб ви залежали від них. ПРОКИДАЙТЕСЬ 🧠🔓',
-    friendName: 'Mia',
-    friendColor: '#22c55e',
+    friendPreview: '"Multiple sources" often means one source repeated a thousand times. — Sunstein',
+    friendName: 'Cass Sunstein',
+    friendColor: '#ec4899',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 10 — RED HERRING
-  // Real: Salon — How Trump broke the American mind (Nov 2025)
-  // ════════════════════════════════════════════
   {
     title: 'Salon: Як риторика Трампа використовує "whataboutism" для відволікання',
     source: 'Salon',
@@ -307,15 +279,12 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Еристична діалектика Шопенгауера: коли програєш в аргументі, зміни тему. "А як щодо X" вводить точку, яка здається актуальною, але насправді є відволіканням. Стаття Salon називає це "червоними оселедцями для відволікання" — мета тримати публіку в реактивному стані, де критичне мислення руйнується.',
-    friendPreview: 'Вони хочуть, щоб ви забули, що зробили демократи! А як щодо ноутбука Гантера? А як щодо Гілларі? 🤡🌎',
-    friendName: 'Jack',
+    friendPreview: '"What about X?" — the oldest distraction trick in the book. — Schopenhauer',
+    friendName: 'Arthur Schopenhauer',
     friendColor: '#ef4444',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 11 — AGENDA SETTING
-  // Real: BBC — Project 2025 roadmap (Jan 2026)
-  // ════════════════════════════════════════════
   {
     title: 'BBC: Від Венесуели до імміграції — Project 2025 став дорожньою картою Трампа',
     source: 'BBC News',
@@ -336,15 +305,12 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 0,
     explanation: 'Теорія встановлення порядку денного Маккомбса та Шоу (1972): медіа не каже вам, що думати — вона каже вам, ПРО ЩО думати. Фреймуючи всю програму Трампа через призму "хто насправді контролює," BBC зміщує дебати з оцінки політики на змовницьку розповідь про "ляльковода."',
-    friendPreview: 'BBC підтверджує: Трамп — просто маріонетка Heritage Foundation\'s Project 2025. 53% вже впроваджено. 🚨📰',
-    friendName: 'Zoe',
-    friendColor: '#06b6d4',
+    friendPreview: 'Media doesn\'t tell you WHAT to think — it tells you what TO THINK ABOUT. — McCombs & Shaw',
+    friendName: 'McCombs & Shaw',
+    friendColor: '#0ea5e9',
   },
 
-  // ════════════════════════════════════════════
   // LEVEL 12 — VALUE CHECK
-  // Real: AP News — Trump's "law and order" (Oct 2025)
-  // ════════════════════════════════════════════
   {
     title: 'AP News: "Закон і порядок" Трампа у другий термін — "Це моя пристрасть"',
     source: 'Associated Press',
@@ -365,9 +331,9 @@ const POSTS_UA: MissionPost[] = [
     ],
     correctIndex: 1,
     explanation: 'Фундаменти моралі Гайдта: "закон і порядок" активує Авторитет (повага до поліції, закону, ієрархії) та Святість (міста потребують "очищення" від злочинності, "порятунку" від занепаду). "Краса сирен" представляє правоохоронні органи як естетично та морально прекрасні. Критики стверджують, що це представляє будь-яку опозицію як прозлочинну, використовуючи моральні основи для закриття дебатів про політику.',
-    friendPreview: 'Рівень вбивств ВПАВ до 125-річного мінімуму. Трамп: "Послухайте красу цього звуку." Закон і порядок ПОВЕРНУВСЯ. 🇺🇸👮‍♂️',
-    friendName: 'TikTok Tom',
-    friendColor: '#a78bfa',
+    friendPreview: '"Law and order" — Authority and Sanctity foundations, beautifully packaged. — Cialdini',
+    friendName: 'Robert Cialdini',
+    friendColor: '#f59e0b',
   },
 ]
 

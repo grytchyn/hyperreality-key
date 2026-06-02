@@ -1,15 +1,13 @@
-// ── GAME SCREEN v18 — separate screens: Chat → full Game ──
-// 3 pre-activated filters, +1 per level
+// ── GAME SCREEN v19 — no chat phase, splash handles intro ──
+// Direct game mode: 3 pre-activated filters, +1 per level
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { CORE_TOOLS, getHighlightsFor } from '../data/coreTools'
 import { LEVEL_TOOLS, LEVEL_CONFIG } from '../engine/levelTools'
 import type { CoreToolId } from '../types'
 import type { MissionPost } from '../data/missions'
 import type { Language } from '../hooks/useLanguage'
-import ChatUi from './ChatUi'
 import Header from './Header'
 import { getToolIcon } from './icons/ToolIcons'
-import { getScientistAvatar } from '../engine/scientists'
 
 interface GameScreenProps {
   post: MissionPost
@@ -21,7 +19,6 @@ interface GameScreenProps {
 
 const LETTERS = ['A', 'B', 'C', 'D']
 
-// Icons per choice per level — shown in the circle instead of A/B/C/D
 const CHOICE_ICONS: Record<number, string[]> = {
   1: ['🎭', '💢', '📋', '🔍'],
   2: ['😱', '🧐', '🎉', '😴'],
@@ -38,9 +35,7 @@ const CHOICE_ICONS: Record<number, string[]> = {
 }
 
 export default function GameScreen({ post, onAnswer, totalScore, currentLanguage, onSetLanguage }: GameScreenProps) {
-  const [phase, setPhase] = useState<'chat' | 'game'>('chat')
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>(() => {
-    // Pre-activate only tools that actually have highlights in this post
     const level = post.level
     const tools = LEVEL_TOOLS[level] || []
     const text = post.content + ' ' + post.title
@@ -49,15 +44,12 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
   const [chosenAnswer, setChosenAnswer] = useState<number | null>(null)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null)
-  const [transitioning, setTransitioning] = useState(false)
   const answeredRef = useRef(false)
   const containerRef = useRef<HTMLDivElement>(null)
-  const gameRef = useRef<HTMLDivElement>(null)
 
   const level = post.level
   const levelCfg = LEVEL_CONFIG[level] || LEVEL_CONFIG[7]
   const availableTools = LEVEL_TOOLS[level] || []
-  // Nur Tools mit Treffern im Text anzeigen
   const toolsWithHighlights = availableTools.filter(toolId => {
     const testText = post.content + ' ' + post.title
     return getHighlightsFor([toolId], testText).size > 0
@@ -104,23 +96,8 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
   }, [])
   const hideTooltip = useCallback(() => setTooltip(null), [])
 
-  const handleAnalyze = useCallback(() => {
-    // Pre-activate ALL available filters for instant highlights
-    setActiveFilters(availableTools)
-    // Transition: brief animation then show game
-    setTransitioning(true)
-    setTimeout(() => {
-      setPhase('game')
-      setTransitioning(false)
-      // Scroll to top for clean game view
-      window.scrollTo(0, 0)
-    }, 400)
-  }, [availableTools])
-
   // Reset state when post changes
   useEffect(() => {
-    setPhase('game')
-    // Pre-activate only relevant tools
     const tools = LEVEL_TOOLS[post.level] || []
     const text = post.content + ' ' + post.title
     const relevantTools = tools.filter(toolId => getHighlightsFor([toolId], text).size > 0)
@@ -129,7 +106,6 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
     setFeedback(null)
     setTooltip(null)
     answeredRef.current = false
-    setTransitioning(false)
     window.scrollTo(0, 0)
   }, [post])
 
@@ -153,63 +129,17 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
     })
   }
 
-  // ── GAME MODE: Full analysis screen ──
   const bgUrl = '/assets/bg/game-bg.png'
-
-  if (phase === 'chat') {
-    return (
-      <div className="min-h-[100dvh] bg-dark-bg flex flex-col items-center justify-center p-4 relative overflow-hidden"
-        style={{
-          minHeight: '100dvh',
-          background: `var(--color-dark-bg) url('${bgUrl}') center center / cover no-repeat`,
-        }}>
-        {/* Dark overlay */}
-        <div className="fixed inset-0 pointer-events-none z-0"
-          style={{ background: 'linear-gradient(180deg, color-mix(in srgb, var(--color-dark-bg) 60%, transparent) 0%, color-mix(in srgb, var(--color-dark-bg) 80%, transparent) 100%)' }} />
-        
-        {/* HEADER */}
-        <Header
-          level={post.level}
-          levelName={levelCfg.theme}
-          levelColor={levelCfg.color}
-          showLevel={true}
-          totalScore={totalScore}
-          currentLanguage={currentLanguage}
-          onSetLanguage={onSetLanguage}
-        />
-        {transitioning ? (
-          <div className="animate-fade-in-up text-center">
-            <div className="text-4xl mb-4 animate-pulse" style={{ color: levelCfg.color }}>🔍</div>
-            <div className="text-sm font-mono" style={{ color: levelCfg.color }}>Analyzing...</div>
-          </div>
-        ) : (
-          <div className="w-full max-w-md animate-fade-in-up relative z-10">
-            <ChatUi
-              friendName={post.friendName}
-              friendColor={post.friendColor}
-              friendPreview={post.friendPreview}
-              articleTitle={post.title}
-              articleSource={post.source}
-              onAnalyze={handleAnalyze}
-              showAnalyze={true}
-              userAnswer={undefined}
-              isCorrect={undefined}
-              showFeedback={false}
-            />
-          </div>
-        )}
-      </div>
-    )
-  }
 
   return (
     <div className="relative overflow-hidden min-h-[100dvh]" ref={containerRef}
       style={{
         background: `var(--color-dark-bg) url('${bgUrl}') center center / cover no-repeat`,
       }}>
-      {/* Dark overlay for readability */}
+      {/* Dark overlay */}
       <div className="fixed inset-0 pointer-events-none z-0"
         style={{ background: 'linear-gradient(180deg, color-mix(in srgb, var(--color-dark-bg) 70%, transparent) 0%, color-mix(in srgb, var(--color-dark-bg) 85%, transparent) 50%, color-mix(in srgb, var(--color-dark-bg) 95%, transparent) 100%)' }} />
+      
       {/* Fixed tooltip */}
       {tooltip && (
         <div className="fixed z-[9999] pointer-events-none" style={{ left: tooltip.x, top: tooltip.y, transform: 'translateY(-100%)' }}>
@@ -218,12 +148,10 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
         </div>
       )}
 
-      {/* Level-themed background with image */}
+      {/* Background effects */}
       <div className="fixed inset-0 pointer-events-none -z-10">
         <div className="absolute inset-0 opacity-[0.15]"
-          style={{
-            background: `url('${bgUrl}') center center / cover no-repeat`,
-          }} />
+          style={{ background: `url('${bgUrl}') center center / cover no-repeat` }} />
         <div className="absolute inset-0"
           style={{ background: 'linear-gradient(180deg, color-mix(in srgb, var(--color-dark-bg) 70%, transparent) 0%, color-mix(in srgb, var(--color-dark-bg) 85%, transparent) 100%)' }} />
         <div className="absolute top-10 right-10 w-[25rem] h-[25rem] rounded-full opacity-[0.08]"
@@ -232,10 +160,10 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
           style={{ background: `radial-gradient(circle, ${levelCfg.color} 0%, transparent 70%)`, animation: 'pulse 7s infinite 1.5s' }} />
       </div>
 
-      {/* HEADER with big logo */}
+      {/* HEADER */}
       <Header
         level={post.level}
-        levelName={levelCfg.theme}
+        levelName={levelCfg.name}
         levelColor={levelCfg.color}
         showLevel={true}
         totalScore={totalScore}
@@ -243,7 +171,7 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
         onSetLanguage={onSetLanguage}
       />
 
-      <div className="max-w-2xl mx-auto p-3 sm:p-4 space-y-4 relative z-10 animate-fade-in-up" ref={gameRef}>
+      <div className="max-w-2xl mx-auto p-3 sm:p-4 space-y-4 relative z-10 animate-fade-in-up">
         
         {/* ARTICLE CARD */}
         <div className="relative rounded-2xl overflow-hidden"
@@ -268,7 +196,7 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
               🔒 {post.source.toLowerCase().replace(/[^a-z0-9]/g, '')}.com
             </div>
             <span className="text-[9px] font-mono uppercase tracking-wider" style={{ color: levelCfg.color + '99' }}>
-              {levelCfg.theme}
+              {levelCfg.name}
             </span>
           </div>
 
@@ -299,47 +227,45 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
             <span>❤️ 120</span>
           </div>
 
-          {/* FILTER TOOLS — 2×4 grid, all pre-active */}
+          {/* FILTER TOOLS */}
           <div className="px-4 py-3">
-            <>
             {highlightCount > 0 && (
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-[10px] font-mono flex items-center gap-1.5" style={{ color: 'var(--color-text-muted)' }}>
-                🔍 <span style={{ color: 'var(--color-text-secondary)' }}>{highlightCount}</span> words highlighted
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-[10px] font-mono flex items-center gap-1.5" style={{ color: 'var(--color-text-muted)' }}>
+                  🔍 <span style={{ color: 'var(--color-text-secondary)' }}>{highlightCount}</span> words highlighted
+                </div>
+                <button onClick={() => { setActiveFilters([]) }}
+                  className="text-[10px] font-mono transition-colors cursor-pointer" style={{ color: 'var(--color-text-muted)' }}>clear</button>
               </div>
-              <button onClick={() => { setActiveFilters([]) }}
-                className="text-[10px] font-mono transition-colors cursor-pointer" style={{ color: 'var(--color-text-muted)' }}>clear</button>
-            </div>
             )}
             {toolsWithHighlights.length > 0 && (
-            <div className="grid grid-cols-4 gap-2">
-              {toolsWithHighlights.map(toolId => {
-                const t = CORE_TOOLS.find(x => x.id === toolId)
-                if (!t) return null
-                const isOn = activeFilters.includes(toolId)
-                const IconComponent = getToolIcon(toolId)
-                return (
-                  <button key={toolId} onClick={() => toggleFilter(toolId)}
-                    onMouseEnter={(e) => showTooltip(e, `${t.name}: ${t.description}`)} onMouseLeave={hideTooltip}
-                    className="flex flex-col items-center gap-1 p-2 rounded-xl border transition-all duration-200 cursor-pointer active:scale-95"
-                    style={{
-                      borderColor: isOn ? t.color : `${t.color}15`,
-                      background: isOn ? `${t.color}20` : 'rgba(255,255,255,0.02)',
-                      boxShadow: isOn ? `0 0 15px ${t.color}20` : 'none',
-                    }}>
-                    <IconComponent size={32} glowColor={t.color} active={isOn} />
-                    <span className="text-[8px] font-bold uppercase tracking-wider leading-tight"
-                      style={{ color: isOn ? t.color : 'var(--color-text-muted)' }}>{t.name}</span>
-                  </button>
-                )
-              })}
-            </div>
+              <div className="grid grid-cols-4 gap-2">
+                {toolsWithHighlights.map(toolId => {
+                  const t = CORE_TOOLS.find(x => x.id === toolId)
+                  if (!t) return null
+                  const isOn = activeFilters.includes(toolId)
+                  const IconComponent = getToolIcon(toolId)
+                  return (
+                    <button key={toolId} onClick={() => toggleFilter(toolId)}
+                      onMouseEnter={(e) => showTooltip(e, `${t.name}: ${t.description}`)} onMouseLeave={hideTooltip}
+                      className="flex flex-col items-center gap-1 p-2 rounded-xl border transition-all duration-200 cursor-pointer active:scale-95"
+                      style={{
+                        borderColor: isOn ? t.color : `${t.color}15`,
+                        background: isOn ? `${t.color}20` : 'rgba(255,255,255,0.02)',
+                        boxShadow: isOn ? `0 0 15px ${t.color}20` : 'none',
+                      }}>
+                      <IconComponent size={32} glowColor={t.color} active={isOn} />
+                      <span className="text-[8px] font-bold uppercase tracking-wider leading-tight"
+                        style={{ color: isOn ? t.color : 'var(--color-text-muted)' }}>{t.name}</span>
+                    </button>
+                  )
+                })}
+              </div>
             )}
-            </>
           </div>
         </div>
 
-        {/* ANSWER CARD — A/B/C/D */}
+        {/* ANSWER CARD */}
         <div className="rounded-2xl p-5"
           style={{
             background: 'linear-gradient(135deg, color-mix(in srgb, var(--color-dark-card) 95%, transparent), color-mix(in srgb, var(--color-dark-surface) 90%, transparent))',
@@ -393,7 +319,7 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
             })}
           </div>
 
-          {/* Inline explanation + NEXT BUTTON */}
+          {/* Explanation */}
           {chosenAnswer && (
             <div className="mt-4 rounded-xl p-3.5 text-xs leading-relaxed animate-fade-in-up"
               style={{
@@ -408,29 +334,18 @@ export default function GameScreen({ post, onAnswer, totalScore, currentLanguage
             </div>
           )}
 
-          {/* Avatar + Key Logo — centered between explanation and next button */}
+          {/* Key icon + friend name */}
           {chosenAnswer !== null && (
-            <div className="mt-6 flex flex-col items-center gap-2 animate-fade-in-up">
-              <div className="w-14 h-14 rounded-full overflow-hidden ring-2"
-                style={{ boxShadow: `0 0 20px ${post.categoryColor}40`, borderColor: post.categoryColor }}>
-                <img
-                  src={getScientistAvatar(post.scientistKey || post.friendName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')).avatar}
-                  alt={post.friendName}
-                  className="w-full h-full object-cover"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-                />
-              </div>
-              <div className="flex items-center gap-1.5">
-                <img src="/assets/key-icon.png" alt="HK" className="w-6 h-6 object-contain opacity-60"
-                  style={{ filter: 'drop-shadow(0 0 6px color-mix(in srgb, var(--color-neon-purple) 30%, transparent))' }} />
-                <span className="text-[10px] font-mono font-bold tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
-                  {post.friendName} · Level {level}/12
-                </span>
-              </div>
+            <div className="mt-6 flex items-center justify-center gap-2 animate-fade-in-up">
+              <img src="/assets/key-icon.png" alt="HK" className="w-5 h-5 object-contain opacity-50"
+                style={{ filter: 'drop-shadow(0 0 6px color-mix(in srgb, var(--color-neon-purple) 30%, transparent))' }} />
+              <span className="text-[10px] font-mono font-bold tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+                {post.friendName} · Level {level}/12
+              </span>
             </div>
           )}
 
-          {/* Next button — always visible after picking an answer, outside explanation */}
+          {/* Next button */}
           {chosenAnswer !== null && (
             <button onClick={handleNext}
               className="w-full mt-4 px-6 py-4 rounded-xl font-bold text-base uppercase tracking-wider transition-all cursor-pointer hover:translate-y-[-1px] active:scale-[0.98] flex items-center justify-center gap-2"
