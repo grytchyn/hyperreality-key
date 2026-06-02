@@ -161,7 +161,7 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
           <div className="px-4 pt-3 pb-1">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0" style={{ background: `linear-gradient(135deg, ${post.categoryColor}, ${post.categoryColor}88)` }}>{post.source[0]}</div>
-              <div><div className="text-xs font-bold text-white">{post.source}</div><div className="text-[9px] text-gray-500">{post.friendName} shared · just now</div></div>
+              <div><div className="text-xs font-bold text-white">{post.source}</div><div className="text-[9px] text-gray-500">{"Post"} shared · just now</div></div>
               <span className="ml-auto text-[8px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ color: post.categoryColor, border: `1px solid ${post.categoryColor}40`, background: `${post.categoryColor}15` }}>{post.category}</span>
             </div>
             <h2 className="text-base font-bold text-white mb-2 leading-snug">{post.title}</h2>
@@ -240,7 +240,7 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
             <div className="mt-5 flex items-start gap-2.5 animate-fade-in-up">
               <div className="w-9 h-9 rounded-full overflow-hidden shrink-0 mt-0.5"
                 style={{ border: `2px solid ${levelCfg.color}50`, boxShadow: `0 0 12px ${levelCfg.color}30` }}>
-                <img src={getScientistAvatar(post.scientistKey).avatar} alt={post.friendName}
+                <img src={getScientistAvatar(post.scientistKey).avatar} alt={"Post"}
                   className="w-full h-full object-cover"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
               </div>
@@ -249,7 +249,7 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
                   border: `1px solid ${levelCfg.color}25`, color: 'var(--color-text-secondary)', borderTopLeftRadius: '4px',
                   fontFamily: "'Work Sans', system-ui, sans-serif", fontWeight: 430, lineHeight: 1.6 }}>
                 <div className="text-[9px] font-bold mb-1 flex items-center gap-2" style={{ color: levelCfg.color, fontFamily: "'Work Sans', system-ui, sans-serif", letterSpacing: '0.02em' }}>
-                  <span>{post.friendName} · {getScientistField(post.scientistKey)}</span>
+                  <span>{"Post"} · {getScientistField(post.scientistKey)}</span>
                   <a href={getScientistAvatar(post.scientistKey).wiki} target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] font-mono uppercase tracking-wider transition-all hover:scale-105"
                     style={{ background: `${levelCfg.color}20`, color: levelCfg.color + 'cc', border: `1px solid ${levelCfg.color}30` }}
