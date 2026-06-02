@@ -286,8 +286,8 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
     {
       words: {
         en: ['always', 'never', 'every', 'none', 'nothing', 'totally', 'completely', 'absolutely', 'definitive', 'undoubtedly', 'without a doubt', 'beyond question', 'no question'],
-        de: ['immer', 'nie', 'jeder', 'keiner', 'nichts', 'vollständig', 'absolut', 'definitiv', 'ohne Zweifel', 'ohne Frage', 'unbestritten', 'jedes'],
-        ua: ['завжди', 'ніколи', 'всі', 'ніхто', 'нічого', 'повністю', 'абсолютно', 'неперевершено', 'без сумніву', 'незаперечно'],
+        de: ['immer', 'nie', 'jeder', 'keiner', 'nichts', 'vollständig', 'absolut', 'definitiv', 'ohne Zweifel', 'ohne Frage', 'unbestritten', 'jedes', 'keine', 'kein', 'niemand', 'niemals', 'ganz', 'alle'],
+        ua: ['завжди', 'ніколи', 'всі', 'ніхто', 'нічого', 'повністю', 'абсолютно', 'неперевершено', 'без сумніву', 'незаперечно', 'кожен', 'жоден', 'жодного', 'зовсім'],
       },
       explanation: {
         en: '⚠️ Absolute word — suppresses all exceptions. Schopenhauer called this "overgeneralization": claiming something is universal when it never is. Ask: is there really no exception anywhere?',
@@ -298,8 +298,8 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
     {
       words: {
         en: ['expert', 'professor', 'doctor', 'scientist', 'institute', 'authority', 'researcher'],
-        de: ['Experte', 'Professor', 'Doktor', 'Wissenschaftler', 'Institut', 'Autorität', 'Forscher', 'Fachmann'],
-        ua: ['експерт', 'професор', 'доктор', 'вчений', 'інститут', 'авторитет', 'дослідник'],
+        de: ['Experte', 'Professor', 'Doktor', 'Wissenschaftler', 'Institut', 'Autorität', 'Forscher', 'Fachmann', 'Fachleute', 'Fachfrau', 'Spezialist', 'Menschenrechtsverletzung', 'Sachverständiger', 'Gutachter'],
+        ua: ['експерт', 'професор', 'доктор', 'вчений', 'інститут', 'авторитет', 'дослідник', 'фахівець', 'спеціаліст'],
       },
       explanation: {
         en: '🎭 Authority claim — Cialdini\'s Influence Principle: we automatically trust titles. But who is this "expert"? What\'s their name? Real authorities name themselves.',
@@ -328,8 +328,8 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
     {
       words: {
         en: ['fear', 'danger', 'terrible', 'horrible', 'shocking', 'horrifying', 'devastating', 'catastrophic', 'terrifying', 'abuse', 'illegal'],
-        de: ['Angst', 'Gefahr', 'schrecklich', 'grauenhaft', 'schockierend', 'grässlich', 'zerstörend', 'katastrophal', 'beängstigend', 'Missbrauch', 'illegal'],
-        ua: ['страх', 'небезпека', 'жахливо', 'страшний', 'шокуючий', 'жахливий', 'руйнівний', 'катастрофічний', 'страшний', 'зловживання', 'незаконний'],
+        de: ['Angst', 'Gefahr', 'schrecklich', 'grauenhaft', 'schockierend', 'grässlich', 'zerstörend', 'katastrophal', 'beängstigend', 'Missbrauch', 'illegal', 'Menschenrechtsverletzung', 'Menschenrechtsverletzungen', 'Terror', 'Schrecken', 'Schrecklicher', 'gefährlich'],
+        ua: ['страх', 'небезпека', 'жахливо', 'страшний', 'шокуючий', 'жахливий', 'руйнівний', 'катастрофічний', 'страшний', 'зловживання', 'порушення', 'незаконний', 'теpop', 'небезпечно', 'жах'],
       },
       explanation: {
         en: '😨 Fear bait — Cialdini\'s Scarcity principle: fear makes us act without thinking. Every word designed to trigger your amygdala. Ask: who benefits from my fear?',
