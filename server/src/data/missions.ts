@@ -1,4 +1,24 @@
-[
+// ── MISSIONS DATA — embedded directly for zero-fs-dependency builds ──
+// These are the 11 real articles from Reuters, AP, PBS, BBC
+
+export interface HighlightRule {
+  words: string[]
+  explanation: string
+}
+
+export interface MissionPost {
+  id: number
+  title: string
+  source: string
+  url: string
+  scientist: string
+  color: string
+  content: string
+  highlightRules: Record<string, HighlightRule[]>
+  standardViolations?: { rule: string; text: string }[]
+}
+
+export const MISSIONS: MissionPost[] = [
   {
     "id": 1,
     "title": "Trump's immigration approval drops to record low, poll shows",
