@@ -7,7 +7,7 @@ import VictoryScreen from './components/VictoryScreen'
 
 function AppInner() {
   const { missions, loading } = useLanguage()
-  const { state, handleStart, handleAnswer, handleNextLevel, handleRestart } = useGame()
+  const { state, handleStart, handleAnswer, handleNextLevel, handleToolToggle, handleRestart } = useGame()
 
   const currentPost = missions.find(p => p.id === state.currentLevel)
 
@@ -27,7 +27,7 @@ function AppInner() {
     <VictoryScreen
       score={state.totalScore}
       completedMissions={state.levelResults.length}
-      toolsUsed={12}
+      toolsUsed={state.toolsUsed.length}
       onRestart={handleRestart}
     />
   )
@@ -41,6 +41,7 @@ function AppInner() {
           onAnswer={handleAnswer}
           onNext={handleNextLevel}
           totalScore={state.totalScore}
+          onToolToggle={handleToolToggle}
           key={state.currentLevel}
         />
       </main>

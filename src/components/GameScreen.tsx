@@ -13,6 +13,7 @@ interface GameScreenProps {
   onAnswer: (correct: boolean, points: number) => void
   onNext: () => void
   totalScore?: number
+  onToolToggle?: (toolId: string) => void
 }
 
 const LETTERS = ['A', 'B', 'C', 'D']
@@ -28,7 +29,7 @@ const CHOICE_ICONS: Record<number, string[]> = {
 
 const TUTORIAL_KEY = 'hrk_tutorial_done'
 
-export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameScreenProps) {
+export default function GameScreen({ post, onAnswer, onNext, totalScore, onToolToggle }: GameScreenProps) {
   const [activeFilters, setActiveFilters] = useState<CoreToolId[]>([]);
   const [chosenAnswer, setChosenAnswer] = useState<number | null>(null);
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
@@ -76,11 +77,16 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
       setShowTutorial(false);
       localStorage.setItem(TUTORIAL_KEY, '1');
     }
-    const newFilters = activeFilters.includes(toolId)
+    const wasActive = activeFilters.includes(toolId);
+    const newFilters = wasActive
       ? activeFilters.filter(id => id !== toolId)
       : [...activeFilters, toolId];
     setActiveFilters(newFilters);
-  }, [activeFilters, showTutorial]);
+    // Track unique tool activations across the game
+    if (!wasActive && onToolToggle) {
+      onToolToggle(toolId);
+    }
+  }, [activeFilters, showTutorial, onToolToggle]);
 
   const handlePick = useCallback((idx: number) => {
     if (answeredRef.current) return;
