@@ -4,8 +4,8 @@ services:
     runtime: node
     region: frankfurt
     plan: free
-    buildCommand: cd server && npm install && npm run build
-    startCommand: cd server && node dist/server.js
+    buildCommand: cd server && npm install
+    startCommand: cd server && npx tsx src/server.ts
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
@@ -14,7 +14,5 @@ services:
         value: "3000"
       - key: CORS_ORIGIN
         value: https://hyperreality-key.onrender.com
-      - key: DATABASE_URL
-        sync: false
       - key: JWT_SECRET
         generateValue: true
