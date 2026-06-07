@@ -10,10 +10,8 @@ import articleRoutes from './routes/article.routes.js';
 import levelRoutes from './routes/level.routes.js';
 import scientistRoutes from './routes/scientist.routes.js';
 import analyticsRoutes from './routes/analytics.routes.js';
-import { errorHandler } from './middleware/error.js';
-import { requestLogger } from './utils/logger.js';
+import { errorHandler, requestLogger } from './utils/logger.js';
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -29,20 +27,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Request logging
-app.use((req, res, next) => {
-  requestLogger(req, res, next);
-});
+app.use(requestLogger);
 
 // Rate limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000,
+  max: 100,
   message: { error: 'Too many requests, please try again later.' }
 });
 app.use('/api/', limiter);
 
 // Health check
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
@@ -67,10 +63,7 @@ app.listen(PORT, () => {
 // Graceful shutdown
 process.on('SIGTERM', () => {
   console.log('SIGTERM received, shutting down gracefully');
-  app.close(() => {
-    console.log('Server closed');
-    process.exit(0);
-  });
+  process.exit(0);
 });
 
 export default app;
