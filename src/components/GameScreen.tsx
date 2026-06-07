@@ -122,10 +122,21 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore, onToolT
       }
       if (entries && entries.length > 0) {
         const tip = entries.map(e => e.explanation).join(' • ');
+        const color = entries[0].color;
         return (
-          <span key={i} className="cursor-pointer rounded-sm px-0.5 font-medium transition-all"
+          <span key={i}
+            className="cursor-pointer inline-block font-bold transition-all duration-150 hover:scale-[1.04]"
             onMouseEnter={(e) => showTooltip(e, tip)} onMouseLeave={hideTooltip}
-            style={{ backgroundColor: entries[0].color + '30', borderBottom: `2px solid ${entries[0].color}`, color: 'var(--color-text-primary)' }}>
+            style={{
+              background: `linear-gradient(180deg, ${color}45 0%, ${color}30 100%)`,
+              borderBottom: `2px solid ${color}`,
+              color: 'var(--color-text-primary)',
+              padding: '1px 3px',
+              margin: '0 1px',
+              borderRadius: '3px',
+              textShadow: `0 0 6px ${color}50`,
+              boxShadow: `0 0 8px ${color}30, inset 0 1px 0 ${color}50`,
+            }}>
             {w}
           </span>
         );
