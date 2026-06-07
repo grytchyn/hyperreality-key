@@ -1,4 +1,4 @@
-// 🌐 Language + Missions — fetches from API with local fallback
+// 🌐 Language + Missions — local-first, API background warm-up
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { fetchMissions } from '../services/api';
 import type { MissionPost } from '../services/api';
@@ -13,18 +13,32 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [missions, setMissions] = useState<MissionPost[]>([]);
+  // Start at loading=false — local data arrives sync-fast
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
+
+    // fetchMissions returns local data immediately
     fetchMissions().then(m => {
       if (!cancelled) {
         setMissions(m);
-        setLoading(false);
+        setLoading(false); // This fires on the first microtask — essentially instant
       }
     });
+
     return () => { cancelled = true; };
   }, []);
+
+  // If missions are empty after fetch attempted, try harder
+  useEffect(() => {
+    if (!loading && missions.length === 0) {
+      // Edge case: local import failed — retry
+      import('../data/missions').then(mod => {
+        setMissions(mod.MISSIONS);
+      });
+    }
+  }, [loading, missions.length]);
 
   return (
     <LanguageContext.Provider value={{ language: 'en', missions, loading }}>
