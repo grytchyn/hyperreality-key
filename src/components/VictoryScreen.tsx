@@ -4,16 +4,28 @@ import Header from './Header'
 import { calculateFinalScore } from '../engine/scoring'
 import { GAME_CONFIG } from '../config/game'
 
-interface VictoryScreenProps { score: number; onRestart: () => void }
+interface VictoryScreenProps {
+  score: number;
+  completedMissions: number;
+  toolsUsed: number;
+  onRestart: () => void;
+}
 
-export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) {
-  const { percentage, rank } = calculateFinalScore(score)
-  const rankStars = percentage >= 90 ? 5 : percentage >= 70 ? 4 : percentage >= 50 ? 3 : 2
-  const rankColor = percentage >= 90 ? 'var(--color-pixel-yellow)' : percentage >= 70 ? 'var(--color-neon-purple)' : percentage >= 50 ? 'var(--color-neon-cyan)' : 'var(--color-pixel-green)'
+export default function VictoryScreen({ score, completedMissions, toolsUsed, onRestart }: VictoryScreenProps) {
+  const maxScore = completedMissions * GAME_CONFIG.SCORE_PER_CORRECT;
+  const { percentage, rank } = calculateFinalScore(score, maxScore);
+  const rankStars = percentage >= 90 ? 5 : percentage >= 70 ? 4 : percentage >= 50 ? 3 : 2;
+  const rankColor = percentage >= 90 ? 'var(--color-pixel-yellow)' : percentage >= 70 ? 'var(--color-neon-purple)' : percentage >= 50 ? 'var(--color-neon-cyan)' : 'var(--color-pixel-green)';
 
-  // Circle gauge
-  const circumference = 2 * Math.PI * 40
-  const offset = circumference - (percentage / 100) * circumference
+  const circumference = 2 * Math.PI * 40;
+  const offset = circumference - (percentage / 100) * circumference;
+
+  const stats = [
+    { icon: '👁️', label: 'Posts Analyzed', value: completedMissions, color: 'var(--color-neon-purple)' },
+    { icon: '✓', label: 'Correct', value: `${Math.round(score / GAME_CONFIG.SCORE_PER_CORRECT)}/${completedMissions}`, color: 'var(--color-pixel-green)' },
+    { icon: '🧠', label: 'Skills Trained', value: toolsUsed, color: 'var(--color-neon-cyan)' },
+    { icon: '🎯', label: 'Accuracy', value: `${percentage}%`, color: 'var(--color-pixel-yellow)' }
+  ];
 
   return (
     <div className="min-h-screen bg-dark-bg flex flex-col relative overflow-hidden"
@@ -69,11 +81,11 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
                   animation: 'spin 8s linear infinite',
                   opacity: 0.15,
                 }} />
-              
+
               {/* Key icon */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <img 
-                  src="/assets/key-icon.png" 
+                  src="/assets/key-icon.png"
                   alt="Hyperreality Key"
                   className="w-16 h-16 object-contain"
                   style={{
@@ -111,7 +123,7 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <span className="text-lg font-bold text-white tabular-nums">{score}</span>
-                    <span className="text-[8px] text-gray-500 font-mono">/ {GAME_CONFIG.MAX_SCORE}</span>
+                    <span className="text-[8px] text-gray-500 font-mono">/ {maxScore}</span>
                   </div>
                 </div>
                 <span className="text-[7px] text-gray-500 font-mono uppercase">SCORE</span>
@@ -119,14 +131,8 @@ export default function VictoryScreen({ score, onRestart }: VictoryScreenProps) 
 
               {/* Stats grid */}
               <div className="col-span-2 grid grid-cols-2 gap-2">
-                {[
-                  { icon: '👁️', label: 'Posts Analyzed', value: '12', color: 'var(--color-neon-purple)' },
-                  { icon: '✓', label: 'Correct', value: `${Math.round(score / 10)}/12`, color: 'var(--color-pixel-green)' },
-                  { icon: '🧠', label: 'Skills Trained', value: '12', color: 'var(--color-neon-cyan)' },
-                  { icon: '🎯', label: 'Accuracy', value: `${percentage}%`, color: 'var(--color-pixel-yellow)' },
-                ].map(stat => (
-                  <div key={stat.label}
-                    className="rounded-xl p-2.5 text-left"
+                {stats.map((stat) => (
+                  <div key={stat.label} className="rounded-xl p-2.5 text-left"
                     style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}>
                     <div className="text-[9px] text-gray-500 font-mono mb-0.5">{stat.icon} {stat.label}</div>
                     <div className="text-sm font-bold tabular-nums" style={{ color: stat.color }}>{stat.value}</div>

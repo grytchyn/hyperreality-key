@@ -20,7 +20,7 @@ const MESSAGES: Message[] = [
   },
   {
     id: '2',
-    text: "BREAKING: Squid Game was BASED ON A TRUE 1986 INCIDENT? A source close to production confirmed the show's dark inspiration...",
+    text: "BREAKING: Trump's immigration approval drops to record low, poll shows. Only 39% approve — down from 41% in January...",
     sender: 'friend',
     isArticle: true,
   },
@@ -182,8 +182,8 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
                       </svg>
                       <span className="text-[8px] font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--color-neon-cyan)' }}>Shared Article</span>
                     </div>
-                    <div className="font-bold text-[11px] leading-snug mb-0.5 text-white">Snopes: Squid Game NOT Based on Real 1986 Incident</div>
-                    <div className="text-[8px]" style={{ color: 'var(--color-text-muted)' }}>snopes.com · 2 min ago</div>
+                    <div className="font-bold text-[11px] leading-snug mb-0.5 text-white">Trump's immigration approval drops to record low</div>
+                    <div className="text-[8px]" style={{ color: 'var(--color-text-muted)' }}>Reuters/Ipsos · 2 min ago</div>
                   </div>
                 )}
               </div>

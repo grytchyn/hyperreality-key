@@ -3,7 +3,7 @@ import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { CORE_TOOLS, getHighlightsFor } from '../data/coreTools'
 import { LEVEL_TOOLS, LEVEL_CONFIG } from '../engine/levelTools'
 import type { CoreToolId } from '../types'
-import type { MissionPost } from '../services/api'
+import type { MissionPost } from '../data/missions'
 import Header from './Header'
 import { getToolIcon } from './icons/ToolIcons'
 import { getScientistAvatar, getScientistField } from '../engine/scientists'
@@ -86,7 +86,7 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
     if (answeredRef.current) return;
     answeredRef.current = true;
     setChosenAnswer(idx);
-    const correct = idx === 0;
+    const correct = post.choices ? post.choices[idx].correct : idx === 0;
     setFeedback(correct ? 'correct' : 'wrong');
     onAnswer(correct, correct ? 10 : 0);
   }, [post, onAnswer]);
@@ -207,11 +207,11 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${levelCfg.color}20` }}><span className="text-sm">🎯</span></div>
             <div><span className="text-[10px] font-mono font-bold uppercase tracking-widest" style={{ color: levelCfg.color }}>Question</span></div>
           </div>
-          <p className="text-sm font-bold mb-4 leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>{'Analyze this article for disinformation patterns'}</p>
+          <p className="text-sm font-bold mb-4 leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>{'Which manipulation technique is being used in this article?'}</p>
           <div className="space-y-2.5">
-            {['Option A','Option B'].map((choice, idx) => {
+            {(post.choices || ['Option A','Option B']).map((choice, idx) => {
               const selected = chosenAnswer === idx;
-              const isCorrect = idx === 0;
+              const isCorrect = choice.correct;
               const showResult = chosenAnswer !== null;
               let borderColor = 'rgba(255,255,255,0.06)';
               if (showResult && isCorrect) borderColor = 'color-mix(in srgb, var(--color-pixel-green) 60%, transparent)';
@@ -229,7 +229,7 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
                       boxShadow: selected && !showResult ? `0 0 12px ${levelCfg.color}50` : 'none' }}>
                     {showResult && isCorrect ? '✓' : showResult && selected ? '✗' : CHOICE_ICONS[level]?.[idx] || LETTERS[idx]}
                   </span>
-                  <span className="flex-1">{choice}</span>
+                  <span className="flex-1">{choice.text}</span>
                   {showResult && isCorrect && <span className="text-xs text-green-500">✓ correct</span>}
                 </button>
               );

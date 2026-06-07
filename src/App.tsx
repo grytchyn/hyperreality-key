@@ -23,7 +23,14 @@ function AppInner() {
   }
 
   if (state.phase === 'splash') return <SplashScreen onStart={handleStart} />
-  if (state.phase === 'victory') return <VictoryScreen score={state.totalScore} onRestart={handleRestart} />
+  if (state.phase === 'victory') return (
+    <VictoryScreen
+      score={state.totalScore}
+      completedMissions={state.levelResults.length}
+      toolsUsed={12}
+      onRestart={handleRestart}
+    />
+  )
   if (!currentPost) return <SplashScreen onStart={handleStart} />
 
   return (

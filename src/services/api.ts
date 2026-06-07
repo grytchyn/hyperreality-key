@@ -11,8 +11,8 @@ export interface MissionPost {
   content: string
   highlightRules: Record<CoreToolId, HighlightRule[]>
   standardViolations?: { rule: string; text: string }[]
-  friendName?: string
-  explanation?: string
+  explanation: string
+  choices: { text: string; correct: boolean }[]
 }
 
 const API_BASE = import.meta.env.VITE_API_URL || 'https://hyperreality-key-api.onrender.com'

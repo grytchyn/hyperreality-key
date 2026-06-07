@@ -13,15 +13,14 @@ export interface ScoreResult {
 /**
  * Calculate the final score and rank
  */
-export function calculateFinalScore(score: number): ScoreResult {
-  const percentage = Math.round((score / GAME_CONFIG.MAX_SCORE) * 100);
-  const rank = GAME_CONFIG.RANKS.find(
-    (r) => score >= r.min && score <= r.max
-  ) || GAME_CONFIG.RANKS[0];
+export function calculateFinalScore(score: number, maxScore?: number): ScoreResult {
+  const actualMaxScore = maxScore || GAME_CONFIG.MAX_SCORE;
+  const percentage = Math.round((score / actualMaxScore) * 100);
+  const rank = GAME_CONFIG.RANKS.find((r) => score >= r.min && score <= r.max) || GAME_CONFIG.RANKS[0];
 
   return {
     score,
-    maxScore: GAME_CONFIG.MAX_SCORE,
+    maxScore: actualMaxScore,
     percentage,
     rank: rank.title,
     rankLabel: rank.label,
