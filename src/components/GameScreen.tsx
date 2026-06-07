@@ -191,9 +191,21 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
                   return (
                     <button key={toolId} onClick={() => toggleFilter(toolId)}
                       onMouseEnter={(e) => showTooltip(e, `${t.name}: ${t.description}`)} onMouseLeave={hideTooltip}
-                      className="flex flex-col items-center gap-1 p-2 rounded-xl border transition-all duration-200 cursor-pointer active:scale-95" style={{ borderColor: isOn ? t.color : `${t.color}15`, background: isOn ? `${t.color}20` : 'rgba(255,255,255,0.02)', boxShadow: isOn ? `0 0 15px ${t.color}20` : 'none' }}>
-                      <IconComponent size={32} glowColor={t.color} active={isOn} />
-                      <span className="text-[8px] font-bold uppercase tracking-wider leading-tight" style={{ color: isOn ? t.color : 'var(--color-text-muted)' }}>{t.name}</span>
+                      className="flex flex-col items-center gap-1 p-2 rounded-xl border transition-all duration-200 cursor-pointer active:scale-95" style={{
+                        borderColor: isOn ? t.color : `${t.color}15`,
+                        background: isOn ? `linear-gradient(135deg, ${t.color}30, ${t.color}15)` : 'rgba(255,255,255,0.02)',
+                        boxShadow: isOn ? `0 0 20px ${t.color}40, inset 0 0 20px ${t.color}10` : 'none',
+                      }}>
+                      <div style={{
+                        filter: isOn ? `drop-shadow(0 0 6px ${t.color}80)` : 'none',
+                        transition: 'filter 0.3s ease',
+                      }}>
+                        <IconComponent size={32} glowColor={t.color} active={isOn} />
+                      </div>
+                      <span className="text-[8px] font-bold uppercase tracking-wider leading-tight" style={{
+                        color: isOn ? t.color : 'var(--color-text-muted)',
+                        textShadow: isOn ? `0 0 8px ${t.color}60` : 'none',
+                      }}>{t.name}</span>
                     </button>
                   );
                 })}
