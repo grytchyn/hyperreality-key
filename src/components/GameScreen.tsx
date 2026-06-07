@@ -7,6 +7,7 @@ import type { MissionPost } from '../data/missions'
 import Header from './Header'
 import { getToolIcon } from './icons/ToolIcons'
 import { getScientistAvatar, getScientistField } from '../engine/scientists'
+import JournalistStandards from './JournalistStandards'
 
 interface GameScreenProps {
   post: MissionPost
@@ -277,6 +278,12 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore, onToolT
                 </div>
                 {post.explanation}
               </div>
+            </div>
+          )}
+
+          {chosenAnswer !== null && post.standardViolations && (
+            <div className="mt-4">
+              <JournalistStandards violations={post.standardViolations} />
             </div>
           )}
 
