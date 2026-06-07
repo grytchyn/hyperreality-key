@@ -58,15 +58,10 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore, onToolT
 
   const activeTools = useMemo(() => {
     if (availableTools.length === 0) return [];
-    const allHighlights = getHighlightsFor(availableTools, post.content + ' ' + post.title);
-    const activeColors = new Set(
-      Array.from(allHighlights.values())
-        .flat()
-        .map(h => h.color)
-    );
+    // Only show tools that have ACTUAL highlight rules for this post
     return availableTools.filter(toolId => {
-      const config = CORE_TOOLS.find(t => t.id === toolId);
-      return config && activeColors.has(config.color);
+      const rules = post.highlightRules[toolId];
+      return rules && rules.length > 0;
     });
   }, [availableTools, post]);
 
