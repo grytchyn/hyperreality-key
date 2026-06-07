@@ -30,7 +30,7 @@ export default function VictoryScreen({ score, completedMissions, toolsUsed, onR
   return (
     <div className="min-h-screen bg-dark-bg flex flex-col relative overflow-hidden"
       style={{
-        background: `var(--color-dark-bg) url('/assets/bg/victory-bg.png') center center / cover no-repeat`,
+        background: `var(--color-dark-bg) url('/assets/bg/webp/victory-bg.webp') center center / cover no-repeat`,
       }}>
       {/* Dark overlay */}
       <div className="fixed inset-0 pointer-events-none z-0"
@@ -85,7 +85,7 @@ export default function VictoryScreen({ score, completedMissions, toolsUsed, onR
               {/* Key icon */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <img 
-                  src="/assets/key-icon.png"
+                  src="/assets/webp/key-icon.webp"
                   alt="Hyperreality Key"
                   className="w-16 h-16 object-contain"
                   style={{

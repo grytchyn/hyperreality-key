@@ -206,19 +206,19 @@ function ImageIcon({ size = 36, glowColor, active = true, src }: IconProps & { s
 }
 
 function EchoChamberIcon(props: IconProps) {
-  return <ImageIcon {...props} src="/assets/echo-chamber-icon.png" />
+  return <ImageIcon {...props} src="/assets/webp/echo-chamber-icon.webp" />
 }
 
 function AgendaSettingIcon(props: IconProps) {
-  return <ImageIcon {...props} src="/assets/agenda-setting-icon.png" />
+  return <ImageIcon {...props} src="/assets/webp/agenda-setting-icon.webp" />
 }
 
 function RedHerringIcon(props: IconProps) {
-  return <ImageIcon {...props} src="/assets/red-herring-icon.png" />
+  return <ImageIcon {...props} src="/assets/webp/red-herring-icon.webp" />
 }
 
 function FalseAppealIcon(props: IconProps) {
-  return <ImageIcon {...props} src="/assets/false-appeal-icon.png" />
+  return <ImageIcon {...props} src="/assets/webp/false-appeal-icon.webp" />
 }
 
 // ── MAP ──

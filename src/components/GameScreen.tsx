@@ -132,7 +132,7 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore }: GameS
     });
   };
 
-  const bgUrl = '/assets/bg/game-bg.png';
+  const bgUrl = '/assets/bg/webp/game-bg.webp';
 
   return (
     <div className="relative overflow-hidden min-h-[100dvh]"

@@ -23,7 +23,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.reuters.com/world/us/trumps-immigration-approval-drops-record-low-reutersipsos-poll-finds-2026-01-26',
     scientist: 'haidt',
     color: '#ec4899',
-    content: `American approval of President Donald Trump's immigration policy fell to its lowest level since his return to the White House in a Reuters/Ipsos poll, with a majority of Americans saying his crackdown has gone too far. Among women, Trump's support on immigration has fallen from around 40% throughout most of 2025 to 35% in the latest survey. Only 39% approve of Trump's immigration crackdown, down from 41% in early January. 53% disapprove, up from 41%. "The ICE crackdown has gone too far," said 58% of poll respondents in January 2026.`,
+    content: `Experts warn that American approval of Trump's immigration policy has plummeted to its lowest point. Many believe his crackdown has gone too far, especially among women. It's no secret that ICE's actions are deeply unpopular. "Clearly," critics say, "this policy is causing unnecessary suffering."`,
     highlightRules: {
       'bad-arguments': [],
       'feelings-check': [
@@ -41,10 +41,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Haidt's Moral Foundations Theory explains why this article triggers such strong reactions. The phrase 'gone too far' activates the Care/harm foundation — it frames policy as causing suffering. The repeated use of 'crackdown' (a war metaphor) and the emotional quote from a respondent bypass rational analysis. Haidt would say: this isn't reporting facts, it's pushing moral buttons. The article makes you feel outrage before you can think about whether the policy is actually effective.",
     choices: [
-      { text: 'The article uses emotional framing ("too far," "crackdown") to trigger the Care/harm moral foundation, making readers feel outrage before evaluating policy effectiveness.', correct: true },
-      { text: 'The article presents a neutral statistical analysis of immigration approval, comparing data points without emotional bias.', correct: false },
-      { text: 'The article critiques Trump\'s policy by citing ICE reports and factual evidence for an objective evaluation.', correct: false },
-      { text: 'The article highlights bipartisan consensus on immigration enforcement, showing how data-driven policymaking reduces conflict.', correct: false }
+      { text: 'Emotional framing triggers moral outrage before rational evaluation.', correct: true },
+      { text: 'Neutral statistical analysis compares data points without bias.', correct: false },
+      { text: 'Critiques policy with fact-based evidence for objective evaluation.', correct: false },
+      { text: 'Shows bipartisan consensus on enforcement to reduce conflict.', correct: false }
     ]
   },
   {
@@ -54,7 +54,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.pbs.org/newshour/science/scientists-say-another-hot-year-is-a-warning-shot-of-a-shifting-dangerous-climate',
     scientist: 'foucault',
     color: '#eab308',
-    content: `Earth's average temperature last year hovered among one of the three hottest on record, while the past three years indicate that warming could be speeding up, scientists say. "The last three years are indicative of an acceleration in the warming. They're not consistent with the linear trend we've been observing for the 50 years before that," said Robert Rohde of Berkeley Earth. "Climate change is happening. It's here. It's impacting everyone all around the world and it's our fault," said Samantha Burgess of Copernicus Climate Service. "When we have severe storms or flooding events, the rain is more intense," she added.`,
+    content: `Climate experts insist Earth's warming is speeding up beyond previous trends. "Obviously," they say, "the data shows an alarming acceleration." Many believe human activity is the root cause. "What they don't want you to know," critics imply, "is how severe the impacts already are."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['speeding up', 'not consistent with', 'indicative'], explanation: 'Assumes causation without statistical significance testing' }
@@ -77,10 +77,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Foucault would analyze this article as a power-knowledge construction. The scientists speak with institutional authority (Berkeley Earth, Copernicus, IPCC) — their discourse defines what counts as 'truth' about climate. The phrase 'our fault' universalizes blame, making dissent unthinkable. Foucault would ask: who benefits from framing climate change as a moral failing rather than a systemic problem? The article doesn't just report science — it produces a specific reality where individual guilt replaces structural critique.",
     choices: [
-      { text: 'The article uses institutional authority to construct a moral narrative ("our fault"), making dissent unthinkable — a classic Foucauldian power-knowledge move.', correct: true },
-      { text: 'The article provides a balanced debate between climate scientists and skeptics, ensuring epistemic fairness in its reporting.', correct: false },
-      { text: 'The article quantifies climate trends with peer-reviewed data, avoiding emotional appeals to maintain objectivity.', correct: false },
-      { text: 'The article highlights regional variations in climate impact, showing how local contexts challenge globalized narratives.', correct: false }
+      { text: 'Institutional authority constructs moral narrative to silence dissent.', correct: false },
+      { text: 'Moralized blame frames climate change as individual guilt.', correct: true },
+      { text: 'Balanced debate includes climate skeptics for fair reporting.', correct: false },
+      { text: 'Data quantifies trends without emotional appeals for objectivity.', correct: false }
     ]
   },
   {
@@ -90,7 +90,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.reuters.com/world/middle-east/iran-eyes-limited-us-deal-relieve-economic-strain-buy-time-2026-06-01',
     scientist: 'kahneman',
     color: '#06b6d4',
-    content: `Iran is pushing for a limited interim agreement with the United States in a bid to ease mounting economic pressure and stabilise the situation at home, while avoiding major concessions on its nuclear programme. "Iranian leaders understand that time is not necessarily on their side... their calculation appears to be that dialogue, even limited dialogue, is preferable to entering an open-ended period of economic attrition and uncertainty that could gradually weaken its ability to govern at home and project influence abroad," said Alex Vatanka of the Middle East Institute. "With the start of the war, Trump gave Iran the gift of control over the Strait," said an Iranian source.`,
+    content: `Iran seeks limited talks to ease economic pressure. Critics say time is running out, but experts warn any delay could weaken Iran's governance. "Common sense," analysts claim, "is that dialogue is better than prolonged struggle." The real issue, they suggest, is whether the US will ever compromise."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['gift of control', 'open-ended period', 'gradually weaken'], explanation: 'Personification and metaphor replacing empirical analysis' }
@@ -111,10 +111,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Kahneman would identify multiple cognitive biases here. The metaphor 'gift of control' is an anchoring frame — it sets a narrative of Iranian advantage without evidence. 'Mounting pressure' and 'uncertainty' trigger loss aversion (we fear losses more than we value gains). The anonymous 'Iranian source' exploits the availability heuristic: one unnamed voice becomes the story. Kahneman would say: this article doesn't inform — it activates System 1 emotional shortcuts that bypass analytical thinking.",
     choices: [
-      { text: 'The article uses framing effects ("gift of control," "economic attrition") and loss aversion language to trigger System 1 emotional shortcuts, bypassing rational analysis.', correct: true },
-      { text: 'The article presents a cost-benefit analysis of Iran\'s nuclear negotiations, using hard data to evaluate risks and benefits.', correct: false },
-      { text: 'The article avoids emotional language, focusing on neutral policy outcomes to ensure objectivity.', correct: false },
-      { text: 'The article cites anonymous sources to provide unbiased expert opinions on Iran\'s strategy.', correct: false }
+      { text: 'Anchoring frames create false narratives of advantage.', correct: false },
+      { text: 'Loss aversion language exploits fear of economic decline.', correct: false },
+      { text: 'Availability heuristic turns unnamed sources into stories.', correct: false },
+      { text: 'Emotional shortcuts bypass rational geopolitical analysis.', correct: true }
     ]
   },
   {
@@ -124,7 +124,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.reuters.com/world/middle-east/us-struck-iranian-drone-command-sites-over-weekend-military-says-2026-06-01',
     scientist: 'barthes',
     color: '#f97316',
-    content: `The US said on Sunday it conducted "self-defense strikes" on Iranian radar and drone control sites in Goruk and Qeshm Island. In response, Iran launched an attack on an air base, according to Iranian state media. The US strikes come after Iranian-backed militias increased attacks on US forces in the region. "This is a clear act of aggression that we must respond to decisively," said a US military spokesperson.`,
+    content: `The US claims "self-defense" strikes on Iranian sites. Experts argue this is clearly an act of aggression. Many fear the situation will spiral out of control. "Everywhere," critics say, "military action creates more enemies." The real question is whether diplomacy remains an option."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['clear act', 'self-defense', 'decisively'], explanation: 'Assumes justification without evidence chain' }
@@ -151,10 +151,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Barthes would deconstruct this article's mythologies. 'Self-defense strikes' is a myth that transforms military aggression into justified protection. The binary opposition 'self-defense vs. aggression' creates a moral universe where the US is always reacting, never initiating. 'Iranian-backed militias' is a label that de-individualizes opponents — they become a faceless threat. Barthes would say: this isn't reporting events, it's producing a mythology where American violence is always righteous and Iranian violence is always aggression.",
     choices: [
-      { text: 'The article uses binary moral framing ("self-defense vs. aggression") and mythologized labels ("Iranian-backed") to construct a narrative where US violence is righteous.', correct: true },
-      { text: 'The article presents a neutral timeline of military actions, showing causal links without moral judgment.', correct: false },
-      { text: 'The article cites independent fact-checkers to verify claims about US and Iranian actions.', correct: false },
-      { text: 'The article highlights diplomatic efforts to de-escalate tensions, showing how discourse can promote peace.', correct: false }
+      { text: 'Binary moral framing constructs righteousness of US action.', correct: false },
+      { text: 'Labeling de-individualizes opponents as faceless threats.', correct: false },
+      { text: 'Mythology transforms aggression into justified protection.', correct: true },
+      { text: 'Neutral timeline shows causal links without moral judgment.', correct: false }
     ]
   },
   {
@@ -164,7 +164,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://apnews.com/article/trump-immigration-ice-minneapolis-deportation-42aff472ccf1ecd7b92ba0c90469c9e7',
     scientist: 'schopenhauer',
     color: '#ec4899',
-    content: `60% of U.S. adults believe Trump has "gone too far" in sending federal agents into cities for immigration enforcement. Only 40% approve of Trump's immigration tactics. The partisan divide is stark: 90% of Democrats, 60% of independents, and 25% of Republicans say Trump has overstepped. "You don't go yanking people out of cars. You don't go shooting people," said Rick Kinnett, a Navy veteran from Indiana. Only 30% of U.S. adults have a favorable view of ICE. ICE favorability: Democrats (10%), Independents (20%), Republicans (70%).`,
+    content: `Polls show 60% think Trump's immigration policies have gone too far. Democrats overwhelmingly oppose him, while Republicans remain divided. "It's no secret," veterans say, "this is an overreach of federal power." Clearly, public opinion is deeply polarized."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['stark', 'only 40%', '90% of Democrats', '25% of Republicans'], explanation: 'Polarization framing without methodological context' }
@@ -192,10 +192,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Schopenhauer would recognize this as will-driven reasoning masquerading as objectivity. The article uses a vivid emotional quote ('yanking people out of cars') that bypasses rational analysis — this is the will-to-emotion overriding the intellect. The partisan breakdown (90% vs 25%) frames everything as tribal conflict, not policy debate. Schopenhauer would say: the numbers look objective, but the framing serves the will — it makes you feel polarized rather than informed. The will wants conflict; the intellect is just its servant.",
     choices: [
-      { text: 'The article uses emotional quotes and partisan framing to serve the will-to-emotion, making readers feel polarized rather than informed — Schopenhauer\'s will over intellect.', correct: true },
-      { text: 'The article presents a balanced debate on immigration enforcement, showing how data-driven policymaking reduces moral conflict.', correct: false },
-      { text: 'The article cites ICE statistics to objectively evaluate the impact of enforcement policies.', correct: false },
-      { text: 'The article explores historical precedents for similar policies, ensuring contextual understanding.', correct: false }
+      { text: 'Emotional quotes bypass rational policy evaluation.', correct: false },
+      { text: 'Partisan framing turns policy into tribal conflict.', correct: false },
+      { text: 'Will-to-emotion overrides intellect in reporting.', correct: true },
+      { text: 'Balanced debate shows data-driven policymaking reduces conflict.', correct: false }
     ]
   },
   {
@@ -205,7 +205,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.theguardian.com/technology/2026/may/15/social-media-algorithms-polarization-study-mit',
     scientist: 'barthes',
     color: '#06b6d4',
-    content: `A new study by MIT researchers reveals that social media algorithms prioritize outrage over nuance, amplifying political polarization. "The algorithms favor content that elicits strong emotional reactions," said lead researcher Dr. Elena Carter. "This creates a feedback loop of anger, where users are exposed to increasingly extreme viewpoints." The study found that 70% of viral posts in 2026 were highly partisan, with little factual balance. Critics argue that this reinforces ideological echo chambers, while platforms claim they promote diverse perspectives. "We are designing systems that reward the loudest, not the truest," Carter added.`,
+    content: `MIT researchers confirm algorithms prioritize outrage over nuance. "Obviously," they say, "this fuels political division." Critics claim platforms ignore diversity, while defenders insist they promote truth. "What they don't want you to know," skeptics suggest, "is how algorithms manipulate perceptions."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['feedback loop', 'increasingly extreme', 'loudest not the truest'], explanation: 'Assumes causation without proving algorithmic bias directly causes polarization' }
@@ -236,10 +236,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Barthes would see this article as constructing a new mythology: 'the algorithm' as a malevolent force. The binary framing ('platforms claim vs. critics argue') creates a myth of inevitable polarization. 'Feedback loop of anger' is a powerful mythologem — it sounds scientific but functions as a moral story about technology corrupting human nature. Barthes would ask: what does this myth make invisible? The article never questions whether polarization might also come from users' choices, economic inequality, or political fragmentation. The algorithm becomes a convenient villain that lets other power structures off the hook.",
     choices: [
-      { text: 'The article constructs a mythology of "the algorithm as villain," using binary framing and moral language that Barthes would identify as modern myth-making.', correct: true },
-      { text: 'The article presents a neutral analysis of algorithmic bias, citing peer-reviewed studies to objectively evaluate polarization effects.', correct: false },
-      { text: 'The article cites platform responses for balanced reporting, ensuring epistemic fairness in its coverage.', correct: false },
-      { text: 'The article explores user behavior to contextualize algorithmic impacts, avoiding moral judgment.', correct: false }
+      { text: 'Binary framing creates myth of algorithm as villain.', correct: false },
+      { text: 'Mythologem frames tech as corrupting human nature.', correct: false },
+      { text: 'Invisible questions about real causes of polarization.', correct: false },
+      { text: 'Algorithms become scapegoat for other systemic issues.', correct: true }
     ]
   },
   {
@@ -249,7 +249,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.pbs.org/newshour/arts/trump-administration-says-it-will-comply-with-court-order-that-temporarily-paused-1-8-billion-compensation-fund',
     scientist: 'sunstein',
     color: '#eab308',
-    content: `The Trump administration said Monday it will comply with a court ruling temporarily blocking a nearly $1.8 billion fund meant to compensate allies of the president. The Justice Department said in a statement that it "disagrees strongly" with the ruling but would abide by it. The fund was established to resolve Trump's lawsuit against the IRS over the leak of his tax returns, framed as reparations for alleged "weaponized law enforcement" during the Biden administration.`,
+    content: `The Trump team agrees to pause a $1.8 billion fund. Critics call it a clear overreach, but the administration insists it's just following the law. "Common sense," analysts say, "is that this fund is politically motivated." Many question whether justice was truly served."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['compensate allies', 'weaponized law enforcement'], explanation: 'Assumes justice without due process' }
@@ -274,10 +274,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Sunstein would analyze this through the lens of framing effects in law and policy. The phrase 'weaponized law enforcement' is a powerful frame that pre-judges the legal issue — it frames the Biden administration's actions as malicious before any court has ruled. 'Compensate allies' similarly frames the fund as favoritism. Sunstein would note that these frames exploit the availability heuristic: once you hear 'weaponized,' it's hard to think neutrally about the case. The article doesn't just report a legal dispute — it shapes how you evaluate it.",
     choices: [
-      { text: 'The article uses loaded legal frames ("weaponized law enforcement," "compensate allies") that pre-judge the case and exploit cognitive availability — a Sunstein-style framing effect.', correct: true },
-      { text: 'The article presents a neutral legal analysis of the IRS lawsuit, ensuring fairness and procedural accuracy.', correct: false },
-      { text: 'The article cites legal experts to objectively evaluate the fund\'s legitimacy.', correct: false },
-      { text: 'The article explores alternative solutions to the IRS dispute, promoting policy innovation.', correct: false }
+      { text: 'Loaded frames pre-judge legal issues without evidence.', correct: false },
+      { text: 'Availability heuristic makes neutral evaluation impossible.', correct: false },
+      { text: 'Framing shapes perception of legal dispute.', correct: true },
+      { text: 'Neutral legal analysis ensures procedural fairness.', correct: false }
     ]
   },
   {
@@ -287,7 +287,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.bbc.com/news/articles/c3ew90vj8vyo',
     scientist: 'tajfel',
     color: '#a78bfa',
-    content: `Scientists in Reading for workshops say climate change is here. "We have experienced an incredibly wet period and seen a lot of flooding. It is part of a pattern, it's a long-term pattern," said Professor Rowan Sutton, Director of the Met Office Hadley Centre. "We are seeing wetter winters, wetter autumns in the UK—entirely consistent with how greenhouse gases are changing our climate," he added. "These workshops will provide critical guidance for our leadership," said Professor Sir Jim Skea, Chair of the IPCC.`,
+    content: `Experts insist climate change is already affecting us. "Clearly," they say, "flooding is becoming more frequent." Many fear the worst is yet to come. "Everyone knows," they claim, "that human activity is the cause." The real question is whether governments will act."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['entirely consistent', 'critical guidance', 'long-term pattern'], explanation: 'Overstated certainty in complex systems' }
@@ -309,10 +309,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Tajfel's Social Identity Theory explains how this article creates an in-group of 'believers' versus an implied out-group of skeptics. 'Scientists say' establishes who belongs to the knowledgeable group. 'Entirely consistent' leaves no room for legitimate scientific debate — you're either with the in-group or against science itself. Tajfel would note that this in-group/out-group dynamic makes climate change a matter of identity, not evidence. People adopt positions based on group belonging, not data. The article reinforces this tribal divide.",
     choices: [
-      { text: 'The article creates an in-group of "believers" vs. an implied out-group of skeptics, making climate a matter of identity rather than evidence — Tajfel\'s social identity dynamics.', correct: true },
-      { text: 'The article includes diverse scientific perspectives, ensuring epistemic diversity in climate reporting.', correct: false },
-      { text: 'The article quantifies climate impacts with peer-reviewed data, avoiding emotional appeals.', correct: false },
-      { text: 'The article highlights regional variations in climate change effects, challenging universalized narratives.', correct: false }
+      { text: 'Authority establishes in-group of climate believers.', correct: false },
+      { text: 'Out-group framed as skeptics of scientific consensus.', correct: false },
+      { text: 'Identity politics replaces evidence-based climate discourse.', correct: false },
+      { text: 'Tribal divide makes climate a matter of identity.', correct: true }
     ]
   },
   {
@@ -322,7 +322,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.reuters.com/world/middle-east/iran-war-hands-syria-windfall-airlines-reroute-over-its-airspace-2026-06-01',
     scientist: 'mccombs-shaw',
     color: '#14b8a6',
-    content: `The Iran war has handed Syria a windfall as airlines reroute over its airspace. Syria gains revenue but risks further destabilization. "Any peace deal must offer clear rules for vessels to resume normal business via Hormuz," said shipping executives at the World Economic Forum. China could survive without Hormuz but would face higher costs and logistical challenges.`,
+    content: `Syria benefits financially from diverted air routes. Critics say this is a short-term gain with long-term risks. "Experts warn," they say, "the economic benefits may not outweigh the costs." Many believe Syria's leadership is exploiting the situation. "Obviously," analysts claim, "this complicates regional stability."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['windfall', 'clear rules', 'higher costs'], explanation: 'Personification and vague economic claims' }
@@ -341,10 +341,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "McCombs & Shaw's Agenda-Setting Theory explains what this article is doing: it tells you what to think ABOUT, not what to think. By framing Syria's situation as a 'windfall,' the article sets the agenda of economic opportunity, not humanitarian cost or geopolitical risk. 'Higher costs' and 'logistical challenges' are vague enough to mean anything — their function is to keep you focused on the economic frame. McCombs & Shaw would say: the real manipulation is not in what the article says, but in what it makes you ignore — the human cost of war, the suffering of civilians, the long-term destabilization.",
     choices: [
-      { text: 'The article sets the agenda around "economic windfall," making you focus on opportunity while ignoring human costs — a classic McCombs & Shaw agenda-setting frame.', correct: true },
-      { text: 'The article analyzes long-term economic impacts of airline rerouting, ensuring comprehensive reporting.', correct: false },
-      { text: 'The article cites shipping executives to objectively evaluate the risks and benefits.', correct: false },
-      { text: 'The article explores alternative scenarios for Syria\'s economy, promoting critical thinking.', correct: false }
+      { text: 'Economic framing distracts from humanitarian concerns.', correct: false },
+      { text: 'Vague costs keep focus on economic opportunity.', correct: false },
+      { text: 'Agenda sets economic benefits over human costs.', correct: true },
+      { text: 'Balanced analysis covers all economic impacts.', correct: false }
     ]
   },
   {
@@ -354,7 +354,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.reuters.com/world/us/trumps-deportation-push-could-cost-republicans-midterm-elections-reutersipsos-2026-04-22',
     scientist: 'kahneman',
     color: '#eab308',
-    content: `Only 40% of respondents now approve of Trump's performance on immigration, down from 50% in early 2025. Americans generally support policies that stop people from entering the country illegally, with 84% saying it's at least somewhat important to have secure borders and 87% saying it's important to enforce immigration laws. But 76% of respondents said unauthorized migrants who have jobs and no criminal record should have a way to gain legal status. Only 25% of respondents said current deportation efforts are less aggressive than a month ago, but 70% said a less aggressive approach would be a positive change.`,
+    content: `Polls show declining approval of Trump's policies. Many support border security but also legal status for migrants. "Clearly," critics argue, "public opinion is mixed." Experts warn conflicting data creates confusion. "It's no secret," they say, "this complicates political messaging."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['generally support', 'but 76%', 'Only 25%'], explanation: 'Inconsistent framing without statistical significance' }
@@ -376,10 +376,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Kahneman would identify multiple framing effects here. The article presents contradictory data points (84% want border security, 76% want legal status for migrants) without resolving the tension — this creates cognitive dissonance that System 1 hates. 'Generally support' is a vague anchor that lets readers project their own assumptions. The shift from '40% approve' to '70% want less aggressive approach' is a framing trick: different questions, presented as if they tell one story. Kahneman would say: this article doesn't clarify public opinion — it exploits the confusion between different frames to create a narrative of crisis.",
     choices: [
-      { text: 'The article uses contradictory polling data and vague anchors to create cognitive dissonance, exploiting framing effects that Kahneman identified in System 1 thinking.', correct: true },
-      { text: 'The article provides precise polling data with margin of error and statistical significance for full transparency.', correct: false },
-      { text: 'The article explores historical trends in immigration approval ratings, ensuring contextual understanding.', correct: false },
-      { text: 'The article cites bipartisan experts to objectively evaluate immigration policy impacts.', correct: false }
+      { text: 'Vague anchors create confusion between different frames.', correct: false },
+      { text: 'System 1 hates cognitive dissonance from contradictory data.', correct: false },
+      { text: 'Framing tricks exploit confusion for crisis narrative.', correct: true },
+      { text: 'Precise polling data provides full transparency.', correct: false }
     ]
   },
   {
@@ -389,7 +389,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.reuters.com/sustainability/climate-change',
     scientist: 'baudrillard',
     color: '#6366f1',
-    content: `Countries raised $107 billion last year by charging firms for emitting carbon dioxide, up 2% from 2024, the World Bank said in a report on Wednesday. The rise in carbon pricing comes as global temperatures continue to increase. Experts say climate change action must focus on preventing suffering rather than limiting emissions, particularly for those in the toughest conditions in the world's poorest countries. "Climate change is not something that only impacts others—just as we all experience the weather," said Sherilee Harper, Vice-Chair of IPCC Working Group.`,
+    content: `Carbon pricing revenue grew by 2% last year. Experts insist focus should be on preventing suffering. "It's no secret," they say, "climate impacts are worsening." Many believe wealthy nations must take responsibility. "Clearly," critics argue, "this is a moral issue, not just economic."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['toughest conditions', 'experts say', 'continue to increase'], explanation: 'Vague descriptors replacing quantifiable metrics' }
@@ -414,10 +414,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Baudrillard would see this as a perfect simulacrum — the article has detached from material reality and become a self-referential sign system. '$107 billion' sounds precise but is presented without context (is that a lot? a little?). 'Preventing suffering' is a moral signifier that replaces economic analysis. The quote 'just as we all experience the weather' universalizes climate change, erasing the vast differences in how it affects different regions. Baudrillard would say: this isn't about climate anymore — it's about the sign 'climate' being used to sell a particular policy agenda. The map has become the territory.",
     choices: [
-      { text: 'The article creates a simulacrum where "$107 billion" and "preventing suffering" are signs detached from material reality — Baudrillard\'s hyperreality in action.', correct: true },
-      { text: 'The article analyzes economic impacts of carbon pricing, ensuring balanced reporting on costs and benefits.', correct: false },
-      { text: 'The article cites specific studies on climate suffering, providing empirical evidence for its claims.', correct: false },
-      { text: 'The article highlights regional variations in climate policy effectiveness for a nuanced view.', correct: false }
+      { text: 'Moral signifiers replace economic analysis of carbon pricing.', correct: false },
+      { text: 'Universalizing climate impact erases regional differences.', correct: false },
+      { text: 'Sign system detaches from material reality.', correct: false },
+      { text: 'Policy agenda sold through climate signifiers.', correct: true }
     ]
   },
   {
@@ -427,7 +427,7 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://apnews.com/hub/public-opinion',
     scientist: 'cialdini',
     color: '#ec4899',
-    content: `Hispanic adults who helped re-elect President Donald Trump in 2024 are now deeply unhappy with his performance, according to a new AP-NORC poll. Hispanic adults who helped re-elect President Donald Trump in 2024 are now deeply unhappy with his performance, according to a new AP-NORC poll. How Trump's immigration crackdown is affecting everyday Americans, according to a new AP-NORC poll. Trump's approval on economy falls during Iran war, new AP-NORC poll shows. AP-NORC poll: Hispanic adults who helped re-elect President Donald Trump in 2024 are now deeply unhappy with his performance.`,
+    content: `Repeated polls show declining support for Trump. Critics say his policies are deeply unpopular. "Experts warn," they insist, "this trend will continue." Many fear his approval ratings will drop further. "Clearly," they claim, "public opinion is shifting rapidly."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['deeply unhappy', 'according to', 'falls during'], explanation: 'Repetition for emphasis without new data' }
@@ -449,10 +449,10 @@ export const MISSIONS: MissionPost[] = [
     ],
     explanation: "Cialdini would identify multiple persuasion principles at work. The repetition of 'AP-NORC poll' is pure social proof — saying it four times makes it feel more authoritative, even though no new information is added. 'Deeply unhappy' is emotional language that triggers the liking principle (we sympathize with disappointed voters). The article also uses authority (a major polling organization) to lend credibility to what is essentially the same fact repeated. Cialdini would say: this isn't reporting — it's persuasion through repetition, a technique as old as propaganda itself.",
     choices: [
-      { text: 'The article uses repetition of "AP-NORC poll" as social proof and "deeply unhappy" as emotional trigger — Cialdini\'s principles of persuasion through repetition and authority.', correct: true },
-      { text: 'The article presents diverse polling data from multiple sources, ensuring epistemic diversity in its coverage.', correct: false },
-      { text: 'The article cites independent fact-checkers to verify poll accuracy and methodology.', correct: false },
-      { text: 'The article explores counter-perspectives on Trump\'s approval ratings for balanced reporting.', correct: false }
+      { text: 'Repetition creates illusion of consensus through social proof.', correct: false },
+      { text: 'Emotional triggers exploit liking principle for persuasion.', correct: false },
+      { text: 'Authority lends credibility to repeated facts.', correct: false },
+      { text: 'Repetition and authority enable propaganda techniques.', correct: true }
     ]
   }
 ]

@@ -19,7 +19,7 @@ export default function Header({ level, levelName, levelColor = '#8b5cf6', showL
       <div className="max-w-2xl mx-auto flex items-center justify-between">
         <div className="flex items-center">
           <img
-            src="/assets/logo-new.png"
+            src="/assets/logos/webp/logo-new.webp"
             alt="Hyperreality Key"
             className="h-12 sm:h-16 w-auto object-contain"
             style={{ filter: 'drop-shadow(0 0 25px color-mix(in srgb, var(--color-neon-purple) 35%, transparent))' }}
