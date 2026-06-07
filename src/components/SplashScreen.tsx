@@ -116,7 +116,7 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
             {/* HEADER AVATAR — 28px */}
             <div className="w-7 h-7 rounded-full overflow-hidden shrink-0"
               style={{ border: '1px solid color-mix(in srgb, var(--color-neon-purple) 30%, transparent)' }}>
-              <img src="/assets/bg/webp/avatars.webp" alt="Alex" className="w-full h-full object-cover" />
+              <img src="/assets/bg/webp/avatar-alex.webp" alt="Alex" className="w-full h-full object-cover" />
             </div>
           </div>
 
@@ -127,7 +127,7 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
               <div className="flex items-start gap-2 mb-3 animate-fade-in">
                 {/* CHAT AVATAR — 32px */}
                 <div className="w-8 h-8 rounded-full overflow-hidden shrink-0" style={{ border: '1px solid #4ade8040' }}>
-                  <img src="/assets/bg/webp/avatars.webp" alt="Alex" className="w-full h-full object-cover" />
+                  <img src="/assets/bg/webp/avatar-alex.webp" alt="Alex" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex gap-1 px-3 py-2.5 rounded-2xl"
                   style={{
@@ -149,7 +149,7 @@ export default function SplashScreen({ onStart }: SplashScreenProps) {
                 {msg.sender === 'friend' && (
                   /* CHAT AVATAR — 32px */
                   <div className="w-8 h-8 rounded-full overflow-hidden shrink-0" style={{ border: '1px solid #4ade8040' }}>
-                    <img src="/assets/bg/webp/avatars.webp" alt="Alex" className="w-full h-full object-cover" />
+                    <img src="/assets/bg/webp/avatar-alex.webp" alt="Alex" className="w-full h-full object-cover" />
                   </div>
                 )}
                 {!msg.isArticle ? (
