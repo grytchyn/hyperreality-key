@@ -195,14 +195,23 @@ const HIGHLIGHT_RULES: Record<CoreToolId, HighlightRule[]> = {
 }
 
 // ── HIGHLIGHT FUNCTION ──
-export function getHighlightsFor(toolIds: CoreToolId[], text: string): Map<string, HighlightEntry[]> {
+export function getHighlightsFor(
+  toolIds: CoreToolId[],
+  text: string,
+  postRules?: Record<string, HighlightRule[]>  // MISSION-SPECIFIC RULES (override global)
+): Map<string, HighlightEntry[]> {
   const map = new Map<string, HighlightEntry[]>()
   const cleanedText = text.toLowerCase().replace(/[^a-z\s']/g, ' ')
   const singleTokens = cleanedText.split(/\s+/).filter(Boolean)
 
   for (const toolId of toolIds) {
-    const rules = HIGHLIGHT_RULES[toolId]
-    if (!rules) continue
+    // MISSION RULES TAKE PRIORITY — if post has rules for this tool, use ONLY those.
+    // If post has the key but empty array, skip. If key absent, fall back to global.
+    const hasPostRules = postRules && Object.prototype.hasOwnProperty.call(postRules, toolId)
+    const rules: HighlightRule[] = hasPostRules
+      ? (postRules![toolId] || [])
+      : (HIGHLIGHT_RULES[toolId] || [])
+    if (!rules || rules.length === 0) continue
     const config = CORE_TOOLS.find(t => t.id === toolId)
     if (!config) continue
 

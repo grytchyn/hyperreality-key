@@ -52,7 +52,7 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore, onToolT
   const availableTools = LEVEL_TOOLS[level] || [];
 
   const highlights = useMemo(
-    () => getHighlightsFor(activeFilters, post.content + ' ' + post.title),
+    () => getHighlightsFor(activeFilters, post.content + ' ' + post.title, post.highlightRules),
     [activeFilters, post]
   );
 
