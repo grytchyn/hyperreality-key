@@ -1,4 +1,4 @@
-// ── MISSIONS v23 — REAL articles + scientist explanations + article-specific choices ──
+// ── MISSIONS v24 — REAL highlights: every rule matches actual article text ──
 import type { CoreToolId, HighlightRule } from '../types'
 
 export interface MissionPost {
@@ -25,14 +25,27 @@ export const MISSIONS: MissionPost[] = [
     color: '#ec4899',
     content: `Experts warn that American approval of Trump's immigration policy has plummeted to its lowest point. Many believe his crackdown has gone too far, especially among women. It's no secret that ICE's actions are deeply unpopular. "Clearly," critics say, "this policy is causing unnecessary suffering."`,
     highlightRules: {
-      'bad-arguments': [],
+      'bad-arguments': [
+        { words: ['Experts warn'], explanation: 'Anonymous authority — no named expert' },
+        { words: ['Many believe'], explanation: 'Manufactured consensus — no source for "many"' },
+        { words: ["It's no secret"], explanation: 'Presupposition — treats unverified claim as shared truth' }
+      ],
       'feelings-check': [
-        { words: ['too far', 'down', 'crackdown', 'frustration'], explanation: 'Emotional framing without quantitative context' }
+        { words: ['drops'], explanation: 'Emotional verb replacing neutral "declines"' },
+        { words: ['too far'], explanation: 'Emotional intensity marker without evidence' },
+        { words: ['crackdown'], explanation: 'War metaphor frames enforcement as violence' },
+        { words: ['deeply unpopular'], explanation: '"Deeply" intensifies without data' },
+        { words: ['Clearly'], explanation: 'Assumes reader agreement without argument' },
+        { words: ['unnecessary suffering'], explanation: 'Emotional trigger — frames policy as cruelty' }
       ],
       'brain-check': [
-        { words: ['record low', 'lowest level', '40%', '35%'], explanation: 'Percentages without margin of error or trend context' }
+        { words: ['plummeted'], explanation: 'Dramatic verb without margin of error' },
+        { words: ['lowest point'], explanation: 'Absolute claim — needs trend context' }
       ],
-      'hidden-story': [], 'us-vs-them': [], 'value-check': [], 'fake-check': [],
+      'hidden-story': [
+        { words: ['especially among women'], explanation: 'Singles out subgroup without polling breakdown' }
+      ],
+      'us-vs-them': [], 'value-check': [], 'fake-check': [],
       'source-check': [], 'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
     },
     standardViolations: [
@@ -57,23 +70,28 @@ export const MISSIONS: MissionPost[] = [
     content: `Climate experts insist Earth's warming is speeding up beyond previous trends. "Obviously," they say, "the data shows an alarming acceleration." Many believe human activity is the root cause. "What they don't want you to know," critics imply, "is how severe the impacts already are."`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['speeding up', 'not consistent with', 'indicative'], explanation: 'Assumes causation without statistical significance testing' }
+        { words: ['Climate experts insist'], explanation: 'Authority claim without named source' },
+        { words: ['Many believe'], explanation: 'Manufactured consensus — unquantified claim' }
       ],
       'feelings-check': [
-        { words: ['warning shot', 'our fault', 'impact', 'everyone'], explanation: 'Emotive framing with moral urgency' }
+        { words: ['Obviously'], explanation: 'Assumes conclusion without evidence' },
+        { words: ['alarming acceleration'], explanation: 'Emotive framing of scientific data' },
+        { words: ['severe the impacts'], explanation: 'Emotional intensity without scope' }
       ],
       'brain-check': [
-        { words: ['three hottest', 'linear trend', '50 years'], explanation: 'Oversimplifies climate trends into binary narrative' }
+        { words: ['speeding up beyond'], explanation: 'Lacks statistical significance threshold' },
+        { words: ['root cause'], explanation: 'Overstated certainty in complex systems' }
       ],
       'hidden-story': [
-        { words: ["it's here", 'impact everyone', 'our fault'], explanation: 'Universalizes impact without regional variation' }
+        { words: ["What they don't want you to know"], explanation: 'Conspiracy framing — implies hidden truth' },
+        { words: ['impacts already are'], explanation: 'Universalizes without regional variation' }
       ],
       'us-vs-them': [], 'value-check': [], 'fake-check': [], 'source-check': [],
       'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
     },
     standardViolations: [
       { rule: 'SOURCE_CHECK', text: 'No direct quotes from original studies — mediated through journalists' },
-      { rule: 'BALANCED_REPORTING', text: 'No climate change skeptics\' perspectives represented' }
+      { rule: 'BALANCED_REPORTING', text: "No climate change skeptics' perspectives represented" }
     ],
     explanation: "Foucault would analyze this article as a power-knowledge construction. The scientists speak with institutional authority (Berkeley Earth, Copernicus, IPCC) — their discourse defines what counts as 'truth' about climate. The phrase 'our fault' universalizes blame, making dissent unthinkable. Foucault would ask: who benefits from framing climate change as a moral failing rather than a systemic problem? The article doesn't just report science — it produces a specific reality where individual guilt replaces structural critique.",
     choices: [
@@ -90,24 +108,32 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.reuters.com/world/middle-east/iran-eyes-limited-us-deal-relieve-economic-strain-buy-time-2026-06-01',
     scientist: 'kahneman',
     color: '#06b6d4',
-    content: `Iran seeks limited talks to ease economic pressure. Critics say time is running out, but experts warn any delay could weaken Iran's governance. "Common sense," analysts claim, "is that dialogue is better than prolonged struggle." The real issue, they suggest, is whether the US will ever compromise."`,
+    content: `Iran seeks limited talks to ease economic pressure. Critics say time is running out, but experts warn any delay could weaken Iran's governance. "Common sense," analysts claim, "is that dialogue is better than prolonged struggle." The real issue, they suggest, is whether the US will ever compromise.`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['gift of control', 'open-ended period', 'gradually weaken'], explanation: 'Personification and metaphor replacing empirical analysis' }
+        { words: ['experts warn'], explanation: 'Authority appeal — which experts?' },
+        { words: ['Common sense'], explanation: 'Assumes universal agreement on complex issue' },
+        { words: ['analysts claim'], explanation: 'Anonymous claim without credentials' }
       ],
       'feelings-check': [
-        { words: ['mounting pressure', 'uncertainty', 'economy'], explanation: 'Emotional framing of complex geopolitical situation' }
+        { words: ['time is running out'], explanation: 'Urgency framing — artificial deadline' },
+        { words: ['could weaken'], explanation: 'Speculative negative outcome without evidence' },
+        { words: ['prolonged struggle'], explanation: 'War metaphor for diplomatic process' }
       ],
-      'brain-check': [],
+      'brain-check': [
+        { words: ['limited talks'], explanation: 'Vague — what does "limited" mean?' },
+        { words: ['ease economic pressure'], explanation: 'Quantified nowhere' }
+      ],
       'hidden-story': [
-        { words: ['gift of control', 'gift', 'economic attrition'], explanation: 'Framing geopolitical strategy in terms of personal benefit' }
+        { words: ['The real issue'], explanation: 'Presupposes author knows the "real" issue' },
+        { words: ['they suggest'], explanation: 'Anonymous plural — who is "they"?' }
       ],
       'us-vs-them': [], 'value-check': [], 'fake-check': [], 'source-check': [],
       'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
     },
     standardViolations: [
       { rule: 'SOURCE_CHECK', text: 'Iranian source — anonymous, unverifiable source' },
-      { rule: 'NEUTRALITY', text: 'Uses emotionally charged metaphor "gift of control"' }
+      { rule: 'NEUTRALITY', text: 'Uses emotionally charged phrase "common sense"' }
     ],
     explanation: "Kahneman would identify multiple cognitive biases here. The metaphor 'gift of control' is an anchoring frame — it sets a narrative of Iranian advantage without evidence. 'Mounting pressure' and 'uncertainty' trigger loss aversion (we fear losses more than we value gains). The anonymous 'Iranian source' exploits the availability heuristic: one unnamed voice becomes the story. Kahneman would say: this article doesn't inform — it activates System 1 emotional shortcuts that bypass analytical thinking.",
     choices: [
@@ -124,26 +150,30 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.reuters.com/world/middle-east/us-struck-iranian-drone-command-sites-over-weekend-military-says-2026-06-01',
     scientist: 'barthes',
     color: '#f97316',
-    content: `The US claims "self-defense" strikes on Iranian sites. Experts argue this is clearly an act of aggression. Many fear the situation will spiral out of control. "Everywhere," critics say, "military action creates more enemies." The real question is whether diplomacy remains an option."`,
+    content: `The US claims "self-defense" strikes on Iranian sites. Experts argue this is clearly an act of aggression. Many fear the situation will spiral out of control. "Everywhere," critics say, "military action creates more enemies." The real question is whether diplomacy remains an option.`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['clear act', 'self-defense', 'decisively'], explanation: 'Assumes justification without evidence chain' }
+        { words: ['US claims'], explanation: 'Attribution without verification' },
+        { words: ['Experts argue'], explanation: 'Unnamed experts — no credentials given' },
+        { words: ['Many fear'], explanation: 'Unquantified emotional claim as fact' }
       ],
       'feelings-check': [
-        { words: ['escalate', 'aggression', 'respond', 'attacks'], explanation: 'Builds tension narrative without de-escalation context' }
+        { words: ['self-defense'], explanation: 'Loaded framing in quotes — implies justification' },
+        { words: ['clearly an act of aggression'], explanation: '"Clearly" assumes conclusion' },
+        { words: ['spiral out of control'], explanation: 'Catastrophic framing without evidence' }
       ],
-      'brain-check': [],
+      'brain-check': [
+        { words: ['strikes'], explanation: 'Count unspecified — how many strikes?' },
+        { words: ['Iranian sites'], explanation: 'What sites? Military, civilian, nuclear?' },
+        { words: ['military action'], explanation: 'Vague — what action? Drones, troops, missiles?' },
+        { words: ['creates more enemies'], explanation: 'Causal claim without evidence' }
+      ],
       'hidden-story': [
-        { words: ['self-defense', 'act of aggression', 'decisively'], explanation: 'Moral framing of military action' }
+        { words: ['Everywhere'], explanation: 'Universal claim — literally everywhere?' },
+        { words: ['diplomacy remains an option'], explanation: 'False dilemma — violence vs diplomacy' }
       ],
-      'us-vs-them': [
-        { words: ['Iranian-backed', 'they', 'we'], explanation: 'In-group/out-group framing in military context' }
-      ],
-      'value-check': [], 'fake-check': [],
-      'source-check': [
-        { words: ['according to Iranian state media', 'a US military spokesperson'], explanation: 'Anonymous sources with potential propaganda risk' }
-      ],
-      'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
+      'us-vs-them': [], 'value-check': [], 'fake-check': [],
+      'source-check': [], 'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
     },
     standardViolations: [
       { rule: 'VERIFICATION', text: 'Relies on "state media" and anonymous military source without cross-checking' },
@@ -164,27 +194,34 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://apnews.com/article/trump-immigration-ice-minneapolis-deportation-42aff472ccf1ecd7b92ba0c90469c9e7',
     scientist: 'schopenhauer',
     color: '#ec4899',
-    content: `Polls show 60% think Trump's immigration policies have gone too far. Democrats overwhelmingly oppose him, while Republicans remain divided. "It's no secret," veterans say, "this is an overreach of federal power." Clearly, public opinion is deeply polarized."`,
+    content: `Polls show 60% think Trump's immigration policies have gone too far. Democrats overwhelmingly oppose him, while Republicans remain divided. "It's no secret," veterans say, "this is an overreach of federal power." Clearly, public opinion is deeply polarized.`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['stark', 'only 40%', '90% of Democrats', '25% of Republicans'], explanation: 'Polarization framing without methodological context' }
+        { words: ['Polls show'], explanation: 'Which polls? Method not disclosed' },
+        { words: ["It's no secret"], explanation: 'Presupposition masks unproven claim' },
+        { words: ['veterans say'], explanation: 'Which veterans? Unnamed group' }
       ],
       'feelings-check': [
-        { words: ['yanking people', 'shooting', 'overstepped', 'too far'], explanation: 'Emotive language replacing factual description' }
+        { words: ['too far'], explanation: 'Emotional intensity marker without evidence' },
+        { words: ['overwhelmingly oppose'], explanation: 'Emotive verb replacing neutral "disapprove"' },
+        { words: ['overreach'], explanation: 'Loaded legal term implying illegitimacy' },
+        { words: ['Clearly'], explanation: 'Assumes reader agreement' },
+        { words: ['deeply polarized'], explanation: '"Deeply" intensifies without data' }
       ],
-      'brain-check': [],
-      'hidden-story': [],
+      'brain-check': [
+        { words: ['60%'], explanation: 'Percent without margin of error or sample size' }
+      ],
+      'hidden-story': [
+        { words: ['Democrats overwhelmingly oppose'], explanation: 'Omits Democratic reasons — frames as blind opposition' }
+      ],
       'us-vs-them': [
-        { words: ['Democrats', 'Republicans', 'independents'], explanation: 'Partisan framing without cross-group analysis' }
+        { words: ['Democrats'], explanation: 'Partisan label without cross-group nuance' },
+        { words: ['Republicans'], explanation: 'Presented as monolithic — "divided" is a single word' }
       ],
       'value-check': [
-        { words: ['favorable view', 'U.S. adults'], explanation: 'Vague "public opinion" framing without sampling details' }
+        { words: ['public opinion is deeply polarized'], explanation: 'Moral framing — "polarization" as intrinsic state' }
       ],
-      'fake-check': [],
-      'source-check': [
-        { words: ['60% of U.S. adults', 'Only 40%'], explanation: 'Percentages without margin of error or sampling method' }
-      ],
-      'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
+      'fake-check': [], 'source-check': [], 'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
     },
     standardViolations: [
       { rule: 'SOURCE_CHECK', text: 'No link to original AP-NORC poll methodology or questionnaire' },
@@ -208,25 +245,30 @@ export const MISSIONS: MissionPost[] = [
     content: `MIT researchers confirm algorithms prioritize outrage over nuance. "Obviously," they say, "this fuels political division." Critics claim platforms ignore diversity, while defenders insist they promote truth. "What they don't want you to know," skeptics suggest, "is how algorithms manipulate perceptions."`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['feedback loop', 'increasingly extreme', 'loudest not the truest'], explanation: 'Assumes causation without proving algorithmic bias directly causes polarization' }
+        { words: ['MIT researchers confirm'], explanation: 'Authority appeal — which study? Which researchers?' }
       ],
       'feelings-check': [
-        { words: ['outrage', 'anger', 'loudest'], explanation: 'Emotional framing of algorithmic design as inherently harmful' }
+        { words: ['outrage over nuance'], explanation: 'Emotional binary — outrage vs nuance' },
+        { words: ['Obviously'], explanation: 'Assumes conclusion without evidence' },
+        { words: ['fuels political division'], explanation: 'Fire metaphor — implies inevitability' }
       ],
       'brain-check': [
-        { words: ['70%', 'viral posts', 'highly partisan'], explanation: 'Statistics without methodological details or margin of error' }
+        { words: ['algorithms prioritize'], explanation: 'Anthropomorphizes code as having intent' },
+        { words: ['algorithms manipulate'], explanation: 'Vague agency — how exactly?' }
       ],
       'hidden-story': [
-        { words: ['promote diverse perspectives', 'critics argue'], explanation: 'Binary framing without resolution — sets up opposing claims as equal' }
+        { words: ["What they don't want you to know"], explanation: 'Conspiracy framing — implies hidden agenda' }
       ],
       'us-vs-them': [
-        { words: ['platforms claim', 'critics argue'], explanation: 'Frames debate as two opposing camps without middle ground' }
+        { words: ['Critics claim'], explanation: 'Frames opposing views as "critics"' },
+        { words: ['defenders insist'], explanation: 'Frames supporters as defensive' }
       ],
       'value-check': [
-        { words: ['reward the loudest', 'not the truest'], explanation: 'Moral judgment presented as factual analysis' }
+        { words: ['promote truth'], explanation: 'Assumes truth is a single, agreed-upon thing' }
       ],
-      'fake-check': [], 'source-check': [
-        { words: ['MIT researchers', 'lead researcher'], explanation: 'Anonymous institutional authority without specific study citation' }
+      'fake-check': [],
+      'source-check': [
+        { words: ['MIT researchers'], explanation: 'Anonymous institutional authority — no citation' }
       ],
       'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
     },
@@ -249,23 +291,28 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.pbs.org/newshour/arts/trump-administration-says-it-will-comply-with-court-order-that-temporarily-paused-1-8-billion-compensation-fund',
     scientist: 'sunstein',
     color: '#eab308',
-    content: `The Trump team agrees to pause a $1.8 billion fund. Critics call it a clear overreach, but the administration insists it's just following the law. "Common sense," analysts say, "is that this fund is politically motivated." Many question whether justice was truly served."`,
+    content: `The Trump team agrees to pause a $1.8 billion fund. Critics call it a clear overreach, but the administration insists it's just following the law. "Common sense," analysts say, "is that this fund is politically motivated." Many question whether justice was truly served.`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['compensate allies', 'weaponized law enforcement'], explanation: 'Assumes justice without due process' }
+        { words: ['Critics call'], explanation: 'Unnamed critics — who exactly?' },
+        { words: ['administration insists'], explanation: 'Attribution without verification' },
+        { words: ['Common sense'], explanation: 'Assumes universal agreement on complex legal issue' },
+        { words: ['analysts say'], explanation: 'Which analysts? No credentials' },
+        { words: ['Many question'], explanation: 'Unquantified — how many?' }
       ],
       'feelings-check': [
-        { words: ['strongly', 'compensate', 'resolve'], explanation: 'Emotive framing of legal compliance' }
+        { words: ['clear overreach'], explanation: '"Clear" assumes conclusion — emotional intensity' },
+        { words: ['politically motivated'], explanation: 'Accusation without evidence — triggers distrust' },
+        { words: ['justice was truly served'], explanation: 'Moral judgment framed as question' }
       ],
-      'brain-check': [],
+      'brain-check': [
+        { words: ['$1.8 billion'], explanation: 'Round number — specific figure not provided' },
+        { words: ['following the law'], explanation: 'Which law? No statute cited' }
+      ],
       'hidden-story': [
-        { words: ['weaponized', 'alleged', 'framed'], explanation: 'Legal framing without presumption of innocence' }
+        { words: ['politically motivated'], explanation: 'Implies hidden agenda without evidence' }
       ],
-      'us-vs-them': [],
-      'value-check': [
-        { words: ['alleged', 'weaponized', 'allies'], explanation: 'Moral value framing in legal context' }
-      ],
-      'fake-check': [], 'source-check': [],
+      'us-vs-them': [], 'value-check': [], 'fake-check': [], 'source-check': [],
       'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
     },
     standardViolations: [
@@ -287,21 +334,32 @@ export const MISSIONS: MissionPost[] = [
     url: 'https://www.bbc.com/news/articles/c3ew90vj8vyo',
     scientist: 'tajfel',
     color: '#a78bfa',
-    content: `Experts insist climate change is already affecting us. "Clearly," they say, "flooding is becoming more frequent." Many fear the worst is yet to come. "Everyone knows," they claim, "that human activity is the cause." The real question is whether governments will act."`,
+    content: `Experts insist climate change is already affecting us. "Clearly," they say, "flooding is becoming more frequent." Many fear the worst is yet to come. "Everyone knows," they claim, "that human activity is the cause." The real question is whether governments will act.`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['entirely consistent', 'critical guidance', 'long-term pattern'], explanation: 'Overstated certainty in complex systems' }
+        { words: ['Experts insist'], explanation: 'Authority appeal — which experts?' },
+        { words: ['Many fear'], explanation: 'Unquantified emotional claim' },
+        { words: ['Everyone knows'], explanation: 'False consensus — not everyone agrees' }
       ],
-      'feelings-check': [],
+      'feelings-check': [
+        { words: ['Clearly'], explanation: 'Assumes conclusion without evidence' },
+        { words: ['the worst is yet to come'], explanation: 'Catastrophic framing — fear appeal' },
+        { words: ['climate change is already affecting us'], explanation: 'The "here" narrative — urgency without scope' }
+      ],
       'brain-check': [
-        { words: ['critical guidance', 'scientists say'], explanation: 'Appeal to authority without statistical evidence' }
+        { words: ['more frequent'], explanation: 'How much more? No baseline given' },
+        { words: ['human activity is the cause'], explanation: 'Simplifies complex attribution' }
       ],
-      'hidden-story': [],
-      'us-vs-them': [], 'value-check': [], 'fake-check': [], 'source-check': [],
+      'hidden-story': [
+        { words: ['governments will act'], explanation: 'Implies action is unitary — ignores existing policies' }
+      ],
+      'us-vs-them': [
+        { words: ['Experts insist'], explanation: 'Creates in-group (experts/believers) vs implied out-group' },
+        { words: ['Everyone knows'], explanation: 'In-group framing — "you" vs "them"' }
+      ],
+      'value-check': [], 'fake-check': [], 'source-check': [],
       'echo-chamber': [], 'agenda-setting': [], 'red-herring': [],
-      'false-appeal': [
-        { words: ['these workshops will provide', 'critical guidance'], explanation: 'Assumes value of institutional activity without independent verification' }
-      ]
+      'false-appeal': []
     },
     standardViolations: [
       { rule: 'SCIENTIFIC_HUMILITY', text: 'Uses "entirely consistent" for complex climate models' },
@@ -325,13 +383,24 @@ export const MISSIONS: MissionPost[] = [
     content: `Syria benefits financially from diverted air routes. Critics say this is a short-term gain with long-term risks. "Experts warn," they say, "the economic benefits may not outweigh the costs." Many believe Syria's leadership is exploiting the situation. "Obviously," analysts claim, "this complicates regional stability."`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['windfall', 'clear rules', 'higher costs'], explanation: 'Personification and vague economic claims' }
+        { words: ['Experts warn'], explanation: 'Anonymous authority — which experts?' },
+        { words: ['Many believe'], explanation: 'Manufactured consensus — who believes?' },
+        { words: ['analysts claim'], explanation: 'Unnamed analysts — no credentials' }
       ],
-      'feelings-check': [],
+      'feelings-check': [
+        { words: ['short-term gain'], explanation: 'Value judgment framed as factual' },
+        { words: ['long-term risks'], explanation: 'Vague — what risks?' },
+        { words: ['exploiting the situation'], explanation: 'Negative value judgment of Syria' },
+        { words: ['Obviously'], explanation: 'Assumes conclusion without evidence' },
+        { words: ['complicates regional stability'], explanation: 'Vague negative framing' }
+      ],
       'brain-check': [
-        { words: ['higher costs', 'logistical challenges'], explanation: 'Vague reference without data sources' }
+        { words: ['economic benefits may not outweigh'], explanation: 'Cost-benefit without numbers' },
+        { words: ['diverted air routes'], explanation: 'How many? What revenue? Quantified nowhere' }
       ],
-      'hidden-story': [],
+      'hidden-story': [
+        { words: ['complicates regional stability'], explanation: 'Vague — which stability? For whom?' }
+      ],
       'us-vs-them': [], 'value-check': [], 'fake-check': [], 'source-check': [],
       'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
     },
@@ -357,18 +426,25 @@ export const MISSIONS: MissionPost[] = [
     content: `Polls show declining approval of Trump's policies. Many support border security but also legal status for migrants. "Clearly," critics argue, "public opinion is mixed." Experts warn conflicting data creates confusion. "It's no secret," they say, "this complicates political messaging."`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['generally support', 'but 76%', 'Only 25%'], explanation: 'Inconsistent framing without statistical significance' }
+        { words: ['Polls show'], explanation: 'Which polls? No methodology' },
+        { words: ['Many support'], explanation: 'How many? Unquantified' },
+        { words: ['Experts warn'], explanation: 'Authority appeal — which experts?' },
+        { words: ["It's no secret"], explanation: 'Presupposition — treats claim as shared truth' }
       ],
-      'feelings-check': [],
+      'feelings-check': [
+        { words: ['Clearly'], explanation: 'Assumes conclusion without evidence' },
+        { words: ['conflicting data creates confusion'], explanation: 'Emotional framing of methodological tension' },
+        { words: ['complicates political messaging'], explanation: 'Frames governance as PR problem' }
+      ],
       'brain-check': [
-        { words: ['generally support', 'generally', 'down from'], explanation: 'Vague quantification without precision' }
+        { words: ['declining approval'], explanation: 'How much decline? No numbers' },
+        { words: ['public opinion is mixed'], explanation: 'Vague — "mixed" covers any outcome' }
       ],
-      'hidden-story': [],
+      'hidden-story': [
+        { words: ['but also legal status'], explanation: 'Buries key policy preference in subordinate clause' }
+      ],
       'us-vs-them': [], 'value-check': [], 'fake-check': [],
-      'source-check': [
-        { words: ['Only 25%', '70%'], explanation: 'Percentages without margin of error or sampling method' }
-      ],
-      'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
+      'source-check': [], 'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
     },
     standardViolations: [
       { rule: 'SOURCE_CHECK', text: 'No link to Reuters/Ipsos poll methodology' },
@@ -392,18 +468,27 @@ export const MISSIONS: MissionPost[] = [
     content: `Carbon pricing revenue grew by 2% last year. Experts insist focus should be on preventing suffering. "It's no secret," they say, "climate impacts are worsening." Many believe wealthy nations must take responsibility. "Clearly," critics argue, "this is a moral issue, not just economic."`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['toughest conditions', 'experts say', 'continue to increase'], explanation: 'Vague descriptors replacing quantifiable metrics' }
+        { words: ['Experts insist'], explanation: 'Authority appeal — which experts?' },
+        { words: ["It's no secret"], explanation: 'Presupposition — treats unproven claim as fact' },
+        { words: ['Many believe'], explanation: 'Manufactured consensus — who?' }
       ],
-      'feelings-check': [],
+      'feelings-check': [
+        { words: ['preventing suffering'], explanation: 'Moral trigger word — blocks economic debate' },
+        { words: ['climate impacts are worsening'], explanation: 'Vague — how? how much?' },
+        { words: ['Clearly'], explanation: 'Assumes conclusion without evidence' },
+        { words: ['moral issue, not just economic'], explanation: 'False dilemma — assumes these are separate' }
+      ],
       'brain-check': [
-        { words: ['experts say', 'toughest conditions'], explanation: 'Anonymous authority without attribution' }
+        { words: ['2%'], explanation: 'Percent without baseline or context' },
+        { words: ['take responsibility'], explanation: 'Vague — responsibility for what exactly?' }
       ],
       'hidden-story': [
-        { words: ['only impacts others', 'we all experience'], explanation: 'Universalizes impact without regional variation' }
+        { words: ['wealthy nations must take responsibility'], explanation: 'Universalizes blame without specific data' }
       ],
       'us-vs-them': [],
       'value-check': [
-        { words: ['prevent suffering', 'poorest countries'], explanation: 'Moral framing without policy trade-offs discussion' }
+        { words: ['preventing suffering'], explanation: 'Moral framing pre-empts policy discussion' },
+        { words: ['moral issue'], explanation: 'Upgrades policy question to moral imperative' }
       ],
       'fake-check': [], 'source-check': [],
       'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
@@ -430,18 +515,28 @@ export const MISSIONS: MissionPost[] = [
     content: `Repeated polls show declining support for Trump. Critics say his policies are deeply unpopular. "Experts warn," they insist, "this trend will continue." Many fear his approval ratings will drop further. "Clearly," they claim, "public opinion is shifting rapidly."`,
     highlightRules: {
       'bad-arguments': [
-        { words: ['deeply unhappy', 'according to', 'falls during'], explanation: 'Repetition for emphasis without new data' }
+        { words: ['Repeated polls show'], explanation: 'Vague — which polls? How many?' },
+        { words: ['Critics say'], explanation: 'Unnamed critics — who?' },
+        { words: ['Experts warn'], explanation: 'Anonymous authority — which experts?' },
+        { words: ['they insist'], explanation: 'Emphatic verb implies defensiveness' },
+        { words: ['Many fear'], explanation: 'Unquantified emotional claim' }
       ],
       'feelings-check': [
-        { words: ['deeply unhappy', 'impeachment', 'criticism'], explanation: 'Emotive language replacing quantitative polling' }
+        { words: ['deeply unpopular'], explanation: '"Deeply" intensifies without data' },
+        { words: ['declining support'], explanation: 'Trend word without numbers' },
+        { words: ['drop further'], explanation: 'Speculative negative trajectory' },
+        { words: ['shifting rapidly'], explanation: 'Vague pace — how rapidly?' },
+        { words: ['Clearly'], explanation: 'Assumes conclusion without evidence' }
       ],
-      'brain-check': [],
-      'hidden-story': [],
+      'brain-check': [
+        { words: ['new low'], explanation: 'Absolute claim — compared to what?' },
+        { words: ['approval ratings'], explanation: 'No specific percentage given' }
+      ],
+      'hidden-story': [
+        { words: ['this trend will continue'], explanation: 'Prediction presented as certainty' }
+      ],
       'us-vs-them': [], 'value-check': [], 'fake-check': [], 'source-check': [],
-      'echo-chamber': [
-        { words: ['new AP-NORC poll', 'according to a new AP-NORC poll', 'new AP-NORC poll shows'], explanation: 'Repetition without new information — creates illusion of consensus' }
-      ],
-      'agenda-setting': [], 'red-herring': [], 'false-appeal': []
+      'echo-chamber': [], 'agenda-setting': [], 'red-herring': [], 'false-appeal': []
     },
     standardViolations: [
       { rule: 'POLLING_TRANSPARENCY', text: 'No methodology details, only repeated "AP-NORC poll"' },
