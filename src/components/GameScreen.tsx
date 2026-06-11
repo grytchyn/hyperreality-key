@@ -173,7 +173,9 @@ export default function GameScreen({ post, onAnswer, onNext, totalScore, onToolT
           </div>
           <div className="px-4 pt-3 pb-1">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0" style={{ background: `linear-gradient(135deg, ${'#ec4899'}, ${'#ec4899'}88)` }}>{post.source[0]}</div>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <img src={post.logo} alt={post.source} className="w-full h-full object-contain p-1" />
+              </div>
               <div><div className="text-xs font-bold text-white">{post.source}</div><div className="text-[9px] text-gray-500">{"Post"} shared · just now</div></div>
               <span className="ml-auto text-[8px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ color: '#ec4899', border: `1px solid ${'#ec4899'}40`, background: `${'#ec4899'}15` }}>{'Politics'}</span>
             </div>

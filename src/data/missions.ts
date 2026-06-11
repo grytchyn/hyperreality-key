@@ -6,6 +6,7 @@ export interface MissionPost {
   title: string
   source: string
   url: string
+  logo: string
   scientist: string
   color: string
   content: string
@@ -21,9 +22,10 @@ export const MISSIONS: MissionPost[] = [
     title: "Trump's immigration approval drops to record low, poll shows",
     source: 'Reuters/Ipsos',
     url: 'https://www.reuters.com/world/us/trumps-immigration-approval-drops-record-low-reutersipsos-poll-finds-2026-01-26',
-    scientist: 'haidt',
+    logo: '/assets/logos/reuters.svg',
+        scientist: 'haidt',
     color: '#ec4899',
-    content: `Experts warn that American approval of Trump's immigration policy has plummeted to its lowest point. Many believe his crackdown has gone too far, especially among women. It's no secret that ICE's actions are deeply unpopular. "Clearly," critics say, "this policy is causing unnecessary suffering."`,
+    content: `Experts warn that American approval of Trump's immigration policy has plummeted to its lowest point since records began, according to the latest Reuters/Ipsos tracking poll. Many believe his crackdown has gone too far, especially among women, who have shifted decisively against the administration's approach in every demographic subgroup surveyed. It's no secret that ICE's enforcement actions have become deeply unpopular in urban centers and suburban communities alike, with critics pointing to rising civil liberties concerns. "Clearly," critics say, "this policy is causing unnecessary suffering to families who have lived here for decades," a claim the administration disputes by pointing to border security statistics. The human cost of these measures continues to dominate the national conversation as midterm elections approach.`,
     highlightRules: {
       'bad-arguments': [
         { words: ['Experts warn'], explanation: 'Anonymous authority — no named expert' },
@@ -65,9 +67,10 @@ export const MISSIONS: MissionPost[] = [
     title: 'Scientists warn of accelerating climate shift',
     source: 'PBS NewsHour',
     url: 'https://www.pbs.org/newshour/science/scientists-say-another-hot-year-is-a-warning-shot-of-a-shifting-dangerous-climate',
-    scientist: 'foucault',
+    logo: '/assets/logos/pbs.svg',
+        scientist: 'foucault',
     color: '#eab308',
-    content: `Climate experts insist Earth's warming is speeding up beyond previous trends. "Obviously," they say, "the data shows an alarming acceleration." Many believe human activity is the root cause. "What they don't want you to know," critics imply, "is how severe the impacts already are."`,
+    content: `Climate experts insist Earth's warming is speeding up beyond previous trends, with new data from multiple monitoring agencies confirming a pattern that has scientists deeply concerned and revising their models upward. "Obviously," they say, "the data shows an alarming acceleration that we did not predict in our worst-case scenarios published just five years ago." Many believe human activity remains the primary root cause, pointing to rising CO2 levels that correlate directly with global industrial output over the past century. "What they don't want you to know," critics imply, "is how severe the impacts already are — not in some distant future, but right now, in communities across every continent." The new report covers 195 countries and spans temperature records, sea-level rise, and extreme weather events that have already displaced millions.`,
     highlightRules: {
       'bad-arguments': [
         { words: ['Climate experts insist'], explanation: 'Authority claim without named source' },
@@ -106,9 +109,10 @@ export const MISSIONS: MissionPost[] = [
     title: 'Iran eyes limited US deal to relieve economic strain',
     source: 'Reuters',
     url: 'https://www.reuters.com/world/middle-east/iran-eyes-limited-us-deal-relieve-economic-strain-buy-time-2026-06-01',
-    scientist: 'kahneman',
+    logo: '/assets/logos/reuters.svg',
+        scientist: 'kahneman',
     color: '#06b6d4',
-    content: `Iran seeks limited talks to ease economic pressure. Critics say time is running out, but experts warn any delay could weaken Iran's governance. "Common sense," analysts claim, "is that dialogue is better than prolonged struggle." The real issue, they suggest, is whether the US will ever compromise.`,
+    content: `Iran seeks limited talks to ease mounting economic pressure as international sanctions continue to bite and the national currency hits new lows against the dollar on Tehran's open market. Critics say time is running out for a diplomatic solution, but experts warn any delay could further weaken Iran's governance structures and embolden hardliner factions within the regime who oppose any engagement with the West. "Common sense," analysts claim, "is that dialogue is better than prolonged struggle that ultimately benefits no one in the region." The real issue, they suggest, is whether the United States will ever compromise on its core demands regarding uranium enrichment levels and support for regional proxy forces. Negotiations have been described as fragile by multiple diplomatic sources, with both sides deeply skeptical of the other's long-term intentions.`,
     highlightRules: {
       'bad-arguments': [
         { words: ['experts warn'], explanation: 'Authority appeal — which experts?' },
@@ -148,9 +152,10 @@ export const MISSIONS: MissionPost[] = [
     title: 'US strikes Iranian military sites as tensions escalate',
     source: 'Reuters',
     url: 'https://www.reuters.com/world/middle-east/us-struck-iranian-drone-command-sites-over-weekend-military-says-2026-06-01',
-    scientist: 'barthes',
+    logo: '/assets/logos/reuters.svg',
+        scientist: 'barthes',
     color: '#f97316',
-    content: `The US claims "self-defense" strikes on Iranian sites. Experts argue this is clearly an act of aggression. Many fear the situation will spiral out of control. "Everywhere," critics say, "military action creates more enemies." The real question is whether diplomacy remains an option.`,
+    content: `The US claims "self-defense" strikes on Iranian military sites, describing the operations as proportional and targeted responses to recent attacks on American personnel stationed in the region. Experts argue this is clearly an escalation that goes far beyond any reasonable definition of self-defense under international law, pointing to the scale and scope of the bombardment. Many fear the situation will spiral out of control as both sides have mobilized additional naval and air forces in the Persian Gulf and Gulf of Oman. "Everywhere we look," critics say, "military action creates more enemies than it eliminates — this is a lesson we have learned repeatedly over two decades of conflict in the Middle East." The real question, experienced diplomats suggest, is whether diplomacy remains a viable option or whether both nations are now locked into a confrontation that neither can easily exit without losing face. The UN Security Council has called an emergency session for this week.`,
     highlightRules: {
       'bad-arguments': [
         { words: ['US claims'], explanation: 'Attribution without verification' },
@@ -192,9 +197,10 @@ export const MISSIONS: MissionPost[] = [
     title: 'AP-NORC Poll: Public opinion on immigration enforcement',
     source: 'AP News',
     url: 'https://apnews.com/article/trump-immigration-ice-minneapolis-deportation-42aff472ccf1ecd7b92ba0c90469c9e7',
-    scientist: 'schopenhauer',
+    logo: '/assets/logos/ap.svg',
+        scientist: 'schopenhauer',
     color: '#ec4899',
-    content: `Polls show 60% think Trump's immigration policies have gone too far. Democrats overwhelmingly oppose him, while Republicans remain divided. "It's no secret," veterans say, "this is an overreach of federal power." Clearly, public opinion is deeply polarized.`,
+    content: `Polls show 60% of Americans think Trump's immigration enforcement policies have gone too far, representing a significant shift in public sentiment from just one year ago when opinions on the issue were far more evenly divided. Democrats overwhelmingly oppose the administration's approach by a margin of nine to one, while Republicans remain sharply divided between moderates who favor comprehensive reform and hardliners who demand even stricter enforcement measures. "It's no secret," veterans of immigration policy say, "this is an overreach of federal power that violates longstanding norms of local policing and community trust." Clearly, public opinion is deeply polarized along partisan lines, but the AP-NORC data also reveals surprising areas of consensus across party lines on specific issues like creating pathways to citizenship for long-term undocumented residents who meet certain criteria. The survey of 1,156 adults was conducted between April 15 and April 20.`,
     highlightRules: {
       'bad-arguments': [
         { words: ['Polls show'], explanation: 'Which polls? Method not disclosed' },
@@ -240,9 +246,10 @@ export const MISSIONS: MissionPost[] = [
     title: 'Social media algorithms amplify polarization, study finds',
     source: 'The Guardian',
     url: 'https://www.theguardian.com/technology/2026/may/15/social-media-algorithms-polarization-study-mit',
-    scientist: 'barthes',
+    logo: '/assets/logos/guardian.svg',
+        scientist: 'barthes',
     color: '#06b6d4',
-    content: `MIT researchers confirm algorithms prioritize outrage over nuance. "Obviously," they say, "this fuels political division." Critics claim platforms ignore diversity, while defenders insist they promote truth. "What they don't want you to know," skeptics suggest, "is how algorithms manipulate perceptions."`,
+    content: `MIT researchers confirm that social media algorithms systematically prioritize outrage over nuance in content recommendation systems, a finding that has reignited the global debate about platform accountability and regulatory oversight. "Obviously," the lead researcher states, "this fuels political division and entrenches users in increasingly extreme positions over time, as the engagement metrics that drive advertising revenue reward emotional content over factual accuracy." Critics claim the major platforms have consistently ignored content diversity in favor of maximizing user engagement time, while defenders insist their recommendation systems are designed to surface authentic and trustworthy information. "What they don't want you to know," skeptics suggest, "is how deeply these algorithms manipulate user perceptions without any meaningful transparency requirements or independent oversight mechanisms." The study, published this month in Nature, analyzed over ten million content recommendations across four major social media platforms over a two-year period.`,
     highlightRules: {
       'bad-arguments': [
         { words: ['MIT researchers confirm'], explanation: 'Authority appeal — which study? Which researchers?' }
@@ -289,9 +296,10 @@ export const MISSIONS: MissionPost[] = [
     title: 'Trump administration complies with court order on $1.8B fund',
     source: 'PBS NewsHour',
     url: 'https://www.pbs.org/newshour/arts/trump-administration-says-it-will-comply-with-court-order-that-temporarily-paused-1-8-billion-compensation-fund',
-    scientist: 'sunstein',
+    logo: '/assets/logos/pbs.svg',
+        scientist: 'sunstein',
     color: '#eab308',
-    content: `The Trump team agrees to pause a $1.8 billion fund. Critics call it a clear overreach, but the administration insists it's just following the law. "Common sense," analysts say, "is that this fund is politically motivated." Many question whether justice was truly served.`,
+    content: `The Trump administration agrees to pause a $1.8 billion compensation fund following a federal court order that temporarily blocked the disbursement pending further legal review. Critics call it a clear overreach of executive authority, arguing the fund was never properly authorized by Congress and bypassed standard appropriations procedures. The administration insists it's just following the law as written, pointing to legal precedents from previous administrations that they say justify the executive action. "Common sense," independent analysts say, "is that this entire fund is politically motivated and appears designed to reward political allies rather than address genuine claims through established legal channels." Many legal experts question whether justice was truly served by the original allocation process, which they describe as unusually opaque and lacking the standard oversight mechanisms that typically govern such federal disbursements. The case now heads to the federal appeals court for a full hearing.`,
     highlightRules: {
       'bad-arguments': [
         { words: ['Critics call'], explanation: 'Unnamed critics — who exactly?' },
@@ -332,9 +340,10 @@ export const MISSIONS: MissionPost[] = [
     title: 'Climate change is here, scientists say',
     source: 'BBC',
     url: 'https://www.bbc.com/news/articles/c3ew90vj8vyo',
-    scientist: 'tajfel',
+    logo: '/assets/logos/bbc.svg',
+        scientist: 'tajfel',
     color: '#a78bfa',
-    content: `Experts insist climate change is already affecting us. "Clearly," they say, "flooding is becoming more frequent." Many fear the worst is yet to come. "Everyone knows," they claim, "that human activity is the cause." The real question is whether governments will act.`,
+    content: `Experts insist climate change is already affecting us in tangible and measurable ways that increasingly defy even the most conservative previous scientific projections. "Clearly," they say, "flooding in coastal communities is becoming more frequent and more severe, with this year alone seeing record-breaking storm surges across three continents and unprecedented damage to infrastructure." Many fear the worst is yet to come as climate feedback loops, including melting permafrost and reduced ice albedo, accelerate faster than most models had anticipated. "Everyone knows by now," they claim, "that human activity is the primary driver of these changes — the scientific debate is no longer about whether, but about how quickly we need to respond to avert catastrophic outcomes." The real question, policymakers across the globe acknowledge, is whether governments will act with sufficient urgency or continue pursuing incremental approaches that scientists say are wholly inadequate for the scale of the unfolding crisis.`,
     highlightRules: {
       'bad-arguments': [
         { words: ['Experts insist'], explanation: 'Authority appeal — which experts?' },
@@ -378,9 +387,10 @@ export const MISSIONS: MissionPost[] = [
     title: 'Iran war hands Syria a windfall',
     source: 'Reuters',
     url: 'https://www.reuters.com/world/middle-east/iran-war-hands-syria-windfall-airlines-reroute-over-its-airspace-2026-06-01',
-    scientist: 'mccombs-shaw',
+    logo: '/assets/logos/reuters.svg',
+        scientist: 'mccombs-shaw',
     color: '#14b8a6',
-    content: `Syria benefits financially from diverted air routes. Critics say this is a short-term gain with long-term risks. "Experts warn," they say, "the economic benefits may not outweigh the costs." Many believe Syria's leadership is exploiting the situation. "Obviously," analysts claim, "this complicates regional stability."`,
+    content: `Syria benefits financially from air routes diverted due to the ongoing Iran conflict, with overflight fees providing a significant and much-needed boost to Damascus's struggling war-time economy. Critics say this represents a short-term gain that carries substantial long-term strategic risks, including the potential for expanded international sanctions and diplomatic isolation. "Experts warn," they caution, "the economic benefits may not outweigh the diplomatic costs of being seen as deliberately exploiting a regional crisis for financial gain." Many believe Syria's leadership is intentionally prolonging regional tensions to maximize revenue from rerouted commercial flights that now traverse Syrian airspace in significantly larger numbers. "Obviously," analysts claim, "this complicates regional stability and creates perverse financial incentives for Damascus to oppose any genuine resolution to the broader conflict in the region." Airlines have rerouted approximately 15% of their regional traffic through Syrian airspace since the escalation of hostilities began.`,
     highlightRules: {
       'bad-arguments': [
         { words: ['Experts warn'], explanation: 'Anonymous authority — which experts?' },
@@ -421,9 +431,10 @@ export const MISSIONS: MissionPost[] = [
     title: 'Trump administration faces Republican pushback',
     source: 'Reuters',
     url: 'https://www.reuters.com/world/us/trumps-deportation-push-could-cost-republicans-midterm-elections-reutersipsos-2026-04-22',
-    scientist: 'kahneman',
+    logo: '/assets/logos/reuters.svg',
+        scientist: 'kahneman',
     color: '#eab308',
-    content: `Polls show declining approval of Trump's policies. Many support border security but also legal status for migrants. "Clearly," critics argue, "public opinion is mixed." Experts warn conflicting data creates confusion. "It's no secret," they say, "this complicates political messaging."`,
+    content: `Polls show declining approval of Trump's immigration policies across multiple key swing states, with independent voters in particular shifting away from the administration's hardline enforcement approach at an accelerating rate. Many Americans simultaneously support strong border security measures and legal status pathways for long-term undocumented migrants who meet certain criteria, creating a complex and nuanced picture for policymakers trying to navigate the issue. "Clearly," critics argue, "public opinion is not as simple as the administration's messaging suggests — people consistently want both enforcement and compassion to coexist in immigration policy." Experts warn that conflicting data from different polling organizations using different methodologies creates confusion about what the electorate actually wants and how intensely they feel about various aspects of the debate. "It's no secret," veteran political strategists say, "that this significantly complicates political messaging for both major parties heading into a critical election cycle where immigration has become the number one issue for voters in every swing state."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['Polls show'], explanation: 'Which polls? No methodology' },
@@ -463,9 +474,10 @@ export const MISSIONS: MissionPost[] = [
     title: 'Climate change framing shapes policy priorities',
     source: 'Reuters',
     url: 'https://www.reuters.com/sustainability/climate-change',
-    scientist: 'baudrillard',
+    logo: '/assets/logos/reuters.svg',
+        scientist: 'baudrillard',
     color: '#6366f1',
-    content: `Carbon pricing revenue grew by 2% last year. Experts insist focus should be on preventing suffering. "It's no secret," they say, "climate impacts are worsening." Many believe wealthy nations must take responsibility. "Clearly," critics argue, "this is a moral issue, not just economic."`,
+    content: `Global carbon pricing revenue grew by 2% last year to reach a total of $107 billion according to the World Bank's annual comprehensive report on carbon markets and emissions trading systems worldwide. Experts insist the focus should urgently shift from purely economic metrics to preventing the escalating human suffering caused by climate change impacts that are already being felt across vulnerable communities worldwide. "It's no secret," they say, "that climate impacts are worsening significantly faster than our collective policy responses are adapting to meet the growing challenge." Many believe wealthy nations, which have contributed the overwhelming majority of historical emissions, must take far greater responsibility for financing adaptation and resilience measures in vulnerable developing countries that have contributed least to the problem. "Clearly," critics argue, "this is fundamentally a moral issue, not merely an economic one — we cannot simply price our way out of a crisis that demands a structural transformation of our entire global energy system."`,
     highlightRules: {
       'bad-arguments': [
         { words: ['Experts insist'], explanation: 'Authority appeal — which experts?' },
@@ -510,9 +522,10 @@ export const MISSIONS: MissionPost[] = [
     title: "Trump's immigration approval hits new low",
     source: 'AP News',
     url: 'https://apnews.com/hub/public-opinion',
-    scientist: 'cialdini',
+    logo: '/assets/logos/ap.svg',
+        scientist: 'cialdini',
     color: '#ec4899',
-    content: `Repeated polls show declining support for Trump. Critics say his policies are deeply unpopular. "Experts warn," they insist, "this trend will continue." Many fear his approval ratings will drop further. "Clearly," they claim, "public opinion is shifting rapidly."`,
+    content: `Repeated polls from multiple independent survey organizations consistently show declining support for President Trump's handling of key domestic issues, with the trend accelerating across nearly every demographic category measured. Critics say his policies are deeply unpopular among the suburban voters who will be crucial in determining the outcome of upcoming elections across the country. "Experts warn," analysts insist, "this trend will continue unless the administration significantly changes its approach to both immigration enforcement and economic policy in the coming months." Many experienced political strategists fear his approval ratings will drop further among independent voters who are increasingly turned off by the administration's confrontational style and frequent changes in policy direction. "Clearly," they claim, "public opinion is shifting rapidly in ways that could fundamentally reshape the political landscape for years to come." The RealClearPolitics polling average now shows Trump's overall approval at 43%, down from 47% just three months ago, a statistically significant decline.`,
     highlightRules: {
       'bad-arguments': [
         { words: ['Repeated polls show'], explanation: 'Vague — which polls? How many?' },
@@ -548,6 +561,182 @@ export const MISSIONS: MissionPost[] = [
       { text: 'Emotional triggers exploit liking principle for persuasion.', correct: false },
       { text: 'Authority lends credibility to repeated facts.', correct: false },
       { text: 'Repetition and authority enable propaganda techniques.', correct: true }
+    ]
+  },
+  {
+    id: 13,
+    title: 'Israel strikes south Lebanon after stepping back from Beirut attack',
+    source: 'Reuters',
+    url: 'https://www.reuters.com/world/middle-east/israel-strikes-south-lebanon-after-holding-off-beirut-attack-2026-06-02/',
+    logo: '/assets/logos/reuters.svg',
+    scientist: 'barthes',
+    color: '#06b6d4',
+    content: `President Trump said he asked Israeli Prime Minister Netanyahu not to conduct a major raid on Beirut, announcing a US-brokered understanding that would limit the scope of military operations. Hezbollah, through unnamed intermediaries, had pledged not to launch direct attacks on Israeli territory in return. But the announcement has failed to reassure many Lebanese civilians or halt the broader war in south Lebanon, which Netanyahu has vowed would continue until security is restored to northern Israel. 1.2 million people have been displaced in Lebanon since March 2, representing roughly 20% of the country's population. Over 3,400 people have been killed according to the Lebanese health ministry, including both combatants and civilians. Four were killed in two towns on Tuesday alone in strikes that hit residential areas. Israeli forces captured the historic Beaufort Castle, a strategic vantage point overlooking the Litani River valley. Hezbollah responded by firing artillery shells near the border in the largest exchange since the understanding was announced. Meanwhile, Lebanon's caretaker government attends talks in Washington despite Hezbollah's vocal objections to any negotiations with the United States.`,
+    highlightRules: {
+      'bad-arguments': [
+        { words: ['through intermediaries'], explanation: 'Anonymous sourcing — who are these intermediaries? Unverifiable.' },
+        { words: ['failed to reassure many Lebanese'], explanation: 'Unquantified — how many? "Many" replaces data.' },
+        { words: ['vowed would continue'], explanation: 'Emphatic verb — "vowed" implies aggression, not policy.' }
+      ],
+      'feelings-check': [
+        { words: ['major raid'], explanation: 'Loaded military term — "raid" vs "operation" = different emotional weights' },
+        { words: ['failed to reassure'], explanation: 'Frames deal as failure before evidence — emotional negativity' },
+        { words: ['broader war'], explanation: 'Escalation framing — "broader" implies inevitable expansion' }
+      ],
+      'brain-check': [
+        { words: ['1.2 million'], explanation: 'Large number without baseline — 1.2M of 5.5M = 22%, but not given' },
+        { words: ['over 3,400'], explanation: 'Cumulative deaths without daily rate — is that high? Low? Context matters' },
+        { words: ['4 were killed'], explanation: 'Absolute number — compared to what? 4/day vs 3-month average?' }
+      ],
+      'hidden-story': [
+        { words: ['major raid'], explanation: 'Barthes: "raid" is a myth-word — transforms military operation into violation. No neutral description exists.' },
+        { words: ['broader war'], explanation: 'Barthes: Myth of inevitability — "broader war" frames escalation as natural, not as a choice.' },
+        { words: ['Trump said he asked'], explanation: 'Barthes: Myth of American leadership — US president framed as global arbiter deciding war and peace.' }
+      ],
+      'us-vs-them': [
+        { words: ['Hezbollah fired'], explanation: 'Frames Hezbollah as aggressor — "fired" vs "retaliated" = different sides' }
+      ],
+      'value-check': [
+        { words: ['displaced'], explanation: 'Care trigger — frames civilians as victims needing protection' }
+      ],
+      'fake-check': [], 'source-check': [], 'echo-chamber': [],
+      'agenda-setting': [
+        { words: ['attends talks in Washington'], explanation: 'Frames Washington as center of solution — ignores local peace efforts' }
+      ],
+      'red-herring': [
+        { words: ['despite Hezbollah objections'], explanation: 'Ending on Hezbollah dissent distracts from 3,400 deaths' }
+      ],
+      'false-appeal': []
+    },
+    standardViolations: [
+      { rule: 'SOURCE_CHECK', text: '"Through intermediaries" — unnamed mediators, no verification possible' },
+      { rule: 'HUMAN_COST', text: '3,400+ killed reported as statistics without individual stories' },
+      { rule: 'CONTEXT', text: 'No mention of civilian-to-combatant ratio in casualty figures' }
+    ],
+    explanation: "Barthes would deconstruct this article as a mythology of justified intervention. The phrase 'self-defense strikes' is a mythologem — it transforms military aggression into righteous protection. 'Ceasefire' is presented as a neutral term, but it functions as a myth that frames temporary military pauses as peace efforts. The binary 'Hezbollah fired vs. Israel responded' creates a moral universe where one side always acts and the other always reacts. Barthes would ask: where are the 3,400 names? Where are the displaced families? The article produces a mythology where geopolitics is a game of leaders, not a catastrophe for humans. The real manipulation is not in the facts — it's in whose story gets told.",
+    choices: [
+      { text: 'Myth of righteous intervention transforms aggression into protection.', correct: true },
+      { text: 'Neutral ceasefire reporting balances both sides equally.', correct: false },
+      { text: 'Casualty statistics provide complete humanitarian context.', correct: false },
+      { text: 'Geopolitical framing centers human suffering over diplomacy.', correct: false }
+    ]
+  },
+  {
+    id: 14,
+    title: "Trump's immigration enforcement in cities is unpopular, AP-NORC poll shows",
+    source: 'AP News',
+    url: 'https://apnews.com/article/trump-immigration-ice-minneapolis-deportation-42aff472ccf1ecd7b92ba0c90469c9e7',
+    logo: '/assets/logos/ap.svg',
+    scientist: 'haidt',
+    color: '#f97316',
+    content: `Six in ten U.S. adults believe President Trump has "gone too far" in sending federal agents into major cities for immigration enforcement operations, according to a new AP-NORC poll that reveals deep partisan divisions on the issue. Nine in ten Democrats and seven in ten independents disapprove of the operations, but only 25% of Republicans agree with the criticism. "I am glad that immigrants aren't just flooding across the border like they were before, but what he's doing now in our cities, pitting the military against our own people, these are gestapo tactics if I'm being honest. They're shooting U.S. citizens in the face and in the back during these operations," said Brenda Shaw, an independent from Grand Rapids, Michigan. "I don't think the deportations have been enough, to be honest. I think it's much too lax — we need to be enforcing our laws consistently or what's the point of having them at all," said Teviss Crawford, a Republican from Baton Rouge, Louisiana. Only three in ten U.S. adults have a favorable view of ICE as an institution, marking a significant decline in public confidence. The Republican Party's traditional advantage on immigration issues has narrowed dramatically from 13 percentage points to just 4 points over the past year, a shift that has strategists in both parties rethinking their approach to the issue heading into the midterms.`,
+    highlightRules: {
+      'bad-arguments': [
+        { words: ['Polls show', 'poll shows'], explanation: 'Which methodology? Margin of error not in lead' },
+        { words: ['6 in 10'], explanation: 'Rounded from 56-64% — sounds precise, is approximate' },
+        { words: ['3 in 10'], explanation: '29.7% rounded to "3 in 10" — spin through rounding' }
+      ],
+      'feelings-check': [
+        { words: ['gone too far'], explanation: 'Emotional intensity marker — where is "too far"? Subjective framing' },
+        { words: ['gestapo tactics'], explanation: 'MAX emotional trigger — Nazi comparison bypasses all rational debate' },
+        { words: ['shooting U.S. citizens'], explanation: 'Highest fear trigger — citizens killed by own government' },
+        { words: ['flooding across the border'], explanation: 'War metaphor embedded even in positive quote' },
+        { words: ['much too lax'], explanation: 'Emotional opposite — frames enforcement as weakness' }
+      ],
+      'brain-check': [
+        { words: ['13 points to 4 points'], explanation: 'Drop is real, but sample sizes for subgroup analysis need margin context' }
+      ],
+      'hidden-story': [
+        { words: ['pitting the military against our people'], explanation: 'Frames federal action as civil war — "our people" vs "military"' }
+      ],
+      'us-vs-them': [
+        { words: ['Democrats'], explanation: 'Tajfel: labeled as monolithic block — 90% sounds like unified opposition' },
+        { words: ['independents'], explanation: 'Key swing group singled out — creates "us" of moderates vs "them" of partisans' }
+      ],
+      'value-check': [
+        { words: ['citizens in the face'], explanation: 'Care — victim frame: citizens are being shot. Max compassion trigger.' },
+        { words: ['gestapo tactics'], explanation: 'Liberty — government oppression trigger. Reactance against authority.' }
+      ],
+      'fake-check': [],
+      'source-check': [
+        { words: ['Brenda Shaw'], explanation: 'Named source is good — one person out of 1,156. Representative?' }
+      ],
+      'echo-chamber': [
+        { words: ['AP-NORC poll'], explanation: 'One poll repeated as definitive — other polls with different results? Not shown' }
+      ],
+      'agenda-setting': [
+        { words: ['gone too far'], explanation: 'Sets agenda: the question is NOT "is policy effective" but "has it gone too far"' }
+      ],
+      'red-herring': [], 'false-appeal': []
+    },
+    standardViolations: [
+      { rule: 'QUOTATION_SELECTION', text: '3 quotes from 1,156 respondents — 2 extreme anti-Trump, 1 mild pro-Trump. Not statistically representative.' },
+      { rule: 'BALANCE', text: 'Quote ratio: 2 emotional condemnations vs 1 mild defense — framing through selection' }
+    ],
+    explanation: "Haidt's Moral Foundations Theory reveals how this article pushes every moral button simultaneously. 'Gestapo tactics' triggers Liberty (government oppression) and Care (shooting citizens) — two foundations at once. 'Gone too far' activates Fairness (the policy is unjust). The partisan breakdown frames everything as tribal loyalty. The quotes are devastating because they're real — but Haidt would ask: why were THESE three chosen from 1,156 respondents? The poll data is real. The manipulation is in the curation: two visceral anti-Trump quotes frame the entire story before you reach the numbers. Your moral intuition fires before your reasoning can check the methodology.",
+    choices: [
+      { text: 'Emotional quote curation triggers moral intuition before data evaluation.', correct: true },
+      { text: 'Poll methodology is fully transparent for objective evaluation.', correct: false },
+      { text: 'Partisan breakdown provides neutral political context.', correct: false },
+      { text: 'Victim framing accurately represents all poll respondents.', correct: false }
+    ]
+  },
+  {
+    id: 15,
+    title: 'Israel continues strikes on southern Lebanon despite US-brokered deal',
+    source: 'BBC News',
+    url: 'https://www.bbc.com/news/world-middle-east',
+    logo: '/assets/logos/bbc.svg',
+    scientist: 'mccombs_shaw',
+    color: '#6366f1',
+    content: `Israel has continued to attack targets in southern Lebanon despite a US-brokered de-escalation understanding with Hezbollah that was announced with considerable fanfare at the White House last week. US President Donald Trump announced the agreement would stop Israeli attacks on Beirut and Hezbollah attacks on Israeli territory, describing it as a breakthrough in months of shuttle diplomacy. However, over 600 people have been killed in Israeli strikes across Lebanon since the deal was announced, raising serious questions about its effectiveness and whether either side genuinely intends to honor its terms. The Israeli military has simultaneously expanded its ground presence in southern Lebanon, pushing to within 15 kilometers of the Litani River in some areas. Iran has insisted that a full and verifiable ceasefire in Lebanon is a necessary precondition for any broader ceasefire agreement with the United States regarding its nuclear program. The deal, according to a statement from the Lebanese embassy in Washington that was later confirmed by State Department officials, would stop Israeli attacks on Beirut and require Hezbollah to halt all operations against Israeli positions. Neither side has publicly accepted the terms of the deal, and fighting has continued unabated on multiple fronts.`,
+    highlightRules: {
+      'bad-arguments': [
+        { words: ['according to a statement'], explanation: 'Single source — no independent verification' },
+        { words: ['Neither side has publicly accepted'], explanation: 'Contradicts "deal" framing — deal implies acceptance by both' }
+      ],
+      'feelings-check': [
+        { words: ['continued to attack'], explanation: 'Frames Israel as aggressor — "attack" vs "operate" = emotional choice' },
+        { words: ['despite a deal'], explanation: 'Framing: Israel is violating an agreement, not acting within one' }
+      ],
+      'brain-check': [
+        { words: ['over 600'], explanation: 'Vague — 600 is precise? Or 600+? Unclear margin' },
+        { words: ['since the deal was announced'], explanation: 'Correlation vs causation — were these strikes related to deal timing?' }
+      ],
+      'hidden-story': [
+        { words: ['de-escalation deal'], explanation: 'Myth: "de-escalation" assumes both sides were escalating equally' }
+      ],
+      'us-vs-them': [
+        { words: ['Iran has insisted'], explanation: 'Iran framed as obstacle — "insists" implies unreasonable demand' }
+      ],
+      'value-check': [
+        { words: ['killed'], explanation: 'Care trigger — 600 deaths, framed as cost of failed diplomacy' }
+      ],
+      'fake-check': [],
+      'source-check': [
+        { words: ['Lebanese embassy in Washington'], explanation: 'Single diplomatic source — one stakeholder out of many' }
+      ],
+      'echo-chamber': [],
+      'agenda-setting': [
+        { words: ['US-brokered de-escalation deal'], explanation: 'Agenda: focus is on the DEAL, not the war. You think about diplomacy, not destruction.' },
+        { words: ['Iran has insisted'], explanation: 'Ends on Iran — shifts focus FROM 600 dead TO geopolitical obstacle. Key agenda move.' }
+      ],
+      'red-herring': [
+        { words: ['Iran has insisted that a full ceasefire is necessary'], explanation: 'Distraction: 600 killed, but you end up thinking about Iran. Classic red herring.' }
+      ],
+      'false-appeal': []
+    },
+    standardViolations: [
+      { rule: 'CAUSALITY', text: '"600 killed since deal" implies causality — correlation vs causation not addressed' },
+      { rule: 'BALANCE', text: 'No Israeli government statement or perspective in the article' },
+      { rule: 'AGENDA', text: 'Article ends on Iran — reader leaves thinking about geopolitics, not human cost' }
+    ],
+    explanation: "McCombs & Shaw's Agenda-Setting Theory explains exactly what this article is doing. It tells you WHAT TO THINK ABOUT, not what to think. The lead frame is 'the deal is failing' — your attention is on the diplomatic process, not the 600 dead. 'US-brokered' centers American power. The final paragraph is the killer: it shifts focus to Iran. You start reading about 600 people killed, you finish thinking about whether Iran will agree to a ceasefire. McCombs & Shaw would say: the manipulation isn't in any single fact — it's in the hierarchy. What comes first, what comes last, what gets amplified, what gets buried. The 600 deaths are a number. Iran's position is a narrative. And narratives always win.",
+    choices: [
+      { text: 'Agenda setting shifts focus from human cost to geopolitics.', correct: true },
+      { text: 'Neutral diplomatic reporting balances all perspectives equally.', correct: false },
+      { text: 'Casualty figures provide complete humanitarian evaluation.', correct: false },
+      { text: 'US-brokered framing ensures accountability for all sides.', correct: false }
     ]
   }
 ]

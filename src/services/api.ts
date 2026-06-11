@@ -6,6 +6,7 @@ export interface MissionPost {
   title: string
   source: string
   url: string
+  logo: string
   scientist: string
   color: string
   content: string

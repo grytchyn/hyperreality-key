@@ -26,6 +26,9 @@ export const LEVEL_TOOLS: Record<number, CoreToolId[]> = {
   10: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check', 'fake-check', 'echo-chamber', 'agenda-setting', 'red-herring', 'false-appeal'],
   11: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check', 'fake-check', 'echo-chamber', 'agenda-setting', 'red-herring', 'false-appeal'],
   12: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check', 'fake-check', 'echo-chamber', 'agenda-setting', 'red-herring', 'false-appeal'],
+  13: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check', 'fake-check', 'echo-chamber', 'agenda-setting', 'red-herring', 'false-appeal'],
+  14: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check', 'fake-check', 'echo-chamber', 'agenda-setting', 'red-herring', 'false-appeal'],
+  15: ['bad-arguments', 'feelings-check', 'brain-check', 'us-vs-them', 'value-check', 'hidden-story', 'source-check', 'fake-check', 'echo-chamber', 'agenda-setting', 'red-herring', 'false-appeal'],
 };
 
 /**
@@ -44,6 +47,9 @@ export const LEVEL_CONFIG: Record<number, LevelConfig> = {
   10: { color: '#8b5cf6', scientistName: 'Arthur Schopenhauer', scientistKey: 'schopenhauer', theme: 'Red Herring', name: 'Red Herring' },
   11: { color: '#0ea5e9', scientistName: 'McCombs & Shaw', scientistKey: 'mccombs_shaw', theme: 'Agenda Setting', name: 'Agenda Setting' },
   12: { color: '#e11d48', scientistName: 'Robert Cialdini', scientistKey: 'cialdini', theme: 'Value Check', name: 'Value Check' },
+  13: { color: '#06b6d4', scientistName: 'Roland Barthes', scientistKey: 'barthes', theme: 'Hidden Myth', name: 'Hidden Myth' },
+  14: { color: '#f97316', scientistName: 'Jonathan Haidt', scientistKey: 'haidt', theme: 'Moral Buttons', name: 'Moral Buttons' },
+  15: { color: '#6366f1', scientistName: 'McCombs & Shaw', scientistKey: 'mccombs_shaw', theme: 'Agenda Setting', name: 'Agenda Setting' },
 };
 
 export function getToolsForLevel(level: number): CoreToolId[] {

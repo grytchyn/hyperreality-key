@@ -2,13 +2,13 @@
 
 export const GAME_CONFIG = {
   /** Total number of levels */
-  MAX_LEVEL: 12,
+  MAX_LEVEL: 15,
 
   /** Points awarded for a correct answer */
   SCORE_PER_CORRECT: 10,
 
   /** Maximum achievable score */
-  MAX_SCORE: 12 * 10,
+  MAX_SCORE: 15 * 10,
 
   /** Number of tools unlocked at level 1 */
   INITIAL_TOOLS: 3,
@@ -24,11 +24,11 @@ export const GAME_CONFIG = {
 
   /** Rank thresholds — continuous coverage */
   RANKS: [
-    { min: 0, max: 30, title: 'Novice', label: 'Information Apprentice' },
-    { min: 31, max: 50, title: 'Truth Apprentice', label: 'Pattern Spotter' },
-    { min: 51, max: 79, title: 'Critical Thinker', label: 'Truth Seeker' },
-    { min: 80, max: 109, title: 'Truth Seeker', label: 'Reality Navigator' },
-    { min: 110, max: 120, title: 'Hyperreality Master', label: 'Key Holder' },
+    { min: 0, max: 40, title: 'Novice', label: 'Information Apprentice' },
+    { min: 41, max: 60, title: 'Truth Apprentice', label: 'Pattern Spotter' },
+    { min: 61, max: 89, title: 'Critical Thinker', label: 'Truth Seeker' },
+    { min: 90, max: 119, title: 'Truth Seeker', label: 'Reality Navigator' },
+    { min: 120, max: 150, title: 'Hyperreality Master', label: 'Key Holder' },
   ] as const,
 
   /** Available languages */
